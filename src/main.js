@@ -6,6 +6,7 @@ import { initChatAssistant } from './components/chatAssistant.js';
 import { initCardTilt } from './components/cardTilt.js';
 import { initSystemConsole } from './components/systemConsole.js';
 import { initAudioSynthesizer } from './components/audioSynthesizer.js';
+import { initTrialPopup } from './components/trialPopup.js';
 
 // Global layout interactions (scrolling header, mobile navigation, scroll-indicator)
 function initGlobalLayout() {
@@ -85,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardTilt();
     initSystemConsole();
     initAudioSynthesizer();
+    initTrialPopup();
   });
 });
 

@@ -52,7 +52,7 @@ export default function BillingApp() {
       {/* SECTION 1: Navigation Bar */}
       <motion.nav 
         style={{ backgroundColor: navBg, borderBottomColor: navBorder, backdropFilter: navBlur, WebkitBackdropFilter: navBlur }}
-        className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300 border-b border-transparent"
+        className="fixed top-0 left-0 right-0 z-[1001] transition-colors duration-300 border-b border-transparent"
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2 group">
@@ -101,7 +101,7 @@ export default function BillingApp() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1] text-white"
+            className="text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight mb-8 leading-[1.1] text-white"
           >
             The Complete Operating System <br className="hidden md:block" />
             <span className="text-zinc-300">for Your Salon Business.</span>
@@ -138,8 +138,8 @@ export default function BillingApp() {
           transition={{ duration: 1, delay: 0.8 }}
           className="relative w-full max-w-6xl mx-auto mt-20 px-6 perspective-1000"
         >
-          <div className="relative rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-900/50 backdrop-blur-3xl overflow-hidden shadow-2xl rotate-x-[5deg] scale-[0.98]">
-            <div className="h-8 md:h-12 bg-zinc-900 border-b border-white/10 flex items-center px-4 gap-2">
+          <div className="relative rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-800/50 backdrop-blur-3xl overflow-hidden shadow-2xl rotate-x-[5deg] scale-[0.98]">
+            <div className="h-8 md:h-12 bg-zinc-800 border-b border-white/10 flex items-center px-4 gap-2">
               <div className="flex gap-1.5">
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -167,7 +167,7 @@ export default function BillingApp() {
                 <motion.div 
                   animate={{ y: [0, -10, 0] }} 
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -right-4 top-20 bg-zinc-900 border border-white/10 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3"
+                  className="absolute -right-4 top-20 bg-zinc-800 border border-white/10 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3"
                 >
                   <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 font-bold">₹</div>
                   <div>
@@ -179,7 +179,7 @@ export default function BillingApp() {
                 <motion.div 
                   animate={{ y: [0, 10, 0] }} 
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute -left-4 bottom-20 bg-zinc-900 border border-white/10 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3"
+                  className="absolute -left-4 bottom-20 bg-zinc-800 border border-white/10 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3"
                 >
                   <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 font-bold">47</div>
                   <div>
@@ -221,7 +221,7 @@ export default function BillingApp() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="md:col-span-2 md:row-span-2 rounded-3xl bg-zinc-900 border border-white/10 p-8 relative overflow-hidden group hover:border-white/10 transition-colors"
+              className="md:col-span-2 md:row-span-2 rounded-3xl bg-zinc-800 border border-white/10 p-8 relative overflow-hidden group hover:border-white/10 transition-colors"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-hanva-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative z-10 flex flex-col h-full">
@@ -230,10 +230,10 @@ export default function BillingApp() {
                 <p className="text-zinc-400">Drag-and-drop calendar that prevents double bookings and manages staff availability instantly.</p>
                 
                 <div className="mt-auto pt-8 flex gap-2">
-                  <div className="flex-1 h-32 bg-zinc-900 rounded-t-xl border-t border-x border-white/10 p-3 relative overflow-hidden">
+                  <div className="flex-1 h-32 bg-zinc-800 rounded-t-xl border-t border-x border-white/10 p-3 relative overflow-hidden">
                     <motion.div animate={{ height: ['0%', '60%', '60%'] }} transition={{ duration: 3, repeat: Infinity }} className="absolute bottom-0 left-3 right-3 bg-blue-500/20 border border-blue-500/30 rounded-t-lg" />
                   </div>
-                  <div className="flex-1 h-32 bg-zinc-900 rounded-t-xl border-t border-x border-white/10 p-3 relative overflow-hidden">
+                  <div className="flex-1 h-32 bg-zinc-800 rounded-t-xl border-t border-x border-white/10 p-3 relative overflow-hidden">
                     <motion.div animate={{ height: ['0%', '40%', '40%'] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }} className="absolute bottom-0 left-3 right-3 bg-green-500/20 border border-green-500/30 rounded-t-lg" />
                   </div>
                 </div>
@@ -244,7 +244,7 @@ export default function BillingApp() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-900 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
+              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-800 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
             >
               <Award className="w-6 h-6 text-hanva-gold mb-4" />
               <h3 className="text-lg font-semibold mb-2">Loyalty Points</h3>
@@ -255,7 +255,7 @@ export default function BillingApp() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-900 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
+              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-800 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
             >
               <MessageCircle className="w-6 h-6 text-green-500 mb-4" />
               <h3 className="text-lg font-semibold mb-2">WhatsApp Auto</h3>
@@ -266,7 +266,7 @@ export default function BillingApp() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-900 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-between"
+              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-800 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-between"
             >
               <div>
                 <Users className="w-6 h-6 text-blue-400 mb-4" />
@@ -281,11 +281,11 @@ export default function BillingApp() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
-              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-900 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
+              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-800 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
             >
               <Package className="w-6 h-6 text-purple-400 mb-4" />
               <h3 className="text-lg font-semibold mb-2">Inventory</h3>
-              <div className="w-full h-2 bg-zinc-900 rounded-full mt-4 overflow-hidden">
+              <div className="w-full h-2 bg-zinc-800 rounded-full mt-4 overflow-hidden">
                 <motion.div animate={{ width: ['20%', '80%', '20%'] }} transition={{ duration: 4, repeat: Infinity }} className="h-full bg-purple-500" />
               </div>
             </motion.div>
@@ -314,9 +314,9 @@ export default function BillingApp() {
               </ul>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="relative h-[600px] flex items-center justify-center">
-              <div className="w-[300px] h-[600px] bg-zinc-900 border-[8px] border-zinc-900 rounded-[3rem] overflow-hidden relative shadow-2xl">
+              <div className="w-[300px] h-[600px] bg-zinc-800 border-[8px] border-zinc-900 rounded-[3rem] overflow-hidden relative shadow-2xl">
                 {/* Mobile mockup screen */}
-                <div className="absolute top-0 inset-x-0 h-6 bg-zinc-900 flex justify-center pt-2"><div className="w-20 h-4 bg-black rounded-full" /></div>
+                <div className="absolute top-0 inset-x-0 h-6 bg-zinc-800 flex justify-center pt-2"><div className="w-20 h-4 bg-black rounded-full" /></div>
                 <div className="p-6 pt-12 flex flex-col gap-4">
                   <div className="w-16 h-16 bg-white/10 rounded-full mx-auto mb-4" />
                   <div className="h-6 bg-white/20 w-3/4 mx-auto rounded-md" />
@@ -340,7 +340,7 @@ export default function BillingApp() {
 
           {/* Feature 2 */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-2 md:order-1 relative h-[500px] bg-zinc-900 rounded-3xl border border-white/10 overflow-hidden flex items-center justify-center">
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-2 md:order-1 relative h-[500px] bg-zinc-800 rounded-3xl border border-white/10 overflow-hidden flex items-center justify-center">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-hanva-gold/20 via-transparent to-transparent opacity-50" />
               <motion.div 
                 whileHover={{ scale: 1.05, rotateY: 10 }}
@@ -384,7 +384,7 @@ export default function BillingApp() {
               </p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="relative h-[400px] flex items-center justify-center">
-               <div className="w-full max-w-sm bg-zinc-900 border border-white/10 rounded-2xl p-4 shadow-2xl flex flex-col gap-4">
+               <div className="w-full max-w-sm bg-zinc-800 border border-white/10 rounded-2xl p-4 shadow-2xl flex flex-col gap-4">
                  <div className="bg-[#075E54] p-3 rounded-t-xl text-white font-semibold flex items-center gap-3">
                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
                      <Sparkles className="w-5 h-5 text-black" />
@@ -405,7 +405,7 @@ export default function BillingApp() {
           {/* Feature 4 */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-2 md:order-1 relative h-[400px] flex items-center justify-center">
-               <div className="w-full h-full bg-zinc-900 border border-white/10 rounded-3xl p-6 relative overflow-hidden flex flex-col gap-4">
+               <div className="w-full h-full bg-zinc-800 border border-white/10 rounded-3xl p-6 relative overflow-hidden flex flex-col gap-4">
                  <div className="flex gap-4">
                    <div className="flex-1 h-24 bg-white/5 rounded-xl p-4 flex flex-col justify-between border border-white/10">
                      <span className="text-zinc-500 text-sm">Revenue</span>
@@ -446,7 +446,7 @@ export default function BillingApp() {
               </p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="relative h-[400px] flex items-center justify-center">
-               <div className="w-full max-w-sm bg-zinc-900 border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col gap-6">
+               <div className="w-full max-w-sm bg-zinc-800 border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col gap-6">
                  <div className="flex items-center gap-4">
                    <div className="w-12 h-12 rounded-full bg-zinc-800 border-2 border-orange-500 flex items-center justify-center font-bold">AK</div>
                    <div>
@@ -459,11 +459,11 @@ export default function BillingApp() {
                      <span className="text-zinc-400">Monthly Target</span>
                      <span className="font-bold text-orange-400">85%</span>
                    </div>
-                   <div className="h-3 bg-zinc-900 rounded-full overflow-hidden">
+                   <div className="h-3 bg-zinc-800 rounded-full overflow-hidden">
                      <motion.div animate={{ width: '85%' }} transition={{ duration: 1, delay: 0.5 }} className="h-full bg-orange-500" />
                    </div>
                  </div>
-                 <div className="bg-zinc-900 p-4 rounded-xl flex justify-between items-center border border-white/10">
+                 <div className="bg-zinc-800 p-4 rounded-xl flex justify-between items-center border border-white/10">
                    <span className="text-zinc-400 text-sm">Earned Commission</span>
                    <span className="font-bold text-lg">₹12,450</span>
                  </div>
@@ -489,7 +489,7 @@ export default function BillingApp() {
                    </div>
                    <div className="flex justify-between font-bold text-lg"><span>Total:</span><span>₹1650</span></div>
                  </motion.div>
-                 <div className="absolute top-0 inset-x-0 h-4 bg-zinc-900 rounded-t-lg border-b border-white/10" />
+                 <div className="absolute top-0 inset-x-0 h-4 bg-zinc-800 rounded-t-lg border-b border-white/10" />
                </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-1 md:order-2">
@@ -524,7 +524,7 @@ export default function BillingApp() {
             <p className="text-xl text-zinc-400">Everything you need to run your business efficiently.</p>
           </div>
           
-          <div className="flex flex-col md:flex-row gap-12 bg-zinc-900 border border-white/10 rounded-3xl p-6 md:p-8">
+          <div className="flex flex-col md:flex-row gap-12 bg-zinc-800 border border-white/10 rounded-3xl p-6 md:p-8">
             <div className="w-full md:w-1/3 flex flex-col gap-2">
               {['Bookings & Calendar', 'Customer Management', 'Billing & Invoices', 'Services & Products', 'Loyalty & Referrals', 'WhatsApp Automation', 'Analytics & Reports'].map((tab, i) => (
                 <button key={i} className={`text-left px-6 py-4 rounded-xl font-medium transition-all ${i === 0 ? 'bg-white/10 text-white' : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'}`}>
@@ -532,7 +532,7 @@ export default function BillingApp() {
                 </button>
               ))}
             </div>
-            <div className="w-full md:w-2/3 bg-zinc-900 rounded-2xl border border-white/10 relative overflow-hidden flex items-center justify-center min-h-[400px]">
+            <div className="w-full md:w-2/3 bg-zinc-800 rounded-2xl border border-white/10 relative overflow-hidden flex items-center justify-center min-h-[400px]">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent opacity-50" />
               <div className="text-center z-10 p-8">
                 <Calendar className="w-16 h-16 text-blue-400 mx-auto mb-6 opacity-80" />
@@ -545,7 +545,7 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 7: TESTIMONIALS */}
-      <section id="testimonials" className="py-32 px-6 bg-zinc-900 overflow-hidden">
+      <section id="testimonials" className="py-32 px-6 bg-zinc-800 overflow-hidden">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Loved by top salons.</h2>
         </div>
@@ -638,7 +638,7 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 10: FAQ */}
-      <section id="faq" className="py-32 px-6 bg-zinc-900">
+      <section id="faq" className="py-32 px-6 bg-zinc-800">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Got questions? We've got answers.</h2>
@@ -656,7 +656,7 @@ export default function BillingApp() {
       <section className="py-32 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black opacity-60" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">Ready to transform your salon?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to transform your salon?</h2>
           <p className="text-xl text-zinc-400 mb-10">Start your 14-day free trial — no credit card required.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
             <a href="https://biz.hanva.in/sign-up" className="px-8 py-4 bg-white text-black font-semibold rounded-full text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.15)]">
@@ -738,7 +738,7 @@ function PricingCard({ name, price, tagline, features, cta, highlighted = false 
   return (
     <motion.div 
       whileHover={{ y: -8 }}
-      className={`p-8 rounded-3xl relative ${highlighted ? 'bg-zinc-900 border-2 border-hanva-gold/50 shadow-[0_0_40px_rgba(212,175,55,0.1)]' : 'bg-zinc-900 border border-white/10'}`}
+      className={`p-8 rounded-3xl relative ${highlighted ? 'bg-zinc-800 border-2 border-hanva-gold/50 shadow-[0_0_40px_rgba(212,175,55,0.1)]' : 'bg-zinc-800 border border-white/10'}`}
     >
       {highlighted && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-hanva-gold text-black text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">

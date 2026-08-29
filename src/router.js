@@ -26,6 +26,17 @@ export function initRouter() {
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
 
   function updateNavigationUI(activeRoute) {
+    // Hide global header/footer for billing route since it has its own
+    const header = document.getElementById('main-header');
+    const footer = document.getElementById('main-footer');
+    if (activeRoute === 'billing') {
+      if (header) header.style.display = 'none';
+      if (footer) footer.style.display = 'none';
+    } else {
+      if (header) header.style.display = 'block';
+      if (footer) footer.style.display = 'block';
+    }
+
     // Sync desktop links
     desktopNavItems.forEach(item => {
       const href = item.getAttribute('href');

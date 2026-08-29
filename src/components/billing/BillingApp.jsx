@@ -4,7 +4,8 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { 
   Calendar, Award, MessageCircle, Users, BarChart3, Receipt, 
   Building2, Package, CheckCircle2, ChevronDown, Sparkles, Play,
-  Smartphone, Monitor, User, Clock, ArrowRight, Check, X, Shield, Star
+  Smartphone, Monitor, User, Clock, ArrowRight, Check, X, Shield, Star,
+  Moon, Sun
 } from 'lucide-react';
 
 const fadeIn = {
@@ -21,9 +22,10 @@ const staggerContainer = {
 };
 
 export default function BillingApp() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const { scrollY } = useScroll();
-  const navBg = useTransform(scrollY, [0, 50], ["rgba(0,0,0,0)", "rgba(10, 10, 10, 0.8)"]);
-  const navBorder = useTransform(scrollY, [0, 50], ["rgba(255,255,255,0)", "rgba(255,255,255,0.1)"]);
+  const navBg = useTransform(scrollY, [0, 50], ["rgba(0,0,0,0)", isDarkMode ? "rgba(10, 10, 10, 0.8)" : "rgba(255, 255, 255, 0.9)"]);
+  const navBorder = useTransform(scrollY, [0, 50], ["rgba(255,255,255,0)", isDarkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"]);
   const navBlur = useTransform(scrollY, [0, 50], ["blur(0px)", "blur(12px)"]);
 
   // Custom Cursor and SEO
@@ -46,8 +48,8 @@ export default function BillingApp() {
   }, []);
 
   return (
-    <div className="billing-page-root relative selection:bg-hanva-gold/30">
-      <div id="billing-cursor" className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full mix-blend-difference pointer-events-none z-[9999] transition-transform duration-100 ease-out hidden md:block" style={{ transform: 'translate(-50%, -50%)' }} />
+    <div className={`billing-page-root relative selection:bg-hanva-gold/30 ${isDarkMode ? 'dark' : ''} bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white min-h-screen transition-colors duration-500`}>
+      <div id="billing-cursor" className="fixed top-0 left-0 w-4 h-4 bg-zinc-900 dark:bg-white rounded-full mix-blend-difference pointer-events-none z-[9999] transition-transform duration-100 ease-out hidden md:block" style={{ transform: 'translate(-50%, -50%)' }} />
       
       {/* SECTION 1: Navigation Bar */}
       <motion.nav 
@@ -62,18 +64,25 @@ export default function BillingApp() {
             <span className="font-bold text-xl tracking-tight">Hanva Billing</span>
           </a>
           
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-            <a href="#features" className="hover:text-white transition-colors">Features</a>
-            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
-            <a href="#testimonials" className="hover:text-white transition-colors">Testimonials</a>
-            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-500 dark:text-zinc-400">
+            <a href="#features" className="hover:text-zinc-900 dark:text-white transition-colors">Features</a>
+            <a href="#pricing" className="hover:text-zinc-900 dark:text-white transition-colors">Pricing</a>
+            <a href="#testimonials" className="hover:text-zinc-900 dark:text-white transition-colors">Testimonials</a>
+            <a href="#faq" className="hover:text-zinc-900 dark:text-white transition-colors">FAQ</a>
           </div>
           
           <div className="flex items-center gap-4">
-            <a href="https://biz.hanva.in/sign-in" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+            <button 
+              onClick={() => setIsDarkMode(!isDarkMode)} 
+              className="p-2 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400"
+              aria-label="Toggle Theme"
+            >
+              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
+            <a href="https://biz.hanva.in/sign-in" className="hidden md:block text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
               Login →
             </a>
-            <a href="https://biz.hanva.in/sign-up" className="relative group overflow-hidden rounded-full bg-white text-black px-5 py-2.5 text-sm font-semibold transition-transform hover:scale-105 active:scale-95">
+            <a href="https://biz.hanva.in/sign-up" className="relative group overflow-hidden rounded-full bg-zinc-900 dark:bg-white text-white dark:text-black px-5 py-2.5 text-sm font-semibold transition-transform hover:scale-105 active:scale-95">
               <span className="relative z-10">Start Free Trial</span>
               <div className="absolute inset-0 bg-gradient-to-r from-hanva-gold/0 via-hanva-gold/30 to-hanva-gold/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
             </a>
@@ -91,7 +100,7 @@ export default function BillingApp() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white mb-8 shadow-lg"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 dark:bg-white/10 border border-black/20 dark:border-white/20 text-xs font-semibold text-zinc-900 dark:text-white mb-8 shadow-lg"
           >
             <Sparkles className="w-4 h-4 text-hanva-gold" />
             <span>The smartest way to manage your beauty business.</span>
@@ -101,17 +110,17 @@ export default function BillingApp() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight mb-8 leading-[1.1] text-white"
+            className="text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight mb-8 leading-[1.1] text-zinc-900 dark:text-white"
           >
             The Complete Operating System <br className="hidden md:block" />
-            <span className="text-zinc-300">for Your Salon Business.</span>
+            <span className="text-zinc-600 dark:text-zinc-300">for Your Salon Business.</span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto mb-10"
+            className="text-lg md:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto mb-10"
           >
             From booking to billing, loyalty to staff payroll — Hanva Billing handles everything so you can focus on what you do best: making people look amazing.
           </motion.p>
@@ -125,7 +134,7 @@ export default function BillingApp() {
             <a href="https://biz.hanva.in/sign-up" className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 active:scale-95 transition-all shadow-[0_0_40px_rgba(255,255,255,0.2)]">
               Start Free Trial <ArrowRight className="w-5 h-5" />
             </a>
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium text-lg text-white border border-white/10 hover:bg-white/5 transition-all">
+            <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium text-lg text-zinc-900 dark:text-white border border-black/10 dark:border-white/10 hover:bg-black/5 dark:bg-white/5 transition-all">
               <Play className="w-5 h-5" /> Watch Demo
             </button>
           </motion.div>
@@ -138,53 +147,53 @@ export default function BillingApp() {
           transition={{ duration: 1, delay: 0.8 }}
           className="relative w-full max-w-6xl mx-auto mt-20 px-6 perspective-1000"
         >
-          <div className="relative rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-800/50 backdrop-blur-3xl overflow-hidden shadow-2xl rotate-x-[5deg] scale-[0.98]">
-            <div className="h-8 md:h-12 bg-zinc-800 border-b border-white/10 flex items-center px-4 gap-2">
+          <div className="relative rounded-2xl md:rounded-[2rem] border border-black/10 dark:border-white/10 bg-white dark:bg-zinc-800/50 backdrop-blur-3xl overflow-hidden shadow-2xl rotate-x-[5deg] scale-[0.98]">
+            <div className="h-8 md:h-12 bg-white dark:bg-zinc-800 border-b border-black/10 dark:border-white/10 flex items-center px-4 gap-2">
               <div className="flex gap-1.5">
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
               </div>
             </div>
-            <div className="aspect-video relative overflow-hidden bg-black flex">
+            <div className="aspect-video relative overflow-hidden bg-zinc-50 dark:bg-black flex">
               {/* Fake Sidebar */}
-              <div className="w-48 md:w-64 border-r border-white/10 p-4 hidden md:flex flex-col gap-2">
+              <div className="w-48 md:w-64 border-r border-black/10 dark:border-white/10 p-4 hidden md:flex flex-col gap-2">
                 {[1,2,3,4,5,6].map(i => (
-                  <div key={i} className="h-8 rounded-md bg-white/5 w-full" />
+                  <div key={i} className="h-8 rounded-md bg-black/5 dark:bg-white/5 w-full" />
                 ))}
               </div>
               {/* Fake Main Content */}
               <div className="flex-1 p-6 md:p-8 flex flex-col gap-6 relative">
-                <div className="h-10 bg-white/10 w-1/3 rounded-lg" />
+                <div className="h-10 bg-black/5 dark:bg-white/10 w-1/3 rounded-lg" />
                 <div className="flex gap-4">
-                  <div className="h-24 bg-white/5 flex-1 rounded-xl" />
-                  <div className="h-24 bg-white/5 flex-1 rounded-xl" />
-                  <div className="h-24 bg-white/5 flex-1 rounded-xl" />
+                  <div className="h-24 bg-black/5 dark:bg-white/5 flex-1 rounded-xl" />
+                  <div className="h-24 bg-black/5 dark:bg-white/5 flex-1 rounded-xl" />
+                  <div className="h-24 bg-black/5 dark:bg-white/5 flex-1 rounded-xl" />
                 </div>
-                <div className="h-64 bg-white/5 w-full rounded-xl" />
+                <div className="h-64 bg-black/5 dark:bg-white/5 w-full rounded-xl" />
                 
                 {/* Floating Badges */}
                 <motion.div 
                   animate={{ y: [0, -10, 0] }} 
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -right-4 top-20 bg-zinc-800 border border-white/10 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3"
+                  className="absolute -right-4 top-20 bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3"
                 >
                   <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 font-bold">₹</div>
                   <div>
-                    <div className="text-xs text-zinc-400">Revenue Today</div>
-                    <div className="font-bold text-white">₹2.1L</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Revenue Today</div>
+                    <div className="font-bold text-zinc-900 dark:text-white">₹2.1L</div>
                   </div>
                 </motion.div>
                 
                 <motion.div 
                   animate={{ y: [0, 10, 0] }} 
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute -left-4 bottom-20 bg-zinc-800 border border-white/10 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3"
+                  className="absolute -left-4 bottom-20 bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3"
                 >
                   <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 font-bold">47</div>
                   <div>
-                    <div className="text-xs text-zinc-400">Bookings</div>
-                    <div className="font-bold text-white">Today</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Bookings</div>
+                    <div className="font-bold text-zinc-900 dark:text-white">Today</div>
                   </div>
                 </motion.div>
               </div>
@@ -206,14 +215,14 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 3: FEATURE HIGHLIGHT REEL (Bento Grid) */}
-      <section id="features" className="py-32 px-6 bg-black relative">
+      <section id="features" className="py-32 px-6 bg-zinc-50 dark:bg-black relative">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn}
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Everything you need. <br className="md:hidden" />Nothing you don't.</h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">Powerful features designed specifically for the Indian beauty industry.</p>
+            <p className="text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">Powerful features designed specifically for the Indian beauty industry.</p>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[240px]">
@@ -221,19 +230,19 @@ export default function BillingApp() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="md:col-span-2 md:row-span-2 rounded-3xl bg-zinc-800 border border-white/10 p-8 relative overflow-hidden group hover:border-white/10 transition-colors"
+              className="md:col-span-2 md:row-span-2 rounded-3xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 p-8 relative overflow-hidden group hover:border-black/10 dark:border-white/10 transition-colors"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-hanva-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative z-10 flex flex-col h-full">
-                <Calendar className="w-8 h-8 text-white mb-4" />
+                <Calendar className="w-8 h-8 text-zinc-900 dark:text-white mb-4" />
                 <h3 className="text-2xl font-semibold mb-2">Smart Appointment Booking</h3>
-                <p className="text-zinc-400">Drag-and-drop calendar that prevents double bookings and manages staff availability instantly.</p>
+                <p className="text-zinc-500 dark:text-zinc-400">Drag-and-drop calendar that prevents double bookings and manages staff availability instantly.</p>
                 
                 <div className="mt-auto pt-8 flex gap-2">
-                  <div className="flex-1 h-32 bg-zinc-800 rounded-t-xl border-t border-x border-white/10 p-3 relative overflow-hidden">
+                  <div className="flex-1 h-32 bg-white dark:bg-zinc-800 rounded-t-xl border-t border-x border-black/10 dark:border-white/10 p-3 relative overflow-hidden">
                     <motion.div animate={{ height: ['0%', '60%', '60%'] }} transition={{ duration: 3, repeat: Infinity }} className="absolute bottom-0 left-3 right-3 bg-blue-500/20 border border-blue-500/30 rounded-t-lg" />
                   </div>
-                  <div className="flex-1 h-32 bg-zinc-800 rounded-t-xl border-t border-x border-white/10 p-3 relative overflow-hidden">
+                  <div className="flex-1 h-32 bg-white dark:bg-zinc-800 rounded-t-xl border-t border-x border-black/10 dark:border-white/10 p-3 relative overflow-hidden">
                     <motion.div animate={{ height: ['0%', '40%', '40%'] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }} className="absolute bottom-0 left-3 right-3 bg-green-500/20 border border-green-500/30 rounded-t-lg" />
                   </div>
                 </div>
@@ -244,36 +253,36 @@ export default function BillingApp() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-800 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
+              className="md:col-span-1 md:row-span-1 rounded-3xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 p-6 relative overflow-hidden group hover:border-black/10 dark:border-white/10 transition-colors"
             >
               <Award className="w-6 h-6 text-hanva-gold mb-4" />
               <h3 className="text-lg font-semibold mb-2">Loyalty Points</h3>
-              <p className="text-sm text-zinc-400">Automated rewards that keep them coming back.</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">Automated rewards that keep them coming back.</p>
             </motion.div>
 
             {/* Card 3: Medium */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-800 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
+              className="md:col-span-1 md:row-span-1 rounded-3xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 p-6 relative overflow-hidden group hover:border-black/10 dark:border-white/10 transition-colors"
             >
               <MessageCircle className="w-6 h-6 text-green-500 mb-4" />
               <h3 className="text-lg font-semibold mb-2">WhatsApp Auto</h3>
-              <p className="text-sm text-zinc-400">Instant reminders and promotional blasts.</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">Instant reminders and promotional blasts.</p>
             </motion.div>
 
             {/* Card 4: Small */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-800 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-between"
+              className="md:col-span-1 md:row-span-1 rounded-3xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 p-6 relative overflow-hidden group hover:border-black/10 dark:border-white/10 transition-colors flex flex-col justify-between"
             >
               <div>
                 <Users className="w-6 h-6 text-blue-400 mb-4" />
                 <h3 className="text-lg font-semibold">Staff Payroll</h3>
               </div>
               <div className="flex -space-x-2">
-                {[1,2,3,4].map(i => <div key={i} className="w-8 h-8 rounded-full bg-zinc-800 border-2 border-zinc-950" />)}
+                {[1,2,3,4].map(i => <div key={i} className="w-8 h-8 rounded-full bg-white dark:bg-zinc-800 border-2 border-zinc-950" />)}
               </div>
             </motion.div>
 
@@ -281,11 +290,11 @@ export default function BillingApp() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
-              className="md:col-span-1 md:row-span-1 rounded-3xl bg-zinc-800 border border-white/10 p-6 relative overflow-hidden group hover:border-white/10 transition-colors"
+              className="md:col-span-1 md:row-span-1 rounded-3xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 p-6 relative overflow-hidden group hover:border-black/10 dark:border-white/10 transition-colors"
             >
               <Package className="w-6 h-6 text-purple-400 mb-4" />
               <h3 className="text-lg font-semibold mb-2">Inventory</h3>
-              <div className="w-full h-2 bg-zinc-800 rounded-full mt-4 overflow-hidden">
+              <div className="w-full h-2 bg-white dark:bg-zinc-800 rounded-full mt-4 overflow-hidden">
                 <motion.div animate={{ width: ['20%', '80%', '20%'] }} transition={{ duration: 4, repeat: Infinity }} className="h-full bg-purple-500" />
               </div>
             </motion.div>
@@ -294,7 +303,7 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 4: DEEP DIVE FEATURES */}
-      <section className="py-24 px-6 bg-black">
+      <section className="py-24 px-6 bg-zinc-50 dark:bg-black">
         <div className="max-w-7xl mx-auto flex flex-col gap-32">
           
           {/* Feature 1 */}
@@ -304,27 +313,27 @@ export default function BillingApp() {
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Live right now
               </div>
               <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Your salon, available 24/7</h3>
-              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
                 Customers book online via your unique branded page (biz.hanva.in/book/your-salon). They can browse services, choose their staff, pick a slot, and confirm — all without a phone call. Automated WhatsApp confirmations sent instantly.
               </p>
-              <ul className="space-y-4 text-zinc-300">
-                <li className="flex gap-3"><CheckCircle2 className="text-white w-5 h-5 flex-shrink-0" /> Zero commission on bookings</li>
-                <li className="flex gap-3"><CheckCircle2 className="text-white w-5 h-5 flex-shrink-0" /> Mobile-optimized booking flow</li>
-                <li className="flex gap-3"><CheckCircle2 className="text-white w-5 h-5 flex-shrink-0" /> Requires deposit (Optional)</li>
+              <ul className="space-y-4 text-zinc-600 dark:text-zinc-300">
+                <li className="flex gap-3"><CheckCircle2 className="text-zinc-900 dark:text-white w-5 h-5 flex-shrink-0" /> Zero commission on bookings</li>
+                <li className="flex gap-3"><CheckCircle2 className="text-zinc-900 dark:text-white w-5 h-5 flex-shrink-0" /> Mobile-optimized booking flow</li>
+                <li className="flex gap-3"><CheckCircle2 className="text-zinc-900 dark:text-white w-5 h-5 flex-shrink-0" /> Requires deposit (Optional)</li>
               </ul>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="relative h-[600px] flex items-center justify-center">
-              <div className="w-[300px] h-[600px] bg-zinc-800 border-[8px] border-zinc-900 rounded-[3rem] overflow-hidden relative shadow-2xl">
+              <div className="w-[300px] h-[600px] bg-white dark:bg-zinc-800 border-[8px] border-zinc-900 rounded-[3rem] overflow-hidden relative shadow-2xl">
                 {/* Mobile mockup screen */}
-                <div className="absolute top-0 inset-x-0 h-6 bg-zinc-800 flex justify-center pt-2"><div className="w-20 h-4 bg-black rounded-full" /></div>
+                <div className="absolute top-0 inset-x-0 h-6 bg-white dark:bg-zinc-800 flex justify-center pt-2"><div className="w-20 h-4 bg-zinc-50 dark:bg-black rounded-full" /></div>
                 <div className="p-6 pt-12 flex flex-col gap-4">
-                  <div className="w-16 h-16 bg-white/10 rounded-full mx-auto mb-4" />
+                  <div className="w-16 h-16 bg-black/5 dark:bg-white/10 rounded-full mx-auto mb-4" />
                   <div className="h-6 bg-white/20 w-3/4 mx-auto rounded-md" />
-                  <div className="h-4 bg-white/10 w-1/2 mx-auto rounded-md mb-6" />
+                  <div className="h-4 bg-black/5 dark:bg-white/10 w-1/2 mx-auto rounded-md mb-6" />
                   <div className="space-y-3">
-                    <div className="h-16 bg-white/5 rounded-xl" />
-                    <div className="h-16 bg-white/5 rounded-xl border border-hanva-gold/30" />
-                    <div className="h-16 bg-white/5 rounded-xl" />
+                    <div className="h-16 bg-black/5 dark:bg-white/5 rounded-xl" />
+                    <div className="h-16 bg-black/5 dark:bg-white/5 rounded-xl border border-hanva-gold/30" />
+                    <div className="h-16 bg-black/5 dark:bg-white/5 rounded-xl" />
                   </div>
                   <motion.div 
                     animate={{ scale: [1, 1.05, 1] }} 
@@ -340,18 +349,18 @@ export default function BillingApp() {
 
           {/* Feature 2 */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-2 md:order-1 relative h-[500px] bg-zinc-800 rounded-3xl border border-white/10 overflow-hidden flex items-center justify-center">
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-2 md:order-1 relative h-[500px] bg-white dark:bg-zinc-800 rounded-3xl border border-black/10 dark:border-white/10 overflow-hidden flex items-center justify-center">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-hanva-gold/20 via-transparent to-transparent opacity-50" />
               <motion.div 
                 whileHover={{ scale: 1.05, rotateY: 10 }}
-                className="w-72 h-48 bg-gradient-to-br from-zinc-800 to-black rounded-2xl border border-white/20 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col justify-between"
+                className="w-72 h-48 bg-gradient-to-br from-zinc-800 to-black rounded-2xl border border-black/20 dark:border-white/20 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col justify-between"
               >
                 <div className="flex justify-between items-start">
                   <span className="font-bold tracking-wider text-xl">VIP MEMBER</span>
                   <Award className="text-hanva-gold w-6 h-6" />
                 </div>
                 <div>
-                  <div className="text-sm text-zinc-400 mb-1">Available Points</div>
+                  <div className="text-sm text-zinc-500 dark:text-zinc-400 mb-1">Available Points</div>
                   <motion.div 
                     initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
                     className="text-3xl font-mono text-hanva-gold font-bold"
@@ -366,7 +375,7 @@ export default function BillingApp() {
                 ⭐ Loved by customers
               </div>
               <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Turn first-timers into regulars.</h3>
-              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
                 Automatically award loyalty points on every visit. Set custom rules — earn 1 point per ₹10 spent. Customers redeem points as cash discounts. With referral codes, your customers become your best marketers.
               </p>
             </motion.div>
@@ -379,13 +388,13 @@ export default function BillingApp() {
                 💬 Powered by Meta WABA
               </div>
               <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Talk to every customer. Automatically.</h3>
-              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
                 Send booking confirmations, OTP logins, birthday wishes, and promotional campaigns via WhatsApp — directly from the software. No third-party app needed. Powered by Meta Business API.
               </p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="relative h-[400px] flex items-center justify-center">
-               <div className="w-full max-w-sm bg-zinc-800 border border-white/10 rounded-2xl p-4 shadow-2xl flex flex-col gap-4">
-                 <div className="bg-[#075E54] p-3 rounded-t-xl text-white font-semibold flex items-center gap-3">
+               <div className="w-full max-w-sm bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 rounded-2xl p-4 shadow-2xl flex flex-col gap-4">
+                 <div className="bg-[#075E54] p-3 rounded-t-xl text-zinc-900 dark:text-white font-semibold flex items-center gap-3">
                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
                      <Sparkles className="w-5 h-5 text-black" />
                    </div>
@@ -405,18 +414,18 @@ export default function BillingApp() {
           {/* Feature 4 */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-2 md:order-1 relative h-[400px] flex items-center justify-center">
-               <div className="w-full h-full bg-zinc-800 border border-white/10 rounded-3xl p-6 relative overflow-hidden flex flex-col gap-4">
+               <div className="w-full h-full bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 rounded-3xl p-6 relative overflow-hidden flex flex-col gap-4">
                  <div className="flex gap-4">
-                   <div className="flex-1 h-24 bg-white/5 rounded-xl p-4 flex flex-col justify-between border border-white/10">
+                   <div className="flex-1 h-24 bg-black/5 dark:bg-white/5 rounded-xl p-4 flex flex-col justify-between border border-black/10 dark:border-white/10">
                      <span className="text-zinc-500 text-sm">Revenue</span>
                      <span className="text-xl font-bold text-green-400">₹42,500</span>
                    </div>
-                   <div className="flex-1 h-24 bg-white/5 rounded-xl p-4 flex flex-col justify-between border border-white/10">
+                   <div className="flex-1 h-24 bg-black/5 dark:bg-white/5 rounded-xl p-4 flex flex-col justify-between border border-black/10 dark:border-white/10">
                      <span className="text-zinc-500 text-sm">Bookings</span>
                      <span className="text-xl font-bold text-blue-400">18</span>
                    </div>
                  </div>
-                 <div className="flex-1 bg-white/5 rounded-xl border border-white/10 relative p-4 flex items-end gap-2 overflow-hidden">
+                 <div className="flex-1 bg-black/5 dark:bg-white/5 rounded-xl border border-black/10 dark:border-white/10 relative p-4 flex items-end gap-2 overflow-hidden">
                    {[40, 70, 45, 90, 60, 100, 80].map((h, i) => (
                      <motion.div key={i} animate={{ height: [`${h/2}%`, `${h}%`, `${h}%`] }} transition={{ duration: 2, delay: i*0.1 }} className="flex-1 bg-hanva-gold/80 rounded-t-sm" />
                    ))}
@@ -428,7 +437,7 @@ export default function BillingApp() {
                 📊 Real-time data
               </div>
               <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">See exactly how your business is growing.</h3>
-              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
                 Track revenue, bookings, staff performance, customer demographics, top services, and conversion rates — all in one real-time dashboard. Download PDF and Excel reports in one click.
               </p>
             </motion.div>
@@ -441,14 +450,14 @@ export default function BillingApp() {
                 👥 Complete HR module
               </div>
               <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Your team runs on Hanva too.</h3>
-              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
                 Track attendance, calculate commissions automatically, set individual targets, and manage payroll — all from the same platform. Staff can even check their own performance dashboards.
               </p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="relative h-[400px] flex items-center justify-center">
-               <div className="w-full max-w-sm bg-zinc-800 border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col gap-6">
+               <div className="w-full max-w-sm bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col gap-6">
                  <div className="flex items-center gap-4">
-                   <div className="w-12 h-12 rounded-full bg-zinc-800 border-2 border-orange-500 flex items-center justify-center font-bold">AK</div>
+                   <div className="w-12 h-12 rounded-full bg-white dark:bg-zinc-800 border-2 border-orange-500 flex items-center justify-center font-bold">AK</div>
                    <div>
                      <div className="font-bold">Amit Kumar</div>
                      <div className="text-xs text-zinc-500">Senior Stylist</div>
@@ -456,15 +465,15 @@ export default function BillingApp() {
                  </div>
                  <div>
                    <div className="flex justify-between text-sm mb-2">
-                     <span className="text-zinc-400">Monthly Target</span>
+                     <span className="text-zinc-500 dark:text-zinc-400">Monthly Target</span>
                      <span className="font-bold text-orange-400">85%</span>
                    </div>
-                   <div className="h-3 bg-zinc-800 rounded-full overflow-hidden">
+                   <div className="h-3 bg-white dark:bg-zinc-800 rounded-full overflow-hidden">
                      <motion.div animate={{ width: '85%' }} transition={{ duration: 1, delay: 0.5 }} className="h-full bg-orange-500" />
                    </div>
                  </div>
-                 <div className="bg-zinc-800 p-4 rounded-xl flex justify-between items-center border border-white/10">
-                   <span className="text-zinc-400 text-sm">Earned Commission</span>
+                 <div className="bg-white dark:bg-zinc-800 p-4 rounded-xl flex justify-between items-center border border-black/10 dark:border-white/10">
+                   <span className="text-zinc-500 dark:text-zinc-400 text-sm">Earned Commission</span>
                    <span className="font-bold text-lg">₹12,450</span>
                  </div>
                </div>
@@ -474,7 +483,7 @@ export default function BillingApp() {
           {/* Feature 6 */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-2 md:order-1 relative h-[400px] flex items-center justify-center">
-               <div className="w-64 bg-zinc-800 rounded-lg p-2 shadow-2xl relative z-10 border border-white/10">
+               <div className="w-64 bg-white dark:bg-zinc-800 rounded-lg p-2 shadow-2xl relative z-10 border border-black/10 dark:border-white/10">
                  <motion.div 
                    animate={{ y: [-100, 0] }}
                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
@@ -489,7 +498,7 @@ export default function BillingApp() {
                    </div>
                    <div className="flex justify-between font-bold text-lg"><span>Total:</span><span>₹1650</span></div>
                  </motion.div>
-                 <div className="absolute top-0 inset-x-0 h-4 bg-zinc-800 rounded-t-lg border-b border-white/10" />
+                 <div className="absolute top-0 inset-x-0 h-4 bg-white dark:bg-zinc-800 rounded-t-lg border-b border-black/10 dark:border-white/10" />
                </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, margin: "-100px" }} className="order-1 md:order-2">
@@ -497,7 +506,7 @@ export default function BillingApp() {
                 🧾 GST-ready
               </div>
               <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Professional billing in seconds.</h3>
-              <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
                 Create beautiful invoices with your logo, apply discounts, accept multiple payment methods, track pending payments, and send PDF invoices via WhatsApp — all in under 30 seconds.
               </p>
             </motion.div>
@@ -507,7 +516,7 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 5: LIVE STATS */}
-      <section className="py-24 px-6 border-y border-white/10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
+      <section className="py-24 px-6 border-y border-black/10 dark:border-white/10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
           <StatBox value="1,200+" label="Salons Using" />
           <StatBox value="₹50 Cr+" label="Billing Processed" />
@@ -517,27 +526,27 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 6: INTERACTIVE FEATURE EXPLORER */}
-      <section className="py-32 px-6 bg-black">
+      <section className="py-32 px-6 bg-zinc-50 dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">One platform. Every tool.</h2>
-            <p className="text-xl text-zinc-400">Everything you need to run your business efficiently.</p>
+            <p className="text-xl text-zinc-500 dark:text-zinc-400">Everything you need to run your business efficiently.</p>
           </div>
           
-          <div className="flex flex-col md:flex-row gap-12 bg-zinc-800 border border-white/10 rounded-3xl p-6 md:p-8">
+          <div className="flex flex-col md:flex-row gap-12 bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 rounded-3xl p-6 md:p-8">
             <div className="w-full md:w-1/3 flex flex-col gap-2">
               {['Bookings & Calendar', 'Customer Management', 'Billing & Invoices', 'Services & Products', 'Loyalty & Referrals', 'WhatsApp Automation', 'Analytics & Reports'].map((tab, i) => (
-                <button key={i} className={`text-left px-6 py-4 rounded-xl font-medium transition-all ${i === 0 ? 'bg-white/10 text-white' : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'}`}>
+                <button key={i} className={`text-left px-6 py-4 rounded-xl font-medium transition-all ${i === 0 ? 'bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white' : 'text-zinc-500 hover:text-zinc-600 dark:text-zinc-300 hover:bg-black/5 dark:bg-white/5'}`}>
                   {tab}
                 </button>
               ))}
             </div>
-            <div className="w-full md:w-2/3 bg-zinc-800 rounded-2xl border border-white/10 relative overflow-hidden flex items-center justify-center min-h-[400px]">
+            <div className="w-full md:w-2/3 bg-white dark:bg-zinc-800 rounded-2xl border border-black/10 dark:border-white/10 relative overflow-hidden flex items-center justify-center min-h-[400px]">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent opacity-50" />
               <div className="text-center z-10 p-8">
                 <Calendar className="w-16 h-16 text-blue-400 mx-auto mb-6 opacity-80" />
                 <h4 className="text-2xl font-bold mb-4">Smart Calendar</h4>
-                <p className="text-zinc-400">Interactive preview of the calendar module would render here, showing drag-and-drop bookings.</p>
+                <p className="text-zinc-500 dark:text-zinc-400">Interactive preview of the calendar module would render here, showing drag-and-drop bookings.</p>
               </div>
             </div>
           </div>
@@ -545,7 +554,7 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 7: TESTIMONIALS */}
-      <section id="testimonials" className="py-32 px-6 bg-zinc-800 overflow-hidden">
+      <section id="testimonials" className="py-32 px-6 bg-white dark:bg-zinc-800 overflow-hidden">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Loved by top salons.</h2>
         </div>
@@ -566,11 +575,11 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 8: PRICING (Skipping 6 & 7 due to length, building core sections first) */}
-      <section id="pricing" className="py-32 px-6 bg-black">
+      <section id="pricing" className="py-32 px-6 bg-zinc-50 dark:bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Simple pricing. No surprises.</h2>
-            <p className="text-xl text-zinc-400">Start free. Scale as you grow.</p>
+            <p className="text-xl text-zinc-500 dark:text-zinc-400">Start free. Scale as you grow.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -594,17 +603,17 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 9: COMPARISON TABLE */}
-      <section className="py-32 px-6 bg-black">
+      <section className="py-32 px-6 bg-zinc-50 dark:bg-black">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">How does Hanva compare?</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[600px]">
               <thead>
                 <tr>
-                  <th className="p-4 border-b border-white/10 text-zinc-400 font-medium w-1/3">Feature</th>
+                  <th className="p-4 border-b border-black/10 dark:border-white/10 text-zinc-500 dark:text-zinc-400 font-medium w-1/3">Feature</th>
                   <th className="p-4 border-b border-hanva-gold/30 bg-hanva-gold/5 text-hanva-gold font-bold text-center rounded-t-xl">Hanva Billing</th>
-                  <th className="p-4 border-b border-white/10 text-zinc-400 font-medium text-center">Generic POS</th>
-                  <th className="p-4 border-b border-white/10 text-zinc-400 font-medium text-center">Spreadsheets</th>
+                  <th className="p-4 border-b border-black/10 dark:border-white/10 text-zinc-500 dark:text-zinc-400 font-medium text-center">Generic POS</th>
+                  <th className="p-4 border-b border-black/10 dark:border-white/10 text-zinc-500 dark:text-zinc-400 font-medium text-center">Spreadsheets</th>
                 </tr>
               </thead>
               <tbody className="text-sm">
@@ -618,16 +627,16 @@ export default function BillingApp() {
                   ['GST Invoice', true, true, false],
                   ['Multi-branch Support', true, false, false],
                 ].map((row, i) => (
-                  <tr key={i} className="group hover:bg-white/5 transition-colors">
-                    <td className="p-4 border-b border-white/10 font-medium">{row[0]}</td>
-                    <td className="p-4 border-b border-white/10 bg-hanva-gold/5 text-center">
+                  <tr key={i} className="group hover:bg-black/5 dark:bg-white/5 transition-colors">
+                    <td className="p-4 border-b border-black/10 dark:border-white/10 font-medium">{row[0]}</td>
+                    <td className="p-4 border-b border-black/10 dark:border-white/10 bg-hanva-gold/5 text-center">
                       {row[1] === true ? <CheckCircle2 className="w-5 h-5 text-hanva-gold mx-auto" /> : <span className="text-zinc-500">{row[1]}</span>}
                     </td>
-                    <td className="p-4 border-b border-white/10 text-center">
-                      {row[2] === true ? <CheckCircle2 className="w-5 h-5 text-zinc-400 mx-auto" /> : row[2] === false ? <X className="w-5 h-5 text-zinc-700 mx-auto" /> : <span className="text-zinc-500">{row[2]}</span>}
+                    <td className="p-4 border-b border-black/10 dark:border-white/10 text-center">
+                      {row[2] === true ? <CheckCircle2 className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mx-auto" /> : row[2] === false ? <X className="w-5 h-5 text-zinc-700 mx-auto" /> : <span className="text-zinc-500">{row[2]}</span>}
                     </td>
-                    <td className="p-4 border-b border-white/10 text-center">
-                      {row[3] === true ? <CheckCircle2 className="w-5 h-5 text-zinc-400 mx-auto" /> : row[3] === false ? <X className="w-5 h-5 text-zinc-700 mx-auto" /> : <span className="text-zinc-500">{row[3]}</span>}
+                    <td className="p-4 border-b border-black/10 dark:border-white/10 text-center">
+                      {row[3] === true ? <CheckCircle2 className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mx-auto" /> : row[3] === false ? <X className="w-5 h-5 text-zinc-700 mx-auto" /> : <span className="text-zinc-500">{row[3]}</span>}
                     </td>
                   </tr>
                 ))}
@@ -638,7 +647,7 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 10: FAQ */}
-      <section id="faq" className="py-32 px-6 bg-zinc-800">
+      <section id="faq" className="py-32 px-6 bg-white dark:bg-zinc-800">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Got questions? We've got answers.</h2>
@@ -657,12 +666,12 @@ export default function BillingApp() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black opacity-60" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to transform your salon?</h2>
-          <p className="text-xl text-zinc-400 mb-10">Start your 14-day free trial — no credit card required.</p>
+          <p className="text-xl text-zinc-500 dark:text-zinc-400 mb-10">Start your 14-day free trial — no credit card required.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
             <a href="https://biz.hanva.in/sign-up" className="px-8 py-4 bg-white text-black font-semibold rounded-full text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.15)]">
               Start Free Trial →
             </a>
-            <button className="px-8 py-4 border border-white/20 text-white font-medium rounded-full text-lg hover:bg-white/5 transition-colors">
+            <button className="px-8 py-4 border border-black/20 dark:border-white/20 text-zinc-900 dark:text-white font-medium rounded-full text-lg hover:bg-black/5 dark:bg-white/5 transition-colors">
               Book a Live Demo
             </button>
           </div>
@@ -675,7 +684,7 @@ export default function BillingApp() {
       </section>
 
       {/* SECTION 12: FOOTER */}
-      <footer className="bg-[#050505] border-t border-white/10 pt-20 pb-10 px-6 relative">
+      <footer className="bg-[#050505] border-t border-black/10 dark:border-white/10 pt-20 pb-10 px-6 relative">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
@@ -687,32 +696,32 @@ export default function BillingApp() {
             <p className="text-zinc-500 text-sm mb-6">The smartest way to manage your beauty business.</p>
           </div>
           <div>
-            <h4 className="font-semibold mb-4 text-white">Product</h4>
+            <h4 className="font-semibold mb-4 text-zinc-900 dark:text-white">Product</h4>
             <ul className="space-y-2 text-sm text-zinc-500">
-              <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Integrations</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Changelog</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Features</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Pricing</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Integrations</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Changelog</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4 text-white">Company</h4>
+            <h4 className="font-semibold mb-4 text-zinc-900 dark:text-white">Company</h4>
             <ul className="space-y-2 text-sm text-zinc-500">
-              <li><a href="https://hanva.in" className="hover:text-white transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              <li><a href="https://hanva.in" className="hover:text-zinc-900 dark:text-white transition-colors">About</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Blog</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Careers</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4 text-white">Legal</h4>
+            <h4 className="font-semibold mb-4 text-zinc-900 dark:text-white">Legal</h4>
             <ul className="space-y-2 text-sm text-zinc-500">
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-zinc-900 dark:text-white transition-colors">Terms of Service</a></li>
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-zinc-600">
+        <div className="max-w-7xl mx-auto border-t border-black/10 dark:border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-zinc-600">
           <p>© 2025 Hanva Technologies. Made with ❤️ in India.</p>
         </div>
       </footer>
@@ -728,7 +737,7 @@ function StatBox({ value, label }) {
       viewport={{ once: true }}
       className="p-6"
     >
-      <div className="text-4xl md:text-5xl font-bold text-white mb-2">{value}</div>
+      <div className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-2">{value}</div>
       <div className="text-zinc-500 font-medium">{label}</div>
     </motion.div>
   );
@@ -738,7 +747,7 @@ function PricingCard({ name, price, tagline, features, cta, highlighted = false 
   return (
     <motion.div 
       whileHover={{ y: -8 }}
-      className={`p-8 rounded-3xl relative ${highlighted ? 'bg-zinc-800 border-2 border-hanva-gold/50 shadow-[0_0_40px_rgba(212,175,55,0.1)]' : 'bg-zinc-800 border border-white/10'}`}
+      className={`p-8 rounded-3xl relative ${highlighted ? 'bg-white dark:bg-zinc-800 border-2 border-hanva-gold/50 shadow-[0_0_40px_rgba(212,175,55,0.1)]' : 'bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10'}`}
     >
       {highlighted && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-hanva-gold text-black text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
@@ -746,17 +755,17 @@ function PricingCard({ name, price, tagline, features, cta, highlighted = false 
         </div>
       )}
       <h3 className="text-2xl font-bold mb-2">{name}</h3>
-      <p className="text-zinc-400 text-sm mb-6 h-5">{tagline}</p>
+      <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-6 h-5">{tagline}</p>
       <div className="mb-8">
         <span className="text-5xl font-bold tracking-tight">{price}</span>
         {price !== 'Custom' && <span className="text-zinc-500">/mo</span>}
       </div>
-      <button className={`w-full py-3 rounded-full font-semibold mb-8 transition-colors ${highlighted ? 'bg-white text-black hover:bg-zinc-200' : 'bg-white/10 text-white hover:bg-white/20'}`}>
+      <button className={`w-full py-3 rounded-full font-semibold mb-8 transition-colors ${highlighted ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white hover:bg-white/20'}`}>
         {cta}
       </button>
       <ul className="space-y-4">
         {features.map((f, i) => (
-          <li key={i} className="flex items-center gap-3 text-sm text-zinc-300">
+          <li key={i} className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-300">
             <CheckCircle2 className={`w-4 h-4 ${highlighted ? 'text-hanva-gold' : 'text-zinc-500'}`} /> {f}
           </li>
         ))}
@@ -767,15 +776,15 @@ function PricingCard({ name, price, tagline, features, cta, highlighted = false 
 
 function TestimonialCard({ quote, author, role }) {
   return (
-    <div className="min-w-[300px] md:min-w-[400px] bg-black border border-white/10 p-8 rounded-3xl snap-center flex flex-col justify-between">
+    <div className="min-w-[300px] md:min-w-[400px] bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 p-8 rounded-3xl snap-center flex flex-col justify-between">
       <div className="mb-6 flex gap-1">
         {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 fill-hanva-gold text-hanva-gold" />)}
       </div>
-      <p className="text-lg text-zinc-300 mb-8 font-medium italic">"{quote}"</p>
+      <p className="text-lg text-zinc-600 dark:text-zinc-300 mb-8 font-medium italic">"{quote}"</p>
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-white uppercase">{author[0]}</div>
+        <div className="w-12 h-12 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center font-bold text-zinc-900 dark:text-white uppercase">{author[0]}</div>
         <div>
-          <div className="font-bold text-white">{author}</div>
+          <div className="font-bold text-zinc-900 dark:text-white">{author}</div>
           <div className="text-sm text-zinc-500">{role}</div>
         </div>
       </div>
@@ -787,7 +796,7 @@ function FaqItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="border border-white/10 rounded-2xl overflow-hidden bg-black transition-colors hover:border-white/20">
+    <div className="border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden bg-zinc-50 dark:bg-black transition-colors hover:border-black/20 dark:border-white/20">
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="w-full px-6 py-5 text-left flex justify-between items-center"
@@ -801,7 +810,7 @@ function FaqItem({ question, answer }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="px-6 pb-5 text-zinc-400"
+            className="px-6 pb-5 text-zinc-500 dark:text-zinc-400"
           >
             {answer}
           </motion.div>

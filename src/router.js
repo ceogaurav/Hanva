@@ -5,6 +5,7 @@ import { renderAiSandbox, bindAiSandbox } from './pages/aiSandbox.js';
 import { renderPortfolio, bindPortfolio } from './pages/portfolio.js';
 import { renderContact, bindContact } from './pages/contact.js';
 import { renderCrm, bindCrm } from './pages/crm.js';
+import { renderBilling, bindBilling } from './pages/billing.jsx';
 
 const routes = {
   'home': { render: renderHome, bind: bindHome },
@@ -13,7 +14,8 @@ const routes = {
   'ai-sandbox': { render: renderAiSandbox, bind: bindAiSandbox },
   'portfolio': { render: renderPortfolio, bind: bindPortfolio },
   'contact': { render: renderContact, bind: bindContact },
-  'crm': { render: renderCrm, bind: bindCrm }
+  'crm': { render: renderCrm, bind: bindCrm },
+  'billing': { render: renderBilling, bind: bindBilling }
 };
 
 export function initRouter() {

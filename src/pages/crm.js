@@ -136,6 +136,22 @@ export function renderCrm() {
           <div class="crm-console-column">
             <h3 class="crm-column-heading">🖥️ Hanva Agent CRM Console</h3>
 
+            <!-- CRM Console Metrics Overview -->
+            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; display: grid;">
+              <div class="stat-card glass-card" style="padding: 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div id="stat-pipe-revenue" style="font-size: 14px; font-weight: bold; color: var(--accent-cyan); font-family: var(--font-mono);">₹0</div>
+                <div style="font-size: 8px; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.5px;">Pipeline Value</div>
+              </div>
+              <div class="stat-card glass-card" style="padding: 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div id="stat-won-revenue" style="font-size: 14px; font-weight: bold; color: #10b981; font-family: var(--font-mono);">₹0</div>
+                <div style="font-size: 8px; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.5px;">Closed Won</div>
+              </div>
+              <div class="stat-card glass-card" style="padding: 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div id="stat-call-count" style="font-size: 14px; font-weight: bold; color: #f59e0b; font-family: var(--font-mono);">0</div>
+                <div style="font-size: 8px; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.5px;">Completed Calls</div>
+              </div>
+            </div>
+
             <!-- Leads Inbox Queue -->
             <div class="glass-card" style="margin-bottom: 24px; padding: 16px;">
               <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px; margin-bottom: 12px;">
@@ -779,11 +795,12 @@ export function bindCrm() {
   const dispNegotiateBtn = document.getElementById('disp-negotiate-btn');
   const dispWonBtn = document.getElementById('disp-won-btn');
 
-  // Timers
+  // Timers & Counters
   let ivrCallTimer = null;
   let talkingCallTimer = null;
   let callSeconds = 0;
   let activeLeadCard = null;
+  let callsCompletedCount = 0;
 
   // Kanban Lists
   const kanbanLists = {
@@ -987,6 +1004,10 @@ export function bindCrm() {
 
     addSecurityLog('telephony', 'Call hung up. Session disconnected.');
 
+    // Increment calls count and refresh dashboard
+    callsCompletedCount++;
+    updateBoardTotals();
+
     // Display disposition form
     if (dispModal) {
       dispModal.style.display = 'block';
@@ -1070,6 +1091,9 @@ export function bindCrm() {
 
   // 5. Board stats updates
   function updateBoardTotals() {
+    let totalPipeline = 0;
+    let totalWon = 0;
+
     const columnsArr = ['qualified', 'negotiation', 'won'];
     columnsArr.forEach(col => {
       const listEl = document.getElementById(`list-${col}`);
@@ -1078,8 +1102,48 @@ export function bindCrm() {
 
       const cards = listEl.querySelectorAll('.crm-deal-card');
       const count = cards.length;
-      badgeEl.textContent = `${count} ${count === 1 ? 'Deal' : 'Deals'}`;
+
+      let columnSum = 0;
+      cards.forEach(card => {
+        const val = parseInt(card.getAttribute('data-val') || '0');
+        columnSum += val;
+        totalPipeline += val;
+        if (col === 'won') {
+          totalWon += val;
+        }
+      });
+
+      const formattedSum = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        maximumFractionDigits: 0
+      }).format(columnSum);
+
+      badgeEl.textContent = `${count} ${count === 1 ? 'Deal' : 'Deals'} (${formattedSum})`;
     });
+
+    // Sync Telemetry Metrics cards
+    const pipeRevEl = document.getElementById('stat-pipe-revenue');
+    const wonRevEl = document.getElementById('stat-won-revenue');
+    const callCountEl = document.getElementById('stat-call-count');
+
+    if (pipeRevEl) {
+      pipeRevEl.textContent = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        maximumFractionDigits: 0
+      }).format(totalPipeline);
+    }
+    if (wonRevEl) {
+      wonRevEl.textContent = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        maximumFractionDigits: 0
+      }).format(totalWon);
+    }
+    if (callCountEl) {
+      callCountEl.textContent = String(callsCompletedCount);
+    }
   }
 
   // 6. Security Log Ticker

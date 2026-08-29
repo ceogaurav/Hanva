@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
@@ -83,6 +83,7 @@
           <!-- Desktop Nav -->
           <nav class="desktop-nav">
             <a href="#home" class="nav-item active" data-hover="magnetic">Home</a>
+            <a href="#billing" class="nav-item" data-hover="magnetic">Billing App</a>
             <a href="#services" class="nav-item" data-hover="magnetic">Services</a>
             <a href="#products" class="nav-item" data-hover="magnetic">Products</a>
             <a href="#crm" class="nav-item" data-hover="magnetic">CRM Portal</a>
@@ -141,6 +142,12 @@
         </div>
       </div>
 
+      <!-- Unique Floating Sidebar Menu Button (Mobile Only) -->
+      <button id="floating-sidebar-toggle" class="floating-sidebar-btn" aria-label="Open Navigation Options">
+        <span class="fs-icon">⚙</span>
+        <span class="fs-text">MENU</span>
+      </button>
+
       <!-- Mobile Navigation Drawer -->
       <div id="mobile-drawer" class="mobile-drawer">
         <div class="drawer-overlay" id="drawer-overlay"></div>
@@ -153,6 +160,7 @@
           </div>
           <nav class="drawer-nav">
             <a href="#home" class="drawer-nav-item active">Home</a>
+            <a href="#billing" class="drawer-nav-item">Billing App</a>
             <a href="#services" class="drawer-nav-item">Services</a>
             <a href="#products" class="drawer-nav-item">Products</a>
             <a href="#crm" class="drawer-nav-item">CRM Portal</a>

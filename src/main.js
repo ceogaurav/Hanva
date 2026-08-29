@@ -47,6 +47,14 @@ function initGlobalLayout() {
     });
   }
 
+  const floatingSidebarToggle = document.getElementById('floating-sidebar-toggle');
+  if (floatingSidebarToggle && mobileDrawer && mobileToggle) {
+    floatingSidebarToggle.addEventListener('click', () => {
+      mobileToggle.classList.add('open');
+      mobileDrawer.classList.add('open');
+    });
+  }
+
   const closeDrawer = () => {
     if (mobileDrawer) mobileDrawer.classList.remove('open');
     if (mobileToggle) mobileToggle.classList.remove('open');

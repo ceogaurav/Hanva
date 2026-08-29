@@ -12,14 +12,7 @@ export function renderPortfolio() {
           <div class="portfolio-slider" id="portfolio-slider">
             <!-- Project 1 -->
             <div class="portfolio-slide glass-card">
-              <div style="background: #090e17; height: 180px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.03);">
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" style="color: var(--accent-cyan);">
-                  <rect x="25" y="15" width="50" height="70" rx="4" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/>
-                  <path d="M35 30 H65 M35 45 H55 M35 60 H65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="50" cy="50" r="16" fill="var(--bg-secondary)" stroke="var(--accent-blue)" stroke-width="2"/>
-                  <path d="M47 50 L53 50 M50 47 L50 53" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
+              <img src="/ap_system.png" alt="Acme Accounts AP System Mockup" class="portfolio-img"/>
               <div class="portfolio-tags">
                 <span class="portfolio-tag">AI Agent</span>
                 <span class="portfolio-tag">OCR Extraction</span>
@@ -31,14 +24,7 @@ export function renderPortfolio() {
 
             <!-- Project 2 -->
             <div class="portfolio-slide glass-card">
-              <div style="background: #090e17; height: 180px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.03);">
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" style="color: #10b981;">
-                  <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="2"/>
-                  <path d="M50 15 V85 M15 50 H85" stroke="rgba(255,255,255,0.05)" stroke-width="2"/>
-                  <path d="M25 75 L45 55 L60 65 L80 35" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="80" cy="35" r="4" fill="currentColor"/>
-                </svg>
-              </div>
+              <img src="/crm_pipeline.png" alt="Skyline Deal Pipeline Mockup" class="portfolio-img"/>
               <div class="portfolio-tags">
                 <span class="portfolio-tag">Custom CRM</span>
                 <span class="portfolio-tag">Node.js</span>
@@ -50,14 +36,7 @@ export function renderPortfolio() {
 
             <!-- Project 3 -->
             <div class="portfolio-slide glass-card">
-              <div style="background: #090e17; height: 180px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.03);">
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" style="color: #f59e0b;">
-                  <rect x="20" y="20" width="60" height="60" rx="8" stroke="currentColor" stroke-width="2"/>
-                  <circle cx="38" cy="38" r="8" stroke="currentColor" stroke-width="2"/>
-                  <circle cx="62" cy="62" r="8" stroke="currentColor" stroke-width="2"/>
-                  <path d="M46 38 L54 62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
+              <img src="/billing_gateway.png" alt="HealthCart Billing Gateway Mockup" class="portfolio-img"/>
               <div class="portfolio-tags">
                 <span class="portfolio-tag">SaaS Engineering</span>
                 <span class="portfolio-tag">REST API</span>
@@ -69,13 +48,7 @@ export function renderPortfolio() {
 
             <!-- Project 4 -->
             <div class="portfolio-slide glass-card">
-              <div style="background: #090e17; height: 180px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.03);">
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" style="color: #6366f1;">
-                  <path d="M20 70 L50 30 L80 70 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                  <line x1="20" y1="70" x2="80" y2="70" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-                  <circle cx="50" cy="30" r="6" fill="var(--bg-secondary)" stroke="currentColor" stroke-width="2"/>
-                </svg>
-              </div>
+              <img src="/lms_analytics.png" alt="EduFlow Course Director Mockup" class="portfolio-img"/>
               <div class="portfolio-tags">
                 <span class="portfolio-tag">LMS Suite</span>
                 <span class="portfolio-tag">Next.js SPA</span>

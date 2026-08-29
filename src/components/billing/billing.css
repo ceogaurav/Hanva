@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hanva-black: #000000;
+  --color-hanva-gold: #D4AF37;
+  --color-hanva-red: #E53E3E;
+  --font-sans: "Inter", sans-serif;
+}
+
+.billing-page-root {
+  font-family: var(--font-sans);
+  background-color: var(--color-hanva-black);
+  color: #ffffff;
+  min-height: 100vh;
+}

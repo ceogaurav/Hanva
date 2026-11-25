@@ -278,6 +278,45 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Regional Locations Strip */}
+        <div className="py-6 border-b border-slate-800 text-xs text-slate-400">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex items-center space-x-2 text-white font-semibold text-xs uppercase tracking-wider">
+              <MapPin className="h-4 w-4 text-blue-400" />
+              <span>Regional Telecom Hubs:</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
+              <Link href="/locations/bengaluru/" className="hover:text-white transition-colors">
+                Bengaluru (HQ • 080)
+              </Link>
+              <span className="text-slate-700">•</span>
+              <Link href="/locations/mumbai/" className="hover:text-white transition-colors">
+                Mumbai (022)
+              </Link>
+              <span className="text-slate-700">•</span>
+              <Link href="/locations/delhi-ncr/" className="hover:text-white transition-colors">
+                Delhi NCR (011)
+              </Link>
+              <span className="text-slate-700">•</span>
+              <Link href="/locations/hyderabad/" className="hover:text-white transition-colors">
+                Hyderabad (040)
+              </Link>
+              <span className="text-slate-700">•</span>
+              <Link href="/locations/pune/" className="hover:text-white transition-colors">
+                Pune (020)
+              </Link>
+              <span className="text-slate-700">•</span>
+              <Link href="/locations/chennai/" className="hover:text-white transition-colors">
+                Chennai (044)
+              </Link>
+              <span className="text-slate-700">•</span>
+              <Link href="/locations/" className="text-blue-400 hover:text-blue-300 font-medium">
+                All Locations &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Corporate Disclosure & Compliance Bar */}
         <div className="py-8 border-b border-slate-800 text-xs text-slate-400 space-y-3">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px]">

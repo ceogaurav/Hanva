@@ -84,7 +84,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden xl:flex items-center space-x-1">
             {/* Products Dropdown */}
             <div className="relative">
               <button
@@ -348,6 +348,113 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
               )}
             </div>
 
+            {/* Locations Dropdown */}
+            <div className="relative">
+              <button
+                type="button"
+                aria-haspopup="true"
+                aria-expanded={activeDropdown === "locations"}
+                className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                  activeDropdown === "locations" || pathname.startsWith("/locations")
+                    ? "text-blue-600 bg-blue-50/60"
+                    : "text-slate-700 hover:text-slate-900 hover:bg-slate-100"
+                }`}
+                onClick={() => toggleDropdown("locations")}
+                onMouseEnter={() => setActiveDropdown("locations")}
+              >
+                <span>Locations</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+
+              {activeDropdown === "locations" && (
+                <div
+                  className="absolute left-0 mt-1 w-80 rounded-xl border border-slate-200 bg-white p-3 shadow-xl z-50 animate-in fade-in slide-in-from-top-1"
+                  onMouseLeave={closeDropdown}
+                >
+                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 px-3 py-1 mb-1">
+                    Regional Telecom Hubs
+                  </div>
+                  <div className="grid grid-cols-2 gap-1">
+                    <Link
+                      href="/locations/bengaluru/"
+                      className="block rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <div className="text-xs font-semibold text-slate-900 flex items-center justify-between">
+                        <span>Bengaluru</span>
+                        <span className="text-[10px] text-emerald-700 bg-emerald-50 px-1 rounded font-mono">HQ • 080</span>
+                      </div>
+                      <div className="text-[11px] text-slate-500">Tech & Real Estate</div>
+                    </Link>
+                    <Link
+                      href="/locations/mumbai/"
+                      className="block rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <div className="text-xs font-semibold text-slate-900 flex items-center justify-between">
+                        <span>Mumbai</span>
+                        <span className="text-[10px] text-blue-700 bg-blue-50 px-1 rounded font-mono">022</span>
+                      </div>
+                      <div className="text-[11px] text-slate-500">BFSI & Logistics</div>
+                    </Link>
+                    <Link
+                      href="/locations/delhi-ncr/"
+                      className="block rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <div className="text-xs font-semibold text-slate-900 flex items-center justify-between">
+                        <span>Delhi NCR</span>
+                        <span className="text-[10px] text-blue-700 bg-blue-50 px-1 rounded font-mono">011</span>
+                      </div>
+                      <div className="text-[11px] text-slate-500">E-comm & Telesales</div>
+                    </Link>
+                    <Link
+                      href="/locations/hyderabad/"
+                      className="block rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <div className="text-xs font-semibold text-slate-900 flex items-center justify-between">
+                        <span>Hyderabad</span>
+                        <span className="text-[10px] text-blue-700 bg-blue-50 px-1 rounded font-mono">040</span>
+                      </div>
+                      <div className="text-[11px] text-slate-500">Healthcare & IT</div>
+                    </Link>
+                    <Link
+                      href="/locations/pune/"
+                      className="block rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <div className="text-xs font-semibold text-slate-900 flex items-center justify-between">
+                        <span>Pune</span>
+                        <span className="text-[10px] text-blue-700 bg-blue-50 px-1 rounded font-mono">020</span>
+                      </div>
+                      <div className="text-[11px] text-slate-500">Auto Dealerships</div>
+                    </Link>
+                    <Link
+                      href="/locations/chennai/"
+                      className="block rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <div className="text-xs font-semibold text-slate-900 flex items-center justify-between">
+                        <span>Chennai</span>
+                        <span className="text-[10px] text-blue-700 bg-blue-50 px-1 rounded font-mono">044</span>
+                      </div>
+                      <div className="text-[11px] text-slate-500">SaaS & Industry</div>
+                    </Link>
+                  </div>
+                  <div className="border-t border-slate-100 mt-2 pt-2">
+                    <Link
+                      href="/locations/"
+                      className="block text-center text-xs font-semibold text-blue-600 hover:text-blue-700 py-1 hover:bg-blue-50/50 rounded-lg transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      View All Geographic Hubs &rarr;
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Direct Links */}
             <Link
               href="/pricing/"
@@ -396,7 +503,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
             {/* Mobile Hamburger Button */}
             <button
               type="button"
-              className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 touch-target focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="xl:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 touch-target focus:outline-none focus:ring-2 focus:ring-blue-600"
               onClick={onMobileMenuOpen}
               aria-label="Open Mobile Menu"
             >

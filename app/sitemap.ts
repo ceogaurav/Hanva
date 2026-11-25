@@ -49,6 +49,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/industry/logistics/",
     "/industry/recruitment/",
 
+    // 7.5. Regional Location Hubs (7)
+    "/locations/",
+    "/locations/bengaluru/",
+    "/locations/mumbai/",
+    "/locations/delhi-ncr/",
+    "/locations/hyderabad/",
+    "/locations/pune/",
+    "/locations/chennai/",
+
     // 8. Competitor Alternative Comparisons (3)
     "/compare/exotel-alternative/",
     "/compare/knowlarity-alternative/",
@@ -78,7 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     } else if (route.startsWith("/products/")) {
       priority = 0.9;
       changeFrequency = "weekly";
-    } else if (route.startsWith("/solutions/") || route.startsWith("/industry/")) {
+    } else if (route.startsWith("/solutions/") || route.startsWith("/industry/") || route.startsWith("/locations/")) {
       priority = 0.85;
       changeFrequency = "weekly";
     } else if (route.startsWith("/compare/")) {

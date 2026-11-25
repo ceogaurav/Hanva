@@ -34,7 +34,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 lg:hidden">
+    <div className="fixed inset-0 z-50 xl:hidden">
       {/* Dimmed Backdrop */}
       <div
         className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
@@ -212,6 +212,68 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                 onClick={onClose}
               >
                 <span>All 8 Industry Verticals &rarr;</span>
+              </Link>
+            </div>
+
+            {/* Regional Hubs */}
+            <div className="space-y-1 border-t border-slate-100 pt-3">
+              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 py-1">
+                Regional Hubs
+              </div>
+              <Link
+                href="/locations/bengaluru/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Bengaluru (HQ • 080)</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/locations/mumbai/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Mumbai (022)</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/locations/delhi-ncr/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Delhi NCR (011)</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/locations/hyderabad/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Hyderabad (040)</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/locations/pune/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Pune (020)</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/locations/chennai/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Chennai (044)</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/locations/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-semibold text-blue-600 hover:bg-blue-50/50 touch-target"
+                onClick={onClose}
+              >
+                <span>All Regional Hubs &rarr;</span>
               </Link>
             </div>
 

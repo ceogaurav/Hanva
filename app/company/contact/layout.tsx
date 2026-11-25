@@ -19,14 +19,14 @@ const contactSchema = {
   mainEntity: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
-    telephone: "+91-8423711043",
-    email: "contact@hanva.in",
+    telephone: "+91-9606099404",
+    email: "info@hanva.in",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "No. 4, 1st Cross, Sampige Road, Malleshwaram",
+      streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
       addressLocality: "Bengaluru",
       addressRegion: "Karnataka",
-      postalCode: "560003",
+      postalCode: "560068",
       addressCountry: "IN",
     },
   },

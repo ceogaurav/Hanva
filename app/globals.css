@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-hanva-navy: #0F172A;
+    --color-hanva-navy-dark: #0B1120;
+    --color-hanva-blue: #2563EB;
+    --color-hanva-blue-hover: #1D4ED8;
+    --color-hanva-accent: #3B82F6;
+    --color-hanva-sky: #0EA5E9;
+    --color-hanva-surface: #FFFFFF;
+    --color-hanva-bg-subtle: #F8FAFC;
+    --color-hanva-border: #E2E8F0;
+    --color-hanva-text: #0F172A;
+    --color-hanva-muted: #64748B;
+    --color-hanva-success: #16A34A;
+    --color-hanva-warning: #D97706;
+    --color-hanva-error: #DC2626;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--color-hanva-text);
+    background-color: #FFFFFF;
+  }
+
+  /* Accessibility: Respect user reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Minimum 44px touch target utility for interactive mobile controls */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

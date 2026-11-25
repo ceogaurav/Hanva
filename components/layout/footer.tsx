@@ -160,8 +160,33 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/industry/financial-services/" className="hover:text-white transition-colors">
+                  BFSI & Lending Telecalling
+                </Link>
+              </li>
+              <li>
+                <Link href="/industry/insurance/" className="hover:text-white transition-colors">
+                  Insurance Renewals & Claims
+                </Link>
+              </li>
+              <li>
+                <Link href="/industry/automobile/" className="hover:text-white transition-colors">
+                  Automobile Dealerships
+                </Link>
+              </li>
+              <li>
+                <Link href="/industry/logistics/" className="hover:text-white transition-colors">
+                  Logistics & Number Masking
+                </Link>
+              </li>
+              <li>
+                <Link href="/industry/recruitment/" className="hover:text-white transition-colors">
+                  Recruitment & Staffing
+                </Link>
+              </li>
+              <li>
                 <Link href="/industry/" className="text-blue-400 hover:text-blue-300">
-                  All Industries Directory
+                  All 8 Industries Directory &rarr;
                 </Link>
               </li>
             </ul>

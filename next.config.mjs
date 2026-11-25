@@ -16,6 +16,9 @@ const nextConfig = {
       { source: '/about.html', destination: '/company/about/', permanent: true },
       { source: '/about', destination: '/company/about/', permanent: true },
       { source: '/about/', destination: '/company/about/', permanent: true },
+      { source: '/industries', destination: '/industry/', permanent: true },
+      { source: '/industries/', destination: '/industry/', permanent: true },
+      { source: '/industries/:slug*', destination: '/industry/:slug*/', permanent: true },
     ];
   },
   async headers() {

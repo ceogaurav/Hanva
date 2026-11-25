@@ -38,11 +38,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/solutions/customer-support/",
     "/solutions/enterprise/",
 
-    // 7. Industry Verticals (4)
+    // 7. Industry Verticals (9)
     "/industry/",
     "/industry/real-estate/",
     "/industry/healthcare/",
     "/industry/education/",
+    "/industry/financial-services/",
+    "/industry/insurance/",
+    "/industry/automobile/",
+    "/industry/logistics/",
+    "/industry/recruitment/",
 
     // 8. Competitor Alternative Comparisons (3)
     "/compare/exotel-alternative/",

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg } from "@/components/shared/schema-org";
+import { CONTACT_CONFIG } from "@/lib/config";
 import {
   CheckCircle2,
   ArrowRight,
@@ -62,13 +63,27 @@ export function SolutionLayout({
   faqs,
   schemaData,
 }: SolutionLayoutProps) {
-  const whatsappUrl = `https://wa.me/918423711043?text=${encodeURIComponent(
+  const whatsappUrl = `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
     `Hello Hanva Team, I am interested in your ${title} solution. Reference: ${whatsappRef}`
   )}`;
+
+  const faqSchema = faqs && faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  } : null;
 
   return (
     <div className="py-10 lg:py-14 bg-white min-h-screen">
       {schemaData && <SchemaOrg data={schemaData} />}
+      {faqSchema && <SchemaOrg data={faqSchema} />}
 
       <Container className="space-y-12">
         {/* 1. Breadcrumb Hierarchy */}

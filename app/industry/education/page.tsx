@@ -2,11 +2,28 @@ import * as React from "react";
 import { SolutionLayout } from "@/components/shared/solution-layout";
 
 export const metadata = {
-  title: "Education & EdTech Telephony CRM Solutions | Hanva Technologies",
+  title: "Education & EdTech Telephony CRM Solutions",
   description:
     "Scale student admission counseling with progressive auto-dialers, lead campaign tracking, automated fee structure drops on WhatsApp, and call audits.",
   alternates: {
     canonical: "https://hanva.in/industry/education/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://hanva.in/industry/education/",
+    siteName: "Hanva Technologies",
+    title: "Education & EdTech Telephony CRM Solutions | Hanva Technologies",
+    description:
+      "Scale student admission counseling with progressive auto-dialers, lead campaign tracking, automated fee structure drops on WhatsApp, and call audits.",
+    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Education Telephony" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Education & EdTech Telephony CRM Solutions | Hanva Technologies",
+    description:
+      "Scale student admission counseling with progressive auto-dialers, lead campaign tracking, automated fee structure drops on WhatsApp, and call audits.",
+    images: ["https://hanva.in/og-image.png"],
   },
 };
 

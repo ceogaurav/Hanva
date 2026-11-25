@@ -21,6 +21,11 @@ import {
   Building2,
   Stethoscope,
   GraduationCap,
+  Landmark,
+  ShieldCheck,
+  Car,
+  Truck,
+  Users,
   Sparkles,
 } from "lucide-react";
 
@@ -261,33 +266,82 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
 
               {activeDropdown === "industry" && (
                 <div
-                  className="absolute left-0 mt-1 w-64 rounded-xl border border-slate-200 bg-white p-3 shadow-xl z-50 animate-in fade-in slide-in-from-top-1"
+                  className="absolute left-0 mt-1 w-80 sm:w-96 rounded-xl border border-slate-200 bg-white p-3 shadow-xl z-50 animate-in fade-in slide-in-from-top-1"
                   onMouseLeave={closeDropdown}
                 >
-                  <div className="space-y-1">
+                  <div className="grid grid-cols-2 gap-1">
                     <Link
                       href="/industry/real-estate/"
-                      className="flex items-center space-x-2.5 rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      className="flex items-center space-x-2 rounded-lg p-2 hover:bg-slate-50 transition-colors"
                       onClick={closeDropdown}
                     >
-                      <Building2 className="h-4 w-4 text-blue-600" />
-                      <span className="text-sm font-medium text-slate-900">Real Estate</span>
+                      <Building2 className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span className="text-xs font-medium text-slate-900 truncate">Real Estate</span>
                     </Link>
                     <Link
                       href="/industry/healthcare/"
-                      className="flex items-center space-x-2.5 rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      className="flex items-center space-x-2 rounded-lg p-2 hover:bg-slate-50 transition-colors"
                       onClick={closeDropdown}
                     >
-                      <Stethoscope className="h-4 w-4 text-blue-600" />
-                      <span className="text-sm font-medium text-slate-900">Healthcare & Clinics</span>
+                      <Stethoscope className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span className="text-xs font-medium text-slate-900 truncate">Healthcare</span>
                     </Link>
                     <Link
                       href="/industry/education/"
-                      className="flex items-center space-x-2.5 rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      className="flex items-center space-x-2 rounded-lg p-2 hover:bg-slate-50 transition-colors"
                       onClick={closeDropdown}
                     >
-                      <GraduationCap className="h-4 w-4 text-blue-600" />
-                      <span className="text-sm font-medium text-slate-900">EdTech & Education</span>
+                      <GraduationCap className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span className="text-xs font-medium text-slate-900 truncate">EdTech & Admissions</span>
+                    </Link>
+                    <Link
+                      href="/industry/financial-services/"
+                      className="flex items-center space-x-2 rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <Landmark className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span className="text-xs font-medium text-slate-900 truncate">BFSI & Lending</span>
+                    </Link>
+                    <Link
+                      href="/industry/insurance/"
+                      className="flex items-center space-x-2 rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <ShieldCheck className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span className="text-xs font-medium text-slate-900 truncate">Insurance</span>
+                    </Link>
+                    <Link
+                      href="/industry/automobile/"
+                      className="flex items-center space-x-2 rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <Car className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span className="text-xs font-medium text-slate-900 truncate">Automobile</span>
+                    </Link>
+                    <Link
+                      href="/industry/logistics/"
+                      className="flex items-center space-x-2 rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <Truck className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span className="text-xs font-medium text-slate-900 truncate">Logistics & Privacy</span>
+                    </Link>
+                    <Link
+                      href="/industry/recruitment/"
+                      className="flex items-center space-x-2 rounded-lg p-2 hover:bg-slate-50 transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      <Users className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span className="text-xs font-medium text-slate-900 truncate">Recruitment</span>
+                    </Link>
+                  </div>
+                  <div className="border-t border-slate-100 mt-2 pt-2">
+                    <Link
+                      href="/industry/"
+                      className="block text-center text-xs font-semibold text-blue-600 hover:text-blue-700 py-1 hover:bg-blue-50/50 rounded-lg transition-colors"
+                      onClick={closeDropdown}
+                    >
+                      View All 8 Industry Blueprints &rarr;
                     </Link>
                   </div>
                 </div>

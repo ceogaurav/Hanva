@@ -137,6 +137,84 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               </Link>
             </div>
 
+            {/* Industries Section */}
+            <div className="space-y-1 border-t border-slate-100 pt-3">
+              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 py-1">
+                Industries
+              </div>
+              <Link
+                href="/industry/real-estate/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Real Estate</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/industry/healthcare/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Healthcare & Clinics</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/industry/education/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>EdTech & Admissions</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/industry/financial-services/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>BFSI & Lending</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/industry/insurance/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Insurance</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/industry/automobile/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Automobile Dealerships</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/industry/logistics/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Logistics & Masking</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/industry/recruitment/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Recruitment & Staffing</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/industry/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-semibold text-blue-600 hover:bg-blue-50/50 touch-target"
+                onClick={onClose}
+              >
+                <span>All 8 Industry Verticals &rarr;</span>
+              </Link>
+            </div>
+
             {/* Pricing & Tools */}
             <div className="space-y-1 border-t border-slate-100 pt-3">
               <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 py-1">

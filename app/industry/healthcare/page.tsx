@@ -2,11 +2,28 @@ import * as React from "react";
 import { SolutionLayout } from "@/components/shared/solution-layout";
 
 export const metadata = {
-  title: "Healthcare Cloud Telephony & Clinic Patient CRM | Hanva Technologies",
+  title: "Healthcare Cloud Telephony & Clinic Patient CRM",
   description:
     "Patient IVR appointment booking, automated OPD reminders, diagnostic report dispatch, and DPDP-compliant healthcare telephony in India.",
   alternates: {
     canonical: "https://hanva.in/industry/healthcare/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://hanva.in/industry/healthcare/",
+    siteName: "Hanva Technologies",
+    title: "Healthcare Cloud Telephony & Clinic Patient CRM | Hanva Technologies",
+    description:
+      "Patient IVR appointment booking, automated OPD reminders, diagnostic report dispatch, and DPDP-compliant healthcare telephony in India.",
+    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Healthcare Telephony" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Healthcare Cloud Telephony & Clinic Patient CRM | Hanva Technologies",
+    description:
+      "Patient IVR appointment booking, automated OPD reminders, diagnostic report dispatch, and DPDP-compliant healthcare telephony in India.",
+    images: ["https://hanva.in/og-image.png"],
   },
 };
 

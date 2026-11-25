@@ -9,20 +9,39 @@ import {
   Building2,
   Stethoscope,
   GraduationCap,
+  Landmark,
+  ShieldCheck,
+  Car,
+  Truck,
+  Users,
   Sparkles,
   ArrowRight,
   CheckCircle2,
-  Phone,
-  ShieldCheck,
-  TrendingUp,
 } from "lucide-react";
 
 export const metadata = {
-  title: "Industry Cloud Telephony & CRM Solutions in India | Hanva",
+  title: "Industry Cloud Telephony & CRM Solutions in India",
   description:
-    "Tailored telephony and sales automation architectures for Indian Real Estate, Healthcare, and EdTech enterprises. Integrated DIDs, IVR, and WhatsApp.",
+    "Tailored telephony and sales automation architectures for Indian Real Estate, Healthcare, EdTech, BFSI, Insurance, Automobile, Logistics, and Recruitment.",
   alternates: {
     canonical: "https://hanva.in/industry/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://hanva.in/industry/",
+    siteName: "Hanva Technologies",
+    title: "Industry Cloud Telephony & CRM Solutions in India | Hanva Technologies",
+    description:
+      "Tailored telephony and sales automation architectures for Indian Real Estate, Healthcare, EdTech, BFSI, Insurance, Automobile, Logistics, and Recruitment.",
+    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Industry Solutions" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Industry Cloud Telephony & CRM Solutions in India | Hanva Technologies",
+    description:
+      "Tailored telephony and sales automation architectures for Indian Real Estate, Healthcare, EdTech, BFSI, Insurance, Automobile, Logistics, and Recruitment.",
+    images: ["https://hanva.in/og-image.png"],
   },
 };
 
@@ -30,7 +49,7 @@ const industryHubSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Hanva Industry Telephony & CRM Solutions",
-  description: "Specialized cloud communication architectures for Real Estate, Healthcare, and Education sectors in India.",
+  description: "Specialized cloud communication architectures for Indian enterprise sectors including BFSI, Real Estate, Healthcare, Automotive, Logistics, and Education.",
   url: "https://hanva.in/industry/",
   publisher: {
     "@type": "Organization",
@@ -84,6 +103,81 @@ const industries = [
       "Centralized audio recordings for counseling script compliance",
     ],
   },
+  {
+    icon: Landmark,
+    badge: "Lending, NBFC & DSA Operations",
+    title: "Financial Services & Lending",
+    slug: "/industry/financial-services/",
+    description:
+      "Accelerate loan qualification turnaround, automate WhatsApp KYC document intake, and track telecaller conversion to disbursement.",
+    metrics: "Verified Lending Stages",
+    keyCapabilities: [
+      "Instant dial-out for incoming digital loan inquiries",
+      "Official Meta WABA KYC document collection templates",
+      "Lending pipeline stages (Login, Documented, Disbursed)",
+      "Compliant dual-channel voice recording archival",
+    ],
+  },
+  {
+    icon: ShieldCheck,
+    badge: "Policy Renewals & Claims Triage",
+    title: "Insurance Agencies & Brokerages",
+    slug: "/industry/insurance/",
+    description:
+      "Automate multi-touch policy expiry calling cadences, dispatch quote comparisons on WhatsApp, and prioritize emergency claims IVR queues.",
+    metrics: "Multi-Touch Renewal Cadence",
+    keyCapabilities: [
+      "Automated renewal cadences at Day -30, -15, and -3",
+      "Priority claims assistance IVR routing with zero queue wait",
+      "Automated WhatsApp premium quote comparisons and payment links",
+      "100% voice recording archival for IRDAI disclosure compliance",
+    ],
+  },
+  {
+    icon: Car,
+    badge: "Showroom & Workshop Telephony",
+    title: "Automobile Dealerships",
+    slug: "/industry/automobile/",
+    description:
+      "Drive test-drive bookings, route Sales versus Service calls via multi-level IVR, and run automated 10,000 km service maintenance reminder calls.",
+    metrics: "Instant Showroom Routing",
+    keyCapabilities: [
+      "Automated webhook ingestion for portal test-drive inquiries",
+      "Multi-department IVR trees for Sales, Service, and Insurance",
+      "WhatsApp showroom location pin and brochure drops",
+      "Outbound auto-dialer for scheduled workshop service recalls",
+    ],
+  },
+  {
+    icon: Truck,
+    badge: "Fleet & Delivery Privacy",
+    title: "Logistics & Supply Chain",
+    slug: "/industry/logistics/",
+    description:
+      "Protect recipient privacy with driver phone number masking, automate failed delivery callback IVRs, and dispatch live tracking alerts via WhatsApp.",
+    metrics: "Zero-Leak Privacy Bridge",
+    keyCapabilities: [
+      "DoT-compliant virtual phone number masking for riders",
+      "Pre-delivery automated morning verification calls",
+      "Interactive WhatsApp rescheduling and address update buttons",
+      "Complete CDR dial-out audit logs to resolve delivery disputes",
+    ],
+  },
+  {
+    icon: Users,
+    badge: "High-Velocity Candidate Screening",
+    title: "Recruitment & Staffing",
+    slug: "/industry/recruitment/",
+    description:
+      "Screen job applicants faster with progressive auto-dialers, dispatch job descriptions via WhatsApp, and monitor recruiter talk-time scorecards.",
+    metrics: "Doubled Screening Volume",
+    keyCapabilities: [
+      "Progressive auto-dialing across resume pools from job boards",
+      "2-click candidate screening disposition tagging",
+      "Automated WhatsApp job description and interview slot delivery",
+      "Recruiter talk-time KPIs, connection rates, and call recordings",
+    ],
+  },
 ];
 
 export default function IndustryPage() {
@@ -115,7 +209,7 @@ export default function IndustryPage() {
         </div>
 
         {/* Industry Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {industries.map((ind, idx) => {
             const Icon = ind.icon;
             return (
@@ -127,7 +221,7 @@ export default function IndustryPage() {
                   <Badge variant="secondary" className="w-fit text-[11px] mb-1">
                     {ind.badge}
                   </Badge>
-                  <CardTitle className="text-xl text-slate-900">{ind.title}</CardTitle>
+                  <CardTitle className="text-lg text-slate-900">{ind.title}</CardTitle>
                   <CardDescription className="text-xs text-slate-600 leading-relaxed mt-1">
                     {ind.description}
                   </CardDescription>
@@ -170,10 +264,10 @@ export default function IndustryPage() {
             Compliant Telecom Architecture
           </Badge>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-            Need an Architecture for a Different Industry?
+            Need a Bespoke Architecture for Your Vertical?
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
-            We also design custom cloud telephony and CRM deployments for Logistics, Automobile Dealerships, FinTech, and BPO operations.
+            Our telecom architects design custom cloud telephony and CRM deployments with tailored DIDs, CRM webhooks, and authorized WhatsApp BSP gateways.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <Link href="/company/contact/">

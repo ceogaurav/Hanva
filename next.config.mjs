@@ -22,6 +22,9 @@ const nextConfig = {
       { source: '/location', destination: '/locations/', permanent: true },
       { source: '/location/', destination: '/locations/', permanent: true },
       { source: '/location/:slug*', destination: '/locations/:slug*/', permanent: true },
+      { source: '/resources/how-does-ivr-work/', destination: '/resources/how-ivr-systems-work/', permanent: true },
+      { source: '/resources/whatsapp-business-api-vs-app/', destination: '/resources/whatsapp-business-api-guide/', permanent: true },
+      { source: '/resources/cloud-telephony-pricing-guide-india/', destination: '/resources/cloud-telephony-pricing-guide/', permanent: true },
     ];
   },
   async headers() {

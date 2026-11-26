@@ -5,7 +5,7 @@ import { SchemaOrg } from "@/components/shared/schema-org";
 import { ShieldCheck, Mail, MapPin } from "lucide-react";
 
 export const metadata = {
-  title: "Privacy Policy | Hanva Technologies Private Limited",
+  title: "Privacy Policy",
   description:
     "Statutory Privacy Policy of Hanva Technologies Private Limited. Information collection, voice recording retention, and data protection under the Indian DPDP Act, 2023.",
   alternates: {

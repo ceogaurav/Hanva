@@ -1,7 +1,7 @@
 import { ProductLayout } from "@/components/shared/product-layout";
 
 export const metadata = {
-  title: "1800 Toll Free Number Provider in India — Hanva Technologies",
+  title: "1800 Toll Free Number Provider in India",
   description:
     "Build brand authority with 1800 toll-free numbers in India. Free for your customers to call across all telecom networks, integrated with cloud IVR and CRM.",
   alternates: {

@@ -53,7 +53,7 @@ const mumbaiServiceSchema = {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
         url: "https://hanva.in",
-        telephone: "+91-9606099404",
+        telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
@@ -113,13 +113,13 @@ export default function MumbaiLocationPage() {
         {
           label: "Pulse Billing Model",
           value: "15-Second Pulse",
-          description: "Transparent 15s billing pulse saving high-volume financial desks up to 30% over 60s rounding.",
+          description: "Transparent 15s billing pulse reducing unbilled pulse rounding waste over 60s increments.",
         },
       ]}
       challenges={[
         {
-          challenge: "Lending DSAs and collection teams face abysmal 12%-18% pickup rates when dialers present unverified GSM mobile numbers marked as spam by Truecaller.",
-          solution: "Hanva provisions verified 022 Mumbai virtual numbers that display clean landline caller identification, lifting call answer rates to 38%-52%.",
+          challenge: "Lending DSAs and collection teams face low pickup rates when dialers present unverified GSM mobile numbers flagged as unknown or spam.",
+          solution: "Hanva provisions verified 022 Mumbai virtual numbers that display consistent business landline caller identification to build prospect trust.",
         },
         {
           challenge: "BFSI risk and compliance officers risk heavy regulatory penalties if client call recordings are tampered with, deleted, or stored on unsecured rep laptops.",

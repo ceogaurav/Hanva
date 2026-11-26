@@ -53,7 +53,7 @@ const delhiNcrServiceSchema = {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
         url: "https://hanva.in",
-        telephone: "+91-9606099404",
+        telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
@@ -115,14 +115,14 @@ export default function DelhiNcrLocationPage() {
           description: "High-capacity PRI/SIP trunk interconnects across Delhi and Haryana/UP circles.",
         },
         {
-          label: "Number Masking Latency",
-          value: "< 350ms Bridge Setup",
-          description: "Rapid carrier two-legged call bridging ensuring delivery drivers connect instantly.",
+          label: "Number Masking Architecture",
+          value: "Cloud Call Bridging",
+          description: "Two-legged carrier call bridging keeping delivery rider and customer numbers private.",
         },
         {
           label: "Pulse Billing Model",
           value: "15-Second Pulse",
-          description: "Zero unbilled rounding, providing substantial savings for high-volume outbound telesales.",
+          description: "15-second OBD pulse billing reducing rounding waste on short outbound telesales calls.",
         },
       ]}
       challenges={[
@@ -140,7 +140,7 @@ export default function DelhiNcrLocationPage() {
         },
         {
           challenge: "Telecom operators reject bulk promotional communications due to non-compliant SMS headers and unregistered sender IDs.",
-          solution: "Hanva assists Delhi NCR enterprises with TRAI DLT registration and pre-approved WhatsApp Business templates to guarantee delivery.",
+          solution: "Hanva assists Delhi NCR enterprises with TRAI DLT registration and pre-approved WhatsApp Business templates for compliant campaign delivery.",
         },
       ]}
       workflowTitle="Delhi NCR Outbound Telesales & Logistics Flow"

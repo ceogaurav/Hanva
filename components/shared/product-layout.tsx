@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg } from "@/components/shared/schema-org";
+import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { CONTACT_CONFIG } from "@/lib/config";
 import {
   CheckCircle2,
   ArrowRight,
@@ -15,6 +17,7 @@ import {
   HelpCircle,
   Layers,
   ArrowUpRight,
+  ExternalLink,
 } from "lucide-react";
 
 export interface WorkflowStep {
@@ -43,6 +46,8 @@ export interface ProductLayoutProps {
   breadcrumbs: { label: string; href?: string }[];
   whatsappRef: string;
   workflowTitle?: string;
+  secondaryHeroHref?: string;
+  secondaryHeroLabel?: string;
   workflowSteps: WorkflowStep[];
   capabilities: CapabilityItem[];
   useCases: UseCaseItem[];
@@ -59,6 +64,8 @@ export function ProductLayout({
   breadcrumbs,
   whatsappRef,
   workflowTitle = "How the Architecture Works",
+  secondaryHeroHref = "/pricing/calculator/",
+  secondaryHeroLabel = "Estimate Voice Costs",
   workflowSteps,
   capabilities,
   useCases,
@@ -66,31 +73,35 @@ export function ProductLayout({
   faqs,
   schemaData,
 }: ProductLayoutProps) {
-  const whatsappUrl = `https://wa.me/918423711043?text=${encodeURIComponent(
+  const productSlug = whatsappRef.replace(/^\/products\/|\/$/g, "") || "cloud-telephony";
+  const contactHref = `/company/contact/?product=${encodeURIComponent(productSlug)}`;
+  const whatsappUrl = `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
     `Hello Hanva Team, I am interested in learning more about ${title}. Reference: ${whatsappRef}`
   )}`;
 
   return (
-    <div className="flex flex-col gap-12 lg:gap-20 pb-20 bg-white">
+    <div className="flex flex-col gap-12 lg:gap-20 pb-28 lg:pb-20 bg-white">
       {schemaData && <SchemaOrg schema={schemaData} />}
 
       {/* Hero Section */}
       <section className="relative pt-10 lg:pt-16 pb-12 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-100">
         <Container className="space-y-8">
           {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-slate-500">
-            {breadcrumbs.map((crumb, idx) => (
-              <React.Fragment key={idx}>
-                {idx > 0 && <span className="text-slate-300">/</span>}
-                {crumb.href ? (
-                  <Link href={crumb.href} className="hover:text-blue-600 transition-colors">
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span className="text-slate-800 font-medium">{crumb.label}</span>
-                )}
-              </React.Fragment>
-            ))}
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-600">
+              {breadcrumbs.map((crumb, idx) => (
+                <li key={idx} className="inline-flex items-center gap-2">
+                  {idx > 0 && <span className="text-slate-400" aria-hidden="true">/</span>}
+                  {crumb.href ? (
+                    <Link href={crumb.href} className="hover:text-blue-600 transition-colors">
+                      {crumb.label}
+                    </Link>
+                  ) : (
+                    <span className="text-slate-900 font-medium" aria-current="page">{crumb.label}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
           </nav>
 
           <div className="max-w-3xl space-y-4">
@@ -112,25 +123,44 @@ export function ProductLayout({
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3 pt-2">
-            <Link href="/company/contact/" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto">
-                Request Live Demonstration
-                <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="space-y-2 pt-2">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3">
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedDemoLink
+                href={contactHref}
+                ctaLocation="product_hero"
+                ctaLabelKey="request_live_demonstration"
+                productSlug={productSlug}
+               
+              >
+                  <span>Request Live Demonstration</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                </TrackedDemoLink>
               </Button>
-            </Link>
-            <Link href="/pricing/calculator/" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                <Sparkles className="mr-2 h-4 w-4 text-emerald-600" />
-                Estimate Voice Costs
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <Link href={secondaryHeroHref}>
+                  <Sparkles className="mr-2 h-4 w-4 text-emerald-600 shrink-0 inline" aria-hidden="true" />
+                  <span>{secondaryHeroLabel}</span>
+                </Link>
               </Button>
-            </Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button variant="whatsapp" size="lg" className="w-full sm:w-auto">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                WhatsApp Consultation
+              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedWhatsAppLink
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                ctaLocation="product_hero"
+                contextRef={whatsappRef}
+               
+              >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                  <span>WhatsApp Consultation</span>
+                  <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
+                </TrackedWhatsAppLink>
               </Button>
-            </a>
+            </div>
+            <p className="text-[11px] text-slate-600">
+              WhatsApp Consultation opens WhatsApp with this product pre-filled — press Send to connect with an engineer.
+            </p>
           </div>
         </Container>
       </section>
@@ -280,17 +310,27 @@ export function ProductLayout({
               Our Bengaluru sales engineers will walk you through live call flows, carrier DID allocations, and transparent pulse pricing.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-2">
-              <Link href="/company/contact/" className="w-full sm:w-auto">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto">
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedDemoLink
+                href={contactHref}
+                ctaLocation="product_bottom"
+                ctaLabelKey="request_live_consultation"
+                productSlug={productSlug}
+               
+              >
                   Request Live Consultation
-                </Button>
-              </Link>
-              <a href="tel:+918423711043" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="border-slate-300 w-full sm:w-auto text-xs sm:text-base px-4 sm:px-8">
-                  <Phone className="mr-2 h-4 w-4 text-blue-600" />
-                  Call Sales Desk: +91 8423711043
-                </Button>
-              </a>
+                </TrackedDemoLink>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-slate-300 w-full sm:w-auto text-xs sm:text-base whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
+                <TrackedPhoneLink
+                href={`tel:${CONTACT_CONFIG.phoneTel}`}
+                ctaLocation="product_bottom"
+               
+              >
+                  <Phone className="mr-2 h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+                  <span>Call Sales Desk: {CONTACT_CONFIG.phoneDisplay}</span>
+                </TrackedPhoneLink>
+              </Button>
             </div>
           </div>
         </Container>

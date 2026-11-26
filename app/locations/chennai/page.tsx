@@ -53,7 +53,7 @@ const chennaiServiceSchema = {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
         url: "https://hanva.in",
-        telephone: "+91-9606099404",
+        telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",

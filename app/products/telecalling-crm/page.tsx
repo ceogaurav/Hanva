@@ -127,7 +127,7 @@ export default function TelecallingCrmPage() {
       faqs={[
         {
           question: "Can telecallers use their personal smartphones for calling?",
-          answer: "Yes. Through our Android companion app, telecallers can make calls using their phone's native SIM card. The app automatically tracks call durations, syncs audio recordings (where legally permitted and supported), and updates CRM dispositions without telecallers having to manually type notes.",
+          answer: "Yes. Using our Android companion app prototype or browser WebRTC console, telecallers can handle outbound SIM or cloud calling while capturing call durations and updating CRM dispositions without manually typing notes (centralized cloud audio recording applies to cloud telephony legs).",
         },
         {
           question: "How does the CRM prevent telecallers from stealing client numbers?",

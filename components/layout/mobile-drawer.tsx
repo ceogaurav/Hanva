@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { X, Phone, MessageSquare, ChevronRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
+import { CONTACT_CONFIG } from "@/lib/config";
+import { trackConversionEvent } from "@/lib/analytics";
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -14,16 +16,45 @@ interface MobileDrawerProps {
 
 export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   const pathname = usePathname();
+  const closeBtnRef = React.useRef<HTMLButtonElement>(null);
+  const panelRef = React.useRef<HTMLDivElement>(null);
+  const prevFocusRef = React.useRef<HTMLElement | null>(null);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key === "Tab" && panelRef.current) {
+        const focusables = Array.from(
+          panelRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((el) => el.offsetParent !== null);
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     if (isOpen) {
+      prevFocusRef.current = document.activeElement as HTMLElement | null;
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
+      setTimeout(() => closeBtnRef.current?.focus(), 10);
     } else {
       document.body.style.overflow = "";
+      if (prevFocusRef.current && typeof prevFocusRef.current.focus === "function") {
+        prevFocusRef.current.focus();
+        prevFocusRef.current = null;
+      }
     }
     return () => {
       document.body.style.overflow = "";
@@ -34,7 +65,12 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 xl:hidden">
+    <div
+      className="fixed inset-0 z-50 xl:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile Navigation Menu"
+    >
       {/* Dimmed Backdrop */}
       <div
         className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
@@ -43,7 +79,10 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       />
 
       {/* Slide-out Drawer Panel */}
-      <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-white shadow-2xl flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-200">
+      <div
+        ref={panelRef}
+        className="fixed inset-y-0 right-0 w-full max-w-xs bg-white shadow-2xl flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-200"
+      >
         <div>
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-slate-200">
@@ -51,12 +90,13 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               <Logo size="sm" />
             </Link>
             <button
+              ref={closeBtnRef}
               type="button"
-              className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 touch-target focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="p-2 rounded-lg text-slate-600 hover:bg-slate-100 touch-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
               onClick={onClose}
               aria-label="Close Mobile Navigation"
             >
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
 
@@ -65,26 +105,40 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             {/* Quick CTAs */}
             <div className="grid grid-cols-2 gap-2">
               <a
-                href="tel:+918423711043"
+                href={`tel:${CONTACT_CONFIG.phoneTel}`}
+                onClick={() =>
+                  trackConversionEvent("phone_cta_click", {
+                    cta_location: "mobile_drawer",
+                    target_channel: "sales_desk",
+                  })
+                }
                 className="flex items-center justify-center space-x-1.5 p-2.5 rounded-lg bg-slate-900 text-white text-xs font-semibold touch-target"
               >
-                <Phone className="h-3.5 w-3.5 text-blue-400" />
+                <Phone className="h-3.5 w-3.5 text-blue-400" aria-hidden="true" />
                 <span>Call Sales</span>
               </a>
               <a
-                href="https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20enquire%20about%20your%20cloud%20telephony%20and%20CRM."
+                href={`${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
+                  "Hello Hanva Team, I would like to enquire about your cloud telephony and CRM."
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center space-x-1.5 p-2.5 rounded-lg bg-[#25D366] text-white text-xs font-semibold touch-target"
+                onClick={() =>
+                  trackConversionEvent("whatsapp_cta_click", {
+                    cta_location: "mobile_drawer",
+                    context_ref: pathname || "/",
+                  })
+                }
+                className="flex items-center justify-center space-x-1.5 p-2.5 rounded-lg bg-[#25D366] text-slate-950 text-xs font-semibold touch-target"
               >
-                <MessageSquare className="h-3.5 w-3.5" />
+                <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>WhatsApp</span>
               </a>
             </div>
 
             {/* Core Links */}
             <div className="space-y-1 border-t border-slate-100 pt-3">
-              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 py-1">
+              <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
                 Products
               </div>
               <Link
@@ -139,7 +193,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
             {/* Industries Section */}
             <div className="space-y-1 border-t border-slate-100 pt-3">
-              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 py-1">
+              <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
                 Industries
               </div>
               <Link
@@ -217,7 +271,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
             {/* Regional Hubs */}
             <div className="space-y-1 border-t border-slate-100 pt-3">
-              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 py-1">
+              <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
                 Regional Hubs
               </div>
               <Link
@@ -225,7 +279,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                 className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
                 onClick={onClose}
               >
-                <span>Bengaluru (HQ • 080)</span>
+                <span>Bengaluru (Office • 080)</span>
                 <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
               </Link>
               <Link
@@ -279,7 +333,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
             {/* Pricing & Tools */}
             <div className="space-y-1 border-t border-slate-100 pt-3">
-              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 py-1">
+              <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
                 Commercial
               </div>
               <Link
@@ -303,9 +357,48 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               </Link>
             </div>
 
+            {/* Resources & Knowledge Hub */}
+            <div className="space-y-1 border-t border-slate-100 pt-3">
+              <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
+                Knowledge & Guides
+              </div>
+              <Link
+                href="/resources/"
+                className="flex items-center justify-between p-2.5 rounded-lg text-sm font-semibold text-blue-700 bg-blue-50/50 hover:bg-blue-100/60 touch-target"
+                onClick={onClose}
+              >
+                <span>Resources & Knowledge Hub</span>
+                <ChevronRight className="h-4 w-4 text-blue-600" />
+              </Link>
+              <Link
+                href="/resources/what-is-cloud-telephony/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>What Is Cloud Telephony?</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/resources/telecalling-crm-guide/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Telecalling CRM Playbook</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/resources/cloud-telephony-pricing-guide/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-800 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Cloud Telephony Pricing Guide</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+            </div>
+
             {/* Corporate & Trust */}
             <div className="space-y-1 border-t border-slate-100 pt-3">
-              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 py-1">
+              <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
                 Company
               </div>
               <Link
@@ -329,12 +422,23 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
         </div>
 
         {/* Bottom Booking Button */}
-        <div className="p-4 border-t border-slate-200 bg-slate-50">
-          <Link href="/company/contact/" onClick={onClose} className="block w-full">
-            <Button variant="primary" className="w-full text-center">
+        <div className="p-4 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] border-t border-slate-200 bg-slate-50">
+          <Button asChild variant="primary" className="w-full text-center">
+            <Link
+            href="/company/contact/"
+            onClick={() => {
+              trackConversionEvent("demo_cta_click", {
+                cta_location: "mobile_drawer",
+                cta_label_key: "book_consultation_demo",
+                target_path: "/company/contact/",
+              });
+              onClose();
+            }}
+            className="block w-full"
+          >
               Book Consultation & Demo
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

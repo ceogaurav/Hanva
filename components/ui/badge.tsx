@@ -11,7 +11,7 @@ const badgeVariants = cva(
         secondary: "border-transparent bg-slate-100 text-slate-800",
         success: "border-transparent bg-emerald-100 text-emerald-800",
         outline: "border border-slate-300 text-slate-700",
-        live: "border-transparent bg-emerald-50 text-emerald-700 animate-pulse",
+        live: "border-transparent bg-emerald-50 text-emerald-700 motion-safe:animate-pulse",
       },
     },
     defaultVariants: {

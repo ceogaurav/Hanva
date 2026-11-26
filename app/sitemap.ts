@@ -4,7 +4,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://hanva.in";
   const now = new Date();
 
-  // All 33 canonical routes for Hanva Technologies
+  // All 52 canonical routes for Hanva Technologies (Phase 10)
   const routes = [
     // 1. Core Homepage & Commercial Gateways (4)
     "/",
@@ -63,7 +63,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/compare/knowlarity-alternative/",
     "/compare/telecmi-alternative/",
 
-    // 9. Statutory Customer Resources (1)
+    // 9. Knowledge Hub & Topical Resource Guides (8)
+    "/resources/",
+    "/resources/what-is-cloud-telephony/",
+    "/resources/how-ivr-systems-work/",
+    "/resources/auto-dialer-vs-predictive-dialer/",
+    "/resources/telecalling-crm-guide/",
+    "/resources/whatsapp-business-api-guide/",
+    "/resources/cloud-telephony-pricing-guide/",
     "/resources/dlt-compliance-guide/",
 
     // 10. Corporate Governance, Careers & Trust (5)
@@ -93,7 +100,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     } else if (route.startsWith("/compare/")) {
       priority = 0.8;
       changeFrequency = "weekly";
-    } else if (route.startsWith("/company/") || route.startsWith("/resources/")) {
+    } else if (route === "/resources/") {
+      priority = 0.8;
+      changeFrequency = "weekly";
+    } else if (route.startsWith("/resources/")) {
+      priority = 0.75;
+      changeFrequency = "monthly";
+    } else if (route.startsWith("/company/")) {
       priority = 0.7;
       changeFrequency = "monthly";
     }

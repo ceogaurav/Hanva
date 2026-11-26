@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Security, Trust & Regulatory Compliance | Hanva Technologies",
+  title: "Security, Trust & Regulatory Compliance",
   description:
     "Learn how Hanva secures enterprise voice communications: application-level access controls, TLS 1.3 / SRTP encryption, and data privacy governance.",
   alternates: {
@@ -165,14 +165,14 @@ export default function SecurityAndTrustPage() {
             Our engineering team can assist your InfoSec and compliance officers with architectural reviews, vendor risk assessments, and data protection agreements.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Link href="/company/contact/">
-              <Button variant="primary" size="lg">Contact Security Team</Button>
-            </Link>
-            <Link href="/company/privacy-policy/">
-              <Button variant="outline" size="lg" className="border-slate-700 text-slate-200 hover:text-white">
+            <Button asChild variant="primary" size="lg">
+              <Link href="/company/contact/">Contact Security Team</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-slate-700 text-slate-200 hover:text-white">
+              <Link href="/company/privacy-policy/">
                 Read Privacy Policy
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </Container>

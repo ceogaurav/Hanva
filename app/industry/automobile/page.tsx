@@ -68,7 +68,7 @@ export default function AutomobileIndustryPage() {
         },
         {
           challenge: "Floor sales consultants calling prospects from personal phones fail to log customer model preferences, budget, or exchange car details.",
-          solution: "Our companion Android calling app enables reps to call via mobile SIMs while logging test-drive dates, price quotes, and audio recordings centrally.",
+          solution: "Our companion Android calling workflow enables reps to log mobile SIM calls, test-drive dates, and price quotes alongside centralized cloud telephony recordings.",
         },
       ]}
       workflowTitle="The 4-Stage Showroom & Workshop Engagement Journey"

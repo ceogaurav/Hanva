@@ -2,11 +2,13 @@ import * as React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
+import { TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { CONTACT_CONFIG } from "@/lib/config";
 import { Phone, Mail, MapPin, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-900 text-slate-300 pt-16 pb-24 lg:pb-12 text-sm">
+    <footer className="border-t border-slate-200 bg-slate-900 text-slate-300 pt-16 pb-[calc(6.5rem+env(safe-area-inset-bottom,0px))] lg:pb-12 text-sm">
       <Container>
         {/* Brand Header */}
         <div className="pb-10 border-b border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -215,8 +217,43 @@ export function Footer() {
               </li>
               <li className="pt-2">
                 <div className="text-[11px] font-semibold text-white uppercase tracking-wider">
-                  Customer Resources
+                  Knowledge Hub & Guides
                 </div>
+              </li>
+              <li>
+                <Link href="/resources/" className="text-blue-400 hover:text-blue-300 font-semibold">
+                  All Guides & Resources &rarr;
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources/what-is-cloud-telephony/" className="hover:text-white transition-colors">
+                  What Is Cloud Telephony?
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources/how-ivr-systems-work/" className="hover:text-white transition-colors">
+                  How IVR Systems Work
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources/auto-dialer-vs-predictive-dialer/" className="hover:text-white transition-colors">
+                  Auto vs Predictive Dialer
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources/telecalling-crm-guide/" className="hover:text-white transition-colors">
+                  Telecalling CRM Guide
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources/whatsapp-business-api-guide/" className="hover:text-white transition-colors">
+                  WhatsApp Business API vs App
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources/cloud-telephony-pricing-guide/" className="hover:text-white transition-colors">
+                  Cloud Telephony Pricing Guide
+                </Link>
               </li>
               <li>
                 <Link href="/resources/dlt-compliance-guide/" className="hover:text-white transition-colors">
@@ -253,26 +290,27 @@ export function Footer() {
                 </Link>
               </li>
               <li className="pt-3">
-                <a
-                  href="tel:+918423711043"
-                  className="flex items-center space-x-2 text-slate-200 hover:text-white transition-colors"
+                <TrackedPhoneLink
+                  href={`tel:${CONTACT_CONFIG.phoneTel}`}
+                  ctaLocation="footer"
+                  className="flex items-center space-x-2 text-slate-200 hover:text-white transition-colors py-1"
                 >
-                  <Phone className="h-3.5 w-3.5 text-blue-400" />
-                  <span>+91 8423711043</span>
-                </a>
+                  <Phone className="h-3.5 w-3.5 text-blue-400" aria-hidden="true" />
+                  <span>{CONTACT_CONFIG.phoneDisplay}</span>
+                </TrackedPhoneLink>
               </li>
               <li>
                 <a
-                  href="mailto:info@hanva.in"
-                  className="flex items-center space-x-2 text-slate-200 hover:text-white transition-colors"
+                  href={`mailto:${CONTACT_CONFIG.email}`}
+                  className="flex items-center space-x-2 text-slate-200 hover:text-white transition-colors py-1"
                 >
-                  <Mail className="h-3.5 w-3.5 text-blue-400" />
-                  <span>info@hanva.in</span>
+                  <Mail className="h-3.5 w-3.5 text-blue-400" aria-hidden="true" />
+                  <span>{CONTACT_CONFIG.email}</span>
                 </a>
               </li>
               <li className="flex items-start space-x-2 text-slate-400 text-[11px] leading-tight pt-1">
-                <MapPin className="h-3.5 w-3.5 text-slate-400 shrink-0 mt-0.5" />
-                <span>Raj Arcade, 7th Main, Near Hosur Main Rd, Garvebhavi Palya, Bengaluru - 560068</span>
+                <MapPin className="h-3.5 w-3.5 text-slate-400 shrink-0 mt-0.5" aria-hidden="true" />
+                <span>{CONTACT_CONFIG.address}</span>
               </li>
             </ul>
           </div>
@@ -282,35 +320,35 @@ export function Footer() {
         <div className="py-6 border-b border-slate-800 text-xs text-slate-400">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center space-x-2 text-white font-semibold text-xs uppercase tracking-wider">
-              <MapPin className="h-4 w-4 text-blue-400" />
+              <MapPin className="h-4 w-4 text-blue-400" aria-hidden="true" />
               <span>Regional Telecom Hubs:</span>
             </div>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
-              <Link href="/locations/bengaluru/" className="hover:text-white transition-colors">
-                Bengaluru (HQ • 080)
+              <Link href="/locations/bengaluru/" className="hover:text-white transition-colors py-0.5">
+                Bengaluru (Office • 080)
               </Link>
-              <span className="text-slate-700">•</span>
-              <Link href="/locations/mumbai/" className="hover:text-white transition-colors">
+              <span className="text-slate-700" aria-hidden="true">•</span>
+              <Link href="/locations/mumbai/" className="hover:text-white transition-colors py-0.5">
                 Mumbai (022)
               </Link>
-              <span className="text-slate-700">•</span>
-              <Link href="/locations/delhi-ncr/" className="hover:text-white transition-colors">
+              <span className="text-slate-700" aria-hidden="true">•</span>
+              <Link href="/locations/delhi-ncr/" className="hover:text-white transition-colors py-0.5">
                 Delhi NCR (011)
               </Link>
-              <span className="text-slate-700">•</span>
-              <Link href="/locations/hyderabad/" className="hover:text-white transition-colors">
+              <span className="text-slate-700" aria-hidden="true">•</span>
+              <Link href="/locations/hyderabad/" className="hover:text-white transition-colors py-0.5">
                 Hyderabad (040)
               </Link>
-              <span className="text-slate-700">•</span>
-              <Link href="/locations/pune/" className="hover:text-white transition-colors">
+              <span className="text-slate-700" aria-hidden="true">•</span>
+              <Link href="/locations/pune/" className="hover:text-white transition-colors py-0.5">
                 Pune (020)
               </Link>
-              <span className="text-slate-700">•</span>
-              <Link href="/locations/chennai/" className="hover:text-white transition-colors">
+              <span className="text-slate-700" aria-hidden="true">•</span>
+              <Link href="/locations/chennai/" className="hover:text-white transition-colors py-0.5">
                 Chennai (044)
               </Link>
-              <span className="text-slate-700">•</span>
-              <Link href="/locations/" className="text-blue-400 hover:text-blue-300 font-medium">
+              <span className="text-slate-700" aria-hidden="true">•</span>
+              <Link href="/locations/" className="text-blue-400 hover:text-blue-300 font-medium py-0.5">
                 All Locations &rarr;
               </Link>
             </div>

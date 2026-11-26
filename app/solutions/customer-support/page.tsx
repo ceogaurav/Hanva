@@ -2,7 +2,7 @@ import * as React from "react";
 import { SolutionLayout } from "@/components/shared/solution-layout";
 
 export const metadata = {
-  title: "Inbound Customer Support & IVR Routing Solutions | Hanva Technologies",
+  title: "Inbound Customer Support & IVR Routing Solutions",
   description:
     "Enterprise customer support routing: multi-level smart IVR, automatic call distribution (ACD), call recording audits, and CRM timeline syncing.",
   alternates: {

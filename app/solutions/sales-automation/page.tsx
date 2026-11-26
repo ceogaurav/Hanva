@@ -2,7 +2,7 @@ import * as React from "react";
 import { SolutionLayout } from "@/components/shared/solution-layout";
 
 export const metadata = {
-  title: "Outbound Sales Call Automation Solutions | Hanva Technologies",
+  title: "Outbound Sales Call Automation Solutions",
   description:
     "Accelerate telecalling velocity, eliminate manual dialing latency, and automate post-call WhatsApp messaging for inside sales teams.",
   alternates: {
@@ -64,7 +64,7 @@ export default function SalesAutomationPage() {
         {
           step: "STAGE 02",
           title: "Progressive Auto-Dialing",
-          description: "The dialing engine initiates calls across dedicated Vi and Tata carrier DIDs, connecting the rep in under 500ms upon customer answer.",
+          description: "The dialing engine initiates calls across dedicated Vi and Tata carrier DIDs, routing the conversation directly to the rep upon customer answer.",
         },
         {
           step: "STAGE 03",

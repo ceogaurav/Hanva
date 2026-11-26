@@ -98,7 +98,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="pt-1">
-                <strong className="text-slate-900">Commercial Operational Headquarters:</strong>
+                <strong className="text-slate-900">Commercial Operational Office:</strong>
                 <p className="text-slate-600 font-mono mt-0.5">
                   Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya, Bengaluru – 560068, Karnataka, India
                 </p>
@@ -161,15 +161,15 @@ export default function AboutPage() {
             Upgrade your call center and sales team with transparent voice billing, compliant DLT routing, and unified CRM software.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Link href="/company/contact/">
-              <Button variant="primary" size="lg">Contact Our Executive Team</Button>
-            </Link>
-            <a href="tel:+918423711043">
-              <Button variant="outline" size="lg" className="border-slate-700 text-slate-200 hover:text-white">
+            <Button asChild variant="primary" size="lg">
+              <Link href="/company/contact/">Contact Our Executive Team</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-slate-700 text-slate-200 hover:text-white">
+              <a href="tel:+918423711043">
                 <Phone className="mr-2 h-4 w-4 text-blue-400" />
                 Call +91 8423711043
-              </Button>
-            </a>
+              </a>
+            </Button>
           </div>
         </div>
       </Container>

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg } from "@/components/shared/schema-org";
+import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG } from "@/lib/config";
 import {
   CheckCircle2,
@@ -17,6 +18,7 @@ import {
   ArrowUpRight,
   ShieldCheck,
   TrendingUp,
+  ExternalLink,
 } from "lucide-react";
 
 export interface SolutionPillar {
@@ -80,26 +82,34 @@ export function SolutionLayout({
     })),
   } : null;
 
+  const isIndustry = whatsappRef.startsWith("/industry/");
+  const slug = whatsappRef.replace(/^\/(?:industry|solutions)\/|\/$/g, "") || "general";
+  const contactHref = isIndustry
+    ? `/company/contact/?industry=${encodeURIComponent(slug)}&product=auto-dialer`
+    : `/company/contact/?product=cloud-telephony`;
+
   return (
-    <div className="py-10 lg:py-14 bg-white min-h-screen">
+    <div className="pt-10 pb-28 lg:py-14 bg-white min-h-screen">
       {schemaData && <SchemaOrg data={schemaData} />}
       {faqSchema && <SchemaOrg data={faqSchema} />}
 
       <Container className="space-y-12">
         {/* 1. Breadcrumb Hierarchy */}
-        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-slate-500">
-          {breadcrumbs.map((crumb, idx) => (
-            <React.Fragment key={idx}>
-              {idx > 0 && <span className="text-slate-300">/</span>}
-              {crumb.href ? (
-                <Link href={crumb.href} className="hover:text-blue-600 transition-colors">
-                  {crumb.label}
-                </Link>
-              ) : (
-                <span className="text-slate-900 font-medium">{crumb.label}</span>
-              )}
-            </React.Fragment>
-          ))}
+        <nav aria-label="Breadcrumb">
+          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-600">
+            {breadcrumbs.map((crumb, idx) => (
+              <li key={idx} className="inline-flex items-center gap-2">
+                {idx > 0 && <span className="text-slate-400" aria-hidden="true">/</span>}
+                {crumb.href ? (
+                  <Link href={crumb.href} className="hover:text-blue-600 transition-colors">
+                    {crumb.label}
+                  </Link>
+                ) : (
+                  <span className="text-slate-900 font-medium" aria-current="page">{crumb.label}</span>
+                )}
+              </li>
+            ))}
+          </ol>
         </nav>
 
         {/* 2. Hero Section */}
@@ -114,25 +124,43 @@ export function SolutionLayout({
             {subtitle}
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <Link href="/company/contact/">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto">
-                Request Solution Proposal
-                <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="space-y-2 pt-2">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3">
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedDemoLink
+                href={contactHref}
+                ctaLocation="solution_hero"
+                ctaLabelKey="request_solution_proposal"
+               
+              >
+                  <span>Request Solution Proposal</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                </TrackedDemoLink>
               </Button>
-            </Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button variant="whatsapp" size="lg" className="w-full sm:w-auto">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                WhatsApp Consultation
+              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedWhatsAppLink
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                ctaLocation="solution_hero"
+                contextRef={whatsappRef}
+               
+              >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                  <span>WhatsApp Consultation</span>
+                  <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
+                </TrackedWhatsAppLink>
               </Button>
-            </a>
-            <Link href="/pricing/calculator/" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                <Sparkles className="mr-2 h-4 w-4 text-emerald-600" />
-                Estimate Pricing
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <Link href="/pricing/calculator/">
+                  <Sparkles className="mr-2 h-4 w-4 text-emerald-600 shrink-0 inline" aria-hidden="true" />
+                  <span>Estimate Pricing</span>
+                </Link>
               </Button>
-            </Link>
+            </div>
+            <p className="text-[11px] text-slate-600">
+              WhatsApp Consultation opens WhatsApp with your context pre-filled — press Send to start chatting.
+            </p>
           </div>
         </div>
 
@@ -220,7 +248,7 @@ export function SolutionLayout({
                   {pillar.metric && (
                     <div className="mb-2">
                       <div className="text-2xl font-bold text-blue-600 font-mono">{pillar.metric}</div>
-                      {pillar.metricLabel && <div className="text-[10px] text-slate-400 uppercase tracking-wider">{pillar.metricLabel}</div>}
+                      {pillar.metricLabel && <div className="text-[10px] text-slate-600 uppercase tracking-wider">{pillar.metricLabel}</div>}
                     </div>
                   )}
                   <CardTitle className="text-base text-slate-900">{pillar.title}</CardTitle>
@@ -282,17 +310,26 @@ export function SolutionLayout({
             Speak directly with Hanva engineers to configure DID channels, DLT header compliance, and CRM lead pipelines for your team.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-2">
-            <Link href="/company/contact/" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto text-xs sm:text-base px-4 sm:px-8">
+            <Button asChild variant="primary" size="lg" className="w-full sm:w-auto text-xs sm:text-base whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+              <TrackedDemoLink
+              href={contactHref}
+              ctaLocation="solution_bottom"
+              ctaLabelKey="schedule_engineering_consultation"
+             
+            >
                 Schedule Engineering Consultation
-              </Button>
-            </Link>
-            <a href="tel:+918423711043" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="border-slate-300 w-full sm:w-auto text-xs sm:text-base px-4 sm:px-8">
-                <Phone className="mr-2 h-4 w-4 text-blue-600" />
-                Call +91 8423711043
-              </Button>
-            </a>
+              </TrackedDemoLink>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-slate-300 w-full sm:w-auto text-xs sm:text-base whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+              <TrackedPhoneLink
+              href={`tel:${CONTACT_CONFIG.phoneTel}`}
+              ctaLocation="solution_bottom"
+             
+            >
+                <Phone className="mr-2 h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+                <span>Call {CONTACT_CONFIG.phoneDisplay}</span>
+              </TrackedPhoneLink>
+            </Button>
           </div>
         </div>
       </Container>

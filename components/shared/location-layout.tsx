@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg } from "@/components/shared/schema-org";
+import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG } from "@/lib/config";
 import {
   CheckCircle2,
@@ -90,6 +91,7 @@ export function LocationLayout({
   const whatsappUrl = `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
     `Hello Hanva Team, I am looking for business telephony and CRM solutions in ${cityName}. Reference: ${whatsappRef}`
   )}`;
+  const contactHref = `/company/contact/?city=${encodeURIComponent(cityName)}&product=cloud-telephony`;
 
   const faqSchema =
     faqs && faqs.length > 0
@@ -108,25 +110,27 @@ export function LocationLayout({
       : null;
 
   return (
-    <div className="py-10 lg:py-14 bg-white min-h-screen">
+    <div className="pt-10 pb-28 lg:py-14 bg-white min-h-screen">
       {schemaData && <SchemaOrg data={schemaData} />}
       {faqSchema && <SchemaOrg data={faqSchema} />}
 
       <Container className="space-y-12">
         {/* 1. Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-slate-500">
-          {breadcrumbs.map((crumb, idx) => (
-            <React.Fragment key={idx}>
-              {idx > 0 && <span className="text-slate-300">/</span>}
-              {crumb.href ? (
-                <Link href={crumb.href} className="hover:text-blue-600 transition-colors">
-                  {crumb.label}
-                </Link>
-              ) : (
-                <span className="text-slate-900 font-medium">{crumb.label}</span>
-              )}
-            </React.Fragment>
-          ))}
+        <nav aria-label="Breadcrumb">
+          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-600">
+            {breadcrumbs.map((crumb, idx) => (
+              <li key={idx} className="inline-flex items-center gap-2">
+                {idx > 0 && <span className="text-slate-400" aria-hidden="true">/</span>}
+                {crumb.href ? (
+                  <Link href={crumb.href} className="hover:text-blue-600 transition-colors">
+                    {crumb.label}
+                  </Link>
+                ) : (
+                  <span className="text-slate-900 font-medium" aria-current="page">{crumb.label}</span>
+                )}
+              </li>
+            ))}
+          </ol>
         </nav>
 
         {/* 2. Hero Section */}
@@ -137,12 +141,12 @@ export function LocationLayout({
             </Badge>
             {isPhysicalHeadquarters ? (
               <Badge variant="outline" className="border-emerald-300 bg-emerald-50 text-emerald-800 text-xs flex items-center gap-1">
-                <Building2 className="h-3 w-3" />
-                Physical Registered Office
+                <Building2 className="h-3 w-3" aria-hidden="true" />
+                Commercial Operational Office
               </Badge>
             ) : (
               <Badge variant="outline" className="border-blue-300 bg-blue-50 text-blue-800 text-xs flex items-center gap-1">
-                <Radio className="h-3 w-3" />
+                <Radio className="h-3 w-3" aria-hidden="true" />
                 Cloud Telephony Delivery Hub
               </Badge>
             )}
@@ -156,25 +160,43 @@ export function LocationLayout({
             {subtitle}
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <Link href="/company/contact/" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
-                Consult {cityName} Team
-                <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" />
+          <div className="space-y-2 pt-2">
+            <div className="flex flex-wrap items-center gap-3">
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
+                <TrackedDemoLink
+                href={contactHref}
+                ctaLocation="location_hero"
+                ctaLabelKey="consult_city_team"
+               
+              >
+                  <span>Consult {cityName} Team</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                </TrackedDemoLink>
               </Button>
-            </Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
-                <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" />
-                WhatsApp Consultation
+              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
+                <TrackedWhatsAppLink
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                ctaLocation="location_hero"
+                contextRef={whatsappRef}
+               
+              >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                  <span>WhatsApp Consultation</span>
+                  <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
+                </TrackedWhatsAppLink>
               </Button>
-            </a>
-            <Link href="/pricing/calculator/" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
-                <Sparkles className="mr-2 h-4 w-4 text-emerald-600 shrink-0 inline" />
-                Estimate Pricing
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
+                <Link href="/pricing/calculator/">
+                  <Sparkles className="mr-2 h-4 w-4 text-emerald-600 shrink-0 inline" aria-hidden="true" />
+                  <span>Estimate Pricing</span>
+                </Link>
               </Button>
-            </Link>
+            </div>
+            <p className="text-[11px] text-slate-600">
+              WhatsApp Consultation opens WhatsApp with your {cityName} enquiry pre-filled — press Send to chat.
+            </p>
           </div>
         </div>
 
@@ -182,29 +204,33 @@ export function LocationLayout({
         {isPhysicalHeadquarters && officeDetails ? (
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 sm:p-8 space-y-4">
             <div className="flex items-center space-x-2 text-xs font-semibold text-emerald-800 uppercase tracking-wider">
-              <Building2 className="h-4 w-4" />
-              <span>Registered Corporate Headquarters</span>
+              <Building2 className="h-4 w-4" aria-hidden="true" />
+              <span>Bengaluru Commercial Operational Office</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
               <div className="space-y-1">
-                <div className="text-xs text-slate-500 font-medium">Headquarters Address</div>
+                <div className="text-xs text-slate-600 font-medium">Operational Facility Address</div>
                 <div className="text-sm font-semibold text-slate-900">{officeDetails.address}</div>
                 <div className="text-xs text-slate-600">{officeDetails.cityStateZip}</div>
               </div>
               <div className="space-y-1">
-                <div className="text-xs text-slate-500 font-medium">Business Hours</div>
+                <div className="text-xs text-slate-600 font-medium">Business Hours</div>
                 <div className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
-                  <Clock className="h-4 w-4 text-slate-500" />
-                  {officeDetails.operatingHours}
+                  <Clock className="h-4 w-4 text-slate-600" aria-hidden="true" />
+                  <span>{officeDetails.operatingHours}</span>
                 </div>
                 <div className="text-xs text-slate-600">On-site technical consultations by appointment</div>
               </div>
               <div className="space-y-1">
-                <div className="text-xs text-slate-500 font-medium">Direct Telephone</div>
-                <div className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
-                  <Phone className="h-4 w-4 text-slate-500" />
-                  {officeDetails.phone}
-                </div>
+                <div className="text-xs text-slate-600 font-medium">Direct Telephone</div>
+                <TrackedPhoneLink
+                  href={`tel:${CONTACT_CONFIG.phoneTel}`}
+                  ctaLocation="location_office_card"
+                  className="text-sm font-semibold text-blue-700 hover:underline flex items-center gap-1.5"
+                >
+                  <Phone className="h-4 w-4 text-blue-600" aria-hidden="true" />
+                  <span>{CONTACT_CONFIG.phoneDisplay}</span>
+                </TrackedPhoneLink>
                 <div className="text-xs text-slate-600">Carrier interconnect: 080 Virtual PRI / Tata Trunks</div>
               </div>
             </div>
@@ -212,16 +238,16 @@ export function LocationLayout({
         ) : remoteDeliveryDetails ? (
           <div className="rounded-2xl border border-blue-200 bg-blue-50/50 p-6 sm:p-8 space-y-4">
             <div className="flex items-center space-x-2 text-xs font-semibold text-blue-800 uppercase tracking-wider">
-              <Server className="h-4 w-4" />
-              <span>Cloud Telephony Infrastructure & Remote Carrier Interconnect</span>
+              <Server className="h-4 w-4" aria-hidden="true" />
+              <span>Cloud Telephony Infrastructure &amp; Remote Carrier Interconnect</span>
             </div>
             <p className="text-sm text-slate-700 leading-relaxed">
               Hanva provides enterprise cloud telephony services across <strong>{cityName}</strong> through 
-              interconnected Tier-1 telecom infrastructure (Tata Teleservices and Vodafone Idea PRI/SIP trunks). 
+              interconnected telecom infrastructure (Tata Teleservices and Vodafone Idea PRI/SIP trunks). 
               Local organizations receive genuine {remoteDeliveryDetails.stdCode} virtual numbers without needing physical PBX hardware, 
-              managed remotely with 99.9% SLA uptime and centralized billing from our Bengaluru headquarters.
+              managed remotely with redundant trunk routing and centralized billing from our Bengaluru operations desk.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs border-t border-blue-200/60 pt-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs border-t border-blue-200/60 pt-4">
               <div>
                 <span className="text-slate-500 block">Virtual STD Code:</span>
                 <span className="font-semibold text-slate-900">{remoteDeliveryDetails.stdCode}</span>
@@ -414,19 +440,35 @@ export function LocationLayout({
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <Link href="/company/contact/" className="w-full sm:w-auto">
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
-                Schedule Consultation
-                <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" />
-              </Button>
-            </Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
-                <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" />
-                Chat on WhatsApp
-              </Button>
-            </a>
+            <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
+              <TrackedDemoLink
+              href={contactHref}
+              ctaLocation="location_bottom"
+              ctaLabelKey="schedule_consultation"
+             
+            >
+                <span>Schedule Consultation</span>
+                <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+              </TrackedDemoLink>
+            </Button>
+            <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-5">
+              <TrackedWhatsAppLink
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              ctaLocation="location_bottom"
+              contextRef={whatsappRef}
+             
+            >
+                <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                <span>Chat on WhatsApp</span>
+                <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
+              </TrackedWhatsAppLink>
+            </Button>
           </div>
+          <p className="text-[11px] text-slate-300">
+            WhatsApp opens a prepared enquiry message — review and press Send in WhatsApp.
+          </p>
         </div>
       </Container>
     </div>

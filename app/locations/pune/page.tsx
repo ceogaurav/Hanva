@@ -53,7 +53,7 @@ const puneServiceSchema = {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
         url: "https://hanva.in",
-        telephone: "+91-9606099404",
+        telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
@@ -113,7 +113,7 @@ export default function PuneLocationPage() {
         {
           label: "Pulse Billing Model",
           value: "15-Second Pulse",
-          description: "Transparent 15s billing pulse saving dealership call centers up to 30% on talk time.",
+          description: "Transparent 15s billing pulse reducing unbilled pulse rounding waste over 60s increments.",
         },
       ]}
       challenges={[
@@ -127,7 +127,7 @@ export default function PuneLocationPage() {
         },
         {
           challenge: "Automotive dealerships pay high telephone bills because traditional telecom providers round up every brief 10-second inquiry call to a full minute.",
-          solution: "Hanva enforces transparent 15-second carrier pulse billing, ensuring dealerships only pay for the exact duration of each call.",
+          solution: "Hanva supports 15-second carrier pulse billing options, ensuring brief dealership calls are metered in 15-second increments instead of full-minute rounding.",
         },
         {
           challenge: "Component manufacturers in Chakan struggle with lost vendor orders when clients call during loud factory floor operations.",

@@ -134,7 +134,7 @@ export default function RecruitmentIndustryPage() {
       faqs={[
         {
           question: "Can recruiters use laptops and mobile phones interchangeably?",
-          answer: "Yes. Recruiters can place pre-screening calls via our desktop browser softphone using headsets, or use our companion Android application (Hanva-Telecaller) to make calls from physical mobile SIM cards with unlimited calling plans while automatically syncing call logs and audio.",
+          answer: "Yes. Recruiters can place pre-screening calls via our desktop browser softphone using headsets, or use our companion Android telecaller app for mobile SIM outreach with call disposition logging (centralized call audio recording applies to cloud telephony sessions).",
         },
         {
           question: "How does the system prevent candidates from receiving calls for mismatched roles?",

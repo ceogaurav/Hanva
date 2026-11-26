@@ -53,7 +53,7 @@ const hyderabadServiceSchema = {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
         url: "https://hanva.in",
-        telephone: "+91-9606099404",
+        telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
@@ -113,7 +113,7 @@ export default function HyderabadLocationPage() {
         {
           label: "Pulse Billing Model",
           value: "15-Second Pulse",
-          description: "Predictable 15-second carrier pulse billing with zero unbilled rounding.",
+          description: "Predictable 15-second carrier pulse billing helping reduce 60s rounding waste on short calls.",
         },
       ]}
       challenges={[

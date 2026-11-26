@@ -75,11 +75,6 @@ export default function CallCenterSoftwarePage() {
           badge: "Routing Engine",
         },
         {
-          title: "Quality Audit Scorecards",
-          description: "Review recorded audio with custom QA evaluation forms, scoring agents on greeting etiquette, objection handling, and compliance.",
-          badge: "QA Governance",
-        },
-        {
           title: "Unified Agent Browser Console",
           description: "Agents view caller details, recent CRM notes, and call controls (mute, hold, transfer, disposition) inside a single clean tab.",
           badge: "WebRTC",

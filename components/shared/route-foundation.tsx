@@ -59,18 +59,18 @@ export function RouteFoundation({
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            <Link href={primaryCtaHref}>
-              <Button variant="primary" size="default">
+            <Button asChild variant="primary" size="default">
+              <Link href={primaryCtaHref}>
                 {primaryCtaText}
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/pricing/calculator/">
-              <Button variant="outline" size="default">
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="default">
+              <Link href="/pricing/calculator/">
                 <Sparkles className="mr-2 h-4 w-4 text-emerald-600" />
                 Calculate Voice Pulse Costs
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
 
@@ -124,11 +124,11 @@ export function RouteFoundation({
             <div className="text-sm font-semibold text-slate-900">Need specific telecom numbers or customized pricing?</div>
             <div className="text-xs text-slate-500 mt-0.5">Direct sales desk: +91 8423711043 | Vi & Tata carrier DIDs</div>
           </div>
-          <Link href="/company/contact/">
-            <Button variant="secondary" size="sm">
+          <Button asChild variant="secondary" size="sm">
+            <Link href="/company/contact/">
               Contact Sales
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </Container>
     </div>

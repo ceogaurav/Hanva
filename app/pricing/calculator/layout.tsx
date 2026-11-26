@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SchemaOrg } from "@/components/shared/schema-org";
 
 export const metadata: Metadata = {
-  title: "Cloud Telephony & CRM Cost Calculator — Hanva Technologies",
+  title: "Cloud Telephony & CRM Cost Calculator",
   description:
     "Interactive voice pulse and CRM seat cost calculator. Compare 15-second vs 60-second billing pulse models and calculate potential savings for your business.",
   alternates: {

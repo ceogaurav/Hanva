@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg } from "@/components/shared/schema-org";
+import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { CONTACT_CONFIG } from "@/lib/config";
 import {
   CheckCircle2,
   XCircle,
@@ -18,6 +20,7 @@ import {
   Check,
   Minus,
   Scale,
+  ExternalLink,
 } from "lucide-react";
 
 export interface ComparisonRow {
@@ -54,35 +57,39 @@ export function CompareLayout({
   faqs,
   schemaData,
 }: CompareLayoutProps) {
-  const whatsappUrl = `https://wa.me/918423711043?text=${encodeURIComponent(
+  const whatsappUrl = `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
     `Hello Hanva Team, I am evaluating an alternative to ${competitorName} and would like an objective comparison proposal. Reference: ${whatsappRef}`
   )}`;
 
+  const contactHref = `/company/contact/?product=cloud-telephony&source=${encodeURIComponent(competitorName)}`;
+
   return (
-    <div className="py-10 lg:py-14 bg-white min-h-screen">
+    <div className="pt-10 pb-28 lg:py-14 bg-white min-h-screen">
       {schemaData && <SchemaOrg data={schemaData} />}
 
       <Container className="space-y-12">
         {/* 1. Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-slate-500">
-          {breadcrumbs.map((crumb, idx) => (
-            <React.Fragment key={idx}>
-              {idx > 0 && <span className="text-slate-300">/</span>}
-              {crumb.href ? (
-                <Link href={crumb.href} className="hover:text-blue-600 transition-colors">
-                  {crumb.label}
-                </Link>
-              ) : (
-                <span className="text-slate-900 font-medium">{crumb.label}</span>
-              )}
-            </React.Fragment>
-          ))}
+        <nav aria-label="Breadcrumb">
+          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-600">
+            {breadcrumbs.map((crumb, idx) => (
+              <li key={idx} className="inline-flex items-center gap-2">
+                {idx > 0 && <span className="text-slate-400" aria-hidden="true">/</span>}
+                {crumb.href ? (
+                  <Link href={crumb.href} className="hover:text-blue-600 transition-colors">
+                    {crumb.label}
+                  </Link>
+                ) : (
+                  <span className="text-slate-900 font-medium" aria-current="page">{crumb.label}</span>
+                )}
+              </li>
+            ))}
+          </ol>
         </nav>
 
         {/* 2. Hero Section */}
         <div className="space-y-6">
           <Badge variant="default" className="text-xs">
-            Objective Telecom & Software Comparison
+            Objective Telecom &amp; Software Comparison
           </Badge>
           <h1 className="text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
             {title}
@@ -91,25 +98,43 @@ export function CompareLayout({
             {subtitle}
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <Link href="/company/contact/">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto">
-                Request Migration Proposal
-                <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="space-y-2 pt-2">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3">
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedDemoLink
+                href={contactHref}
+                ctaLocation="compare_hero"
+                ctaLabelKey="request_migration_proposal"
+               
+              >
+                  <span>Request Migration Proposal</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                </TrackedDemoLink>
               </Button>
-            </Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button variant="whatsapp" size="lg" className="w-full sm:w-auto">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                WhatsApp Consultation
+              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedWhatsAppLink
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                ctaLocation="compare_hero"
+                contextRef={whatsappRef}
+               
+              >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                  <span>WhatsApp Consultation</span>
+                  <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
+                </TrackedWhatsAppLink>
               </Button>
-            </a>
-            <Link href="/pricing/calculator/" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                <Sparkles className="mr-2 h-4 w-4 text-emerald-600" />
-                Compare Pulse Costs
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <Link href="/pricing/calculator/">
+                  <Sparkles className="mr-2 h-4 w-4 text-emerald-600 shrink-0 inline" aria-hidden="true" />
+                  <span>Compare Pulse Costs</span>
+                </Link>
               </Button>
-            </Link>
+            </div>
+            <p className="text-[11px] text-slate-600">
+              WhatsApp Consultation opens a prepared message in WhatsApp — press Send to connect with our sales desk.
+            </p>
           </div>
         </div>
 
@@ -155,20 +180,21 @@ export function CompareLayout({
             <p className="text-xs text-slate-500 mt-1">Factual comparison based on published industry models and Hanva&apos;s architecture.</p>
           </div>
 
-          <div className="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs">
+          <div className="relative overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs" tabIndex={0}>
             <table className="w-full text-xs text-left border-collapse">
+              <caption className="sr-only">Feature and commercial comparison between {competitorName} and Hanva</caption>
               <thead>
                 <tr className="border-b border-slate-200 bg-slate-50 text-slate-700">
-                  <th className="p-3.5 font-semibold w-1/4">Evaluation Parameter</th>
-                  <th className="p-3.5 font-semibold w-1/4 text-slate-600">{competitorName} Typical Model</th>
-                  <th className="p-3.5 font-semibold w-1/4 bg-blue-50/60 text-blue-700 font-bold">Hanva Architecture</th>
-                  <th className="p-3.5 font-semibold w-1/4 text-emerald-700">Strategic Advantage</th>
+                  <th scope="col" className="p-3.5 font-semibold w-1/4">Evaluation Parameter</th>
+                  <th scope="col" className="p-3.5 font-semibold w-1/4 text-slate-600">{competitorName} Typical Model</th>
+                  <th scope="col" className="p-3.5 font-semibold w-1/4 bg-blue-50/60 text-blue-700 font-bold">Hanva Architecture</th>
+                  <th scope="col" className="p-3.5 font-semibold w-1/4 text-emerald-700">Strategic Advantage</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
                 {matrixRows.map((row, idx) => (
                   <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
-                    <td className="p-3.5 font-medium text-slate-900">{row.parameter}</td>
+                    <th scope="row" className="p-3.5 font-medium text-slate-900">{row.parameter}</th>
                     <td className="p-3.5 text-slate-600">{row.competitor}</td>
                     <td className="p-3.5 bg-blue-50/30 font-medium text-slate-900">{row.hanva}</td>
                     <td className="p-3.5 font-semibold text-emerald-700">{row.advantage}</td>
@@ -177,7 +203,7 @@ export function CompareLayout({
               </tbody>
             </table>
           </div>
-          <p className="text-[11px] text-slate-400 leading-relaxed">
+          <p className="text-[11px] text-slate-600 leading-relaxed">
             *Disclaimer: All product names, logos, brands, and registered trademarks mentioned on this page (including Exotel, Knowlarity, SuperReceptionist, TeleCMI, Ameyo, LeadSquared, Zoho, and Salesforce) are the property of their respective owners. Their use on this website is strictly for identification and nominative comparative purposes, and does not imply any affiliation, sponsorship, or endorsement. Comparative evaluations reflect publicly available technical documentation, standard retail offerings, and published contract models checked as of November 2026. Specific enterprise terms vary based on commercial negotiations. Hanva commercial terms require formal written proposals, carrier service agreements, and statutory Department of Telecommunications (DoT) KYC verification.
           </p>
         </div>
@@ -229,17 +255,26 @@ export function CompareLayout({
             Our Bengaluru telecom engineers assist with structured number allocation, DLT template mapping, and coordinated cutover plans. Migration timelines depend on operator approvals and technical readiness.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-2">
-            <Link href="/company/contact/" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto text-xs sm:text-base px-4 sm:px-8">
+            <Button asChild variant="primary" size="lg" className="w-full sm:w-auto text-xs sm:text-base whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+              <TrackedDemoLink
+              href={contactHref}
+              ctaLocation="compare_bottom"
+              ctaLabelKey="request_migration_audit"
+             
+            >
                 Request Migration Audit
-              </Button>
-            </Link>
-            <a href="tel:+918423711043" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="border-slate-300 w-full sm:w-auto text-xs sm:text-base px-4 sm:px-8">
-                <Phone className="mr-2 h-4 w-4 text-blue-600" />
-                Call +91 8423711043
-              </Button>
-            </a>
+              </TrackedDemoLink>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-slate-300 w-full sm:w-auto text-xs sm:text-base whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+              <TrackedPhoneLink
+              href={`tel:${CONTACT_CONFIG.phoneTel}`}
+              ctaLocation="compare_bottom"
+             
+            >
+                <Phone className="mr-2 h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+                <span>Call {CONTACT_CONFIG.phoneDisplay}</span>
+              </TrackedPhoneLink>
+            </Button>
           </div>
         </div>
       </Container>

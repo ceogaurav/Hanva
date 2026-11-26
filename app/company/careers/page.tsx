@@ -182,11 +182,11 @@ export default function CareersPage() {
                       </div>
                     </div>
                     <div className="pt-2">
-                      <a href="mailto:careers@hanva.in?subject=Application%3A%20" className="inline-block">
-                        <Button variant="outline" size="sm" className="text-xs">
+                      <Button asChild variant="outline" size="sm" className="text-xs">
+                        <a href="mailto:careers@hanva.in?subject=Application%3A%20" className="inline-block">
                           Apply via Email (careers@hanva.in) &rarr;
-                        </Button>
-                      </a>
+                        </a>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -202,9 +202,9 @@ export default function CareersPage() {
             We are always eager to talk to exceptional backend systems engineers, WebRTC specialists, and enterprise SaaS customer success champions.
           </p>
           <div className="pt-2">
-            <a href="mailto:careers@hanva.in">
-              <Button variant="primary">Send Open Application</Button>
-            </a>
+            <Button asChild variant="primary">
+              <a href="mailto:careers@hanva.in">Send Open Application</a>
+            </Button>
           </div>
         </div>
       </Container>

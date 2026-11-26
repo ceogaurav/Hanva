@@ -5,7 +5,7 @@ import { SchemaOrg } from "@/components/shared/schema-org";
 import { ShieldCheck, Mail, MapPin } from "lucide-react";
 
 export const metadata = {
-  title: "Terms of Service & Master Service Agreement | Hanva Technologies",
+  title: "Terms of Service & Master Service Agreement",
   description:
     "Commercial terms of service, telecom acceptable use policy, voice pulse metering rules, and dispute resolution governing Hanva Technologies services.",
   alternates: {

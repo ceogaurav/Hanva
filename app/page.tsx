@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SchemaOrg } from "@/components/shared/schema-org";
+import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { CONTACT_CONFIG } from "@/lib/config";
 import {
   PhoneCall,
   Server,
@@ -11,18 +13,11 @@ import {
   Cpu,
   BarChart3,
   MessageSquare,
-  ShieldCheck,
-  Zap,
   ArrowRight,
   CheckCircle2,
   Phone,
   Sparkles,
-  Building2,
-  Users,
-  Clock,
-  Check,
-  TrendingUp,
-  Headphones,
+  ExternalLink,
 } from "lucide-react";
 
 export const metadata = {
@@ -62,7 +57,7 @@ export default function HomePage() {
   )}`;
 
   return (
-    <div className="flex flex-col gap-16 lg:gap-24 pb-20 bg-white">
+    <div className="flex flex-col gap-16 lg:gap-24 pb-28 lg:pb-20 bg-white">
       <SchemaOrg schema={homeSchema} />
 
       {/* 1. Hero Section */}
@@ -71,7 +66,7 @@ export default function HomePage() {
           {/* Status Badge */}
           <div className="inline-flex items-center space-x-2 mb-6">
             <Badge variant="secondary" className="px-3.5 py-1 text-xs font-medium">
-              Enterprise Cloud Telephony & Built-in CRM
+              Enterprise Cloud Telephony &amp; Built-in CRM
             </Badge>
           </div>
 
@@ -85,47 +80,64 @@ export default function HomePage() {
 
           {/* Subheadline */}
           <p className="text-base sm:text-xl text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-            Hanva unifies enterprise cloud telephony, smart multi-level IVR, automated sales dialers, and CRM into one high-performance platform. Delivered via dedicated Vodafone Idea and Tata carrier numbering with transparent pulse billing.
+            Hanva unifies enterprise cloud telephony, smart multi-level IVR, automated sales dialers, and CRM into one platform — provisioned via dedicated Vodafone Idea and Tata carrier numbering.
           </p>
 
-          {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10">
-            <Link href="/company/contact/" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto text-base">
-                Book a Live Demo
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/pricing/calculator/" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto text-base border-slate-300">
-                <Sparkles className="mr-2 h-4 w-4 text-emerald-600" />
-                Estimate Voice Costs
-              </Button>
-            </Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button variant="whatsapp" size="lg" className="w-full sm:w-auto text-base">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                WhatsApp Sales Desk
-              </Button>
-            </a>
+          {/* Action CTAs — Clear Primary / Secondary / Tertiary Hierarchy */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4">
+            <Button asChild variant="primary" size="lg" className="w-full sm:w-auto text-base whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+              <TrackedDemoLink
+              href="/company/contact/"
+              ctaLocation="home_hero"
+              ctaLabelKey="book_live_demo"
+             
+            >
+                <span>Book a Live Demo</span>
+                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+              </TrackedDemoLink>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-base border-slate-300 whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+              <Link href="/pricing/calculator/">
+                <Sparkles className="mr-2 h-4 w-4 text-emerald-600 shrink-0" aria-hidden="true" />
+                <span>Estimate OBD Pulse Costs</span>
+              </Link>
+            </Button>
+          </div>
+
+          <div className="mb-10 flex items-center justify-center">
+            <TrackedWhatsAppLink
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              ctaLocation="home_hero"
+              contextRef="/"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline py-1"
+            >
+              <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>Or chat directly on WhatsApp (opens WhatsApp — press Send)</span>
+              <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+            </TrackedWhatsAppLink>
           </div>
 
           {/* Trust Signals */}
           <div className="pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
             <div className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
-              <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Carrier Trunking</div>
-              <div className="text-sm font-semibold text-slate-900 mt-0.5">Vi & Tata DIDs</div>
+              <div className="text-[11px] text-slate-600 font-medium uppercase tracking-wider">Carrier Trunking</div>
+              <div className="text-sm font-semibold text-slate-900 mt-0.5">Vi &amp; Tata DIDs</div>
             </div>
             <div className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
-              <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">OBD Pulse Billing</div>
+              <div className="text-[11px] text-slate-600 font-medium uppercase tracking-wider">OBD Pulse Billing</div>
               <div className="text-sm font-semibold text-slate-900 mt-0.5">15s Pulse Option</div>
             </div>
+            <Link href="/company/about/" className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs hover:border-blue-300 transition-colors block">
+              <div className="text-[11px] text-slate-600 font-medium uppercase tracking-wider">Corporate Entity</div>
+              <div className="text-sm font-semibold text-slate-900 mt-0.5 flex items-center justify-between">
+                <span>MCA Registered</span>
+                <ArrowRight className="h-3.5 w-3.5 text-blue-600" aria-hidden="true" />
+              </div>
+            </Link>
             <div className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
-              <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Corporate Entity</div>
-              <div className="text-sm font-semibold text-slate-900 mt-0.5">MCA Registered</div>
-            </div>
-            <div className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
-              <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Assisted Onboarding</div>
+              <div className="text-[11px] text-slate-600 font-medium uppercase tracking-wider">Assisted Onboarding</div>
               <div className="text-sm font-semibold text-slate-900 mt-0.5">Direct Sales Engineers</div>
             </div>
           </div>
@@ -182,7 +194,7 @@ export default function HomePage() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <Badge variant="default" className="mb-2">Product Ecosystem</Badge>
             <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-              Nine Integrated Products for Customer Communications Lifecycle
+              Core Communication Modules &amp; Platform Suite
             </h2>
             <p className="text-slate-600 text-sm mt-3">
               Explore our core software offerings built for modern business communication.
@@ -337,7 +349,7 @@ export default function HomePage() {
 
           <div className="text-center mt-8">
             <Link href="/products/" className="text-sm font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center">
-              View All 9 Products & Technical Specifications &rarr;
+              View All Products &amp; Technical Specifications &rarr;
             </Link>
           </div>
         </Container>
@@ -355,20 +367,20 @@ export default function HomePage() {
                 Stop Paying for Unused Seconds. Estimate Your Monthly Costs.
               </h2>
               <p className="text-slate-300 text-sm mt-3 leading-relaxed">
-                Most outbound sales and broadcast calls conclude within 30 to 45 seconds. Traditional retail tariffs baseline at a 60-second pulse, billing you for a full minute. Hanva provides 15-second OBD pulse billing options to keep voice costs transparent.
+                Most outbound broadcast and alert calls conclude within 30 to 45 seconds. Traditional retail tariffs baseline at a 60-second pulse, billing you for a full minute. Hanva provides 15-second OBD pulse billing options to keep voice costs transparent.
               </p>
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                <Link href="/pricing/calculator/">
-                  <Button variant="whatsapp" size="default">
-                    <Sparkles className="mr-2 h-4 w-4" />
-                    Open Interactive Calculator
-                  </Button>
-                </Link>
-                <Link href="/pricing/">
-                  <Button variant="outline" size="default" className="border-slate-700 text-slate-200 bg-slate-800 hover:bg-slate-700">
+                <Button asChild variant="primary" size="default" className="w-full sm:w-auto">
+                  <Link href="/pricing/calculator/">
+                    <Sparkles className="mr-2 h-4 w-4 text-emerald-300" aria-hidden="true" />
+                    <span>Open Interactive Calculator</span>
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="default" className="w-full sm:w-auto border-slate-700 text-slate-200 bg-slate-800 hover:bg-slate-700 hover:text-white">
+                  <Link href="/pricing/">
                     View Pricing Plans
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
 
@@ -405,23 +417,32 @@ export default function HomePage() {
         <Container>
           <div className="rounded-2xl border border-blue-200 bg-blue-50/60 p-8 sm:p-10 text-center space-y-4">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-              Ready to Upgrade Your Telecom & Sales Workflow?
+              Ready to Upgrade Your Telecom &amp; Sales Workflow?
             </h2>
             <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
               Speak directly with our Bengaluru telephony engineers. We assist with statutory KYC verification, number allocation, and CRM setup.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-              <Link href="/company/contact/">
-                <Button variant="primary" size="lg">
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedDemoLink
+                href="/company/contact/"
+                ctaLocation="home_bottom"
+                ctaLabelKey="request_sales_consultation"
+               
+              >
                   Request Sales Consultation
-                </Button>
-              </Link>
-              <a href="tel:+918423711043">
-                <Button variant="outline" size="lg" className="border-slate-300">
-                  <Phone className="mr-2 h-4 w-4 text-blue-600" />
-                  Call: +91 8423711043
-                </Button>
-              </a>
+                </TrackedDemoLink>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-slate-300 w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedPhoneLink
+                href={`tel:${CONTACT_CONFIG.phoneTel}`}
+                ctaLocation="home_bottom"
+               
+              >
+                  <Phone className="mr-2 h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+                  <span>Call: {CONTACT_CONFIG.phoneDisplay}</span>
+                </TrackedPhoneLink>
+              </Button>
             </div>
           </div>
         </Container>

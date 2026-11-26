@@ -35,6 +35,8 @@ export default function PlatformCrmPage() {
         { label: "Platform CRM" },
       ]}
       whatsappRef="/products/crm/"
+      secondaryHeroHref="/pricing/"
+      secondaryHeroLabel="View CRM Plans & Quoting"
       workflowTitle="Unified CRM & Calling Lifecycle"
       workflowSteps={[
         {

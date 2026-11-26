@@ -2,7 +2,7 @@ import * as React from "react";
 import { SolutionLayout } from "@/components/shared/solution-layout";
 
 export const metadata = {
-  title: "Enterprise Cloud Voice Architecture & SIP Trunking | Hanva Technologies",
+  title: "Enterprise Cloud Voice Architecture & SIP Trunking",
   description:
     "High-throughput enterprise cloud PBX, dedicated carrier PRI/SIP trunks via Vodafone Idea and Tata Teleservices, unified multi-branch billing, and enterprise service support.",
   alternates: {

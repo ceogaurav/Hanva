@@ -5,7 +5,7 @@ import { CONTACT_CONFIG } from "@/lib/config";
 export const metadata = {
   title: "Cloud Telephony & Telecalling CRM in Bengaluru (080 Virtual Numbers)",
   description:
-    "Enterprise cloud telephony, 080 virtual numbers, and telecalling CRM for Bengaluru tech startups, SaaS teams, and real estate developers. On-site engineering at our Garvebhavi Palya HQ.",
+    "Enterprise cloud telephony, 080 virtual numbers, and telecalling CRM for Bengaluru tech startups, SaaS teams, and real estate developers. Local engineering support at our Garvebhavi Palya office.",
   alternates: {
     canonical: "https://hanva.in/locations/bengaluru/",
   },
@@ -17,7 +17,7 @@ export const metadata = {
     title: "Cloud Telephony & Telecalling CRM in Bengaluru | Hanva Technologies",
     description:
       "Enterprise cloud telephony, 080 virtual numbers, and telecalling CRM for Bengaluru tech startups, SaaS teams, and real estate developers.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Bengaluru Headquarters" }],
+    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Bengaluru Commercial Office" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,7 +38,7 @@ const bengaluruHQSchema = {
       legalName: "Hanva Technologies Private Limited",
       url: "https://hanva.in",
       logo: "https://hanva.in/logo.png",
-      telephone: "+91-9606099404",
+      telephone: "+91-8423711043",
       email: "info@hanva.in",
       identifier: "U78100KA2025PTC205168",
       taxID: "29AAICH0526K1ZF",
@@ -54,12 +54,12 @@ const bengaluruHQSchema = {
     {
       "@type": "ProfessionalService",
       "@id": "https://hanva.in/locations/bengaluru/#local-business",
-      name: "Hanva Technologies — Bengaluru Registered Headquarters",
+      name: "Hanva Technologies — Bengaluru Commercial Office",
       parentOrganization: {
         "@id": "https://hanva.in/#corporation",
       },
       url: "https://hanva.in/locations/bengaluru/",
-      telephone: "+91-9606099404",
+      telephone: "+91-8423711043",
       priceRange: "₹₹",
       image: "https://hanva.in/og-image.png",
       address: {
@@ -109,9 +109,9 @@ export default function BengaluruLocationPage() {
         address: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
         cityStateZip: "Bengaluru - 560068, Karnataka, India",
         operatingHours: "Monday – Saturday: 9:00 AM – 7:00 PM IST",
-        phone: "+91 96060 99404",
+        phone: CONTACT_CONFIG.phoneDisplay,
       }}
-      marketContext="As India's Silicon Valley, Bengaluru demands high-agility, API-first communication infrastructure. Tech startups in HSR Layout and Koramangala require instant WebRTC browser calling, while real estate developers along Whitefield and Sarjapur Road depend on rapid lead response to capture property buyers. Hanva's registered headquarters in Garvebhavi Palya provides local technical support, on-site onboarding, and low-latency SIP trunks interconnected with Tata Teleservices and Vodafone Idea."
+      marketContext="As India's Silicon Valley, Bengaluru demands high-agility, API-first communication infrastructure. Tech startups in HSR Layout and Koramangala require instant WebRTC browser calling, while real estate developers along Whitefield and Sarjapur Road depend on rapid lead response to capture property buyers. Hanva's Garvebhavi Palya commercial office provides local technical support, guided onboarding, and carrier-grade SIP trunks interconnected with Tata Teleservices and Vodafone Idea."
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Locations", href: "/locations/" },
@@ -133,12 +133,12 @@ export default function BengaluruLocationPage() {
         {
           label: "Pulse Billing Model",
           value: "15-Second Pulse",
-          description: "Transparent 15s billing pulse with zero unbilled rounding or hidden fees.",
+          description: "15-second OBD pulse option reducing rounding waste on short calls compared to 60s increments.",
         },
         {
           label: "WebRTC Media Transit",
-          value: "< 12ms Latency",
-          description: "Local media relay points providing crystal-clear browser audio for remote telecallers.",
+          value: "Regional Media Relay",
+          description: "Direct Bengaluru media relay points providing clear browser audio for remote telecallers.",
         },
       ]}
       challenges={[
@@ -218,8 +218,8 @@ export default function BengaluruLocationPage() {
       ]}
       faqs={[
         {
-          question: "Can we visit Hanva's Bengaluru headquarters for a technical consultation?",
-          answer: "Yes. Our registered corporate headquarters and engineering office is located at Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya, Bengaluru - 560068. We welcome scheduled technical consultations and enterprise onboarding sessions.",
+          question: "Can we visit Hanva's Bengaluru commercial office for a technical consultation?",
+          answer: "Yes. Our commercial operational office is located at Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya, Bengaluru - 560068 (with our registered corporate office in Bommanahalli, Bengaluru - 560068). We welcome scheduled technical consultations and enterprise onboarding sessions.",
         },
         {
           question: "How quickly can we activate 080 virtual numbers in Bengaluru?",
@@ -231,7 +231,7 @@ export default function BengaluruLocationPage() {
         },
         {
           question: "How does 15-second carrier pulse billing benefit our telecalling team?",
-          answer: "Traditional telecom operators often bill in 60-second increments, meaning a 16-second call is billed as a full minute. Hanva's transparent 15-second pulse calculates charges in 15-second intervals, saving high-volume outbound calling operations up to 30% on talk time.",
+          answer: "Traditional telecom operators often bill in 60-second increments, meaning a 16-second call is billed as a full minute. Hanva's transparent 15-second pulse calculates charges in 15-second intervals, reducing unbilled rounding waste on short calls compared to 60-second pulse rounding.",
         },
       ]}
     />

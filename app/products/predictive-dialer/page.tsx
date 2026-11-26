@@ -1,7 +1,7 @@
 import { ProductLayout } from "@/components/shared/product-layout";
 
 export const metadata = {
-  title: "Predictive Dialer for Outbound Call Centers — Hanva Technologies",
+  title: "Predictive Dialer for Outbound Call Centers",
   description:
     "Enterprise predictive dialer for high-density outbound contact centers. Algorithmic pacing, carrier signaling disconnect filtering, and high-throughput carrier trunking.",
   alternates: {

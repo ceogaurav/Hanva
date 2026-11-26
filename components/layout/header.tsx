@@ -29,41 +29,102 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { CONTACT_CONFIG } from "@/lib/config";
+import { trackConversionEvent } from "@/lib/analytics";
+
 export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
   const pathname = usePathname();
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
+  const navRef = React.useRef<HTMLElement>(null);
+  const hoverOpenedAtRef = React.useRef<number>(0);
 
   const toggleDropdown = (name: string) => {
-    setActiveDropdown((prev) => (prev === name ? null : name));
+    setActiveDropdown((prev) => {
+      if (prev === name && Date.now() - hoverOpenedAtRef.current < 400) {
+        return name;
+      }
+      return prev === name ? null : name;
+    });
   };
 
-  const closeDropdown = () => setActiveDropdown(null);
+  const openDropdownOnHover = (name: string) => {
+    if (activeDropdown !== name) {
+      hoverOpenedAtRef.current = Date.now();
+    }
+    setActiveDropdown(name);
+  };
+
+  const closeDropdown = React.useCallback(() => setActiveDropdown(null), []);
+
+  React.useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeDropdown();
+    };
+    const onPointerDown = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        closeDropdown();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    document.addEventListener("mousedown", onPointerDown);
+    const handleDropdownBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      closeDropdown();
+    }
+  };
+
+  return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("mousedown", onPointerDown);
+    };
+  }, [closeDropdown]);
+
+  const handleDropdownBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      closeDropdown();
+    }
+  };
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md transition-all">
-      {/* Top Utility Bar for Direct Sales Inquiries */}
-      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 hidden sm:block">
+      {/* Top Utility Bar for Direct Sales Inquiries (Desktop only so tablet stays clean) */}
+      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 hidden lg:block">
         <Container className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <span className="text-slate-300 font-medium">Enterprise Cloud Telephony & Built-in CRM</span>
-            <span className="text-slate-600">|</span>
+            <span className="text-slate-600" aria-hidden="true">|</span>
             <span className="text-slate-400">Carrier Gateway Delivery via Vi & Tata DIDs</span>
           </div>
           <div className="flex items-center space-x-5">
             <a
-              href="tel:+918423711043"
+              href={`tel:${CONTACT_CONFIG.phoneTel}`}
+              onClick={() =>
+                trackConversionEvent("phone_cta_click", {
+                  cta_location: "header_top",
+                  target_channel: "sales_desk",
+                })
+              }
               className="flex items-center space-x-1 text-slate-200 hover:text-white transition-colors"
             >
-              <Phone className="h-3 w-3 text-blue-400" />
-              <span>+91 8423711043</span>
+              <Phone className="h-3 w-3 text-blue-400" aria-hidden="true" />
+              <span>{CONTACT_CONFIG.phoneDisplay}</span>
             </a>
             <a
-              href="https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20telecom%20and%20CRM%20solutions."
+              href={`${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
+                "Hello Hanva Team, I would like to learn more about your telecom and CRM solutions."
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackConversionEvent("whatsapp_cta_click", {
+                  cta_location: "header_top",
+                  context_ref: pathname || "/",
+                })
+              }
               className="flex items-center space-x-1 text-emerald-400 hover:text-emerald-300 transition-colors"
+              title="Opens WhatsApp — press Send to chat with sales"
             >
-              <MessageSquare className="h-3 w-3" />
+              <MessageSquare className="h-3 w-3" aria-hidden="true" />
               <span>WhatsApp Sales Desk</span>
             </a>
           </div>
@@ -84,9 +145,9 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center space-x-1">
+          <nav ref={navRef} className="hidden xl:flex items-center space-x-1">
             {/* Products Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseLeave={closeDropdown} onBlur={handleDropdownBlur}>
               <button
                 type="button"
                 aria-haspopup="true"
@@ -97,7 +158,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                     : "text-slate-700 hover:text-slate-900 hover:bg-slate-100"
                 }`}
                 onClick={() => toggleDropdown("products")}
-                onMouseEnter={() => setActiveDropdown("products")}
+                onMouseEnter={() => openDropdownOnHover("products")}
               >
                 <span>Products</span>
                 <ChevronDown className="h-4 w-4" />
@@ -108,7 +169,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                   className="absolute left-0 mt-1 w-80 rounded-xl border border-slate-200 bg-white p-3 shadow-xl z-50 animate-in fade-in slide-in-from-top-1"
                   onMouseLeave={closeDropdown}
                 >
-                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 px-3 py-1 mb-1">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-600 px-3 py-1 mb-1">
                     Telecom & Software Suite
                   </div>
                   <div className="space-y-1">
@@ -185,7 +246,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                       className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center justify-between"
                       onClick={closeDropdown}
                     >
-                      <span>View All 9 Products</span>
+                      <span>View All Products</span>
                       <span>&rarr;</span>
                     </Link>
                   </div>
@@ -194,7 +255,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
             </div>
 
             {/* Solutions Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseLeave={closeDropdown} onBlur={handleDropdownBlur}>
               <button
                 type="button"
                 aria-haspopup="true"
@@ -205,7 +266,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                     : "text-slate-700 hover:text-slate-900 hover:bg-slate-100"
                 }`}
                 onClick={() => toggleDropdown("solutions")}
-                onMouseEnter={() => setActiveDropdown("solutions")}
+                onMouseEnter={() => openDropdownOnHover("solutions")}
               >
                 <span>Solutions</span>
                 <ChevronDown className="h-4 w-4" />
@@ -247,7 +308,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
             </div>
 
             {/* Industry Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseLeave={closeDropdown} onBlur={handleDropdownBlur}>
               <button
                 type="button"
                 aria-haspopup="true"
@@ -258,7 +319,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                     : "text-slate-700 hover:text-slate-900 hover:bg-slate-100"
                 }`}
                 onClick={() => toggleDropdown("industry")}
-                onMouseEnter={() => setActiveDropdown("industry")}
+                onMouseEnter={() => openDropdownOnHover("industry")}
               >
                 <span>Industries</span>
                 <ChevronDown className="h-4 w-4" />
@@ -349,7 +410,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
             </div>
 
             {/* Locations Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseLeave={closeDropdown} onBlur={handleDropdownBlur}>
               <button
                 type="button"
                 aria-haspopup="true"
@@ -360,7 +421,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                     : "text-slate-700 hover:text-slate-900 hover:bg-slate-100"
                 }`}
                 onClick={() => toggleDropdown("locations")}
-                onMouseEnter={() => setActiveDropdown("locations")}
+                onMouseEnter={() => openDropdownOnHover("locations")}
               >
                 <span>Locations</span>
                 <ChevronDown className="h-4 w-4" />
@@ -371,7 +432,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                   className="absolute left-0 mt-1 w-80 rounded-xl border border-slate-200 bg-white p-3 shadow-xl z-50 animate-in fade-in slide-in-from-top-1"
                   onMouseLeave={closeDropdown}
                 >
-                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 px-3 py-1 mb-1">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-600 px-3 py-1 mb-1">
                     Regional Telecom Hubs
                   </div>
                   <div className="grid grid-cols-2 gap-1">
@@ -382,7 +443,7 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                     >
                       <div className="text-xs font-semibold text-slate-900 flex items-center justify-between">
                         <span>Bengaluru</span>
-                        <span className="text-[10px] text-emerald-700 bg-emerald-50 px-1 rounded font-mono">HQ • 080</span>
+                        <span className="text-[10px] text-emerald-700 bg-emerald-50 px-1 rounded font-mono">Office • 080</span>
                       </div>
                       <div className="text-[11px] text-slate-500">Tech & Real Estate</div>
                     </Link>
@@ -480,6 +541,18 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
             </Link>
 
             <Link
+              href="/resources/"
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                pathname.startsWith("/resources")
+                  ? "text-blue-600 bg-blue-50/60"
+                  : "text-slate-700 hover:text-slate-900 hover:bg-slate-100"
+              }`}
+              onClick={closeDropdown}
+            >
+              Resources
+            </Link>
+
+            <Link
               href="/company/about/"
               className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                 pathname === "/company/about/"
@@ -494,11 +567,20 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
 
           {/* Action CTAs */}
           <div className="flex items-center space-x-3">
-            <Link href="/company/contact/" className="hidden sm:inline-flex">
-              <Button variant="primary" size="default">
+            <Button asChild variant="primary" size="default" className="hidden lg:inline-flex">
+              <Link
+              href="/company/contact/"
+              onClick={() =>
+                trackConversionEvent("demo_cta_click", {
+                  cta_location: "header_main",
+                  cta_label_key: "book_live_demo",
+                  target_path: "/company/contact/",
+                })
+              }
+            >
                 Book Live Demo
-              </Button>
-            </Link>
+              </Link>
+            </Button>
 
             {/* Mobile Hamburger Button */}
             <button

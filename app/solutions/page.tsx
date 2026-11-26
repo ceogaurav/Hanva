@@ -155,11 +155,11 @@ export default function SolutionsPage() {
                 </CardContent>
 
                 <div className="p-6 pt-0">
-                  <Link href={sol.slug} className="block w-full">
-                    <Button variant="outline" className="w-full text-xs font-semibold">
+                  <Button asChild variant="outline" className="w-full text-xs font-semibold">
+                    <Link href={sol.slug}>
                       Explore {sol.title} &rarr;
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
               </Card>
             );
@@ -178,17 +178,17 @@ export default function SolutionsPage() {
             Our Bengaluru telecom solutions engineers will review your existing call volume, agent seat count, and CRM stack to recommend an optimal, cost-efficient deployment.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Link href="/company/contact/">
-              <Button variant="primary" size="lg">
+            <Button asChild variant="primary" size="lg">
+              <Link href="/company/contact/">
                 Schedule Solutions Review
-              </Button>
-            </Link>
-            <Link href="/pricing/calculator/">
-              <Button variant="outline" size="lg" className="border-slate-300">
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-slate-300">
+              <Link href="/pricing/calculator/">
                 <Sparkles className="mr-2 h-4 w-4 text-emerald-600" />
                 Cost Calculator
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </Container>

@@ -35,6 +35,8 @@ export default function WhatsAppCrmPage() {
         { label: "WhatsApp CRM" },
       ]}
       whatsappRef="/products/whatsapp-crm/"
+      secondaryHeroHref="/pricing/"
+      secondaryHeroLabel="View CRM Plans & Quoting"
       workflowTitle="Conversational WhatsApp Sales Journey"
       workflowSteps={[
         {

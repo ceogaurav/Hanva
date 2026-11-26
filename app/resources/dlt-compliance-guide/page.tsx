@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg } from "@/components/shared/schema-org";
+import { TrackedDemoLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import {
   FileText,
   ShieldCheck,
@@ -20,7 +21,7 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "TRAI DLT Compliance & Registration Guide | Hanva Technologies",
+  title: "TRAI DLT Compliance & Registration Guide",
   description:
     "A pragmatic enterprise guide to Telecom Regulatory Authority of India (TRAI) Distributed Ledger Technology (DLT) registration for voice headers and SMS templates.",
   alternates: {
@@ -124,7 +125,9 @@ export default function DltComplianceGuidePage() {
             Home
           </Link>
           <span className="text-slate-300">/</span>
-          <span className="text-slate-500">Resources</span>
+          <Link href="/resources/" className="hover:text-blue-600 transition-colors">
+            Resources
+          </Link>
           <span className="text-slate-300">/</span>
           <span className="text-slate-900 font-medium">DLT Compliance Guide</span>
         </nav>
@@ -236,17 +239,22 @@ export default function DltComplianceGuidePage() {
             Our compliance desk assists Hanva clients with DLT portal account setup, Letter of Authorization drafting, and fast-track template approvals.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Link href="/company/contact/">
-              <Button variant="primary" size="lg">
+            <Button asChild variant="primary" size="lg">
+              <TrackedDemoLink
+              href="/company/contact/?product=smart-ivr&intent=dlt-compliance"
+              ctaLocation="dlt_compliance_guide_bottom"
+              ctaLabelKey="request_compliance_assistance"
+              productSlug="smart-ivr"
+            >
                 Request Compliance Assistance
-              </Button>
-            </Link>
-            <a href="tel:+918423711043">
-              <Button variant="outline" size="lg" className="border-slate-300">
+              </TrackedDemoLink>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-slate-300">
+              <TrackedPhoneLink href="tel:+918423711043" ctaLocation="dlt_compliance_guide_bottom">
                 <Phone className="mr-2 h-4 w-4 text-blue-600" />
                 Call Desk: +91 8423711043
-              </Button>
-            </a>
+              </TrackedPhoneLink>
+            </Button>
           </div>
         </div>
       </Container>

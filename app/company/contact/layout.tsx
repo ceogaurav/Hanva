@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { SchemaOrg } from "@/components/shared/schema-org";
 
+import { CONTACT_CONFIG } from "@/lib/config";
+
 export const metadata: Metadata = {
   title: "Contact Hanva Technologies — Sales & Support Desk",
   description:
-    "Connect with Hanva Technologies sales and engineering teams. Book a live product demo, request pulse rate quotes, or visit our Bengaluru headquarters.",
+    "Connect with Hanva Technologies sales and engineering teams. Book a live product demo, request pulse rate quotes, or reach our Bengaluru operations team.",
   alternates: {
     canonical: "https://hanva.in/company/contact/",
   },
@@ -18,9 +20,9 @@ const contactSchema = {
   description: "Connect with Hanva Technologies sales and engineering teams in Bengaluru.",
   mainEntity: {
     "@type": "Organization",
-    name: "Hanva Technologies Private Limited",
-    telephone: "+91-9606099404",
-    email: "info@hanva.in",
+    name: CONTACT_CONFIG.companyLegalName,
+    telephone: "+91-8423711043",
+    email: CONTACT_CONFIG.email,
     address: {
       "@type": "PostalAddress",
       streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",

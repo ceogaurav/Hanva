@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Cloud Telephony, IVR & CRM Products Suite — Hanva Technologies",
+  title: "Cloud Telephony, IVR & CRM Products Suite",
   description:
     "Explore Hanva's integrated software suite: Cloud Telephony, Smart IVR, Virtual Numbers, Auto & Predictive Dialers, Telecalling CRM, and WhatsApp Business API.",
   alternates: {
@@ -56,18 +56,18 @@ export default function ProductsPage() {
             Eliminate disconnected tools. Hanva delivers carrier voice trunking, automated dialing algorithms, and customer relationship management in one synchronized platform.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <Link href="/company/contact/">
-              <Button variant="primary" size="lg">
+            <Button asChild variant="primary" size="lg">
+              <Link href="/company/contact/">
                 Request Product Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/pricing/calculator/">
-              <Button variant="outline" size="lg">
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/pricing/calculator/">
                 <Sparkles className="mr-2 h-4 w-4 text-emerald-600" />
                 Estimate Voice Costs
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </Container>
       </section>
@@ -339,17 +339,17 @@ export default function ProductsPage() {
               Our Bengaluru sales engineers will design a package tailored to your agent seats, monthly call volume, and CRM integration requirements.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-              <Link href="/company/contact/">
-                <Button variant="primary" size="lg">
+              <Button asChild variant="primary" size="lg">
+                <Link href="/company/contact/">
                   Request Custom Quotation
-                </Button>
-              </Link>
-              <Link href="/pricing/calculator/">
-                <Button variant="outline" size="lg" className="border-slate-300">
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-slate-300">
+                <Link href="/pricing/calculator/">
                   <Sparkles className="mr-2 h-4 w-4 text-emerald-600" />
                   Estimate Pulse Savings
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </Container>

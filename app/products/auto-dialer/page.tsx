@@ -50,7 +50,7 @@ export default function AutoDialerPage() {
         {
           step: "03. LIVE CONNECTION",
           title: "Automated Audio Bridging",
-          description: "When the customer answers, the call connects to the agent in under 500ms while popping up the prospect's CRM profile on screen.",
+          description: "When the customer answers, the call bridges directly to the agent while popping up the prospect's CRM profile on screen.",
         },
         {
           step: "04. 2-CLICK DISPOSITION",

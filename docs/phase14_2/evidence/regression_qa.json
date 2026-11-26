@@ -1,0 +1,359 @@
+{
+  "route_status": {
+    "original_52_ok": 52,
+    "new_13_ok": 13,
+    "failures": []
+  },
+  "sitemap": {
+    "status": 200,
+    "url_count": 65,
+    "all_www": true,
+    "missing_routes": []
+  },
+  "robots_txt": {
+    "status": 200,
+    "sitemap_line": "Sitemap: https://www.hanva.in/sitemap.xml"
+  },
+  "seo_and_schema": [
+    {
+      "route": "/",
+      "title": "IT Solutions, SaaS Products & Cloud Telephony",
+      "title_len": 45,
+      "canonical": "https://www.hanva.in/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/products/",
+      "title": "SaaS Products & Cloud Telephony Suite | Hanva Technologies",
+      "title_len": 58,
+      "canonical": "https://www.hanva.in/products/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/products/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/products/crm/",
+      "title": "Hanva CRM \u2014 Sales, Calling & WhatsApp CRM | Hanva Technologies",
+      "title_len": 62,
+      "canonical": "https://www.hanva.in/products/crm/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/products/crm/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/industry/",
+      "title": "Industry Cloud Telephony & CRM Solutions in India | Hanva Technologies",
+      "title_len": 70,
+      "canonical": "https://www.hanva.in/industry/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/industry/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/products/salon-software/",
+      "title": "Hanva Salon Software \u2014 Billing, Booking & Staff | Hanva Technologies",
+      "title_len": 68,
+      "canonical": "https://www.hanva.in/products/salon-software/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/products/salon-software/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/products/restaurant-pos/",
+      "title": "Hanva Restaurant POS \u2014 Billing, KDS & QR Ordering | Hanva Technologies",
+      "title_len": 70,
+      "canonical": "https://www.hanva.in/products/restaurant-pos/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/products/restaurant-pos/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/digital-marketing/",
+      "title": "Digital Marketing Services \u2014 SEO & Google Ads | Hanva Technologies",
+      "title_len": 66,
+      "canonical": "https://www.hanva.in/digital-marketing/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/digital-marketing/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/digital-marketing/seo-services/",
+      "title": "SEO Services \u2014 Technical & Organic Search | Hanva Technologies",
+      "title_len": 62,
+      "canonical": "https://www.hanva.in/digital-marketing/seo-services/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/digital-marketing/seo-services/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/digital-marketing/performance-marketing/",
+      "title": "Google Ads & Performance Marketing | Hanva Technologies",
+      "title_len": 55,
+      "canonical": "https://www.hanva.in/digital-marketing/performance-marketing/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/digital-marketing/performance-marketing/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/digital-marketing/social-media-marketing/",
+      "title": "Social Media Marketing Services | Hanva Technologies",
+      "title_len": 52,
+      "canonical": "https://www.hanva.in/digital-marketing/social-media-marketing/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/digital-marketing/social-media-marketing/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/",
+      "title": "Software Development \u2014 Web, Mobile, CRM & AI | Hanva Technologies",
+      "title_len": 65,
+      "canonical": "https://www.hanva.in/software-development/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/software-development/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/custom-crm-development/",
+      "title": "Custom CRM & ERP Development | Hanva Technologies",
+      "title_len": 49,
+      "canonical": "https://www.hanva.in/software-development/custom-crm-development/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/software-development/custom-crm-development/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/web-application-development/",
+      "title": "Web Application & Website Development | Hanva Technologies",
+      "title_len": 58,
+      "canonical": "https://www.hanva.in/software-development/web-application-development/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/software-development/web-application-development/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/mobile-app-development/",
+      "title": "Mobile App Development Services | Hanva Technologies",
+      "title_len": 52,
+      "canonical": "https://www.hanva.in/software-development/mobile-app-development/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/software-development/mobile-app-development/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/saas-product-development/",
+      "title": "SaaS Product Development Services | Hanva Technologies",
+      "title_len": 54,
+      "canonical": "https://www.hanva.in/software-development/saas-product-development/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/software-development/saas-product-development/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/api-integration-automation/",
+      "title": "API Integration, Automation & AI Solutions | Hanva Technologies",
+      "title_len": 63,
+      "canonical": "https://www.hanva.in/software-development/api-integration-automation/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/software-development/api-integration-automation/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/ecommerce-development/",
+      "title": "E-commerce Development Services | Hanva Technologies",
+      "title_len": 52,
+      "canonical": "https://www.hanva.in/software-development/ecommerce-development/",
+      "canonical_is_www": true,
+      "og_url": "https://www.hanva.in/software-development/ecommerce-development/",
+      "h1_count": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    }
+  ],
+  "whatsapp_checks": {
+    "/products/crm/": [
+      {
+        "text": "WhatsApp Sales Desk",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20enquire%20about%20your%20software%20products%20and%20IT%20solutions."
+      },
+      {
+        "text": "Request Demo on WhatsApp",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20CRM."
+      },
+      {
+        "text": "WhatsApp Demo Enquiry",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20CRM."
+      },
+      {
+        "text": "WhatsApp",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fproducts%2Fcrm%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+      }
+    ],
+    "/products/salon-software/": [
+      {
+        "text": "WhatsApp Sales Desk",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20enquire%20about%20your%20software%20products%20and%20IT%20solutions."
+      },
+      {
+        "text": "Request Demo on WhatsApp",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Salon%20Software."
+      },
+      {
+        "text": "WhatsApp Demo Enquiry",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Salon%20Software."
+      },
+      {
+        "text": "WhatsApp",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fproducts%2Fsalon-software%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+      }
+    ],
+    "/products/restaurant-pos/": [
+      {
+        "text": "WhatsApp Sales Desk",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20enquire%20about%20your%20software%20products%20and%20IT%20solutions."
+      },
+      {
+        "text": "Request Demo on WhatsApp",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Restaurant%20POS."
+      },
+      {
+        "text": "WhatsApp Demo Enquiry",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Restaurant%20POS."
+      },
+      {
+        "text": "WhatsApp",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fproducts%2Frestaurant-pos%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+      }
+    ]
+  },
+  "mobile_drawer_test": {
+    "initially_closed": true,
+    "drawer_opened": true,
+    "salon_link_visible": true,
+    "pos_link_visible": true,
+    "navigated_url": "http://localhost:3001/products/salon-software/",
+    "h1_after_nav": "Hanva Salon Software",
+    "closed_after_nav": true
+  },
+  "responsive_overflow": [
+    {
+      "viewport": "mobile_375",
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/products/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/products/crm/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/products/salon-software/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/products/restaurant-pos/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/digital-marketing/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/software-development/",
+      "overflow": false
+    }
+  ],
+  "desktop_nav_test": {
+    "products_dropdown": true,
+    "dm_dropdown": true,
+    "sd_dropdown": true
+  },
+  "image_loading_test": [
+    {
+      "src": "/logo.png",
+      "complete": true,
+      "naturalWidth": 512
+    },
+    {
+      "src": "/logo.png",
+      "complete": true,
+      "naturalWidth": 512
+    }
+  ]
+}

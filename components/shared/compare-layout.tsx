@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
-import { SchemaOrg } from "@/components/shared/schema-org";
+import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG } from "@/lib/config";
 import {
@@ -66,6 +66,7 @@ export function CompareLayout({
   return (
     <div className="pt-10 pb-28 lg:py-14 bg-white min-h-screen">
       {schemaData && <SchemaOrg data={schemaData} />}
+      <SchemaOrg data={buildBreadcrumbSchema(breadcrumbs)} />
 
       <Container className="space-y-12">
         {/* 1. Breadcrumbs */}
@@ -180,7 +181,12 @@ export function CompareLayout({
             <p className="text-xs text-slate-500 mt-1">Factual comparison based on published industry models and Hanva&apos;s architecture.</p>
           </div>
 
-          <div className="relative overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs" tabIndex={0}>
+          <div
+            className="relative overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs"
+            tabIndex={0}
+            role="region"
+            aria-label={`${competitorName} vs Hanva comparison table`}
+          >
             <table className="w-full text-xs text-left border-collapse">
               <caption className="sr-only">Feature and commercial comparison between {competitorName} and Hanva</caption>
               <thead>

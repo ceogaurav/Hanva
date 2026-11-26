@@ -22,7 +22,22 @@ export const metadata = {
   description:
     "Join Hanva Technologies in Bengaluru. We are hiring full-stack Next.js engineers, VoIP telephony architects, and enterprise B2B sales professionals.",
   alternates: {
-    canonical: "https://hanva.in/company/careers/",
+    canonical: "https://www.hanva.in/company/careers/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/company/careers/",
+    siteName: "Hanva Technologies",
+    title: "Careers at Hanva Technologies — Telecom & Software Engineering Roles | Hanva Technologies",
+    description: "Join Hanva Technologies in Bengaluru. We are hiring full-stack Next.js engineers, VoIP telephony architects, and enterprise B2B sales professionals.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Careers at Hanva Technologies — Telecom & Software Engineering Roles" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Careers at Hanva Technologies — Telecom & Software Engineering Roles | Hanva Technologies",
+    description: "Join Hanva Technologies in Bengaluru. We are hiring full-stack Next.js engineers, VoIP telephony architects, and enterprise B2B sales professionals.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -32,7 +47,7 @@ const careersSchema = {
   name: "Careers at Hanva Technologies Private Limited",
   description:
     "Job openings in software engineering, cloud telephony, and business development at Hanva Technologies Bengaluru.",
-  url: "https://hanva.in/company/careers/",
+  url: "https://www.hanva.in/company/careers/",
 };
 
 const openRoles = [
@@ -92,7 +107,7 @@ export default function CareersPage() {
             Build the Future of Enterprise Telephony & CRM
           </h1>
           <p className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            At Hanva Technologies, we are solving fundamental operational challenges for Indian businesses. We engineer high-performance software that connects millions of commercial voice calls every month.
+            At Hanva Technologies, we build practical, carrier-integrated cloud telephony, IVR, and CRM software tailored for Indian sales and operations teams.
           </p>
         </div>
 
@@ -103,7 +118,7 @@ export default function CareersPage() {
               <div className="h-8 w-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-2">
                 <Code2 className="h-4 w-4" />
               </div>
-              <CardTitle className="text-base text-slate-900">Engineering Autonomy</CardTitle>
+              <CardTitle as="h2" className="text-base text-slate-900">Engineering Autonomy</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-xs text-slate-600 leading-relaxed">
@@ -117,11 +132,11 @@ export default function CareersPage() {
               <div className="h-8 w-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2">
                 <Sparkles className="h-4 w-4" />
               </div>
-              <CardTitle className="text-base text-slate-900">Real Customer Impact</CardTitle>
+              <CardTitle as="h2" className="text-base text-slate-900">Real Customer Impact</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Your code directly accelerates deal pipelines and saves millions of rupees in voice tariffs for hundreds of Indian businesses.
+                Your code directly improves lead response workflows, call reliability, and transparent telecom billing for Indian sales teams.
               </p>
             </CardContent>
           </Card>
@@ -131,7 +146,7 @@ export default function CareersPage() {
               <div className="h-8 w-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-2">
                 <MapPin className="h-4 w-4" />
               </div>
-              <CardTitle className="text-base text-slate-900">Bengaluru Tech Hub</CardTitle>
+              <CardTitle as="h2" className="text-base text-slate-900">Bengaluru Tech Hub</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-xs text-slate-600 leading-relaxed">

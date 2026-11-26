@@ -6,24 +6,24 @@ export const metadata = {
   description:
     "Scale student admission counseling with progressive auto-dialers, lead campaign tracking, automated fee structure drops on WhatsApp, and call audits.",
   alternates: {
-    canonical: "https://hanva.in/industry/education/",
+    canonical: "https://www.hanva.in/industry/education/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/education/",
+    url: "https://www.hanva.in/industry/education/",
     siteName: "Hanva Technologies",
     title: "Education & EdTech Telephony CRM Solutions | Hanva Technologies",
     description:
       "Scale student admission counseling with progressive auto-dialers, lead campaign tracking, automated fee structure drops on WhatsApp, and call audits.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Education Telephony" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Education Telephony" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Education & EdTech Telephony CRM Solutions | Hanva Technologies",
     description:
       "Scale student admission counseling with progressive auto-dialers, lead campaign tracking, automated fee structure drops on WhatsApp, and call audits.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -142,7 +142,7 @@ export default function EducationIndustryPage() {
         },
         {
           question: "Can counselors place calls through mobile SIM cards or laptops?",
-          answer: "Yes. Counselors can use our browser-based WebRTC softphone on desktop computers with headsets, or place calls via our companion Android app using mobile SIM cards while centrally syncing recordings to the CRM.",
+          answer: "Yes. Counselors can use our browser-based WebRTC softphone on desktop computers with headsets (with centralized cloud recording), or log outbound mobile SIM calls and dispositions to the CRM via our companion Android app.",
         },
       ]}
       schemaData={educationSchema}

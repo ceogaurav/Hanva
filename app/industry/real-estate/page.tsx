@@ -6,24 +6,24 @@ export const metadata = {
   description:
     "Accelerate property lead response, automate WhatsApp floor plan sharing, track site visits, and prevent lead theft with cloud telephony for real estate.",
   alternates: {
-    canonical: "https://hanva.in/industry/real-estate/",
+    canonical: "https://www.hanva.in/industry/real-estate/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/real-estate/",
+    url: "https://www.hanva.in/industry/real-estate/",
     siteName: "Hanva Technologies",
     title: "Real Estate Telephony & Sales CRM Solutions | Hanva Technologies",
     description:
       "Accelerate property lead response, automate WhatsApp floor plan sharing, track site visits, and prevent lead theft with cloud telephony for real estate.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Real Estate Telephony" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Real Estate Telephony" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Real Estate Telephony & Sales CRM Solutions | Hanva Technologies",
     description:
       "Accelerate property lead response, automate WhatsApp floor plan sharing, track site visits, and prevent lead theft with cloud telephony for real estate.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

@@ -5,18 +5,33 @@ export const metadata = {
   description:
     "Build brand authority with 1800 toll-free numbers in India. Free for your customers to call across all telecom networks, integrated with cloud IVR and CRM.",
   alternates: {
-    canonical: "https://hanva.in/products/toll-free-numbers/",
+    canonical: "https://www.hanva.in/products/toll-free-numbers/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/toll-free-numbers/",
+    siteName: "Hanva Technologies",
+    title: "1800 Toll Free Number Provider in India | Hanva Technologies",
+    description: "Build brand authority with 1800 toll-free numbers in India. Free for your customers to call across all telecom networks, integrated with cloud IVR and CRM.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "1800 Toll Free Number Provider in India" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "1800 Toll Free Number Provider in India | Hanva Technologies",
+    description: "Build brand authority with 1800 toll-free numbers in India. Free for your customers to call across all telecom networks, integrated with cloud IVR and CRM.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
 const tollFreeSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "Service",
   name: "Hanva 1800 Enterprise Toll-Free Numbers",
   description: "Enterprise 1800 toll-free numbers across India with multi-level IVR and cloud routing.",
-  brand: {
-    "@type": "Brand",
-    name: "Hanva Technologies",
+  provider: {
+    "@type": "Organization",
+    name: "Hanva Technologies Private Limited",
   },
 };
 

@@ -4,109 +4,162 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SchemaOrg } from "@/components/shared/schema-org";
-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
-import { CONTACT_CONFIG } from "@/lib/config";
+import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
+import { TrackedDemoLink, TrackedProductLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
+import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl, buildServiceWhatsAppUrl } from "@/lib/config";
 import {
-  PhoneCall,
-  Server,
-  Layers,
-  Cpu,
-  BarChart3,
-  MessageSquare,
   ArrowRight,
+  BarChart3,
   CheckCircle2,
-  Phone,
-  Sparkles,
+  Code2,
   ExternalLink,
+  Layers,
+  MessageSquare,
+  PhoneCall,
+  Scissors,
+  Server,
+  ShieldCheck,
+  TrendingUp,
+  UtensilsCrossed,
 } from "lucide-react";
 
 export const metadata = {
-  title: "Cloud Telephony, Smart IVR & Telecalling CRM Platform in India",
+  title: "IT Solutions, SaaS Products & Cloud Telephony",
   description:
-    "Hanva unifies enterprise cloud telephony, multi-level IVR, automated dialers, and telecalling CRM for Indian businesses. Transparent pulse billing with dedicated Vi and Tata carrier DIDs.",
+    "Hanva Technologies is a comprehensive IT solutions, digital transformation, and SaaS software provider in India offering Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, Digital Marketing, Software Development, and Cloud Telephony.",
   alternates: {
-    canonical: "https://hanva.in/",
+    canonical: "https://www.hanva.in/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/",
+    siteName: "Hanva Technologies",
+    title: "IT Solutions, SaaS Products & Cloud Telephony",
+    description:
+      "Hanva Technologies helps businesses automate operations, acquire customers, and grow with SaaS products, digital marketing, custom software development, and cloud telephony.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Technologies IT Solutions & SaaS Platform" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IT Solutions, SaaS Products & Cloud Telephony",
+    description:
+      "SaaS Products (Hanva CRM, Salon Software, Restaurant POS), Digital Marketing, Software Development, and Cloud Telephony.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
+
+const homeFaqs: FAQItem[] = [
+  {
+    question: "What products and services does Hanva Technologies provide?",
+    answer:
+      "Hanva Technologies provides three core SaaS products (Hanva CRM, Hanva Salon Software, and Hanva Restaurant POS), managed Digital Marketing services (SEO, Google Ads, Social Media Marketing), Custom Software Development (websites, mobile apps, custom CRM/ERP, e-commerce, and AI solutions), and enterprise Telecom & Cloud Telephony infrastructure.",
+  },
+  {
+    question: "How do I book a product demonstration or request pricing?",
+    answer:
+      "Pricing is customized based on your business requirements and deployment scope. You can initiate a direct WhatsApp enquiry on +91 8423711043 from any product or service page, or submit a consultation request via our Contact page.",
+  },
+  {
+    question: "What is the difference between Hanva CRM and Custom CRM Development?",
+    answer:
+      "Hanva CRM (/products/crm/) is our ready-to-deploy SaaS platform combining lead pipelines, built-in IVR, automated calling, and WhatsApp Business integration. Custom CRM Development (/software-development/custom-crm-development/) is a bespoke engineering service for organizations that require tailored data models, custom ERP workflows, or specialized integrations.",
+  },
+  {
+    question: "Does Hanva Technologies serve businesses outside India?",
+    answer:
+      "Yes. India is our primary market—with GST-ready billing and carrier-backed telecom workflows—while our SaaS platforms, digital marketing, and custom software engineering services also support international businesses.",
+  },
+];
 
 const homeSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Hanva Technologies",
-  legalName: "Hanva Technologies Private Limited",
-  identifier: "U78100KA2025PTC205168",
-  taxID: "29AAICH0526K1ZF",
-  url: "https://hanva.in",
-  logo: "https://hanva.in/logo.png",
-  description: "Enterprise cloud telephony, smart IVR, automated dialers, and sales telecalling CRM software.",
-  telephone: "+91-8423711043",
-  email: "info@hanva.in",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
-    addressLocality: "Bengaluru",
-    addressRegion: "Karnataka",
-    postalCode: "560068",
-    addressCountry: "IN",
-  },
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.hanva.in/#organization",
+      name: "Hanva Technologies",
+      legalName: CONTACT_CONFIG.companyLegalName,
+      identifier: CONTACT_CONFIG.cin,
+      taxID: CONTACT_CONFIG.gstin,
+      url: "https://www.hanva.in",
+      logo: "https://www.hanva.in/logo.png",
+      description:
+        "Comprehensive IT solutions, digital transformation, and SaaS software provider offering Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, Digital Marketing, Software Development, and Cloud Telephony.",
+      telephone: "+91-8423711043",
+      email: CONTACT_CONFIG.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
+        addressLocality: "Bengaluru",
+        addressRegion: "Karnataka",
+        postalCode: "560068",
+        addressCountry: "IN",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.hanva.in/#website",
+      url: "https://www.hanva.in/",
+      name: "Hanva Technologies",
+      publisher: { "@id": "https://www.hanva.in/#organization" },
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: homeFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
 };
 
 export default function HomePage() {
-  const whatsappUrl = `https://wa.me/918423711043?text=${encodeURIComponent(
-    "Hello Hanva Team, I am exploring cloud telephony and telecalling CRM solutions for my business."
-  )}`;
+  const generalWhatsappUrl = buildServiceWhatsAppUrl(
+    "Hello Hanva Team, I would like to enquire about your SaaS products and IT solutions."
+  );
 
   return (
     <div className="flex flex-col gap-16 lg:gap-24 pb-28 lg:pb-20 bg-white">
       <SchemaOrg schema={homeSchema} />
 
       {/* 1. Hero Section */}
-      <section className="relative pt-12 lg:pt-20 pb-16 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-100">
-        <Container className="text-center">
-          {/* Status Badge */}
-          <div className="inline-flex items-center space-x-2 mb-6">
-            <Badge variant="secondary" className="px-3.5 py-1 text-xs font-medium">
-              Enterprise Cloud Telephony &amp; Built-in CRM
-            </Badge>
-          </div>
+      <section className="relative pt-12 lg:pt-20 pb-16 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-100">
+        <Container className="text-center space-y-6">
+          <Badge variant="secondary" className="px-3.5 py-1 text-xs font-medium">
+            IT Solutions • SaaS Products • Digital Marketing • Cloud Telephony
+          </Badge>
 
-          {/* Primary Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.15] mb-6 max-w-4xl mx-auto">
-            Connect Every Call.{" "}
-            <span className="text-blue-600 underline decoration-blue-200 decoration-wavy decoration-2">
-              Accelerate Every Deal.
-            </span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.15] max-w-4xl mx-auto">
+            Software, Marketing &amp; Communication Systems Built to{" "}
+            <span className="text-blue-600">Automate and Grow Your Business</span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-base sm:text-xl text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-            Hanva unifies enterprise cloud telephony, smart multi-level IVR, automated sales dialers, and CRM into one platform — provisioned via dedicated Vodafone Idea and Tata carrier numbering.
+          <p className="text-base sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+            Hanva Technologies is a comprehensive IT solutions, digital transformation, and SaaS software provider helping businesses in India and globally automate operations, acquire customers, and scale.
           </p>
 
-          {/* Action CTAs — Clear Primary / Secondary / Tertiary Hierarchy */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4">
-            <Button asChild variant="primary" size="lg" className="w-full sm:w-auto text-base whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
-              <TrackedDemoLink
-              href="/company/contact/"
-              ctaLocation="home_hero"
-              ctaLabelKey="book_live_demo"
-             
-            >
-                <span>Book a Live Demo</span>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
+            <Button asChild variant="primary" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6">
+              <Link href="/products/">
+                <span>Explore SaaS Products</span>
                 <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
-              </TrackedDemoLink>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-base border-slate-300 whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
-              <Link href="/pricing/calculator/">
-                <Sparkles className="mr-2 h-4 w-4 text-emerald-600 shrink-0" aria-hidden="true" />
-                <span>Estimate OBD Pulse Costs</span>
               </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6 border-slate-300">
+              <TrackedDemoLink href="/company/contact/" ctaLocation="home_hero" ctaLabelKey="request_consultation">
+                <span>Request Consultation</span>
+              </TrackedDemoLink>
             </Button>
           </div>
 
-          <div className="mb-10 flex items-center justify-center">
+          <div className="flex items-center justify-center">
             <TrackedWhatsAppLink
-              href={whatsappUrl}
+              href={generalWhatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               ctaLocation="home_hero"
@@ -114,334 +167,493 @@ export default function HomePage() {
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline py-1"
             >
               <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span>Or chat directly on WhatsApp (opens WhatsApp — press Send)</span>
+              <span>Chat with Hanva on WhatsApp (+91 8423711043)</span>
               <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             </TrackedWhatsAppLink>
           </div>
-
-          {/* Trust Signals */}
-          <div className="pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
-            <div className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
-              <div className="text-[11px] text-slate-600 font-medium uppercase tracking-wider">Carrier Trunking</div>
-              <div className="text-sm font-semibold text-slate-900 mt-0.5">Vi &amp; Tata DIDs</div>
-            </div>
-            <div className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
-              <div className="text-[11px] text-slate-600 font-medium uppercase tracking-wider">OBD Pulse Billing</div>
-              <div className="text-sm font-semibold text-slate-900 mt-0.5">15s Pulse Option</div>
-            </div>
-            <Link href="/company/about/" className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs hover:border-blue-300 transition-colors block">
-              <div className="text-[11px] text-slate-600 font-medium uppercase tracking-wider">Corporate Entity</div>
-              <div className="text-sm font-semibold text-slate-900 mt-0.5 flex items-center justify-between">
-                <span>MCA Registered</span>
-                <ArrowRight className="h-3.5 w-3.5 text-blue-600" aria-hidden="true" />
-              </div>
-            </Link>
-            <div className="p-3.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
-              <div className="text-[11px] text-slate-600 font-medium uppercase tracking-wider">Assisted Onboarding</div>
-              <div className="text-sm font-semibold text-slate-900 mt-0.5">Direct Sales Engineers</div>
-            </div>
-          </div>
         </Container>
       </section>
 
-      {/* 2. Real Business Problems Solved Section */}
-      <section className="py-4">
-        <Container>
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <Badge variant="secondary" className="mb-2">Operational Bottlenecks Solved</Badge>
+      {/* 2. Company Positioning & Four Business Pillars */}
+      <section>
+        <Container className="space-y-8">
+          <div className="max-w-3xl space-y-2">
+            <Badge variant="outline">Four Core Pillars</Badge>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Why Indian Sales & Support Operations Switch to Hanva
+              One Technology Partner Across Operations, Growth &amp; Engineering
             </h2>
+            <p className="text-sm sm:text-base text-slate-600">
+              Instead of coordinating disconnected vendors for billing software, lead management, marketing campaigns, and telephony, Hanva delivers all four pillars under one roof.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-xl border border-slate-200 bg-white space-y-3">
-              <div className="h-10 w-10 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold">
-                ✕
-              </div>
-              <h3 className="text-base font-semibold text-slate-900">Opaque Billing & Forced 60s Pulses</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Most sales calls last 30 to 45 seconds. Traditional retail telcos round up to a full 60 seconds, forcing you to pay for unused seconds. Hanva offers transparent 15-second OBD broadcast billing options.
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <Card className="border-slate-200">
+              <CardHeader className="pb-2">
+                <Layers className="h-6 w-6 text-blue-600 mb-2" aria-hidden="true" />
+                <CardTitle className="text-base">1. SaaS Products</CardTitle>
+                <CardDescription className="text-xs">
+                  Ready-to-deploy cloud software for sales teams, salons &amp; spas, and restaurants.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-xs">
+                <Link href="/products/" className="font-semibold text-blue-600 hover:underline">
+                  View SaaS Suite &rarr;
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-slate-200">
+              <CardHeader className="pb-2">
+                <TrendingUp className="h-6 w-6 text-emerald-600 mb-2" aria-hidden="true" />
+                <CardTitle className="text-base">2. Digital Marketing</CardTitle>
+                <CardDescription className="text-xs">
+                  Search Engine Optimization, Google Ads, social media marketing, and digital campaigns.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-xs">
+                <Link href="/digital-marketing/" className="font-semibold text-blue-600 hover:underline">
+                  Explore Marketing &rarr;
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-slate-200">
+              <CardHeader className="pb-2">
+                <Code2 className="h-6 w-6 text-indigo-600 mb-2" aria-hidden="true" />
+                <CardTitle className="text-base">3. Software Development</CardTitle>
+                <CardDescription className="text-xs">
+                  Websites, mobile apps, custom CRM/ERP, e-commerce platforms, and AI solutions.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-xs">
+                <Link href="/software-development/" className="font-semibold text-blue-600 hover:underline">
+                  Explore Engineering &rarr;
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-slate-200">
+              <CardHeader className="pb-2">
+                <PhoneCall className="h-6 w-6 text-sky-600 mb-2" aria-hidden="true" />
+                <CardTitle className="text-base">4. Telecom &amp; Voice</CardTitle>
+                <CardDescription className="text-xs">
+                  Cloud telephony, smart IVR, automated dialers, and carrier-backed DIDs across India.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-xs">
+                <Link href="/products/cloud-telephony/" className="font-semibold text-blue-600 hover:underline">
+                  Explore Cloud Voice &rarr;
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </Container>
+      </section>
+
+      {/* 3. SaaS Products Overview */}
+      <section className="py-12 bg-slate-50 border-y border-slate-100">
+        <Container className="space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2 max-w-2xl">
+              <Badge variant="default">Flagship SaaS Portfolio</Badge>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+                Three Purpose-Built SaaS Platforms
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600">
+                Each Hanva SaaS product is engineered for specific operational workflows—with guided WhatsApp product demonstrations and contact-based pricing.
               </p>
             </div>
+            <Button asChild variant="outline">
+              <Link href="/products/">Compare All Products</Link>
+            </Button>
+          </div>
 
-            <div className="p-6 rounded-xl border border-slate-200 bg-white space-y-3">
-              <div className="h-10 w-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                ✕
-              </div>
-              <h3 className="text-base font-semibold text-slate-900">Manual Dialing & Agent Fatigue</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Telecallers waste up to 20 seconds manually punching phone numbers, hitting busy signals, and waiting for answers. Hanva auto-dialers skip invalid numbers and connect only live conversations.
-              </p>
+          {/* 4, 5, 6. Distinct Product Introductions: CRM, Salon Software, Restaurant POS */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* 4. Hanva CRM */}
+            <Card className="border-blue-200 bg-white flex flex-col justify-between">
+              <CardHeader className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="h-10 w-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center">
+                    <BarChart3 className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <Badge className="bg-blue-50 text-blue-800 border-blue-200">Sales &amp; Calling CRM</Badge>
+                </div>
+                <CardTitle className="text-xl text-slate-900">Hanva CRM</CardTitle>
+                <CardDescription className="text-sm text-slate-600">
+                  Manage leads, sales conversations, calling operations, and customer communication from one CRM platform.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-5">
+                <ul className="space-y-2 text-xs text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>Lead pipelines, bulk CSV intake, scoring &amp; KYC vault</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>Native C2C cloud calling, built-in IVR &amp; automated dialing</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>WhatsApp Business integration, call recordings &amp; team attendance</span>
+                  </li>
+                </ul>
+                <div className="flex flex-col gap-2 pt-2">
+                  <Button asChild variant="primary" className="w-full">
+                    <TrackedProductLink href="/products/crm/" productName="hanva_crm" itemListName="Homepage SaaS Portfolio" ctaLocation="product_section">
+                      Explore Hanva CRM
+                    </TrackedProductLink>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full">
+                    <TrackedWhatsAppLink
+                      href={buildSaasDemoWhatsAppUrl("crm")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ctaLocation="product_section"
+                      productName="hanva_crm"
+                      ctaType="product_demo_whatsapp"
+                      contextRef="/products/crm/"
+                    >
+                      <MessageSquare className="mr-2 h-4 w-4 text-emerald-600" aria-hidden="true" />
+                      <span>WhatsApp Demo Enquiry</span>
+                    </TrackedWhatsAppLink>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 5. Hanva Salon Software */}
+            <Card className="border-rose-200 bg-white flex flex-col justify-between">
+              <CardHeader className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="h-10 w-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center">
+                    <Scissors className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <Badge className="bg-rose-50 text-rose-800 border-rose-200">Salon &amp; Spa Platform</Badge>
+                </div>
+                <CardTitle className="text-xl text-slate-900">Hanva Salon Software</CardTitle>
+                <CardDescription className="text-sm text-slate-600">
+                  Salon billing and management software to simplify appointments, billing, staff operations, and business management.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-5">
+                <ul className="space-y-2 text-xs text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-rose-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>GST billing, split payments, cash registers &amp; digital invoices</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-rose-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>Appointments, waitlist &amp; online booking mini-website</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-rose-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>Staff commissions, payroll, inventory auto-consumption &amp; loyalty</span>
+                  </li>
+                </ul>
+                <div className="flex flex-col gap-2 pt-2">
+                  <Button asChild variant="primary" className="w-full bg-rose-600 hover:bg-rose-700">
+                    <TrackedProductLink href="/products/salon-software/" productName="hanva_salon_software" itemListName="Homepage SaaS Portfolio" ctaLocation="product_section">
+                      Explore Salon Software
+                    </TrackedProductLink>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full">
+                    <TrackedWhatsAppLink
+                      href={buildSaasDemoWhatsAppUrl("salon")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ctaLocation="product_section"
+                      productName="hanva_salon_software"
+                      ctaType="product_demo_whatsapp"
+                      contextRef="/products/salon-software/"
+                    >
+                      <MessageSquare className="mr-2 h-4 w-4 text-emerald-600" aria-hidden="true" />
+                      <span>WhatsApp Demo Enquiry</span>
+                    </TrackedWhatsAppLink>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 6. Hanva Restaurant POS */}
+            <Card className="border-amber-200 bg-white flex flex-col justify-between">
+              <CardHeader className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="h-10 w-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
+                    <UtensilsCrossed className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <Badge className="bg-amber-50 text-amber-900 border-amber-200">Hospitality &amp; F&amp;B POS</Badge>
+                </div>
+                <CardTitle className="text-xl text-slate-900">Hanva Restaurant POS</CardTitle>
+                <CardDescription className="text-sm text-slate-600">
+                  Restaurant POS and billing software designed to simplify orders, billing, kitchen operations, and restaurant management.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-5">
+                <ul className="space-y-2 text-xs text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-amber-700 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>Dine-in, takeaway &amp; delivery POS with offline queue &amp; UPI QR</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-amber-700 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>KOT, Kitchen Display System (KDS), Captain PWA &amp; QR ordering</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-amber-700 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>India GST (CGST/SGST), recipe BOM inventory &amp; 22 operational reports</span>
+                  </li>
+                </ul>
+                <div className="flex flex-col gap-2 pt-2">
+                  <Button asChild variant="primary" className="w-full bg-amber-700 hover:bg-amber-800">
+                    <TrackedProductLink href="/products/restaurant-pos/" productName="hanva_restaurant_pos" itemListName="Homepage SaaS Portfolio" ctaLocation="product_section">
+                      Explore Restaurant POS
+                    </TrackedProductLink>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full">
+                    <TrackedWhatsAppLink
+                      href={buildSaasDemoWhatsAppUrl("pos")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ctaLocation="product_section"
+                      productName="hanva_restaurant_pos"
+                      ctaType="product_demo_whatsapp"
+                      contextRef="/products/restaurant-pos/"
+                    >
+                      <MessageSquare className="mr-2 h-4 w-4 text-emerald-600" aria-hidden="true" />
+                      <span>WhatsApp Demo Enquiry</span>
+                    </TrackedWhatsAppLink>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </Container>
+      </section>
+
+      {/* 7 & 8. Digital Marketing & Software Development Services */}
+      <section>
+        <Container className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* 7. Digital Marketing */}
+          <div className="rounded-2xl border border-slate-200 p-7 space-y-5">
+            <Badge variant="secondary">Growth &amp; Acquisition</Badge>
+            <h2 className="text-2xl font-bold text-slate-900">Digital Marketing Services</h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Structured organic and paid acquisition programs designed for Indian and international businesses seeking qualified enquiries rather than vanity impressions.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <Link href="/digital-marketing/seo-services/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                SEO Services &rarr;
+              </Link>
+              <Link href="/digital-marketing/performance-marketing/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                Google Ads &amp; Performance &rarr;
+              </Link>
+              <Link href="/digital-marketing/social-media-marketing/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                Social Media Marketing &rarr;
+              </Link>
+              <Link href="/digital-marketing/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-blue-600">
+                Digital Marketing Overview &rarr;
+              </Link>
             </div>
+          </div>
 
-            <div className="p-6 rounded-xl border border-slate-200 bg-white space-y-3">
-              <div className="h-10 w-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
-                ✕
-              </div>
-              <h3 className="text-base font-semibold text-slate-900">Fragmented SaaS Subscriptions</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Paying one vendor for virtual numbers, another for call recording, and a third for CRM causes data silos and broken attribution. Hanva unifies voice, recording, and CRM in a single dashboard.
-              </p>
+          {/* 8. Software Development */}
+          <div className="rounded-2xl border border-slate-200 p-7 space-y-5">
+            <Badge variant="secondary">Custom Engineering</Badge>
+            <h2 className="text-2xl font-bold text-slate-900">Software Development Services</h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              When off-the-shelf SaaS is not enough, Hanva engineers custom websites, mobile apps, bespoke CRM/ERP platforms, e-commerce systems, API integrations, and tailored AI workflows.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <Link href="/software-development/custom-crm-development/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                Custom CRM &amp; ERP &rarr;
+              </Link>
+              <Link href="/software-development/web-application-development/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                Web Application Development &rarr;
+              </Link>
+              <Link href="/software-development/mobile-app-development/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                Mobile App Development &rarr;
+              </Link>
+              <Link href="/software-development/saas-product-development/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                SaaS Product Development &rarr;
+              </Link>
+              <Link href="/software-development/api-integration-automation/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                API Integration &amp; AI Workflows &rarr;
+              </Link>
+              <Link href="/software-development/ecommerce-development/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
+                E-commerce Development &rarr;
+              </Link>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* 3. Core Products Suite Grid */}
-      <section className="py-6">
-        <Container>
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <Badge variant="default" className="mb-2">Product Ecosystem</Badge>
-            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-              Core Communication Modules &amp; Platform Suite
-            </h2>
-            <p className="text-slate-600 text-sm mt-3">
-              Explore our core software offerings built for modern business communication.
-            </p>
+      {/* 9. Telecom & Communication Solutions */}
+      <section className="py-12 bg-slate-900 text-white">
+        <Container className="space-y-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2 max-w-2xl">
+              <Badge className="bg-blue-500/20 text-blue-200 border-blue-400/30">Telecom Infrastructure</Badge>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                Enterprise Telecom &amp; Communication Solutions
+              </h2>
+              <p className="text-sm text-slate-300">
+                Carrier-backed cloud telephony, multi-level IVR, automated dialers, and TRAI DLT-compliant messaging infrastructure across India.
+              </p>
+            </div>
+            <Button asChild variant="outline" className="border-slate-600 text-white hover:bg-slate-800">
+              <Link href="/pricing/calculator/">Open Voice Pulse Calculator</Link>
+            </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Card 1: Cloud Telephony */}
-            <Card className="hover:border-blue-300 transition-colors">
-              <CardHeader className="pb-3">
-                <div className="h-9 w-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 mb-2">
-                  <Server className="h-4 w-4" />
-                </div>
-                <CardTitle className="text-lg">Cloud Telephony & Virtual PBX</CardTitle>
-                <CardDescription className="text-xs">
-                  Route, record, and monitor enterprise business calls across branches without PBX hardware.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3 text-xs">
-                <ul className="text-slate-600 space-y-1.5">
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Intelligent call forwarding to agent SIMs & softphones</li>
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Centralized encrypted call recording & CDR logs</li>
-                </ul>
-                <div className="pt-2">
-                  <Link href="/products/cloud-telephony/" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center">
-                    Explore Cloud Telephony <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Card 2: Smart IVR */}
-            <Card className="hover:border-blue-300 transition-colors">
-              <CardHeader className="pb-3">
-                <div className="h-9 w-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 mb-2">
-                  <PhoneCall className="h-4 w-4" />
-                </div>
-                <CardTitle className="text-lg">Smart Multi-Level IVR</CardTitle>
-                <CardDescription className="text-xs">
-                  Automate incoming customer inquiries with personalized multi-level voice menus and routing.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3 text-xs">
-                <ul className="text-slate-600 space-y-1.5">
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Multi-level visual call trees (Press 1 for Sales)</li>
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Automated missed call capture with automated WhatsApp alerts</li>
-                </ul>
-                <div className="pt-2">
-                  <Link href="/products/ivr-system/" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center">
-                    Explore Smart IVR <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Card 3: Call Center Suite */}
-            <Card className="hover:border-blue-300 transition-colors">
-              <CardHeader className="pb-3">
-                <div className="h-9 w-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 mb-2">
-                  <Layers className="h-4 w-4" />
-                </div>
-                <CardTitle className="text-lg">Call Center Operations Suite</CardTitle>
-                <CardDescription className="text-xs">
-                  Empower supervisors with live wallboards, automatic call distribution (ACD), and QA coaching.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3 text-xs">
-                <ul className="text-slate-600 space-y-1.5">
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Live supervisor wallboard & agent status</li>
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Agent performance scorecards & call recording audits</li>
-                </ul>
-                <div className="pt-2">
-                  <Link href="/products/call-center-software/" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center">
-                    View Call Center Suite <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Card 4: Auto & Predictive Dialers */}
-            <Card className="hover:border-blue-300 transition-colors">
-              <CardHeader className="pb-3">
-                <div className="h-9 w-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 mb-2">
-                  <Cpu className="h-4 w-4" />
-                </div>
-                <CardTitle className="text-lg">Progressive & Predictive Dialers</CardTitle>
-                <CardDescription className="text-xs">
-                  Eliminate manual number punching. Connect telecallers only when a live prospect answers.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3 text-xs">
-                <ul className="text-slate-600 space-y-1.5">
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Progressive and algorithmic predictive pacing</li>
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> 1-Click click-to-call directly from CRM contacts</li>
-                </ul>
-                <div className="pt-2">
-                  <Link href="/products/auto-dialer/" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center">
-                    Explore Dialers <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Card 5: Telecalling CRM */}
-            <Card className="hover:border-blue-300 transition-colors">
-              <CardHeader className="pb-3">
-                <div className="h-9 w-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 mb-2">
-                  <BarChart3 className="h-4 w-4" />
-                </div>
-                <CardTitle className="text-lg">Telecalling & Lead CRM</CardTitle>
-                <CardDescription className="text-xs">
-                  A purpose-built CRM for telecallers with automated lead distribution and call dispositions.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3 text-xs">
-                <ul className="text-slate-600 space-y-1.5">
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Call disposition tagging & follow-up reminders</li>
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> SIM-based and Cloud-based telecalling modes</li>
-                </ul>
-                <div className="pt-2">
-                  <Link href="/products/telecalling-crm/" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center">
-                    Explore Telecalling CRM <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Card 6: WhatsApp CRM */}
-            <Card className="hover:border-blue-300 transition-colors">
-              <CardHeader className="pb-3">
-                <div className="h-9 w-9 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 mb-2">
-                  <MessageSquare className="h-4 w-4" />
-                </div>
-                <CardTitle className="text-lg">WhatsApp Business CRM</CardTitle>
-                <CardDescription className="text-xs">
-                  Engage prospects on WhatsApp using official API templates, automated brochures, and chat drips.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3 text-xs">
-                <ul className="text-slate-600 space-y-1.5">
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Shared multi-agent inbox for WhatsApp enquiries</li>
-                  <li className="flex items-center"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 mr-2 shrink-0" /> Automated post-call brochure sharing & templates</li>
-                </ul>
-                <div className="pt-2">
-                  <Link href="/products/whatsapp-crm/" className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 flex items-center">
-                    Explore WhatsApp CRM <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-8">
-            <Link href="/products/" className="text-sm font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center">
-              View All Products &amp; Technical Specifications &rarr;
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <Link href="/products/cloud-telephony/" className="rounded-xl border border-slate-800 bg-slate-800/50 p-4 hover:border-blue-500 transition-colors space-y-1">
+              <Server className="h-5 w-5 text-blue-400 mb-1" aria-hidden="true" />
+              <div className="text-sm font-bold">Cloud Telephony &amp; PBX</div>
+              <div className="text-slate-300">Virtual routing, Vi &amp; Tata DIDs, centralized recordings.</div>
+            </Link>
+            <Link href="/products/ivr-system/" className="rounded-xl border border-slate-800 bg-slate-800/50 p-4 hover:border-blue-500 transition-colors space-y-1">
+              <PhoneCall className="h-5 w-5 text-blue-400 mb-1" aria-hidden="true" />
+              <div className="text-sm font-bold">Smart Multi-Level IVR</div>
+              <div className="text-slate-300">24/7 automated call menus and department routing.</div>
+            </Link>
+            <Link href="/products/telecalling-crm/" className="rounded-xl border border-slate-800 bg-slate-800/50 p-4 hover:border-blue-500 transition-colors space-y-1">
+              <Layers className="h-5 w-5 text-blue-400 mb-1" aria-hidden="true" />
+              <div className="text-sm font-bold">Telecalling CRM &amp; Dialers</div>
+              <div className="text-slate-300">Voice-first auto dialers and predictive pacing.</div>
+            </Link>
+            <Link href="/products/whatsapp-crm/" className="rounded-xl border border-slate-800 bg-slate-800/50 p-4 hover:border-blue-500 transition-colors space-y-1">
+              <MessageSquare className="h-5 w-5 text-emerald-400 mb-1" aria-hidden="true" />
+              <div className="text-sm font-bold">WhatsApp CRM &amp; API</div>
+              <div className="text-slate-300">Official WABA templates and lead engagement.</div>
             </Link>
           </div>
         </Container>
       </section>
 
-      {/* 4. Interactive Pulse Cost Calculator Preview Section */}
-      <section className="py-12 bg-slate-900 text-white rounded-2xl mx-4 sm:mx-6 lg:mx-8">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <Badge variant="live" className="mb-3 bg-emerald-950 text-emerald-300 border-emerald-800">
-                Transparent Voice Billing
-              </Badge>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight">
-                Stop Paying for Unused Seconds. Estimate Your Monthly Costs.
-              </h2>
-              <p className="text-slate-300 text-sm mt-3 leading-relaxed">
-                Most outbound broadcast and alert calls conclude within 30 to 45 seconds. Traditional retail tariffs baseline at a 60-second pulse, billing you for a full minute. Hanva provides 15-second OBD pulse billing options to keep voice costs transparent.
+      {/* 10. Industries Served */}
+      <section>
+        <Container className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="space-y-1">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Industries Served</h2>
+              <p className="text-sm text-slate-600">
+                Dedicated industry workflows across high-velocity sales, hospitality, wellness, and enterprise operations.
               </p>
-              <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                <Button asChild variant="primary" size="default" className="w-full sm:w-auto">
-                  <Link href="/pricing/calculator/">
-                    <Sparkles className="mr-2 h-4 w-4 text-emerald-300" aria-hidden="true" />
-                    <span>Open Interactive Calculator</span>
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="default" className="w-full sm:w-auto border-slate-700 text-slate-200 bg-slate-800 hover:bg-slate-700 hover:text-white">
-                  <Link href="/pricing/">
-                    View Pricing Plans
-                  </Link>
-                </Button>
-              </div>
             </div>
+            <Link href="/industry/" className="text-sm font-semibold text-blue-600 hover:underline">
+              View All Industry Blueprints &rarr;
+            </Link>
+          </div>
 
-            <div className="bg-slate-800/80 rounded-xl p-6 border border-slate-700 space-y-4">
-              <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                Mathematical Pulse Comparison Example
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 text-xs">
+            <Link href="/products/salon-software/" className="rounded-xl border border-rose-200 bg-rose-50/30 p-4 hover:border-rose-300 font-semibold text-slate-900">
+              Salons, Spas &amp; Clinics &rarr;
+            </Link>
+            <Link href="/products/restaurant-pos/" className="rounded-xl border border-amber-200 bg-amber-50/30 p-4 hover:border-amber-300 font-semibold text-slate-900">
+              Restaurants &amp; Cafes &rarr;
+            </Link>
+            <Link href="/industry/real-estate/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900">
+              Real Estate &rarr;
+            </Link>
+            <Link href="/industry/healthcare/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900">
+              Healthcare &rarr;
+            </Link>
+            <Link href="/industry/financial-services/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900">
+              BFSI &amp; Lending &rarr;
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* 11 & 12. Why Choose Hanva & How Hanva Works */}
+      <section className="py-12 bg-slate-50 border-y border-slate-100">
+        <Container className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-slate-900">Why Choose Hanva Technologies</h2>
+            <ul className="space-y-3 text-sm text-slate-700">
+              <li className="flex items-start gap-2.5">
+                <ShieldCheck className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" aria-hidden="true" />
+                <span><strong>Integrated Portfolio:</strong> SaaS software, custom engineering, digital marketing, and telecom under one accountable team.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <ShieldCheck className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" aria-hidden="true" />
+                <span><strong>Built for Indian Operations:</strong> GST-compliant billing, UPI QR support, and TRAI DLT-aware telephony workflows.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <ShieldCheck className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" aria-hidden="true" />
+                <span><strong>Transparent Scoping:</strong> Contact-based pricing aligned to your exact seats, outlets, or project deliverables.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-slate-900">How Hanva Works</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div className="rounded-xl border border-slate-200 bg-white p-4 space-y-1">
+                <div className="font-mono font-bold text-blue-600">01. ENQUIRY</div>
+                <div className="font-semibold text-slate-900">WhatsApp or Discovery Form</div>
+                <div className="text-slate-600">Share your business category and operational goals.</div>
               </div>
-              <div className="space-y-3 text-xs">
-                <div className="p-3.5 rounded-lg bg-slate-900/90 border border-slate-800 space-y-2">
-                  <div className="flex justify-between items-center text-slate-400">
-                    <span>Average Call Duration</span>
-                    <strong className="text-slate-200">42 Seconds</strong>
-                  </div>
-                  <div className="flex justify-between items-center text-slate-400">
-                    <span>Illustrative 60s Pulse Baseline</span>
-                    <span className="text-red-400 font-semibold">60 Seconds Billed (1 pulse)</span>
-                  </div>
-                  <div className="flex justify-between items-center text-slate-400">
-                    <span>Hanva 15s Pulse Option</span>
-                    <span className="text-emerald-400 font-semibold">45 Seconds Billed (3 pulses)</span>
-                  </div>
-                </div>
-                <p className="text-[11px] text-slate-400 leading-normal">
-                  *Example based on an outbound OBD campaign. Comparison assumes an equivalent base rate of ₹0.60/min. Actual billing depends on selected plan, carrier trunking, and formal service agreement.
-                </p>
+              <div className="rounded-xl border border-slate-200 bg-white p-4 space-y-1">
+                <div className="font-mono font-bold text-blue-600">02. WALKTHROUGH</div>
+                <div className="font-semibold text-slate-900">Guided Product Demo or Scope</div>
+                <div className="text-slate-600">Evaluate Hanva CRM, Salon, POS, or custom architecture.</div>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-white p-4 space-y-1">
+                <div className="font-mono font-bold text-blue-600">03. DEPLOYMENT</div>
+                <div className="font-semibold text-slate-900">Onboarding &amp; Configuration</div>
+                <div className="text-slate-600">Configure workflows, menus, roles, or campaign pipelines.</div>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-white p-4 space-y-1">
+                <div className="font-mono font-bold text-blue-600">04. GROWTH</div>
+                <div className="font-semibold text-slate-900">Support &amp; Optimization</div>
+                <div className="text-slate-600">Ongoing technical support and acquisition scaling.</div>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* 5. Direct Conversion Consultation Section */}
-      <section className="py-6">
+      {/* 13. Frequently Asked Questions */}
+      <section>
+        <Container className="max-w-4xl space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            Frequently Asked Questions
+          </h2>
+          <FAQAccordion items={homeFaqs} />
+        </Container>
+      </section>
+
+      {/* 14. Final WhatsApp Enquiry CTA */}
+      <section>
         <Container>
-          <div className="rounded-2xl border border-blue-200 bg-blue-50/60 p-8 sm:p-10 text-center space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-              Ready to Upgrade Your Telecom &amp; Sales Workflow?
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
-              Speak directly with our Bengaluru telephony engineers. We assist with statutory KYC verification, number allocation, and CRM setup.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
-                <TrackedDemoLink
-                href="/company/contact/"
-                ctaLocation="home_bottom"
-                ctaLabelKey="request_sales_consultation"
-               
-              >
-                  Request Sales Consultation
-                </TrackedDemoLink>
+          <div className="rounded-2xl bg-slate-900 text-white p-8 sm:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                Ready to Discuss Your Software, Marketing, or Telephony Needs?
+              </h2>
+              <p className="text-sm sm:text-base text-slate-300">
+                Contact us for pricing and a personalized product demonstration on WhatsApp.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+              <Button asChild size="lg" className="bg-[#25D366] text-slate-950 hover:bg-[#20BD5A] font-semibold">
+                <TrackedWhatsAppLink
+                  href={generalWhatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ctaLocation="home_bottom"
+                  contextRef="/"
+                >
+                  <MessageSquare className="mr-2 h-4 w-4" aria-hidden="true" />
+                  <span>Enquire on WhatsApp</span>
+                </TrackedWhatsAppLink>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-slate-300 w-full sm:w-auto whitespace-normal h-auto min-h-[48px] py-2.5 px-6">
-                <TrackedPhoneLink
-                href={`tel:${CONTACT_CONFIG.phoneTel}`}
-                ctaLocation="home_bottom"
-               
-              >
-                  <Phone className="mr-2 h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
-                  <span>Call: {CONTACT_CONFIG.phoneDisplay}</span>
-                </TrackedPhoneLink>
+              <Button asChild variant="outline" size="lg" className="border-slate-600 text-white hover:bg-slate-800">
+                <Link href="/company/contact/">Contact Form</Link>
               </Button>
             </div>
           </div>

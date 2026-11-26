@@ -5,7 +5,22 @@ export const metadata = {
   description:
     "Professional IVR service provider in India. Multi-level voice menus, department routing, missed call lead capture, and automated CRM synchronization.",
   alternates: {
-    canonical: "https://hanva.in/products/ivr-system/",
+    canonical: "https://www.hanva.in/products/ivr-system/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/ivr-system/",
+    siteName: "Hanva Technologies",
+    title: "IVR Service Provider in India — Smart Cloud IVR Solutions | Hanva Technologies",
+    description: "Professional IVR service provider in India. Multi-level voice menus, department routing, missed call lead capture, and automated CRM synchronization.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "IVR Service Provider in India — Smart Cloud IVR Solutions" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IVR Service Provider in India — Smart Cloud IVR Solutions | Hanva Technologies",
+    description: "Professional IVR service provider in India. Multi-level voice menus, department routing, missed call lead capture, and automated CRM synchronization.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

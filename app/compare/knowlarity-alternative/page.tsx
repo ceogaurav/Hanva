@@ -2,11 +2,26 @@ import * as React from "react";
 import { CompareLayout } from "@/components/shared/compare-layout";
 
 export const metadata = {
-  title: "Knowlarity Alternative in India — Modern IVR & Sales CRM | Hanva",
+  title: "Knowlarity Alternative in India — Modern IVR & Sales CRM",
   description:
     "Seeking a Knowlarity SuperReceptionist alternative? Compare Hanva's modern cloud telephony, progressive auto-dialer, and transparent pulse billing.",
   alternates: {
-    canonical: "https://hanva.in/compare/knowlarity-alternative/",
+    canonical: "https://www.hanva.in/compare/knowlarity-alternative/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/compare/knowlarity-alternative/",
+    siteName: "Hanva Technologies",
+    title: "Knowlarity Alternative in India — Modern IVR & Sales CRM | Hanva | Hanva Technologies",
+    description: "Seeking a Knowlarity SuperReceptionist alternative? Compare Hanva's modern cloud telephony, progressive auto-dialer, and transparent pulse billing.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Knowlarity Alternative in India — Modern IVR & Sales CRM | Hanva" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Knowlarity Alternative in India — Modern IVR & Sales CRM | Hanva | Hanva Technologies",
+    description: "Seeking a Knowlarity SuperReceptionist alternative? Compare Hanva's modern cloud telephony, progressive auto-dialer, and transparent pulse billing.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -16,7 +31,7 @@ const knowlarityCompareSchema = {
   name: "Hanva vs Knowlarity Alternative Comparison",
   description:
     "Objective comparison between Knowlarity SuperReceptionist and Hanva integrated cloud telephony and telecalling CRM in India.",
-  url: "https://hanva.in/compare/knowlarity-alternative/",
+  url: "https://www.hanva.in/compare/knowlarity-alternative/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

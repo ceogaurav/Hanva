@@ -24,24 +24,24 @@ export const metadata = {
   description:
     "Tailored telephony and sales automation architectures for Indian Real Estate, Healthcare, EdTech, BFSI, Insurance, Automobile, Logistics, and Recruitment.",
   alternates: {
-    canonical: "https://hanva.in/industry/",
+    canonical: "https://www.hanva.in/industry/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/",
+    url: "https://www.hanva.in/industry/",
     siteName: "Hanva Technologies",
     title: "Industry Cloud Telephony & CRM Solutions in India | Hanva Technologies",
     description:
       "Tailored telephony and sales automation architectures for Indian Real Estate, Healthcare, EdTech, BFSI, Insurance, Automobile, Logistics, and Recruitment.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Industry Solutions" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Industry Solutions" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Industry Cloud Telephony & CRM Solutions in India | Hanva Technologies",
     description:
       "Tailored telephony and sales automation architectures for Indian Real Estate, Healthcare, EdTech, BFSI, Insurance, Automobile, Logistics, and Recruitment.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -50,7 +50,7 @@ const industryHubSchema = {
   "@type": "CollectionPage",
   name: "Hanva Industry Telephony & CRM Solutions",
   description: "Specialized cloud communication architectures for Indian enterprise sectors including BFSI, Real Estate, Healthcare, Automotive, Logistics, and Education.",
-  url: "https://hanva.in/industry/",
+  url: "https://www.hanva.in/industry/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
@@ -182,17 +182,21 @@ const industries = [
 
 export default function IndustryPage() {
   return (
-    <div className="py-10 lg:py-16 bg-white min-h-screen">
+    <div className="pt-10 pb-28 lg:py-16 bg-white min-h-screen">
       <SchemaOrg data={industryHubSchema} />
 
       <Container className="space-y-12">
         {/* Breadcrumb Hierarchy */}
-        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-blue-600 transition-colors">
-            Home
-          </Link>
-          <span className="text-slate-300">/</span>
-          <span className="text-slate-900 font-medium">Industries</span>
+        <nav aria-label="Breadcrumb">
+          <ol className="flex items-center space-x-2 text-xs text-slate-600">
+            <li>
+              <Link href="/" className="hover:text-blue-600 transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-slate-400">/</li>
+            <li className="text-slate-900 font-medium" aria-current="page">Industries</li>
+          </ol>
         </nav>
 
         {/* Hero Section */}
@@ -221,7 +225,7 @@ export default function IndustryPage() {
                   <Badge variant="secondary" className="w-fit text-[11px] mb-1">
                     {ind.badge}
                   </Badge>
-                  <CardTitle className="text-lg text-slate-900">{ind.title}</CardTitle>
+                  <CardTitle as="h2" className="text-lg text-slate-900">{ind.title}</CardTitle>
                   <CardDescription className="text-xs text-slate-600 leading-relaxed mt-1">
                     {ind.description}
                   </CardDescription>
@@ -229,7 +233,7 @@ export default function IndustryPage() {
 
                 <CardContent className="space-y-4 flex-1">
                   <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 text-xs">
-                    <span className="text-slate-400 block text-[10px] uppercase tracking-wider">Benchmark Operational Impact</span>
+                    <span className="text-slate-600 block text-[10px] uppercase tracking-wider">Benchmark Operational Impact</span>
                     <strong className="text-blue-700 font-semibold">{ind.metrics}</strong>
                   </div>
 
@@ -256,6 +260,51 @@ export default function IndustryPage() {
               </Card>
             );
           })}
+        </div>
+
+        {/* Additional SaaS & IT Solutions by Vertical */}
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 space-y-5">
+          <div className="space-y-1">
+            <Badge variant="secondary" className="text-xs">Expanded Vertical Solutions</Badge>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+              Dedicated SaaS &amp; IT Solutions for Hospitality, Wellness &amp; Growth Teams
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600">
+              Explore our specialized SaaS platforms and custom services beyond telecom-only workflows.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <Link
+              href="/products/salon-software/"
+              className="rounded-xl border border-rose-200 bg-white p-4 hover:border-rose-400 transition-colors space-y-1"
+            >
+              <div className="font-bold text-slate-900">Salons, Spas &amp; Clinics &rarr;</div>
+              <p className="text-slate-600">Hanva Salon Software for appointments, GST billing, commissions, and inventory.</p>
+            </Link>
+            <Link
+              href="/products/restaurant-pos/"
+              className="rounded-xl border border-amber-200 bg-white p-4 hover:border-amber-400 transition-colors space-y-1"
+            >
+              <div className="font-bold text-slate-900">Restaurants, Cafes &amp; QSRs &rarr;</div>
+              <p className="text-slate-600">Hanva Restaurant POS for KOT/KDS, QR ordering, UPI QR, and recipe stock.</p>
+            </Link>
+            <Link
+              href="/products/crm/"
+              className="rounded-xl border border-blue-200 bg-white p-4 hover:border-blue-400 transition-colors space-y-1"
+            >
+              <div className="font-bold text-slate-900">Sales &amp; Telecalling Teams &rarr;</div>
+              <p className="text-slate-600">Hanva CRM for lead pipelines, built-in IVR, C2C calling, and WhatsApp.</p>
+            </Link>
+            <Link
+              href="/software-development/"
+              className="rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-400 transition-colors space-y-1"
+            >
+              <div className="font-bold text-slate-900">Custom IT &amp; Marketing &rarr;</div>
+              <p className="text-slate-600">
+                Custom software engineering &amp; <span className="text-blue-600">Digital Marketing</span> services.
+              </p>
+            </Link>
+          </div>
         </div>
 
         {/* Strategic Vertical Consultation Banner */}

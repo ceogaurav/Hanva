@@ -1,0 +1,93 @@
+[
+  {
+    "repo": "AgriciDaniel/claude-seo",
+    "status": 200,
+    "desc": "Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions for live SEO data.",
+    "pushed_at": "2026-11-26T04:20:57Z",
+    "stars": 32494
+  },
+  {
+    "repo": "beyondtahir/beyondseo",
+    "status": 200,
+    "desc": "Your AI SEO house. Audit your website, write useful content, compare competitors and plan backlinks inside your AI assistant. Free and open source.",
+    "pushed_at": "2026-11-25T19:34:24Z",
+    "stars": 286
+  },
+  {
+    "repo": "affaan-m/ECC",
+    "status": 200,
+    "desc": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+    "pushed_at": "2026-11-23T04:55:48Z",
+    "stars": 310944
+  },
+  {
+    "repo": "Leonxlnx/taste-skill",
+    "status": 200,
+    "desc": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pages",
+    "pushed_at": "2026-11-26T01:29:24Z",
+    "stars": 121741
+  },
+  {
+    "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+    "status": 200,
+    "desc": "An AI skill that provides design intelligence for building professional UI/UX across multiple platforms.",
+    "pushed_at": "2026-11-25T22:08:31Z",
+    "stars": 154401
+  },
+  {
+    "repo": "kylezantos/design-motion-principles",
+    "status": 200,
+    "desc": "A motion design skill with two modes \u2014 build interactive components with purposeful motion, or audit existing animations. Context-aware, per-designer guidance distilled from the published work of Emil Kowalski, Jakub Krehel, and Jhey Tompkins.",
+    "pushed_at": "2026-05-30T23:17:35Z",
+    "stars": 1657
+  },
+  {
+    "repo": "Jakubantalik/transitions.dev",
+    "status": 200,
+    "desc": "UI motion agent, a library of 43+ crafted transitions, a skill that fits your workflow.",
+    "pushed_at": "2026-11-24T19:14:19Z",
+    "stars": 6521
+  },
+  {
+    "repo": "pbakaus/impeccable",
+    "status": 200,
+    "desc": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+    "pushed_at": "2026-11-26T08:28:41Z",
+    "stars": 117170
+  },
+  {
+    "repo": "microsoft/playwright-cli",
+    "status": 200,
+    "desc": "CLI for common Playwright actions. Record and generate Playwright code, inspect selectors and take screenshots.",
+    "pushed_at": "2026-11-24T20:31:25Z",
+    "stars": 15483
+  },
+  {
+    "repo": "greensock/gsap-skills",
+    "status": 200,
+    "desc": "Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage.",
+    "pushed_at": "2026-07-29T17:36:08Z",
+    "stars": 19086
+  },
+  {
+    "repo": "DavidHDev/react-bits",
+    "status": 200,
+    "desc": "The largest open-source library of animated, interactive, and customizable React & Next.js components for building standout web products and experiences. Built for humans and AI agents.",
+    "pushed_at": "2026-11-26T08:41:36Z",
+    "stars": 52738
+  },
+  {
+    "repo": "Manavarya09/design-extract",
+    "status": 200,
+    "desc": "Extract any website's complete design system with one command. DTCG tokens, semantic+primitive+composite, MCP server for Claude Code/Cursor/Windsurf, multi-platform emitters (iOS SwiftUI, Android Compose, Flutter, WordPress), Tailwind v4, Figma variables, shadcn/ui, CSS health audit, WCAG remediation, Chrome extension. MIT, Playwright, Node 20+.",
+    "pushed_at": "2026-11-25T07:52:15Z",
+    "stars": 5216
+  },
+  {
+    "repo": "morluto/rea",
+    "status": 200,
+    "desc": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+    "pushed_at": "2026-11-26T09:31:44Z",
+    "stars": 478998
+  }
+]

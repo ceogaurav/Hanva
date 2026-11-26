@@ -5,16 +5,30 @@ export const metadata = {
   description:
     "Specialized CRM for telecalling teams in India. 2-click call dispositions, follow-up calendar alerts, SIM and cloud calling, and daily agent KPI tracking.",
   alternates: {
-    canonical: "https://hanva.in/products/telecalling-crm/",
+    canonical: "https://www.hanva.in/products/telecalling-crm/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/telecalling-crm/",
+    siteName: "Hanva Technologies",
+    title: "Telecalling CRM Software India — Outbound Inside Sales Operations | Hanva Technologies",
+    description: "Specialized CRM for telecalling teams in India. 2-click call dispositions, follow-up calendar alerts, SIM and cloud calling, and daily agent KPI tracking.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Telecalling CRM Software India — Outbound Inside Sales Operations" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Telecalling CRM Software India — Outbound Inside Sales Operations | Hanva Technologies",
+    description: "Specialized CRM for telecalling teams in India. 2-click call dispositions, follow-up calendar alerts, SIM and cloud calling, and daily agent KPI tracking.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
 const telecallingSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "Service",
   name: "Hanva Telecalling Sales CRM",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web Application / Android App",
+  serviceType: "Enterprise Cloud Telephony & CRM Software",
   provider: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

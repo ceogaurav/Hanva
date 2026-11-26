@@ -25,24 +25,24 @@ export const metadata = {
   description:
     "Practical architectural guides, dialer comparisons, pricing models, and compliance handbooks for Indian business leaders, sales directors, and telecalling teams.",
   alternates: {
-    canonical: "https://hanva.in/resources/",
+    canonical: "https://www.hanva.in/resources/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/resources/",
+    url: "https://www.hanva.in/resources/",
     siteName: "Hanva Technologies",
     title: "Business Telephony, IVR & CRM Knowledge Hub",
     description:
       "Practical architectural guides, dialer comparisons, pricing models, and compliance handbooks for Indian businesses.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Knowledge Hub" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Knowledge Hub" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Business Telephony, IVR & CRM Knowledge Hub",
     description:
       "Practical architectural guides, dialer comparisons, pricing models, and compliance handbooks for Indian businesses.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -52,7 +52,7 @@ const resourcesHubSchema = {
   name: "Hanva Business Telephony & CRM Knowledge Hub",
   description:
     "Comprehensive technical and operational guides covering cloud telephony, smart IVR, outbound dialers, telecalling CRM, and WhatsApp Business API.",
-  url: "https://hanva.in/resources/",
+  url: "https://www.hanva.in/resources/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
@@ -93,6 +93,46 @@ const pillars = [
 ];
 
 const articles = [
+  {
+    slug: "/resources/salon-management-software-guide/",
+    pillar: "Salon Software",
+    title: "How to Choose Salon Management Software in India: Complete Buying Guide",
+    description:
+      "Complete evaluation guide covering GST salon billing, online booking mini-sites, staff commissions, payroll, and service-to-product auto-consumption.",
+    readTime: "11 min read",
+    date: "November 2026",
+    keyTopics: ["GST Salon Billing", "Online Booking", "Staff Commissions", "Auto-Consumption Stock"],
+  },
+  {
+    slug: "/resources/restaurant-pos-kot-inventory-guide/",
+    pillar: "Restaurant POS",
+    title: "Restaurant POS Software in India: Billing, KOT, Inventory and Buying Guide",
+    description:
+      "Compare POS billing, Kitchen Order Tickets (KOT), Kitchen Display Systems (KDS), India CGST/SGST splits, UPI QR, QR ordering, and recipe inventory.",
+    readTime: "12 min read",
+    date: "November 2026",
+    keyTopics: ["POS vs KOT vs KDS", "CGST & SGST", "Recipe BOM Stock", "Cafes & Cloud Kitchens"],
+  },
+  {
+    slug: "/resources/crm-with-ivr-vs-telecalling-crm/",
+    pillar: "CRM & IVR",
+    title: "CRM with IVR vs Telecalling CRM: What's the Difference?",
+    description:
+      "Understand when businesses need a full CRM with built-in IVR and WhatsApp integration vs a dedicated outbound telecalling dialer console.",
+    readTime: "10 min read",
+    date: "November 2026",
+    keyTopics: ["CRM Pipelines", "Built-in IVR", "C2C & Auto-Dialing", "Real Estate & EdTech"],
+  },
+  {
+    slug: "/resources/saas-vs-custom-crm-erp-guide/",
+    pillar: "Software Strategy",
+    title: "SaaS vs Custom CRM and ERP: Which Is Right for Your Business?",
+    description:
+      "Objective decision guide comparing off-the-shelf SaaS subscriptions against bespoke CRM/ERP development across cost, speed, and ownership.",
+    readTime: "11 min read",
+    date: "November 2026",
+    keyTopics: ["Buy vs Build", "TCO & Maintenance", "Custom Workflows", "Data Ownership"],
+  },
   {
     slug: "/resources/what-is-cloud-telephony/",
     pillar: "Cloud Telephony & IVR",
@@ -358,10 +398,16 @@ export default function ResourcesHubPage() {
               </Link>
             </Button>
             <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <TrackedWhatsAppLink
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                ctaLocation="article_banner"
+                contextRef="/resources/"
+              >
                 <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" />
                 Chat with Technical Team
-              </a>
+              </TrackedWhatsAppLink>
             </Button>
           </div>
         </div>

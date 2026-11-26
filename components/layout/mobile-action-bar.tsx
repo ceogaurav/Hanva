@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone, MessageSquare, Calendar, Sparkles } from "lucide-react";
 import { CONTACT_CONFIG } from "@/lib/config";
-import { trackConversionEvent } from "@/lib/analytics";
+import { trackAnalyticsEvent, trackWhatsAppClick } from "@/lib/analytics";
 
 export function MobileActionBar() {
   const pathname = usePathname();
@@ -24,8 +24,9 @@ export function MobileActionBar() {
         <a
           href={`tel:${CONTACT_CONFIG.phoneTel}`}
           onClick={() =>
-            trackConversionEvent("phone_cta_click", {
-              cta_location: "mobile_action_bar",
+            trackAnalyticsEvent("phone_click", {
+              cta_location: "floating_button",
+              cta_surface: "mobile_action_bar",
               target_channel: "sales_desk",
             })
           }
@@ -41,9 +42,9 @@ export function MobileActionBar() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() =>
-            trackConversionEvent("whatsapp_cta_click", {
-              cta_location: "mobile_action_bar",
-              context_ref: pathname || "/",
+            trackWhatsAppClick({
+              ctaLocation: "floating_button",
+              contextRef: pathname || "/",
             })
           }
           className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-[#25D366] text-slate-950 text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-[#20BD5A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-1"
@@ -57,8 +58,9 @@ export function MobileActionBar() {
           <Link
             href="/pricing/calculator/"
             onClick={() =>
-              trackConversionEvent("demo_cta_click", {
-                cta_location: "mobile_action_bar",
+              trackAnalyticsEvent("demo_cta_click", {
+                cta_location: "floating_button",
+                cta_surface: "mobile_action_bar",
                 cta_label_key: "pulse_calculator",
                 target_path: "/pricing/calculator/",
               })
@@ -73,17 +75,18 @@ export function MobileActionBar() {
           <Link
             href="/company/contact/"
             onClick={() =>
-              trackConversionEvent("demo_cta_click", {
-                cta_location: "mobile_action_bar",
+              trackAnalyticsEvent("demo_cta_click", {
+                cta_location: "floating_button",
+                cta_surface: "mobile_action_bar",
                 cta_label_key: "book_demo",
                 target_path: "/company/contact/",
               })
             }
             className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-blue-600 text-white text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-1"
-            aria-label="Book Demo Consultation"
+            aria-label="Request Demo Enquiry"
           >
             <Calendar className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
-            <span className="truncate">Book Demo</span>
+            <span className="truncate">Request Demo</span>
           </Link>
         )}
       </div>

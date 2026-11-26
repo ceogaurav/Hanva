@@ -11,7 +11,22 @@ export const metadata = {
   description:
     "Learn about Hanva Technologies Private Limited, an Indian enterprise cloud telephony and CRM software company incorporated in Bengaluru (CIN: U78100KA2025PTC205168).",
   alternates: {
-    canonical: "https://hanva.in/company/about/",
+    canonical: "https://www.hanva.in/company/about/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/company/about/",
+    siteName: "Hanva Technologies",
+    title: "About Hanva Technologies — Corporate Profile & Telecom Infrastructure | Hanva Technologies",
+    description: "Learn about Hanva Technologies Private Limited, an Indian enterprise cloud telephony and CRM software company incorporated in Bengaluru (CIN: U78100KA2025PTC205168).",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "About Hanva Technologies — Corporate Profile & Telecom Infrastructure" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Hanva Technologies — Corporate Profile & Telecom Infrastructure | Hanva Technologies",
+    description: "Learn about Hanva Technologies Private Limited, an Indian enterprise cloud telephony and CRM software company incorporated in Bengaluru (CIN: U78100KA2025PTC205168).",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -21,13 +36,13 @@ const aboutSchema = {
   name: "About Hanva Technologies Private Limited",
   description:
     "Official corporate profile, statutory registration details, and telecom infrastructure of Hanva Technologies Private Limited.",
-  url: "https://hanva.in/company/about/",
+  url: "https://www.hanva.in/company/about/",
   mainEntity: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
     legalName: "Hanva Technologies Private Limited",
-    url: "https://hanva.in",
-    logo: "https://hanva.in/logo.png",
+    url: "https://www.hanva.in",
+    logo: "https://www.hanva.in/logo.png",
     foundingDate: "2025-07-07",
     address: {
       "@type": "PostalAddress",
@@ -71,7 +86,7 @@ export default function AboutPage() {
         {/* Corporate Statutory Registry Card */}
         <Card className="border-slate-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-xl flex items-center">
+            <CardTitle as="h2" className="text-xl flex items-center">
               <Building className="h-5 w-5 text-blue-600 mr-2" />
               Statutory Corporate Registry & Governance
             </CardTitle>
@@ -110,7 +125,7 @@ export default function AboutPage() {
         {/* Telecom Gateway Architecture */}
         <Card className="border-slate-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-xl flex items-center">
+            <CardTitle as="h2" className="text-xl flex items-center">
               <Server className="h-5 w-5 text-emerald-600 mr-2" />
               Carrier Gateway Interconnects & DID Allocation
             </CardTitle>
@@ -139,7 +154,7 @@ export default function AboutPage() {
         {/* Founding Leadership & Vision */}
         <Card className="border-slate-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-xl flex items-center">
+            <CardTitle as="h2" className="text-xl flex items-center">
               <Users className="h-5 w-5 text-blue-600 mr-2" />
               Leadership & Engineering Philosophy
             </CardTitle>

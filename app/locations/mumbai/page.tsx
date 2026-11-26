@@ -2,28 +2,28 @@ import * as React from "react";
 import { LocationLayout } from "@/components/shared/location-layout";
 
 export const metadata = {
-  title: "Cloud Telephony & Telecalling CRM in Mumbai (022 Virtual Numbers)",
+  title: "BFSI CRM, SaaS & 022 Telephony Mumbai",
   description:
-    "Enterprise cloud telephony, 022 virtual numbers, and telecalling CRM for Mumbai BFSI, NBFC lending desks, insurance brokers, and logistics dispatchers. Compliant stereo call recording.",
+    "Remote SaaS, digital marketing, software engineering, and 022 cloud telephony for Mumbai and MMR BFSI desks, real estate teams, salons, and restaurants.",
   alternates: {
-    canonical: "https://hanva.in/locations/mumbai/",
+    canonical: "https://www.hanva.in/locations/mumbai/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/locations/mumbai/",
+    url: "https://www.hanva.in/locations/mumbai/",
     siteName: "Hanva Technologies",
-    title: "Cloud Telephony & Telecalling CRM in Mumbai | Hanva Technologies",
+    title: "BFSI CRM, SaaS & 022 Telephony Mumbai",
     description:
-      "Enterprise cloud telephony, 022 virtual numbers, and telecalling CRM for Mumbai BFSI, NBFC lending desks, insurance brokers, and logistics dispatchers.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Mumbai Telephony Hub" }],
+      "Remote cloud CRM, SaaS products, digital marketing, and 022 telephony solutions for Mumbai enterprises.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Mumbai Remote Coverage" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cloud Telephony & Telecalling CRM in Mumbai | Hanva Technologies",
+    title: "BFSI CRM, SaaS & 022 Telephony Mumbai",
     description:
-      "Enterprise cloud telephony, 022 virtual numbers, and telecalling CRM for Mumbai BFSI, NBFC lending desks, insurance brokers, and logistics dispatchers.",
-    images: ["https://hanva.in/og-image.png"],
+      "Remote SaaS, IT services, and 022 cloud telephony coverage for Mumbai.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -32,27 +32,27 @@ const mumbaiServiceSchema = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://hanva.in/locations/mumbai/#webpage",
-      url: "https://hanva.in/locations/mumbai/",
+      "@id": "https://www.hanva.in/locations/mumbai/#webpage",
+      url: "https://www.hanva.in/locations/mumbai/",
       name: "Cloud Telephony & Telecalling CRM in Mumbai — Hanva",
       description:
         "Enterprise cloud telephony infrastructure, 022 virtual numbers, and telecalling CRM for Mumbai financial services, brokerages, and logistics enterprises.",
       isPartOf: {
         "@type": "WebSite",
-        "@id": "https://hanva.in/#website",
+        "@id": "https://www.hanva.in/#website",
         name: "Hanva Technologies",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
       },
     },
     {
       "@type": "Service",
-      "@id": "https://hanva.in/locations/mumbai/#service",
+      "@id": "https://www.hanva.in/locations/mumbai/#service",
       name: "Cloud Telephony & Business Communication Solutions — Mumbai",
       serviceType: "Cloud Telephony, Smart IVR, 022 Virtual Numbers, and Telecalling CRM",
       provider: {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
         telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
@@ -173,6 +173,15 @@ export default function MumbaiLocationPage() {
           description: "Deploy shared team inboxes, document intake, and verified business messaging templates.",
           href: "/products/whatsapp-crm/",
         },
+      ]}
+      remoteEngagementNote="Hanva serves Mumbai and MMR enterprises remotely from our Bengaluru headquarters via digital onboarding, WhatsApp consultation (+91 8423711043), and cloud delivery across BFSI, real estate, hospitality, wellness, and retail."
+      solutionsPortfolio={[
+        { category: "SaaS Product", title: "Hanva CRM", description: "Lead management, KYC document vault, C2C calling, IVR & browser recording playback.", href: "/products/crm/" },
+        { category: "SaaS Product", title: "Hanva Salon Software", description: "Appointments, GST billing, memberships & commissions for Mumbai studios and spas.", href: "/products/salon-software/" },
+        { category: "SaaS Product", title: "Hanva Restaurant POS", description: "Fast dine-in/takeaway POS, KDS, UPI QR & CGST/SGST receipts for Mumbai F&B.", href: "/products/restaurant-pos/" },
+        { category: "IT Service", title: "Digital Marketing", description: "Performance Google Ads, technical SEO & social media retainers for high-intent leads.", href: "/digital-marketing/" },
+        { category: "IT Service", title: "Software Development", description: "Custom CRM/ERP, web applications, e-commerce portals & API integrations.", href: "/software-development/" },
+        { category: "Buyer Guide", title: "CRM with IVR vs Telecalling", description: "Determine the right calling & lead architecture for financial or sales teams.", href: "/resources/crm-with-ivr-vs-telecalling-crm/" },
       ]}
       relatedIndustries={[
         {

@@ -1,7 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArticleLayout } from "@/components/shared/article-layout";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell,
+  TableCaption, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Server, ArrowRight, ShieldCheck, PhoneCall, Network, AlertCircle, HelpCircle } from "lucide-react";
 
@@ -10,14 +11,20 @@ export const metadata = {
   description:
     "Explore cloud telephony architecture, virtual PBX systems, SIP trunking, and how Indian businesses replace legacy on-premise EPABX hardware without capital expense.",
   alternates: {
-    canonical: "https://hanva.in/resources/what-is-cloud-telephony/",
+    canonical: "https://www.hanva.in/resources/what-is-cloud-telephony/",
   },
   openGraph: {
     title: "What Is Cloud Telephony? The Complete Indian Business Guide",
     description:
       "Understand cloud PBX architecture, virtual landline DIDs, SIP trunking, and how modern softphones replace legacy EPABX hardware without capital expenditure.",
-    url: "https://hanva.in/resources/what-is-cloud-telephony/",
+    url: "https://www.hanva.in/resources/what-is-cloud-telephony/",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What Is Cloud Telephony? The Complete Indian Business Guide | Hanva Technologies",
+    description: "Explore cloud telephony architecture, virtual PBX systems, SIP trunking, and how Indian businesses replace legacy on-premise EPABX hardware without capital expense.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -30,22 +37,22 @@ const articleSchema = {
   author: {
     "@type": "Organization",
     name: "Hanva Engineering & Editorial Board",
-    url: "https://hanva.in/company/about/",
+    url: "https://www.hanva.in/company/about/",
   },
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
-    url: "https://hanva.in",
+    url: "https://www.hanva.in",
     logo: {
       "@type": "ImageObject",
-      url: "https://hanva.in/icon.png",
+      url: "https://www.hanva.in/icon.png",
     },
   },
   datePublished: "2026-11-25",
   dateModified: "2026-11-25",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://hanva.in/resources/what-is-cloud-telephony/",
+    "@id": "https://www.hanva.in/resources/what-is-cloud-telephony/",
   },
 };
 
@@ -196,41 +203,42 @@ export default function WhatIsCloudTelephonyPage() {
 
         <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
           <Table>
+            <TableCaption className="sr-only">Technical and commercial comparison table</TableCaption>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold text-slate-900">Evaluation Dimension</TableHead>
-                <TableHead className="font-bold text-slate-900">Traditional On-Premise EPABX</TableHead>
-                <TableHead className="font-bold text-blue-700 bg-blue-50/50">Cloud Telephony Platform</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Evaluation Dimension</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Traditional On-Premise EPABX</TableHead>
+                <TableHead scope="col" className="font-bold text-blue-700 bg-blue-50/50">Cloud Telephony Platform</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Capital Expenditure (CapEx)</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Capital Expenditure (CapEx)</th>
                 <TableCell>High (₹1.5L – ₹10L+ for server chassis, PRI cards, desk phones, cabling)</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Zero hardware cost; operational subscription model</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Deployment Timeline</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Deployment Timeline</th>
                 <TableCell>3 to 6 weeks for line laying, hardware delivery, and physical installation</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">24 to 48 hours following standard DoT KYC documentation</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Remote & Work-From-Home</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Remote & Work-From-Home</th>
                 <TableCell>Requires complex VPNs, fixed static IPs, or IP-PBX port forwarding</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Native browser WebRTC softphone or mobile SIM companion app</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Scaling Team Capacity</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Scaling Team Capacity</th>
                 <TableCell>Limited by physical PRI slots (typically in multiples of 30 lines)</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Instantly add or remove seat licenses as hiring fluctuates</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">CRM & API Integration</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">CRM & API Integration</th>
                 <TableCell>Difficult; requires specialized CTI middleware and local serial ports</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">REST APIs, webhooks, and native CRM lead ingestion out of the box</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Call Recording & Audits</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Call Recording & Audits</th>
                 <TableCell>Requires dedicated local hard drives; risk of hardware failure or data loss</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Automated encrypted cloud storage with search and role-based permissions</TableCell>
               </TableRow>

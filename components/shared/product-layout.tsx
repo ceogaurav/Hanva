@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
-import { SchemaOrg } from "@/components/shared/schema-org";
+import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG } from "@/lib/config";
 import {
@@ -53,7 +53,7 @@ export interface ProductLayoutProps {
   useCases: UseCaseItem[];
   ecosystemSynergies: { title: string; description: string; href: string }[];
   faqs: FAQItem[];
-  schemaData?: Record<string, any>;
+  schemaData?: Record<string, unknown>;
 }
 
 export function ProductLayout({
@@ -82,6 +82,7 @@ export function ProductLayout({
   return (
     <div className="flex flex-col gap-12 lg:gap-20 pb-28 lg:pb-20 bg-white">
       {schemaData && <SchemaOrg schema={schemaData} />}
+      <SchemaOrg data={buildBreadcrumbSchema(breadcrumbs)} />
 
       {/* Hero Section */}
       <section className="relative pt-10 lg:pt-16 pb-12 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-100">

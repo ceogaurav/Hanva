@@ -1,0 +1,100 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   HANVA_CLAIMS_REGISTRY.md
+	modified:   README.md
+	modified:   app/company/about/page.tsx
+	modified:   app/company/careers/page.tsx
+	modified:   app/company/contact/layout.tsx
+	modified:   app/company/contact/page.tsx
+	modified:   app/company/privacy-policy/page.tsx
+	modified:   app/company/security-and-trust/page.tsx
+	modified:   app/company/terms-of-service/page.tsx
+	modified:   app/compare/exotel-alternative/page.tsx
+	modified:   app/compare/knowlarity-alternative/page.tsx
+	modified:   app/compare/telecmi-alternative/page.tsx
+	modified:   app/industry/automobile/page.tsx
+	modified:   app/industry/education/page.tsx
+	modified:   app/industry/financial-services/page.tsx
+	modified:   app/industry/healthcare/page.tsx
+	modified:   app/industry/insurance/page.tsx
+	modified:   app/industry/logistics/page.tsx
+	modified:   app/industry/page.tsx
+	modified:   app/industry/real-estate/page.tsx
+	modified:   app/industry/recruitment/page.tsx
+	modified:   app/layout.tsx
+	modified:   app/locations/bengaluru/page.tsx
+	modified:   app/locations/chennai/page.tsx
+	modified:   app/locations/delhi-ncr/page.tsx
+	modified:   app/locations/hyderabad/page.tsx
+	modified:   app/locations/mumbai/page.tsx
+	modified:   app/locations/page.tsx
+	modified:   app/locations/pune/page.tsx
+	modified:   app/page.tsx
+	modified:   app/pricing/calculator/layout.tsx
+	modified:   app/pricing/calculator/page.tsx
+	modified:   app/pricing/page.tsx
+	modified:   app/products/auto-dialer/page.tsx
+	modified:   app/products/call-center-software/page.tsx
+	modified:   app/products/cloud-telephony/page.tsx
+	modified:   app/products/crm/page.tsx
+	modified:   app/products/ivr-system/page.tsx
+	modified:   app/products/page.tsx
+	modified:   app/products/predictive-dialer/page.tsx
+	modified:   app/products/smart-ivr/page.tsx
+	modified:   app/products/telecalling-crm/page.tsx
+	modified:   app/products/toll-free-numbers/page.tsx
+	modified:   app/products/virtual-numbers/page.tsx
+	modified:   app/products/whatsapp-crm/page.tsx
+	modified:   app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+	modified:   app/resources/cloud-telephony-pricing-guide/page.tsx
+	modified:   app/resources/dlt-compliance-guide/page.tsx
+	modified:   app/resources/how-ivr-systems-work/page.tsx
+	modified:   app/resources/page.tsx
+	modified:   app/resources/telecalling-crm-guide/page.tsx
+	modified:   app/resources/what-is-cloud-telephony/page.tsx
+	modified:   app/resources/whatsapp-business-api-guide/page.tsx
+	modified:   app/robots.ts
+	modified:   app/sitemap.ts
+	modified:   app/solutions/customer-support/page.tsx
+	modified:   app/solutions/enterprise/page.tsx
+	modified:   app/solutions/page.tsx
+	modified:   app/solutions/sales-automation/page.tsx
+	modified:   components/layout/footer.tsx
+	modified:   components/layout/header.tsx
+	modified:   components/layout/layout-shell.tsx
+	modified:   components/layout/mobile-action-bar.tsx
+	modified:   components/layout/mobile-drawer.tsx
+	modified:   components/shared/article-layout.tsx
+	modified:   components/shared/compare-layout.tsx
+	modified:   components/shared/location-layout.tsx
+	modified:   components/shared/product-layout.tsx
+	modified:   components/shared/schema-org.tsx
+	modified:   components/shared/solution-layout.tsx
+	modified:   components/ui/card.tsx
+	modified:   components/ui/input.tsx
+	modified:   components/ui/table.tsx
+	modified:   lib/analytics.ts
+	modified:   lib/config.ts
+	modified:   next.config.mjs
+	modified:   package.json
+	modified:   pnpm-lock.yaml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	app/digital-marketing/
+	app/products/restaurant-pos/
+	app/products/salon-software/
+	app/resources/crm-with-ivr-vs-telecalling-crm/
+	app/resources/restaurant-pos-kot-inventory-guide/
+	app/resources/saas-vs-custom-crm-erp-guide/
+	app/resources/salon-management-software-guide/
+	app/software-development/
+	components/shared/product-visual-placeholder.tsx
+	components/shared/service-layout.tsx
+	docs/
+
+no changes added to commit (use "git add" and/or "git commit -a")

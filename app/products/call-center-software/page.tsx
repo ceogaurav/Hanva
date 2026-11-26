@@ -5,16 +5,30 @@ export const metadata = {
   description:
     "Unified blended call center platform for Indian enterprises. Live supervisor wallboards, ACD routing, call recording audits, and QA analytics.",
   alternates: {
-    canonical: "https://hanva.in/products/call-center-software/",
+    canonical: "https://www.hanva.in/products/call-center-software/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/call-center-software/",
+    siteName: "Hanva Technologies",
+    title: "Cloud Call Center Software India — Inbound & Outbound Operations | Hanva Technologies",
+    description: "Unified blended call center platform for Indian enterprises. Live supervisor wallboards, ACD routing, call recording audits, and QA analytics.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Cloud Call Center Software India — Inbound & Outbound Operations" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cloud Call Center Software India — Inbound & Outbound Operations | Hanva Technologies",
+    description: "Unified blended call center platform for Indian enterprises. Live supervisor wallboards, ACD routing, call recording audits, and QA analytics.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
 const callCenterSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "Service",
   name: "Hanva Cloud Call Center Suite",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web Browser Application",
+  serviceType: "Enterprise Cloud Telephony & CRM Software",
   provider: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

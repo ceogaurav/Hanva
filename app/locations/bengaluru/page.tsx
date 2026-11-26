@@ -3,28 +3,28 @@ import { LocationLayout } from "@/components/shared/location-layout";
 import { CONTACT_CONFIG } from "@/lib/config";
 
 export const metadata = {
-  title: "Cloud Telephony & Telecalling CRM in Bengaluru (080 Virtual Numbers)",
+  title: "IT Solutions & 080 Cloud CRM Bengaluru",
   description:
-    "Enterprise cloud telephony, 080 virtual numbers, and telecalling CRM for Bengaluru tech startups, SaaS teams, and real estate developers. Local engineering support at our Garvebhavi Palya office.",
+    "Hanva Technologies Bengaluru HQ: Hanva CRM, Salon Software, Restaurant POS, custom software, digital marketing, and 080 cloud telephony from our Garvebhavi Palya office.",
   alternates: {
-    canonical: "https://hanva.in/locations/bengaluru/",
+    canonical: "https://www.hanva.in/locations/bengaluru/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/locations/bengaluru/",
+    url: "https://www.hanva.in/locations/bengaluru/",
     siteName: "Hanva Technologies",
-    title: "Cloud Telephony & Telecalling CRM in Bengaluru | Hanva Technologies",
+    title: "IT Solutions & 080 Cloud CRM Bengaluru",
     description:
-      "Enterprise cloud telephony, 080 virtual numbers, and telecalling CRM for Bengaluru tech startups, SaaS teams, and real estate developers.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Bengaluru Commercial Office" }],
+      "Hanva Technologies Bengaluru HQ offering SaaS products, custom engineering, digital marketing, and 080 cloud telephony.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Bengaluru Headquarters" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cloud Telephony & Telecalling CRM in Bengaluru | Hanva Technologies",
+    title: "IT Solutions & 080 Cloud CRM Bengaluru",
     description:
-      "Enterprise cloud telephony, 080 virtual numbers, and telecalling CRM for Bengaluru tech startups, SaaS teams, and real estate developers.",
-    images: ["https://hanva.in/og-image.png"],
+      "Hanva Technologies Bengaluru HQ: SaaS software, IT services, and 080 cloud telephony.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -33,11 +33,11 @@ const bengaluruHQSchema = {
   "@graph": [
     {
       "@type": "Corporation",
-      "@id": "https://hanva.in/#corporation",
+      "@id": "https://www.hanva.in/#corporation",
       name: "Hanva Technologies Private Limited",
       legalName: "Hanva Technologies Private Limited",
-      url: "https://hanva.in",
-      logo: "https://hanva.in/logo.png",
+      url: "https://www.hanva.in",
+      logo: "https://www.hanva.in/logo.png",
       telephone: "+91-8423711043",
       email: "info@hanva.in",
       identifier: "U78100KA2025PTC205168",
@@ -53,15 +53,15 @@ const bengaluruHQSchema = {
     },
     {
       "@type": "ProfessionalService",
-      "@id": "https://hanva.in/locations/bengaluru/#local-business",
+      "@id": "https://www.hanva.in/locations/bengaluru/#local-business",
       name: "Hanva Technologies — Bengaluru Commercial Office",
       parentOrganization: {
-        "@id": "https://hanva.in/#corporation",
+        "@id": "https://www.hanva.in/#corporation",
       },
-      url: "https://hanva.in/locations/bengaluru/",
+      url: "https://www.hanva.in/locations/bengaluru/",
       telephone: "+91-8423711043",
       priceRange: "₹₹",
-      image: "https://hanva.in/og-image.png",
+      image: "https://www.hanva.in/og-image.png",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya",
@@ -195,9 +195,18 @@ export default function BengaluruLocationPage() {
         },
         {
           title: "Virtual Phone Numbers",
-          description: "Acquire dedicated 080 landline DIDs and 10-digit virtual mobile numbers with instant activation.",
+          description: "Acquire dedicated 080 landline DIDs and 10-digit virtual mobile numbers with KYC-verified activation in 24–48 business hours.",
           href: "/products/virtual-numbers/",
         },
+      ]}
+      remoteEngagementNote="From our Bengaluru commercial office in Garvebhavi Palya (near Hosur Main Road), Hanva Technologies supports startups, salons, restaurants, and enterprises across Bengaluru with SaaS onboarding, digital marketing retainers, custom software development, and 080 cloud telephony."
+      solutionsPortfolio={[
+        { category: "SaaS Product", title: "Hanva CRM", description: "Lead pipelines, built-in IVR, C2C calling, WhatsApp integration, and attendance.", href: "/products/crm/" },
+        { category: "SaaS Product", title: "Hanva Salon Software", description: "GST billing, online booking mini-website, staff commissions & inventory for Bengaluru studios.", href: "/products/salon-software/" },
+        { category: "SaaS Product", title: "Hanva Restaurant POS", description: "Offline-resilient POS, KOT/KDS, QR ordering & recipe BOM stock for cafes and kitchens.", href: "/products/restaurant-pos/" },
+        { category: "IT Service", title: "Digital Marketing Services", description: "Technical SEO, Google Ads & Social Media campaigns connected to CRM attribution.", href: "/digital-marketing/" },
+        { category: "IT Service", title: "Software Development", description: "Custom CRM/ERP, web portals, mobile apps, e-commerce, and AI workflow engineering.", href: "/software-development/" },
+        { category: "Buyer Guide", title: "Salon Software Buying Guide", description: "Evaluate GST billing, commissions, and auto-consumption before choosing software.", href: "/resources/salon-management-software-guide/" },
       ]}
       relatedIndustries={[
         {

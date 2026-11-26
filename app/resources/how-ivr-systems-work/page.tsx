@@ -1,7 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArticleLayout } from "@/components/shared/article-layout";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell,
+  TableCaption, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { PhoneCall, GitBranch, Cpu, Headphones, ArrowRight, ShieldCheck, CheckCircle2, AlertCircle } from "lucide-react";
 
@@ -10,14 +11,20 @@ export const metadata = {
   description:
     "A deep technical dive into Interactive Voice Response (IVR) architecture: DTMF frequency detection, multi-level call tree design, skill-based ACD, and CRM webhook routing.",
   alternates: {
-    canonical: "https://hanva.in/resources/how-ivr-systems-work/",
+    canonical: "https://www.hanva.in/resources/how-ivr-systems-work/",
   },
   openGraph: {
     title: "How Does IVR Work? Multi-Level Call Routing Guide",
     description:
       "A deep dive into multi-level interactive voice response: DTMF tone detection, speech synthesis, skill-based queue distribution, and webhook CRM synchronization.",
-    url: "https://hanva.in/resources/how-ivr-systems-work/",
+    url: "https://www.hanva.in/resources/how-ivr-systems-work/",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How Does IVR Work? Multi-Level Call Routing Guide | Hanva Technologies",
+    description: "A deep technical dive into Interactive Voice Response (IVR) architecture: DTMF frequency detection, multi-level call tree design, skill-based ACD, and CRM webhook routing.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -30,22 +37,22 @@ const articleSchema = {
   author: {
     "@type": "Organization",
     name: "Hanva Engineering & Editorial Board",
-    url: "https://hanva.in/company/about/",
+    url: "https://www.hanva.in/company/about/",
   },
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
-    url: "https://hanva.in",
+    url: "https://www.hanva.in",
     logo: {
       "@type": "ImageObject",
-      url: "https://hanva.in/icon.png",
+      url: "https://www.hanva.in/icon.png",
     },
   },
   datePublished: "2026-11-25",
   dateModified: "2026-11-25",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://hanva.in/resources/how-ivr-systems-work/",
+    "@id": "https://www.hanva.in/resources/how-ivr-systems-work/",
   },
 };
 
@@ -152,41 +159,42 @@ export default function HowIvrSystemsWorkPage() {
 
         <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
           <Table>
+            <TableCaption className="sr-only">Technical and commercial comparison table</TableCaption>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold text-slate-900">Keypad Digit</TableHead>
-                <TableHead className="font-bold text-slate-900">Low Frequency (Row)</TableHead>
-                <TableHead className="font-bold text-slate-900">High Frequency (Column)</TableHead>
-                <TableHead className="font-bold text-slate-900">RFC 4733 Payload Event</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Keypad Digit</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Low Frequency (Row)</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">High Frequency (Column)</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">RFC 4733 Payload Event</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
               <TableRow>
-                <TableCell className="font-bold text-blue-600">Digit 1</TableCell>
+                <th scope="row" className="font-bold text-blue-600">Digit 1</th>
                 <TableCell>697 Hz</TableCell>
                 <TableCell>1209 Hz</TableCell>
                 <TableCell className="font-mono text-slate-600">Event 1 (Duration ~160ms)</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-blue-600">Digit 2</TableCell>
+                <th scope="row" className="font-bold text-blue-600">Digit 2</th>
                 <TableCell>697 Hz</TableCell>
                 <TableCell>1336 Hz</TableCell>
                 <TableCell className="font-mono text-slate-600">Event 2 (Duration ~160ms)</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-blue-600">Digit 3</TableCell>
+                <th scope="row" className="font-bold text-blue-600">Digit 3</th>
                 <TableCell>697 Hz</TableCell>
                 <TableCell>1477 Hz</TableCell>
                 <TableCell className="font-mono text-slate-600">Event 3 (Duration ~160ms)</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-blue-600">Digit 9</TableCell>
+                <th scope="row" className="font-bold text-blue-600">Digit 9</th>
                 <TableCell>852 Hz</TableCell>
                 <TableCell>1477 Hz</TableCell>
                 <TableCell className="font-mono text-slate-600">Event 9 (Duration ~160ms)</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-blue-600">Hash (#)</TableCell>
+                <th scope="row" className="font-bold text-blue-600">Hash (#)</th>
                 <TableCell>941 Hz</TableCell>
                 <TableCell>1477 Hz</TableCell>
                 <TableCell className="font-mono text-slate-600">Event 11 (End of Input)</TableCell>
@@ -300,7 +308,7 @@ export default function HowIvrSystemsWorkPage() {
         </div>
 
         <div className="p-4 rounded-xl border border-blue-200 bg-blue-50/50 space-y-2">
-          <h4 className="text-xs font-bold text-blue-900 uppercase tracking-wider">Golden Rules of IVR Tree Design</h4>
+          <h3 className="text-xs font-bold text-blue-900 uppercase tracking-wider">Golden Rules of IVR Tree Design</h3>
           <ul className="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
             <li><strong>Limit Top-Level Options:</strong> Never exceed 4 choices in the primary menu to prevent cognitive overload.</li>
             <li><strong>State the Action Before the Key:</strong> Say <em>&quot;For Sales, press 1&quot;</em> rather than <em>&quot;Press 1 for Sales&quot;</em> so callers absorb the department before preparing to dial.</li>

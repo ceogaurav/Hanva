@@ -5,7 +5,22 @@ export const metadata = {
   description:
     "Get dedicated 10-digit virtual mobile numbers in India. High-trust mobile DIDs with carrier gateway allocation across Vodafone Idea and Tata Teleservices.",
   alternates: {
-    canonical: "https://hanva.in/products/virtual-numbers/",
+    canonical: "https://www.hanva.in/products/virtual-numbers/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/virtual-numbers/",
+    siteName: "Hanva Technologies",
+    title: "Virtual Mobile Numbers for Business in India — 10-Digit DIDs | Hanva Technologies",
+    description: "Get dedicated 10-digit virtual mobile numbers in India. High-trust mobile DIDs with carrier gateway allocation across Vodafone Idea and Tata Teleservices.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Virtual Mobile Numbers for Business in India — 10-Digit DIDs" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Virtual Mobile Numbers for Business in India — 10-Digit DIDs | Hanva Technologies",
+    description: "Get dedicated 10-digit virtual mobile numbers in India. High-trust mobile DIDs with carrier gateway allocation across Vodafone Idea and Tata Teleservices.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

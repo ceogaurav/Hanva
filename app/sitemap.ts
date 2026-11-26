@@ -1,8 +1,11 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://hanva.in";
-  const now = new Date();
+  const baseUrl = "https://www.hanva.in";
+  const RELEASE_DATE_PHASE14 = new Date("2026-11-26T00:00:00.000Z");
+  const RELEASE_DATE_PHASE12 = new Date("2026-11-26T00:00:00.000Z");
+  const RELEASE_DATE_PHASE10 = new Date("2026-11-25T00:00:00.000Z");
+  const RELEASE_DATE_CORE = new Date("2026-11-24T00:00:00.000Z");
 
   // All 52 canonical routes for Hanva Technologies (Phase 10)
   const routes = [
@@ -27,10 +30,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products/auto-dialer/",
     "/products/predictive-dialer/",
 
-    // 5. Sales CRM & Omnichannel Messaging (3)
+    // 5. Flagship SaaS Products & Omnichannel Messaging (5)
     "/products/crm/",
+    "/products/salon-software/",
+    "/products/restaurant-pos/",
     "/products/telecalling-crm/",
     "/products/whatsapp-crm/",
+
+    // 5.5. Digital Marketing Services (4)
+    "/digital-marketing/",
+    "/digital-marketing/seo-services/",
+    "/digital-marketing/performance-marketing/",
+    "/digital-marketing/social-media-marketing/",
+
+    // 5.6. Software Development Services (7)
+    "/software-development/",
+    "/software-development/custom-crm-development/",
+    "/software-development/web-application-development/",
+    "/software-development/mobile-app-development/",
+    "/software-development/saas-product-development/",
+    "/software-development/api-integration-automation/",
+    "/software-development/ecommerce-development/",
 
     // 6. Solutions Suite (4)
     "/solutions/",
@@ -63,8 +83,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/compare/knowlarity-alternative/",
     "/compare/telecmi-alternative/",
 
-    // 9. Knowledge Hub & Topical Resource Guides (8)
+    // 9. Knowledge Hub & Topical Resource Guides (12)
     "/resources/",
+    "/resources/salon-management-software-guide/",
+    "/resources/restaurant-pos-kot-inventory-guide/",
+    "/resources/crm-with-ivr-vs-telecalling-crm/",
+    "/resources/saas-vs-custom-crm-erp-guide/",
     "/resources/what-is-cloud-telephony/",
     "/resources/how-ivr-systems-work/",
     "/resources/auto-dialer-vs-predictive-dialer/",
@@ -91,7 +115,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     } else if (route === "/pricing/" || route === "/pricing/calculator/" || route === "/company/contact/") {
       priority = 0.95;
       changeFrequency = "daily";
-    } else if (route.startsWith("/products/")) {
+    } else if (
+      route.startsWith("/products/") ||
+      route.startsWith("/digital-marketing/") ||
+      route.startsWith("/software-development/")
+    ) {
       priority = 0.9;
       changeFrequency = "weekly";
     } else if (route.startsWith("/solutions/") || route.startsWith("/industry/") || route.startsWith("/locations/")) {
@@ -111,9 +139,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency = "monthly";
     }
 
+    let lastModified = RELEASE_DATE_PHASE12;
+    if (
+      route === "/products/salon-software/" ||
+      route === "/products/restaurant-pos/" ||
+      route.startsWith("/digital-marketing/") ||
+      route.startsWith("/software-development/") ||
+      route === "/resources/" ||
+      route === "/resources/salon-management-software-guide/" ||
+      route === "/resources/restaurant-pos-kot-inventory-guide/" ||
+      route === "/resources/crm-with-ivr-vs-telecalling-crm/" ||
+      route === "/resources/saas-vs-custom-crm-erp-guide/" ||
+      route.startsWith("/locations/")
+    ) {
+      lastModified = RELEASE_DATE_PHASE14;
+    } else if (route.startsWith("/resources/")) {
+      lastModified = RELEASE_DATE_PHASE10;
+    } else if (route.startsWith("/company/") && route !== "/company/contact/") {
+      lastModified = RELEASE_DATE_CORE;
+    }
+
     return {
       url: `${baseUrl}${route}`,
-      lastModified: now,
+      lastModified,
       changeFrequency,
       priority,
     };

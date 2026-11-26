@@ -6,24 +6,24 @@ export const metadata = {
   description:
     "Patient IVR appointment booking, automated OPD reminders, diagnostic report dispatch, and DPDP-compliant healthcare telephony in India.",
   alternates: {
-    canonical: "https://hanva.in/industry/healthcare/",
+    canonical: "https://www.hanva.in/industry/healthcare/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/healthcare/",
+    url: "https://www.hanva.in/industry/healthcare/",
     siteName: "Hanva Technologies",
     title: "Healthcare Cloud Telephony & Clinic Patient CRM | Hanva Technologies",
     description:
       "Patient IVR appointment booking, automated OPD reminders, diagnostic report dispatch, and DPDP-compliant healthcare telephony in India.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Healthcare Telephony" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Healthcare Telephony" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Healthcare Cloud Telephony & Clinic Patient CRM | Hanva Technologies",
     description:
       "Patient IVR appointment booking, automated OPD reminders, diagnostic report dispatch, and DPDP-compliant healthcare telephony in India.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

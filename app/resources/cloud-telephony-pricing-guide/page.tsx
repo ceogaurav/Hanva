@@ -2,7 +2,8 @@ import * as React from "react";
 import Link from "next/link";
 import { ArticleLayout } from "@/components/shared/article-layout";
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell,
+  TableCaption, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Calculator, Coins, ShieldCheck, CheckCircle2, ArrowRight, AlertCircle, HelpCircle, Layers, TrendingDown } from "lucide-react";
 
@@ -11,14 +12,20 @@ export const metadata = {
   description:
     "A transparent breakdown of cloud telephony costs in India: 15-second vs. 60-second pulse math, virtual DID rentals, two-legged forwarding, and total cost of ownership.",
   alternates: {
-    canonical: "https://hanva.in/resources/cloud-telephony-pricing-guide/",
+    canonical: "https://www.hanva.in/resources/cloud-telephony-pricing-guide/",
   },
   openGraph: {
     title: "Cloud Telephony Pricing Guide in India (2026)",
     description:
       "A transparent breakdown of telecom billing in India: why 60-second rounding inflates phone bills by 25%-30%, channel rental math, DID setup charges, and hidden telco tariffs.",
-    url: "https://hanva.in/resources/cloud-telephony-pricing-guide/",
+    url: "https://www.hanva.in/resources/cloud-telephony-pricing-guide/",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cloud Telephony Pricing Guide in India (2026) | Hanva Technologies",
+    description: "A transparent breakdown of cloud telephony costs in India: 15-second vs. 60-second pulse math, virtual DID rentals, two-legged forwarding, and total cost of ownership.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -31,22 +38,22 @@ const articleSchema = {
   author: {
     "@type": "Organization",
     name: "Hanva Engineering & Editorial Board",
-    url: "https://hanva.in/company/about/",
+    url: "https://www.hanva.in/company/about/",
   },
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
-    url: "https://hanva.in",
+    url: "https://www.hanva.in",
     logo: {
       "@type": "ImageObject",
-      url: "https://hanva.in/icon.png",
+      url: "https://www.hanva.in/icon.png",
     },
   },
   datePublished: "2026-11-25",
   dateModified: "2026-11-25",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://hanva.in/resources/cloud-telephony-pricing-guide/",
+    "@id": "https://www.hanva.in/resources/cloud-telephony-pricing-guide/",
   },
 };
 
@@ -202,35 +209,36 @@ export default function CloudTelephonyPricingGuidePage() {
 
         <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
           <Table>
+            <TableCaption className="sr-only">Technical and commercial comparison table</TableCaption>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold text-slate-900">Actual Call Duration</TableHead>
-                <TableHead className="font-bold text-slate-900">Standard 60-Second Pulse</TableHead>
-                <TableHead className="font-bold text-emerald-700 bg-emerald-50/30">15-Second Pulse Billing</TableHead>
-                <TableHead className="font-bold text-slate-900">Billed Units Saved</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Actual Call Duration</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Standard 60-Second Pulse</TableHead>
+                <TableHead scope="col" className="font-bold text-emerald-700 bg-emerald-50/30">15-Second Pulse Billing</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Billed Units Saved</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
               <TableRow>
-                <TableCell className="font-mono font-semibold">12 Seconds (Quick Rejection)</TableCell>
+                <th scope="row" className="font-mono font-semibold">12 Seconds (Quick Rejection)</th>
                 <TableCell>Billed for 60 Seconds</TableCell>
                 <TableCell className="bg-emerald-50/30 text-emerald-950 font-medium">Billed for 15 Seconds (1 Pulse)</TableCell>
                 <TableCell className="text-emerald-700 font-bold">75% Reduction</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-mono font-semibold">22 Seconds (Reschedule Request)</TableCell>
+                <th scope="row" className="font-mono font-semibold">22 Seconds (Reschedule Request)</th>
                 <TableCell>Billed for 60 Seconds</TableCell>
                 <TableCell className="bg-emerald-50/30 text-emerald-950 font-medium">Billed for 30 Seconds (2 Pulses)</TableCell>
                 <TableCell className="text-emerald-700 font-bold">50% Reduction</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-mono font-semibold">68 Seconds (Short Pitch)</TableCell>
+                <th scope="row" className="font-mono font-semibold">68 Seconds (Short Pitch)</th>
                 <TableCell>Billed for 120 Seconds (2 Mins)</TableCell>
                 <TableCell className="bg-emerald-50/30 text-emerald-950 font-medium">Billed for 75 Seconds (5 Pulses)</TableCell>
                 <TableCell className="text-emerald-700 font-bold">37.5% Reduction</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-mono font-semibold">125 Seconds (Qualified Lead)</TableCell>
+                <th scope="row" className="font-mono font-semibold">125 Seconds (Qualified Lead)</th>
                 <TableCell>Billed for 180 Seconds (3 Mins)</TableCell>
                 <TableCell className="bg-emerald-50/30 text-emerald-950 font-medium">Billed for 135 Seconds (9 Pulses)</TableCell>
                 <TableCell className="text-emerald-700 font-bold">25% Reduction</TableCell>
@@ -255,14 +263,14 @@ export default function CloudTelephonyPricingGuidePage() {
 
         <div className="space-y-3 my-4">
           <div className="border-l-4 border-blue-500 pl-4 py-1 space-y-1">
-            <h4 className="font-bold text-slate-900">Leg A: Customer to Cloud PBX (Inbound)</h4>
+            <h3 className="font-bold text-slate-900">Leg A: Customer to Cloud PBX (Inbound)</h3>
             <p className="text-xs text-slate-600">
               The customer dials your virtual number. If it is a virtual mobile number or STD DID, the customer pays their own telecom carrier for standard calling.
             </p>
           </div>
 
           <div className="border-l-4 border-amber-500 pl-4 py-1 space-y-1">
-            <h4 className="font-bold text-slate-900">Leg B: Cloud PBX to Agent Mobile (Outbound Forwarding)</h4>
+            <h3 className="font-bold text-slate-900">Leg B: Cloud PBX to Agent Mobile (Outbound Forwarding)</h3>
             <p className="text-xs text-slate-600">
               The cloud PBX places an outbound call to the agent&apos;s mobile phone over cellular PSTN. Your business is billed for Leg B airtime for the entire duration of the conversation.
             </p>
@@ -270,7 +278,7 @@ export default function CloudTelephonyPricingGuidePage() {
         </div>
 
         <div className="p-4 rounded-xl border border-blue-200 bg-blue-50/50 space-y-2">
-          <h4 className="text-xs font-bold text-blue-900 uppercase tracking-wider">How to Eliminate Leg B Costs</h4>
+          <h3 className="text-xs font-bold text-blue-900 uppercase tracking-wider">How to Eliminate Leg B Costs</h3>
           <p className="text-xs text-slate-700 leading-relaxed">
             By equipping telecallers with <strong>browser-based WebRTC softphones</strong> on their laptops or companion Android Wi-Fi apps, Leg B audio travels over encrypted IP data (DTLS-SRTP). Because no cellular PSTN outdial occurs on Leg B, <strong>Leg B call charges drop to ₹0</strong>.
           </p>
@@ -288,23 +296,24 @@ export default function CloudTelephonyPricingGuidePage() {
 
         <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
           <Table>
+            <TableCaption className="sr-only">Technical and commercial comparison table</TableCaption>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold text-slate-900">Number Format</TableHead>
-                <TableHead className="font-bold text-slate-900">Who Pays for the Inbound Call?</TableHead>
-                <TableHead className="font-bold text-slate-900">Typical Business Cost</TableHead>
-                <TableHead className="font-bold text-slate-900">Best Application</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Number Format</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Who Pays for the Inbound Call?</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Typical Business Cost</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Best Application</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
               <TableRow>
-                <TableCell className="font-bold text-blue-700">10-Digit Virtual Mobile DID</TableCell>
+                <th scope="row" className="font-bold text-blue-700">10-Digit Virtual Mobile DID</th>
                 <TableCell>Caller uses their bundled mobile plan</TableCell>
                 <TableCell>Low monthly rental; zero inbound airtime fee</TableCell>
                 <TableCell>Sales inquiries, WhatsApp contact numbers, marketing ads</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-slate-900">1800 Toll-Free Number</TableCell>
+                <th scope="row" className="font-bold text-slate-900">1800 Toll-Free Number</th>
                 <TableCell>Free for caller; <strong>Business pays 100%</strong> of inbound minutes</TableCell>
                 <TableCell>Higher monthly rental + per-minute inbound charge (~₹1.20–₹1.80/min)</TableCell>
                 <TableCell>Large enterprise customer care, grievance redressal, BFSI helpline</TableCell>

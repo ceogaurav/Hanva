@@ -1,0 +1,163 @@
+{
+  "logo_check": {
+    "http_status": 200,
+    "content_type": "image/png",
+    "content_length": 182463
+  },
+  "seo_regression": {
+    "routes_200": 69,
+    "route_failures": [],
+    "sitemap_count": 69,
+    "sitemap_www": true,
+    "robots_sitemap": "Sitemap: https://www.hanva.in/sitemap.xml",
+    "canonicals_www": true,
+    "any_noindex": false,
+    "invalid_schema_routes": [],
+    "broken_imgs_after_scroll": [],
+    "console_errors": 0,
+    "page_errors": 0,
+    "csp_violations": 0,
+    "internal_links_checked": 69,
+    "internal_links_broken": [],
+    "whatsapp_links_checked": 227,
+    "whatsapp_links_invalid": []
+  },
+  "tests_18": {
+    "consent_rejected": {
+      "banner_shown_initially": true,
+      "events_before_consent_zero": true,
+      "events_after_decline_zero": true,
+      "utm_cleared_on_decline": true,
+      "stored_consent": "denied",
+      "third_party_requests": 0
+    },
+    "consent_accepted": true,
+    "homepage_page_view": {
+      "count": 1,
+      "utm_source": "google",
+      "traffic_channel": "paid_search"
+    },
+    "scroll_depth_50_75_90": [
+      50,
+      75,
+      90
+    ],
+    "products_hub_view_item_list": true,
+    "select_item_crm": true,
+    "product_views": {
+      "hanva_crm": true,
+      "hanva_salon_software": true,
+      "hanva_restaurant_pos": true
+    },
+    "whatsapp_clicks_desktop": {
+      "crm_ok": true,
+      "salon_ok": true,
+      "pos_ok": true,
+      "general_ok": true
+    },
+    "contact_form": {
+      "contact_page_view": true,
+      "form_start": true,
+      "form_error": [
+        {
+          "traffic_channel": "paid_search",
+          "utm_source": "google",
+          "utm_medium": "cpc",
+          "utm_campaign": "crm_launch_in",
+          "utm_content": "hero_btn",
+          "utm_term": "hanva_crm",
+          "form_name": "contact_demo_enquiry",
+          "error_count": 3,
+          "error_fields": "fullName,workEmail,phone",
+          "page_path": "/company/contact/"
+        }
+      ],
+      "form_submit": [
+        {
+          "traffic_channel": "paid_search",
+          "utm_source": "google",
+          "utm_medium": "cpc",
+          "utm_campaign": "crm_launch_in",
+          "utm_content": "hero_btn",
+          "utm_term": "hanva_crm",
+          "form_name": "contact_demo_enquiry",
+          "product_name": "hanva_crm",
+          "selected_team_size_bucket": "5-15 agents",
+          "handoff_method": "whatsapp_client_url",
+          "popup_blocked": false,
+          "delivery_confirmed": false,
+          "page_path": "/company/contact/"
+        }
+      ],
+      "generate_lead_emitted": false,
+      "zero_pii_leaked": true
+    },
+    "spa_navigation_no_duplicate_page_views": {
+      "paths_tracked": [
+        "/",
+        "/products/",
+        "/products/crm/",
+        "/products/salon-software/",
+        "/products/restaurant-pos/",
+        "/products/crm/",
+        "/company/contact/"
+      ],
+      "no_adjacent_duplicate_page_views": true
+    },
+    "utm_persisted_through_product_nav_and_wa": {
+      "persisted_in_crm_wa": true
+    },
+    "analytics_unavailable_resilient": true,
+    "mobile_whatsapp_cta": {
+      "fired": true,
+      "device_class": "mobile",
+      "cta_location": "floating_button",
+      "product_name": "hanva_salon_software",
+      "mobile_overflow": false
+    }
+  },
+  "utm_scenarios": {
+    "1a_organic_search_referrer": {
+      "traffic_channel": "organic_search",
+      "utm_source": null,
+      "utm_medium": null,
+      "utm_campaign": null,
+      "preserved_on_product_nav": true
+    },
+    "1b_organic_search_utm": {
+      "traffic_channel": "organic_search",
+      "utm_source": "google",
+      "utm_medium": "organic",
+      "utm_campaign": null,
+      "preserved_on_product_nav": true
+    },
+    "2_google_ads": {
+      "traffic_channel": "paid_search",
+      "utm_source": "google",
+      "utm_medium": "cpc",
+      "utm_campaign": "crm_india",
+      "preserved_on_product_nav": true
+    },
+    "3_social_media": {
+      "traffic_channel": "social",
+      "utm_source": "linkedin",
+      "utm_medium": "social",
+      "utm_campaign": "salon_b2b",
+      "preserved_on_product_nav": true
+    },
+    "4_direct": {
+      "traffic_channel": "direct",
+      "utm_source": null,
+      "utm_medium": null,
+      "utm_campaign": null,
+      "preserved_on_product_nav": true
+    },
+    "5_referral": {
+      "traffic_channel": "referral",
+      "utm_source": null,
+      "utm_medium": null,
+      "utm_campaign": null,
+      "preserved_on_product_nav": true
+    }
+  }
+}

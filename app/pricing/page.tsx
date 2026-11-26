@@ -13,7 +13,22 @@ export const metadata = {
   description:
     "Transparent cloud telephony and telecalling CRM pricing for Indian businesses. Dedicated virtual numbers, 15-second OBD pulse option, and customized commercial quotations.",
   alternates: {
-    canonical: "https://hanva.in/pricing/",
+    canonical: "https://www.hanva.in/pricing/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/pricing/",
+    siteName: "Hanva Technologies",
+    title: "Cloud Telephony & CRM Pricing Plans | Hanva Technologies",
+    description: "Transparent cloud telephony and telecalling CRM pricing for Indian businesses. Dedicated virtual numbers, 15-second OBD pulse option, and customized commercial quotations.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Cloud Telephony & CRM Pricing Plans" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cloud Telephony & CRM Pricing Plans | Hanva Technologies",
+    description: "Transparent cloud telephony and telecalling CRM pricing for Indian businesses. Dedicated virtual numbers, 15-second OBD pulse option, and customized commercial quotations.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -21,7 +36,7 @@ const pricingSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Hanva Cloud Telephony & CRM Pricing Plans",
-  url: "https://hanva.in/pricing/",
+  url: "https://www.hanva.in/pricing/",
   description:
     "Commercial cloud telephony and telecalling CRM plans for Indian businesses. Dedicated virtual numbers, 15-second OBD pulse option, and custom quotations based on volume.",
   provider: {
@@ -253,7 +268,12 @@ export default function PricingPage() {
             <p className="text-xs text-slate-500 mt-1">Detailed breakdown of capabilities across service tiers.</p>
           </div>
 
-          <div className="relative overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs" tabIndex={0}>
+          <div
+            className="relative overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs"
+            tabIndex={0}
+            role="region"
+            aria-label="Plan feature comparison matrix"
+          >
             <table className="w-full text-xs text-left border-collapse">
               <caption className="sr-only">Comparison of Starter, Growth Pro, and Enterprise cloud telephony plans</caption>
               <thead>

@@ -9,7 +9,22 @@ export const metadata = {
   description:
     "Commercial terms of service, telecom acceptable use policy, voice pulse metering rules, and dispute resolution governing Hanva Technologies services.",
   alternates: {
-    canonical: "https://hanva.in/company/terms-of-service/",
+    canonical: "https://www.hanva.in/company/terms-of-service/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/company/terms-of-service/",
+    siteName: "Hanva Technologies",
+    title: "Terms of Service & Master Service Agreement | Hanva Technologies",
+    description: "Commercial terms of service, telecom acceptable use policy, voice pulse metering rules, and dispute resolution governing Hanva Technologies services.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Terms of Service & Master Service Agreement" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service & Master Service Agreement | Hanva Technologies",
+    description: "Commercial terms of service, telecom acceptable use policy, voice pulse metering rules, and dispute resolution governing Hanva Technologies services.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -19,7 +34,7 @@ const termsSchema = {
   name: "Terms of Service of Hanva Technologies Private Limited",
   description:
     "Master commercial terms, Acceptable Use Policy (AUP), and telecom service conditions governing Hanva Technologies Private Limited.",
-  url: "https://hanva.in/company/terms-of-service/",
+  url: "https://www.hanva.in/company/terms-of-service/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

@@ -2,11 +2,26 @@ import * as React from "react";
 import { CompareLayout } from "@/components/shared/compare-layout";
 
 export const metadata = {
-  title: "TeleCMI Alternative in India — Cloud Telephony & Built-in CRM | Hanva",
+  title: "TeleCMI Alternative in India — Cloud Telephony & Built-in CRM",
   description:
     "Comparing TeleCMI alternatives? Discover Hanva's unified sales CRM, progressive dialer, 15-second OBD pulse billing option, and local Bengaluru support.",
   alternates: {
-    canonical: "https://hanva.in/compare/telecmi-alternative/",
+    canonical: "https://www.hanva.in/compare/telecmi-alternative/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/compare/telecmi-alternative/",
+    siteName: "Hanva Technologies",
+    title: "TeleCMI Alternative in India — Cloud Telephony & Built-in CRM | Hanva | Hanva Technologies",
+    description: "Comparing TeleCMI alternatives? Discover Hanva's unified sales CRM, progressive dialer, 15-second OBD pulse billing option, and local Bengaluru support.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "TeleCMI Alternative in India — Cloud Telephony & Built-in CRM | Hanva" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TeleCMI Alternative in India — Cloud Telephony & Built-in CRM | Hanva | Hanva Technologies",
+    description: "Comparing TeleCMI alternatives? Discover Hanva's unified sales CRM, progressive dialer, 15-second OBD pulse billing option, and local Bengaluru support.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -16,7 +31,7 @@ const telecmiCompareSchema = {
   name: "Hanva vs TeleCMI Alternative Comparison",
   description:
     "Factual comparison between TeleCMI cloud phone system and Hanva unified cloud telephony and telecalling CRM in India.",
-  url: "https://hanva.in/compare/telecmi-alternative/",
+  url: "https://www.hanva.in/compare/telecmi-alternative/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

@@ -6,24 +6,24 @@ export const metadata = {
   description:
     "Pre-screen candidates faster with progressive auto-dialers, dispatch interview slots via WhatsApp, track recruiter talk-time KPIs, and record phone screens.",
   alternates: {
-    canonical: "https://hanva.in/industry/recruitment/",
+    canonical: "https://www.hanva.in/industry/recruitment/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/recruitment/",
+    url: "https://www.hanva.in/industry/recruitment/",
     siteName: "Hanva Technologies",
     title: "Staffing & Recruitment Telecalling CRM Software | Hanva Technologies",
     description:
       "Pre-screen candidates faster with progressive auto-dialers, dispatch interview slots via WhatsApp, track recruiter talk-time KPIs, and record phone screens.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Recruitment Telephony" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Recruitment Telephony" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Staffing & Recruitment Telecalling CRM Software | Hanva Technologies",
     description:
       "Pre-screen candidates faster with progressive auto-dialers, dispatch interview slots via WhatsApp, track recruiter talk-time KPIs, and record phone screens.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

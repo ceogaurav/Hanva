@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
-import { SchemaOrg } from "@/components/shared/schema-org";
+import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG } from "@/lib/config";
 import {
@@ -63,6 +63,8 @@ export interface LocationLayoutProps {
   workflowTitle?: string;
   workflowStages: WorkflowStage[];
   synergies: { title: string; description: string; href: string }[];
+  solutionsPortfolio?: { category: string; title: string; description: string; href: string }[];
+  remoteEngagementNote?: string;
   relatedIndustries: { title: string; description: string; href: string }[];
   faqs: FAQItem[];
   schemaData?: Record<string, unknown>;
@@ -84,12 +86,14 @@ export function LocationLayout({
   workflowTitle = "Local Operational Architecture",
   workflowStages,
   synergies,
+  solutionsPortfolio,
+  remoteEngagementNote,
   relatedIndustries,
   faqs,
   schemaData,
 }: LocationLayoutProps) {
   const whatsappUrl = `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
-    `Hello Hanva Team, I am looking for business telephony and CRM solutions in ${cityName}. Reference: ${whatsappRef}`
+    `Hello Hanva Team, I would like to enquire about Hanva SaaS products, IT services, and cloud solutions in ${cityName}. Reference: ${whatsappRef}`
   )}`;
   const contactHref = `/company/contact/?city=${encodeURIComponent(cityName)}&product=cloud-telephony`;
 
@@ -113,6 +117,7 @@ export function LocationLayout({
     <div className="pt-10 pb-28 lg:py-14 bg-white min-h-screen">
       {schemaData && <SchemaOrg data={schemaData} />}
       {faqSchema && <SchemaOrg data={faqSchema} />}
+      <SchemaOrg data={buildBreadcrumbSchema(breadcrumbs)} />
 
       <Container className="space-y-12">
         {/* 1. Breadcrumbs */}
@@ -416,6 +421,45 @@ export function LocationLayout({
             ))}
           </div>
         </div>
+
+        {/* 9.5. Full SaaS & Digital IT Solutions Availability */}
+        {solutionsPortfolio && solutionsPortfolio.length > 0 && (
+          <div className="space-y-6 rounded-2xl border border-slate-200 bg-slate-50/70 p-6 sm:p-8">
+            <div className="space-y-1">
+              <Badge variant="secondary" className="text-xs">
+                {isPhysicalHeadquarters ? "Bengaluru HQ Full Portfolio" : `Remote Onboarding & Delivery for ${cityName}`}
+              </Badge>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                SaaS Products, Digital Marketing &amp; Custom Software in {cityName}
+              </h2>
+              {remoteEngagementNote && (
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
+                  {remoteEngagementNote}
+                </p>
+              )}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {solutionsPortfolio.map((item) => (
+                <Link key={item.href} href={item.href} className="group">
+                  <Card className="h-full border-slate-200 bg-white hover:border-blue-300 transition-all">
+                    <CardHeader className="p-4 pb-1.5">
+                      <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-700">
+                        {item.category}
+                      </div>
+                      <CardTitle className="text-sm font-bold text-slate-900 group-hover:text-blue-600 flex items-center justify-between">
+                        <span>{item.title}</span>
+                        <ArrowRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-blue-600" aria-hidden="true" />
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 pt-0">
+                      <p className="text-xs text-slate-600 leading-relaxed">{item.description}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* 10. City-Specific FAQ Section */}
         <div className="space-y-6">

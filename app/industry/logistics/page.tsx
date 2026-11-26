@@ -6,24 +6,24 @@ export const metadata = {
   description:
     "Protect customer privacy with driver phone number masking, automate failed delivery callback IVRs, and dispatch real-time consignment alerts on WhatsApp.",
   alternates: {
-    canonical: "https://hanva.in/industry/logistics/",
+    canonical: "https://www.hanva.in/industry/logistics/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/logistics/",
+    url: "https://www.hanva.in/industry/logistics/",
     siteName: "Hanva Technologies",
     title: "Logistics Number Masking & Delivery IVR Architecture | Hanva Technologies",
     description:
       "Protect customer privacy with driver phone number masking, automate failed delivery callback IVRs, and dispatch real-time consignment alerts on WhatsApp.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Logistics Telephony" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Logistics Telephony" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Logistics Number Masking & Delivery IVR Architecture | Hanva Technologies",
     description:
       "Protect customer privacy with driver phone number masking, automate failed delivery callback IVRs, and dispatch real-time consignment alerts on WhatsApp.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -55,12 +55,12 @@ export default function LogisticsIndustryPage() {
       whatsappRef="/industry/logistics/"
       challenges={[
         {
-          challenge: "Delivery drivers calling customers from personal mobile phones compromises customer privacy and violates statutory DPDP data protection obligations.",
+          challenge: "Delivery drivers calling customers from personal mobile phones compromises customer privacy and creates DPDP data minimization risks.",
           solution: "Temporary virtual number masking bridges drivers and recipients through a cloud gateway without either party seeing the other's real phone number.",
         },
         {
-          challenge: "Up to 20-30% of eCommerce and express packages fail on first delivery attempt because customers are unavailable or premises are locked.",
-          solution: "Automated outbound IVR calls verify recipient availability in the morning before riders dispatch parcels, dramatically curbing RTO rates.",
+          challenge: "eCommerce and express packages frequently fail on first delivery attempt when customers are unavailable or premises are locked.",
+          solution: "Automated outbound IVR calls verify recipient availability in the morning before riders dispatch parcels, helping curb RTO rates.",
         },
         {
           challenge: "Customers attempting to reschedule delivery struggle through confusing web portals or cannot reach local hub dispatchers.",
@@ -138,7 +138,7 @@ export default function LogisticsIndustryPage() {
         },
         {
           question: "Does number masking comply with Indian Department of Telecommunications (DoT) guidelines?",
-          answer: "Yes. Hanva's telecom routing infrastructure complies with DoT regulations, maintaining complete call detail records (CDRs), CLI attribution, and secure audit logs within certified Indian cloud data centers.",
+          answer: "Yes. Hanva's telecom routing infrastructure is architected to align with DoT guidelines, maintaining call detail records (CDRs), CLI attribution, and audit logs within Indian cloud infrastructure with encryption at rest.",
         },
         {
           question: "Can customers reschedule deliveries via WhatsApp?",

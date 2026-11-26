@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://hanva.in/sitemap.xml",
+    sitemap: "https://www.hanva.in/sitemap.xml",
   };
 }

@@ -6,24 +6,24 @@ export const metadata = {
   description:
     "Drive showroom test-drive bookings, automate periodic vehicle service reminders, route Sales and Service calls via IVR, and equip reps with mobile SIM calling.",
   alternates: {
-    canonical: "https://hanva.in/industry/automobile/",
+    canonical: "https://www.hanva.in/industry/automobile/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/automobile/",
+    url: "https://www.hanva.in/industry/automobile/",
     siteName: "Hanva Technologies",
     title: "Automobile Dealership Telephony & Showroom CRM | Hanva Technologies",
     description:
       "Drive showroom test-drive bookings, automate periodic vehicle service reminders, route Sales and Service calls via IVR, and equip reps with mobile SIM calling.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Automobile Telephony" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Automobile Telephony" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Automobile Dealership Telephony & Showroom CRM | Hanva Technologies",
     description:
       "Drive showroom test-drive bookings, automate periodic vehicle service reminders, route Sales and Service calls via IVR, and equip reps with mobile SIM calling.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -56,7 +56,7 @@ export default function AutomobileIndustryPage() {
       challenges={[
         {
           challenge: "Prospective car buyers submitting online test-drive inquiries on CarDekho, CarWale, or Meta Ads are called hours later, after visiting a competing showroom.",
-          solution: "Automated webhook ingestion triggers instant telecaller dial-out within 3 minutes of customer form submission.",
+          solution: "Automated webhook ingestion triggers prompt telecaller dial-out within minutes of customer form submission.",
         },
         {
           challenge: "Inbound callers calling the main dealership landline are frequently misrouted between vehicle sales reps, spare parts, and workshop mechanics.",

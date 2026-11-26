@@ -6,24 +6,24 @@ export const metadata = {
   description:
     "Accelerate loan disbursement cycles, automate WhatsApp KYC document collection, enforce call recording audits, and track DSA agent calling performance.",
   alternates: {
-    canonical: "https://hanva.in/industry/financial-services/",
+    canonical: "https://www.hanva.in/industry/financial-services/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/financial-services/",
+    url: "https://www.hanva.in/industry/financial-services/",
     siteName: "Hanva Technologies",
     title: "BFSI & Loan Telecalling CRM Software in India | Hanva Technologies",
     description:
       "Accelerate loan disbursement cycles, automate WhatsApp KYC document collection, enforce call recording audits, and track DSA agent calling performance.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Financial Services CRM" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Financial Services CRM" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "BFSI & Loan Telecalling CRM Software in India | Hanva Technologies",
     description:
       "Accelerate loan disbursement cycles, automate WhatsApp KYC document collection, enforce call recording audits, and track DSA agent calling performance.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

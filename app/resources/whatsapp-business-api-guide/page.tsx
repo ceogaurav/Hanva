@@ -1,7 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArticleLayout } from "@/components/shared/article-layout";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell,
+  TableCaption, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, ShieldCheck, CheckCircle2, Zap, ArrowRight, Layers, AlertCircle, PhoneForwarded } from "lucide-react";
 
@@ -10,14 +11,20 @@ export const metadata = {
   description:
     "Compare the free WhatsApp Business App with the official WhatsApp Business API (WABA). Learn Meta template categories, 24-hour messaging windows, and CRM sync.",
   alternates: {
-    canonical: "https://hanva.in/resources/whatsapp-business-api-guide/",
+    canonical: "https://www.hanva.in/resources/whatsapp-business-api-guide/",
   },
   openGraph: {
     title: "WhatsApp Business API vs Business App Guide (India)",
     description:
       "The definitive guide to official Meta WABA gateways: green badge verification, 24-hour service messaging windows, pre-approved utility templates, and multi-agent shared inboxes.",
-    url: "https://hanva.in/resources/whatsapp-business-api-guide/",
+    url: "https://www.hanva.in/resources/whatsapp-business-api-guide/",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WhatsApp Business API vs Business App Guide (India) | Hanva Technologies",
+    description: "Compare the free WhatsApp Business App with the official WhatsApp Business API (WABA). Learn Meta template categories, 24-hour messaging windows, and CRM sync.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -30,22 +37,22 @@ const articleSchema = {
   author: {
     "@type": "Organization",
     name: "Hanva Engineering & Editorial Board",
-    url: "https://hanva.in/company/about/",
+    url: "https://www.hanva.in/company/about/",
   },
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
-    url: "https://hanva.in",
+    url: "https://www.hanva.in",
     logo: {
       "@type": "ImageObject",
-      url: "https://hanva.in/icon.png",
+      url: "https://www.hanva.in/icon.png",
     },
   },
   datePublished: "2026-11-25",
   dateModified: "2026-11-25",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://hanva.in/resources/whatsapp-business-api-guide/",
+    "@id": "https://www.hanva.in/resources/whatsapp-business-api-guide/",
   },
 };
 
@@ -152,36 +159,37 @@ export default function WhatsappBusinessApiGuidePage() {
 
         <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
           <Table>
+            <TableCaption className="sr-only">Technical and commercial comparison table</TableCaption>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold text-slate-900">Capability</TableHead>
-                <TableHead className="font-bold text-slate-900">Free WhatsApp Business App</TableHead>
-                <TableHead className="font-bold text-emerald-700 bg-emerald-50/30">WhatsApp Business Platform (API)</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Capability</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Free WhatsApp Business App</TableHead>
+                <TableHead scope="col" className="font-bold text-emerald-700 bg-emerald-50/30">WhatsApp Business Platform (API)</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Concurrent Agents</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Concurrent Agents</th>
                 <TableCell>Maximum 4 linked web devices; 1 smartphone</TableCell>
                 <TableCell className="bg-emerald-50/30 font-medium text-emerald-950">Unlimited concurrent human agents with shared inbox</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">CRM & Telephony Sync</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">CRM & Telephony Sync</th>
                 <TableCell>Zero API connectivity; manual copy-pasting</TableCell>
                 <TableCell className="bg-emerald-50/30 font-medium text-emerald-950">Bidirectional REST webhooks and native CRM sync</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Automated Post-Call Triggers</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Automated Post-Call Triggers</th>
                 <TableCell>Not possible; agent must type message manually</TableCell>
                 <TableCell className="bg-emerald-50/30 font-medium text-emerald-950">Fires automatically upon call disposition selection</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Broadcasting Safety</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Broadcasting Safety</th>
                 <TableCell>High risk of immediate number ban on bulk outreach</TableCell>
-                <TableCell className="bg-emerald-50/30 font-medium text-emerald-950">100% policy-compliant via pre-approved Meta templates</TableCell>
+                <TableCell className="bg-emerald-50/30 font-medium text-emerald-950">Policy-aligned via pre-approved Meta templates</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Green Tick Verification</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Green Tick Verification</th>
                 <TableCell>Not available for free app accounts</TableCell>
                 <TableCell className="bg-emerald-50/30 font-medium text-emerald-950">Eligible for Official Business Account (OBA) badge</TableCell>
               </TableRow>
@@ -243,14 +251,14 @@ export default function WhatsappBusinessApiGuidePage() {
 
         <div className="space-y-3 text-xs sm:text-sm text-slate-700 my-4">
           <div className="border-l-4 border-emerald-500 pl-4 py-1 space-y-1">
-            <h4 className="font-bold text-slate-900">Inside the 24-Hour Window</h4>
+            <h3 className="font-bold text-slate-900">Inside the 24-Hour Window</h3>
             <p className="text-xs text-slate-600">
               Triggered whenever a user messages your business number. Agents can send freeform replies, images, audio notes, and attachments without submitting templates to Meta for approval.
             </p>
           </div>
 
           <div className="border-l-4 border-amber-500 pl-4 py-1 space-y-1">
-            <h4 className="font-bold text-slate-900">Outside the 24-Hour Window</h4>
+            <h3 className="font-bold text-slate-900">Outside the 24-Hour Window</h3>
             <p className="text-xs text-slate-600">
               Once 24 hours have elapsed since the user&apos;s last message, freeform messaging is blocked by Meta. The business can only reach out by sending a pre-approved message template (Utility or Marketing). Once the user replies, a fresh 24-hour window opens.
             </p>

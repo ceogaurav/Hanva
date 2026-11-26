@@ -1,0 +1,331 @@
+{
+  "route_status": {
+    "original_52_ok": 52,
+    "new_13_ok": 13,
+    "failures": []
+  },
+  "sitemap": {
+    "status": 200,
+    "url_count": 65,
+    "missing_routes": []
+  },
+  "seo_and_schema": [
+    {
+      "route": "/",
+      "title_len": 85,
+      "has_description": true,
+      "canonical": "https://hanva.in/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/products/",
+      "title_len": 88,
+      "has_description": true,
+      "canonical": "https://hanva.in/products/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/products/crm/",
+      "title_len": 83,
+      "has_description": true,
+      "canonical": "https://hanva.in/products/crm/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 2,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/industry/",
+      "title_len": 70,
+      "has_description": true,
+      "canonical": "https://hanva.in/industry/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/products/salon-software/",
+      "title_len": 86,
+      "has_description": true,
+      "canonical": "https://hanva.in/products/salon-software/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 2,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/products/restaurant-pos/",
+      "title_len": 88,
+      "has_description": true,
+      "canonical": "https://hanva.in/products/restaurant-pos/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 2,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/digital-marketing/",
+      "title_len": 110,
+      "has_description": true,
+      "canonical": "https://hanva.in/digital-marketing/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 2,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/digital-marketing/seo-services/",
+      "title_len": 99,
+      "has_description": true,
+      "canonical": "https://hanva.in/digital-marketing/seo-services/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/digital-marketing/performance-marketing/",
+      "title_len": 85,
+      "has_description": true,
+      "canonical": "https://hanva.in/digital-marketing/performance-marketing/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/digital-marketing/social-media-marketing/",
+      "title_len": 73,
+      "has_description": true,
+      "canonical": "https://hanva.in/digital-marketing/social-media-marketing/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/",
+      "title_len": 106,
+      "has_description": true,
+      "canonical": "https://hanva.in/software-development/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 2,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/custom-crm-development/",
+      "title_len": 79,
+      "has_description": true,
+      "canonical": "https://hanva.in/software-development/custom-crm-development/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/web-application-development/",
+      "title_len": 88,
+      "has_description": true,
+      "canonical": "https://hanva.in/software-development/web-application-development/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/mobile-app-development/",
+      "title_len": 73,
+      "has_description": true,
+      "canonical": "https://hanva.in/software-development/mobile-app-development/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/saas-product-development/",
+      "title_len": 75,
+      "has_description": true,
+      "canonical": "https://hanva.in/software-development/saas-product-development/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/api-integration-automation/",
+      "title_len": 93,
+      "has_description": true,
+      "canonical": "https://hanva.in/software-development/api-integration-automation/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/software-development/ecommerce-development/",
+      "title_len": 73,
+      "has_description": true,
+      "canonical": "https://hanva.in/software-development/ecommerce-development/",
+      "noindex_count": 0,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    }
+  ],
+  "whatsapp_checks": {
+    "/products/crm/": [
+      "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20telecom%20and%20CRM%20solutions.",
+      "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20CRM.",
+      "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20CRM.",
+      "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fproducts%2Fcrm%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+    ],
+    "/products/salon-software/": [
+      "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20telecom%20and%20CRM%20solutions.",
+      "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Salon%20Software.",
+      "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Salon%20Software.",
+      "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fproducts%2Fsalon-software%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+    ],
+    "/products/restaurant-pos/": [
+      "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20telecom%20and%20CRM%20solutions.",
+      "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Restaurant%20POS.",
+      "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Restaurant%20POS.",
+      "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fproducts%2Frestaurant-pos%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+    ]
+  },
+  "responsive_and_a11y": [
+    {
+      "viewport": "tablet_768",
+      "route": "/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/products/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/products/crm/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/products/salon-software/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/products/restaurant-pos/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/digital-marketing/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/software-development/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/products/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/products/crm/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/products/salon-software/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/products/restaurant-pos/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/digital-marketing/",
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/software-development/",
+      "horizontal_overflow": false
+    }
+  ],
+  "mobile_drawer_test": {
+    "drawer_opened": false,
+    "salon_link_visible": true
+  }
+}

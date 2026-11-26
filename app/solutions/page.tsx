@@ -20,11 +20,26 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Cloud Telephony & CRM Solutions by Business Need | Hanva",
+  title: "Cloud Telephony & CRM Solutions by Business Need",
   description:
     "Tailored enterprise communication architectures: outbound sales automation, smart customer support routing, and high-concurrency enterprise trunking.",
   alternates: {
-    canonical: "https://hanva.in/solutions/",
+    canonical: "https://www.hanva.in/solutions/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/solutions/",
+    siteName: "Hanva Technologies",
+    title: "Cloud Telephony & CRM Solutions by Business Need | Hanva | Hanva Technologies",
+    description: "Tailored enterprise communication architectures: outbound sales automation, smart customer support routing, and high-concurrency enterprise trunking.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Cloud Telephony & CRM Solutions by Business Need | Hanva" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cloud Telephony & CRM Solutions by Business Need | Hanva | Hanva Technologies",
+    description: "Tailored enterprise communication architectures: outbound sales automation, smart customer support routing, and high-concurrency enterprise trunking.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -33,7 +48,7 @@ const solutionsHubSchema = {
   "@type": "CollectionPage",
   name: "Hanva Cloud Telephony & CRM Solutions",
   description: "Enterprise voice solutions for sales automation, support routing, and multi-location trunking.",
-  url: "https://hanva.in/solutions/",
+  url: "https://www.hanva.in/solutions/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
@@ -90,17 +105,21 @@ const solutionTiers = [
 
 export default function SolutionsPage() {
   return (
-    <div className="py-10 lg:py-16 bg-white min-h-screen">
+    <div className="pt-10 pb-28 lg:py-16 bg-white min-h-screen">
       <SchemaOrg data={solutionsHubSchema} />
 
       <Container className="space-y-12">
         {/* Breadcrumb Hierarchy */}
-        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-blue-600 transition-colors">
-            Home
-          </Link>
-          <span className="text-slate-300">/</span>
-          <span className="text-slate-900 font-medium">Solutions</span>
+        <nav aria-label="Breadcrumb">
+          <ol className="flex items-center space-x-2 text-xs text-slate-600">
+            <li>
+              <Link href="/" className="hover:text-blue-600 transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-slate-400">/</li>
+            <li className="text-slate-900 font-medium" aria-current="page">Solutions</li>
+          </ol>
         </nav>
 
         {/* Hero Section */}
@@ -129,7 +148,7 @@ export default function SolutionsPage() {
                   <Badge variant="secondary" className="w-fit text-[11px] mb-1">
                     {sol.badge}
                   </Badge>
-                  <CardTitle className="text-xl text-slate-900">{sol.title}</CardTitle>
+                  <CardTitle as="h2" className="text-xl text-slate-900">{sol.title}</CardTitle>
                   <CardDescription className="text-xs text-slate-600 leading-relaxed mt-1">
                     {sol.description}
                   </CardDescription>
@@ -137,7 +156,7 @@ export default function SolutionsPage() {
 
                 <CardContent className="space-y-4 flex-1">
                   <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 text-xs">
-                    <span className="text-slate-400 block text-[10px] uppercase tracking-wider">Target Operational Metric</span>
+                    <span className="text-slate-600 block text-[10px] uppercase tracking-wider">Target Operational Metric</span>
                     <strong className="text-blue-700 font-semibold">{sol.metrics}</strong>
                   </div>
 

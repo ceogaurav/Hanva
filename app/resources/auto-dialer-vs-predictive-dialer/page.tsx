@@ -1,7 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArticleLayout } from "@/components/shared/article-layout";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell,
+  TableCaption, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { PhoneForwarded, BarChart3, Users, Clock, AlertTriangle, ShieldCheck, CheckCircle2, Sliders } from "lucide-react";
 
@@ -10,14 +11,20 @@ export const metadata = {
   description:
     "An operational comparison of Preview, Progressive, and Predictive dialers. Learn pacing algorithms, team-size thresholds, Truecaller spam prevention, and compliance in India.",
   alternates: {
-    canonical: "https://hanva.in/resources/auto-dialer-vs-predictive-dialer/",
+    canonical: "https://www.hanva.in/resources/auto-dialer-vs-predictive-dialer/",
   },
   openGraph: {
     title: "Auto Dialer vs Predictive Dialer: Complete Comparison",
     description:
       "Compare Preview, Progressive, and Predictive dialers. Learn how call pacing algorithms affect agent idle time, dropped call rates, and Truecaller spam risk in India.",
-    url: "https://hanva.in/resources/auto-dialer-vs-predictive-dialer/",
+    url: "https://www.hanva.in/resources/auto-dialer-vs-predictive-dialer/",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Auto Dialer vs Predictive Dialer: Complete Comparison | Hanva Technologies",
+    description: "An operational comparison of Preview, Progressive, and Predictive dialers. Learn pacing algorithms, team-size thresholds, Truecaller spam prevention, and compliance in India.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -30,22 +37,22 @@ const articleSchema = {
   author: {
     "@type": "Organization",
     name: "Hanva Engineering & Editorial Board",
-    url: "https://hanva.in/company/about/",
+    url: "https://www.hanva.in/company/about/",
   },
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
-    url: "https://hanva.in",
+    url: "https://www.hanva.in",
     logo: {
       "@type": "ImageObject",
-      url: "https://hanva.in/icon.png",
+      url: "https://www.hanva.in/icon.png",
     },
   },
   datePublished: "2026-11-25",
   dateModified: "2026-11-25",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://hanva.in/resources/auto-dialer-vs-predictive-dialer/",
+    "@id": "https://www.hanva.in/resources/auto-dialer-vs-predictive-dialer/",
   },
 };
 
@@ -58,7 +65,7 @@ const faqs = [
   {
     question: "How many telecallers are needed before a Predictive Dialer makes sense?",
     answer:
-      "Predictive dialing algorithms rely on the Law of Large Numbers (Erlang queuing models). For teams with fewer than 15 agents, predictive dialing often leads to high call abandonment rates (where a customer answers but no agent is free). Teams with 5 to 15 telecallers achieve optimal talk time and zero dropped calls using Progressive Auto-Dialers. Predictive dialing delivers peak efficiency on sales floors with 15 to 25+ concurrent agents.",
+      "Predictive dialing algorithms rely on the Law of Large Numbers (Erlang queuing models). For teams with fewer than 15 agents, predictive dialing often leads to high call abandonment rates (where a customer answers but no agent is free). Teams with 5 to 15 telecallers achieve strong talk time and minimal abandonment using Progressive Auto-Dialers. Predictive dialing delivers peak efficiency on sales floors with 15 to 25+ concurrent agents.",
   },
   {
     question: "How do dialers detect answering machines, IVRs, and busy tones?",
@@ -73,7 +80,7 @@ const faqs = [
   {
     question: "Can an Auto-Dialer run on an Android phone using local SIM cards?",
     answer:
-      "Yes. In addition to cloud SIP trunking, modern telecalling platforms support companion Android mobile dialer apps. In SIM mode, the dialer app triggers outbound calls through the telecaller's physical mobile SIM while automatically capturing call recordings, call durations, and 2-click CRM disposition tags without requiring office desk phones or expensive VoIP data connections.",
+      "Yes. In addition to cloud SIP trunking, telecalling teams can pair a companion Android mobile dialer app. In SIM mode, the app logs outbound call durations and 2-click CRM disposition tags via the phone's SIM plan, while centralized call audio recording is supported on cloud/WebRTC trunk sessions.",
   },
 ];
 
@@ -94,7 +101,7 @@ export default function AutoDialerVsPredictiveDialerPage() {
         { label: "Auto Dialer vs Predictive Dialer" },
       ]}
       whatsappRef="/resources/auto-dialer-vs-predictive-dialer/"
-      executiveSummary="Choosing between an Auto Dialer and a Predictive Dialer hinges on team size, lead value, and compliance tolerance. Auto Dialers (Preview and Progressive) dial one number per available agent, guaranteeing zero abandoned calls—ideal for consultative B2B, real estate, and financial advisory teams with 5 to 15 agents. Predictive Dialers dial ahead using algorithmic pacing to maximize agent talk time across high-volume consumer lead pools, requiring 15+ concurrent agents to operate effectively without violating regulatory call abandonment caps."
+      executiveSummary="Choosing between an Auto Dialer and a Predictive Dialer hinges on team size, lead value, and compliance tolerance. Auto Dialers (Preview and Progressive) dial one number per available agent, minimizing abandoned calls—ideal for consultative B2B, real estate, and financial advisory teams with 5 to 15 agents. Predictive Dialers dial ahead using algorithmic pacing to maximize agent talk time across high-volume consumer lead pools, requiring 15+ concurrent agents to stay within regulatory call abandonment caps."
       tableOfContents={[
         { id: "dialer-modes", title: "1. The 3 Outbound Dialer Modes Compared" },
         { id: "predictive-math", title: "2. The Mathematical Anatomy of Predictive Dialing" },
@@ -152,36 +159,37 @@ export default function AutoDialerVsPredictiveDialerPage() {
 
         <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
           <Table>
+            <TableCaption className="sr-only">Technical and commercial comparison table</TableCaption>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold text-slate-900">Dialer Mode</TableHead>
-                <TableHead className="font-bold text-slate-900">How It Works</TableHead>
-                <TableHead className="font-bold text-slate-900">Dialing Ratio</TableHead>
-                <TableHead className="font-bold text-slate-900">Best Use Case</TableHead>
-                <TableHead className="font-bold text-slate-900">Call Abandonment Risk</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Dialer Mode</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">How It Works</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Dialing Ratio</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Best Use Case</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Call Abandonment Risk</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
               <TableRow>
-                <TableCell className="font-bold text-slate-900">Preview Dialer</TableCell>
+                <th scope="row" className="font-bold text-slate-900">Preview Dialer</th>
                 <TableCell>
                   Presents the lead&apos;s CRM profile to the agent first. The agent reviews past notes and clicks to dial when prepared.
                 </TableCell>
                 <TableCell className="font-mono">1:1 (Agent Initiated)</TableCell>
                 <TableCell>High-ticket B2B, Commercial Real Estate, Custom Wealth Management</TableCell>
-                <TableCell className="text-emerald-700 font-semibold">0% (Zero dropped calls)</TableCell>
+                <TableCell className="text-emerald-700 font-semibold">Minimal (1:1 pacing)</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-blue-700 bg-blue-50/30">Progressive Auto-Dialer</TableCell>
+                <th scope="row" className="font-bold text-blue-700 bg-blue-50/30">Progressive Auto-Dialer</th>
                 <TableCell className="bg-blue-50/30">
                   Dials automatically the instant an agent finishes logging their previous call disposition. If connected, the call bridges immediately.
                 </TableCell>
                 <TableCell className="font-mono bg-blue-50/30">1:1 (System Initiated)</TableCell>
                 <TableCell className="bg-blue-50/30">Inside sales teams, loan DSAs, course admissions (5–20 telecallers)</TableCell>
-                <TableCell className="text-emerald-700 font-semibold bg-blue-50/30">0% (Zero dropped calls)</TableCell>
+                <TableCell className="text-emerald-700 font-semibold bg-blue-50/30">Minimal (1:1 pacing)</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-slate-900">Predictive Dialer</TableCell>
+                <th scope="row" className="font-bold text-slate-900">Predictive Dialer</th>
                 <TableCell>
                   Dials multiple numbers ahead of time based on statistical probability, predicting when an agent will become available.
                 </TableCell>
@@ -312,21 +320,21 @@ export default function AutoDialerVsPredictiveDialerPage() {
 
         <div className="space-y-3 text-xs sm:text-sm text-slate-700 my-4">
           <div className="border-l-4 border-blue-500 pl-4 py-1 space-y-1">
-            <h4 className="font-bold text-slate-900">1. National Customer Preference Register (NCPR / DND)</h4>
+            <h3 className="font-bold text-slate-900">1. National Customer Preference Register (NCPR / DND)</h3>
             <p className="text-xs text-slate-600">
               Commercial telecallers must scrub outbound cold lists against the TRAI DND database. Calling registered DND numbers without verified prior consent incurs severe statutory penalties under the TCCCPR 2018 regulations.
             </p>
           </div>
 
           <div className="border-l-4 border-amber-500 pl-4 py-1 space-y-1">
-            <h4 className="font-bold text-slate-900">2. Permitted Calling Windows</h4>
+            <h3 className="font-bold text-slate-900">2. Permitted Calling Windows</h3>
             <p className="text-xs text-slate-600">
               Promotional commercial voice calls may only be placed between <strong>09:00 AM and 09:00 PM</strong> local time. Automated dialing platforms must enforce hard programmatic shut-offs outside these hours.
             </p>
           </div>
 
           <div className="border-l-4 border-emerald-500 pl-4 py-1 space-y-1">
-            <h4 className="font-bold text-slate-900">3. TRAI 140 Series for Promotional Calling</h4>
+            <h3 className="font-bold text-slate-900">3. TRAI 140 Series for Promotional Calling</h3>
             <p className="text-xs text-slate-600">
               Enterprises conducting unsolicited telemarketing must use designated <code>140</code> prefix numbering blocks allocated through licensed telecom service providers.
             </p>

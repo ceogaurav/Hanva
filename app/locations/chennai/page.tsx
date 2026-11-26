@@ -2,28 +2,28 @@ import * as React from "react";
 import { LocationLayout } from "@/components/shared/location-layout";
 
 export const metadata = {
-  title: "Cloud Telephony & Telecalling CRM in Chennai (044 Virtual Numbers)",
+  title: "CRM, Software Dev & 044 Cloud Chennai",
   description:
-    "Enterprise cloud telephony, 044 virtual numbers, and telecalling CRM for Chennai SaaS companies, automotive ancillary manufacturers, and healthcare admissions across OMR and Guindy.",
+    "Remote SaaS, custom CRM/ERP engineering, digital marketing, Salon & POS software, and 044 cloud telephony delivered remotely for Chennai OMR and Guindy businesses.",
   alternates: {
-    canonical: "https://hanva.in/locations/chennai/",
+    canonical: "https://www.hanva.in/locations/chennai/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/locations/chennai/",
+    url: "https://www.hanva.in/locations/chennai/",
     siteName: "Hanva Technologies",
-    title: "Cloud Telephony & Telecalling CRM in Chennai | Hanva Technologies",
+    title: "CRM, Software Dev & 044 Cloud Chennai",
     description:
-      "Enterprise cloud telephony, 044 virtual numbers, and telecalling CRM for Chennai SaaS companies and industrial manufacturers.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Chennai Telephony Hub" }],
+      "Remote SaaS, custom CRM/ERP engineering, digital marketing, and 044 cloud telephony for Chennai enterprises.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Chennai Remote Coverage" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cloud Telephony & Telecalling CRM in Chennai | Hanva Technologies",
+    title: "CRM, Software Dev & 044 Cloud Chennai",
     description:
-      "Enterprise cloud telephony, 044 virtual numbers, and telecalling CRM for Chennai SaaS companies and industrial manufacturers.",
-    images: ["https://hanva.in/og-image.png"],
+      "Remote SaaS software, custom engineering, and 044 telephony solutions for Chennai.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -32,27 +32,27 @@ const chennaiServiceSchema = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://hanva.in/locations/chennai/#webpage",
-      url: "https://hanva.in/locations/chennai/",
+      "@id": "https://www.hanva.in/locations/chennai/#webpage",
+      url: "https://www.hanva.in/locations/chennai/",
       name: "Cloud Telephony & Telecalling CRM in Chennai — Hanva",
       description:
         "Enterprise cloud telephony infrastructure, 044 virtual numbers, and telecalling CRM for Chennai SaaS enterprises, industrial manufacturing, and healthcare.",
       isPartOf: {
         "@type": "WebSite",
-        "@id": "https://hanva.in/#website",
+        "@id": "https://www.hanva.in/#website",
         name: "Hanva Technologies",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
       },
     },
     {
       "@type": "Service",
-      "@id": "https://hanva.in/locations/chennai/#service",
+      "@id": "https://www.hanva.in/locations/chennai/#service",
       name: "Cloud Telephony & Enterprise Communication Solutions — Chennai",
       serviceType: "Cloud Telephony, Smart IVR, 044 Virtual Numbers, and Telecalling CRM",
       provider: {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
         telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
@@ -86,7 +86,7 @@ export default function ChennaiLocationPage() {
         carrierPartners: "Tata Teleservices & Vodafone Idea (Vi)",
         deploymentTime: "24 – 48 Hours Digital KYC Activation",
       }}
-      marketContext="Chennai is renowned as the SaaS capital of India along the Old Mahabalipuram Road (OMR) IT corridor, as well as the 'Detroit of Asia' with deep automotive manufacturing clusters in Sriperumbudur and Guindy. Furthermore, Chennai's world-class medical tourism and educational institutions demand dependable inbound IVR systems capable of handling multi-lingual patient and student inquiries in Tamil and English with zero dropped calls."
+      marketContext="Chennai is renowned as the SaaS capital of India along the Old Mahabalipuram Road (OMR) IT corridor, as well as the 'Detroit of Asia' with deep automotive manufacturing clusters in Sriperumbudur and Guindy. Furthermore, Chennai's world-class medical tourism and educational institutions demand dependable inbound IVR systems capable of handling multi-lingual patient and student inquiries in Tamil and English reliably."
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Locations", href: "/locations/" },
@@ -170,9 +170,18 @@ export default function ChennaiLocationPage() {
         },
         {
           title: "Virtual Phone Numbers",
-          description: "Acquire dedicated 044 landline DIDs and 10-digit virtual mobile numbers with instant activation.",
+          description: "Acquire dedicated 044 landline DIDs and 10-digit virtual mobile numbers with KYC-verified activation in 24–48 business hours.",
           href: "/products/virtual-numbers/",
         },
+      ]}
+      remoteEngagementNote="Businesses across Chennai, OMR, Guindy, and Sriperumbudur are onboarded remotely by our Bengaluru team—covering cloud SaaS software, bespoke CRM/ERP development, digital marketing campaigns, and 044 virtual telephony."
+      solutionsPortfolio={[
+        { category: "SaaS Product", title: "Hanva CRM", description: "Multi-channel CRM, C2C calling & IVR workflows for Chennai inside-sales & SaaS teams.", href: "/products/crm/" },
+        { category: "IT Service", title: "Custom CRM & ERP Development", description: "Tailored dealer portals, manufacturing ERP & internal approval workflows.", href: "/software-development/custom-crm-development/" },
+        { category: "SaaS Product", title: "Hanva Salon Software", description: "GST billing, appointment calendar & staff commissions for single-outlet beauty studios.", href: "/products/salon-software/" },
+        { category: "SaaS Product", title: "Hanva Restaurant POS", description: "KOT/KDS, India CGST/SGST billing, UPI QR & recipe BOM stock for eateries.", href: "/products/restaurant-pos/" },
+        { category: "IT Service", title: "SEO & Google Ads", description: "Search marketing services for B2B engineering, healthcare & commercial businesses.", href: "/digital-marketing/" },
+        { category: "Buyer Guide", title: "SaaS vs Custom CRM/ERP", description: "Compare off-the-shelf SaaS vs custom engineering for manufacturing & B2B teams.", href: "/resources/saas-vs-custom-crm-erp-guide/" },
       ]}
       relatedIndustries={[
         {

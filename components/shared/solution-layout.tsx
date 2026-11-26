@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
-import { SchemaOrg } from "@/components/shared/schema-org";
+import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG } from "@/lib/config";
 import {
@@ -92,6 +92,7 @@ export function SolutionLayout({
     <div className="pt-10 pb-28 lg:py-14 bg-white min-h-screen">
       {schemaData && <SchemaOrg data={schemaData} />}
       {faqSchema && <SchemaOrg data={faqSchema} />}
+      <SchemaOrg data={buildBreadcrumbSchema(breadcrumbs)} />
 
       <Container className="space-y-12">
         {/* 1. Breadcrumb Hierarchy */}

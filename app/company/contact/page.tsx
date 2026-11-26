@@ -21,7 +21,14 @@ import {
   Check,
 } from "lucide-react";
 import { CONTACT_CONFIG, buildWhatsAppContactUrl, type ContactEnquiryPayload } from "@/lib/config";
-import { trackConversionEvent } from "@/lib/analytics";
+import {
+  trackAnalyticsEvent,
+  trackFormError,
+  trackFormStart,
+  trackFormSubmit,
+  trackWhatsAppClick,
+  inferSubjectFromContext,
+} from "@/lib/analytics";
 
 interface FormErrors {
   fullName?: string;
@@ -52,25 +59,99 @@ function mapTeamSizeFromSeats(seats: number): string {
   return "50+ agents";
 }
 
+function deriveSearchParamContext(searchParams: ReturnType<typeof useSearchParams>) {
+  const updates: Partial<ContactEnquiryPayload> = {};
+  const notesParts: string[] = [];
+  const badges: string[] = [];
+
+  if (!searchParams) {
+    return { updates, summary: null as string | null };
+  }
+
+  const prodParam = searchParams.get("product");
+  const planParam = searchParams.get("plan");
+  const cityParam = searchParams.get("city");
+  const industryParam = searchParams.get("industry");
+  const calcCalls = searchParams.get("calcCalls");
+  const calcDur = searchParams.get("calcDur");
+  const calcSeats = searchParams.get("calcSeats");
+  const calcMode = searchParams.get("calcMode");
+
+  if (prodParam && PRODUCT_OPTION_MAP[prodParam]) {
+    updates.product = PRODUCT_OPTION_MAP[prodParam];
+    badges.push(PRODUCT_OPTION_MAP[prodParam]);
+  } else if (planParam === "enterprise") {
+    updates.product = "Enterprise Telecom & CRM Suite";
+    updates.teamSize = "50+ agents";
+  } else if (planParam === "growth-pro") {
+    updates.product = "Auto & Predictive Dialers";
+  }
+
+  if (planParam) {
+    const cleanPlan = planParam.replace(/[^a-z0-9-]/gi, " ").trim().slice(0, 40).toUpperCase();
+    if (cleanPlan) {
+      notesParts.push(`Requested Plan: ${cleanPlan}`);
+      badges.push(`Plan: ${cleanPlan}`);
+    }
+  }
+
+  if (cityParam) {
+    const cleanCity = cityParam.replace(/[^a-z0-9-\s]/gi, "").slice(0, 40);
+    if (cleanCity) notesParts.push(`Target City/Circle: ${cleanCity}`);
+  }
+
+  if (industryParam) {
+    const cleanInd = industryParam.replace(/[^a-z0-9-\s&]/gi, "").slice(0, 50);
+    if (cleanInd) notesParts.push(`Industry: ${cleanInd}`);
+  }
+
+  if (calcCalls && calcDur && calcSeats) {
+    const rawCalls = Number(calcCalls);
+    const rawDur = Number(calcDur);
+    const rawSeats = Number(calcSeats);
+    if (Number.isFinite(rawCalls) && Number.isFinite(rawDur) && Number.isFinite(rawSeats)) {
+      const callsNum = Math.min(100000, Math.max(1000, Math.round(rawCalls)));
+      const durNum = Math.min(180, Math.max(15, Math.round(rawDur)));
+      const seatsNum = Math.min(50, Math.max(1, Math.round(rawSeats)));
+      updates.teamSize = mapTeamSizeFromSeats(seatsNum);
+      const modeLabel = calcMode === "telecalling" ? "Interactive Telecalling + CRM" : "OBD Broadcast Simulation";
+      notesParts.push(
+        `Calculator Context (${modeLabel}): ${callsNum.toLocaleString()} calls/mo, avg ${durNum}s duration, ${seatsNum} agent seats.`
+      );
+      badges.push(`${callsNum.toLocaleString()} calls/mo · ${seatsNum} seats`);
+    }
+  }
+
+  if (notesParts.length > 0) {
+    updates.notes = notesParts.join("\n");
+  }
+
+  return {
+    updates,
+    summary: badges.length > 0 ? badges.join(" · ") : null,
+  };
+}
+
 function ContactPageContent() {
   const searchParams = useSearchParams();
+  const initialContext = React.useMemo(() => deriveSearchParamContext(searchParams), [searchParams]);
 
   const [handoffInitiated, setHandoffInitiated] = React.useState(false);
   const [popupBlocked, setPopupBlocked] = React.useState(false);
   const [generatedUrl, setGeneratedUrl] = React.useState("");
-  const [copiedMessage, setCopiedMessage] = React.useState(false);
-  const [contextSummary, setContextSummary] = React.useState<string | null>(null);
+  const [copyStatus, setCopyStatus] = React.useState<"idle" | "copied" | "error">("idle");
+  const contextSummary = initialContext.summary;
 
-  const [formData, setFormData] = React.useState<ContactEnquiryPayload & { honeypot: string }>({
+  const [formData, setFormData] = React.useState<ContactEnquiryPayload & { honeypot: string }>(() => ({
     fullName: "",
     companyName: "",
     workEmail: "",
     phone: "",
-    teamSize: "5-15 agents",
-    product: "Smart IVR & Cloud Telephony",
-    notes: "",
+    teamSize: initialContext.updates.teamSize || "5-15 agents",
+    product: initialContext.updates.product || "Smart IVR & Cloud Telephony",
+    notes: initialContext.updates.notes || "",
     honeypot: "",
-  });
+  }));
 
   const [errors, setErrors] = React.useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -80,89 +161,10 @@ function ContactPageContent() {
   const handoffHeadingRef = React.useRef<HTMLHeadingElement>(null);
   const fullNameInputRef = React.useRef<HTMLInputElement>(null);
 
-  // Hydrate strictly non-PII routing context from query parameters (e.g., ?product=auto-dialer&plan=growth-pro)
-  React.useEffect(() => {
-    if (!searchParams) return;
-    const prodParam = searchParams.get("product");
-    const planParam = searchParams.get("plan");
-    const cityParam = searchParams.get("city");
-    const industryParam = searchParams.get("industry");
-    const calcCalls = searchParams.get("calcCalls");
-    const calcDur = searchParams.get("calcDur");
-    const calcSeats = searchParams.get("calcSeats");
-    const calcMode = searchParams.get("calcMode");
-
-    const updates: Partial<ContactEnquiryPayload> = {};
-    const notesParts: string[] = [];
-    const badges: string[] = [];
-
-    if (prodParam && PRODUCT_OPTION_MAP[prodParam]) {
-      updates.product = PRODUCT_OPTION_MAP[prodParam];
-      badges.push(PRODUCT_OPTION_MAP[prodParam]);
-    } else if (planParam === "enterprise") {
-      updates.product = "Enterprise Telecom & CRM Suite";
-      updates.teamSize = "50+ agents";
-    } else if (planParam === "growth-pro") {
-      updates.product = "Auto & Predictive Dialers";
-    }
-
-    if (planParam) {
-      const cleanPlan = planParam.replace(/[^a-z0-9-]/gi, " ").trim().slice(0, 40).toUpperCase();
-      if (cleanPlan) {
-        notesParts.push(`Requested Plan: ${cleanPlan}`);
-        badges.push(`Plan: ${cleanPlan}`);
-      }
-    }
-
-    if (cityParam) {
-      const cleanCity = cityParam.replace(/[^a-z0-9-\s]/gi, "").slice(0, 40);
-      if (cleanCity) notesParts.push(`Target City/Circle: ${cleanCity}`);
-    }
-
-    if (industryParam) {
-      const cleanInd = industryParam.replace(/[^a-z0-9-\s&]/gi, "").slice(0, 50);
-      if (cleanInd) notesParts.push(`Industry: ${cleanInd}`);
-    }
-
-    if (calcCalls && calcDur && calcSeats) {
-      const rawCalls = Number(calcCalls);
-      const rawDur = Number(calcDur);
-      const rawSeats = Number(calcSeats);
-      if (Number.isFinite(rawCalls) && Number.isFinite(rawDur) && Number.isFinite(rawSeats)) {
-        const callsNum = Math.min(100000, Math.max(1000, Math.round(rawCalls)));
-        const durNum = Math.min(180, Math.max(15, Math.round(rawDur)));
-        const seatsNum = Math.min(50, Math.max(1, Math.round(rawSeats)));
-        updates.teamSize = mapTeamSizeFromSeats(seatsNum);
-        const modeLabel = calcMode === "telecalling" ? "Interactive Telecalling + CRM" : "OBD Broadcast Simulation";
-        notesParts.push(
-          `Calculator Context (${modeLabel}): ${callsNum.toLocaleString()} calls/mo, avg ${durNum}s duration, ${seatsNum} agent seats.`
-        );
-        badges.push(`${callsNum.toLocaleString()} calls/mo · ${seatsNum} seats`);
-      }
-    }
-
-    if (notesParts.length > 0) {
-      updates.notes = notesParts.join("\n");
-    }
-
-    if (Object.keys(updates).length > 0) {
-      setFormData((prev) => ({
-        ...prev,
-        ...updates,
-        notes: prev.notes || updates.notes || "",
-      }));
-    }
-    if (badges.length > 0) {
-      setContextSummary(badges.join(" · "));
-    }
-  }, [searchParams]);
-
   const markFormStarted = (fieldName: string) => {
     if (formStartedRef.current) return;
     formStartedRef.current = true;
-    trackConversionEvent("demo_form_start", {
-      first_field_name: fieldName,
-    });
+    trackFormStart("contact_demo_enquiry", fieldName);
   };
 
   const validateForm = (): FormErrors => {
@@ -216,6 +218,7 @@ function ContactPageContent() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
+      trackFormError("contact_demo_enquiry", Object.keys(newErrors));
       setTimeout(() => {
         errorSummaryRef.current?.focus();
       }, 10);
@@ -245,21 +248,22 @@ function ContactPageContent() {
 
       setPopupBlocked(wasBlocked);
       setHandoffInitiated(true);
-      setCopiedMessage(false);
+      setCopyStatus("idle");
 
-      // Truthfulness rule: fire contact_method_selected (NOT demo_form_submit, as no server lead capture occurred)
-      trackConversionEvent("contact_method_selected", {
-        method: "whatsapp_form_handoff",
-        cta_location: "contact_form_submit",
-        selected_product_category: formData.product || "unspecified",
-        selected_team_size_bucket: formData.teamSize || "unspecified",
-        popup_blocked: wasBlocked,
+      // Truthfulness rule: fire client-side form_submit (`delivery_confirmed: false`) — NEVER `generate_lead`
+      trackFormSubmit({
+        formName: "contact_demo_enquiry",
+        productInterest: formData.product || "unspecified",
+        teamSizeBucket: formData.teamSize || "unspecified",
+        handoffMethod: "whatsapp_client_url",
+        popupBlocked: wasBlocked,
       });
 
       setTimeout(() => {
         handoffHeadingRef.current?.focus();
       }, 20);
     } catch {
+      trackFormError("contact_demo_enquiry", ["general"]);
       setErrors({ general: "Unable to prepare WhatsApp message. Please use Email or Phone below." });
     } finally {
       setIsSubmitting(false);
@@ -277,10 +281,10 @@ function ContactPageContent() {
   const handleCopyMessage = async () => {
     try {
       await navigator.clipboard.writeText(buildPlainPreviewText());
-      setCopiedMessage(true);
-      setTimeout(() => setCopiedMessage(false), 3000);
+      setCopyStatus("copied");
+      setTimeout(() => setCopyStatus("idle"), 3000);
     } catch {
-      setCopiedMessage(false);
+      setCopyStatus("error");
     }
   };
 
@@ -319,8 +323,9 @@ function ContactPageContent() {
               <a
                 href={`tel:${CONTACT_CONFIG.phoneTel}`}
                 onClick={() =>
-                  trackConversionEvent("phone_cta_click", {
-                    cta_location: "contact_direct_card",
+                  trackAnalyticsEvent("phone_click", {
+                    cta_location: "contact_page",
+                    cta_surface: "contact_direct_card",
                     target_channel: "sales_desk",
                   })
                 }
@@ -339,9 +344,10 @@ function ContactPageContent() {
               <a
                 href={directMailtoHref}
                 onClick={() =>
-                  trackConversionEvent("contact_method_selected", {
+                  trackAnalyticsEvent("demo_cta_click", {
                     method: "email",
-                    cta_location: "contact_direct_card",
+                    cta_location: "contact_page",
+                    cta_surface: "contact_direct_card",
                   })
                 }
                 className="flex items-center space-x-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs hover:border-blue-300 transition-colors w-full min-w-0"
@@ -363,13 +369,11 @@ function ContactPageContent() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
-                  trackConversionEvent("whatsapp_cta_click", {
-                    cta_location: "contact_direct_card",
-                    context_ref: "direct_chat",
-                  });
-                  trackConversionEvent("contact_method_selected", {
-                    method: "whatsapp_direct",
-                    cta_location: "contact_direct_card",
+                  trackWhatsAppClick({
+                    ctaLocation: "contact_page",
+                    productName: "general_enquiry",
+                    ctaType: "general_whatsapp",
+                    contextRef: "contact_direct_card",
                   });
                 }}
                 className="flex items-center space-x-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs hover:border-emerald-300 transition-colors w-full min-w-0"
@@ -423,7 +427,7 @@ function ContactPageContent() {
           <div className="lg:col-span-7 min-w-0 w-full">
             <Card className="border-slate-200 shadow-md bg-white w-full overflow-hidden">
               <CardHeader className="border-b border-slate-100 p-4 sm:p-6 pb-4">
-                <CardTitle className="text-lg sm:text-xl break-words">Request Demo &amp; Custom Quotation</CardTitle>
+                <CardTitle as="h2" className="text-lg sm:text-xl break-words">Request Demo &amp; Custom Quotation</CardTitle>
                 <CardDescription className="text-xs sm:text-sm text-slate-600 break-words">
                   Format your technical requirements for direct handoff to our sales engineers via WhatsApp or Email.
                 </CardDescription>
@@ -484,7 +488,7 @@ function ContactPageContent() {
                           onClick={handleCopyMessage}
                           className="inline-flex items-center gap-1 px-2.5 py-1 rounded border border-slate-300 bg-white text-xs font-medium text-slate-700 hover:bg-slate-100 transition-colors"
                         >
-                          {copiedMessage ? (
+                          {copyStatus === "copied" ? (
                             <>
                               <Check className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
                               <span>Copied</span>
@@ -496,6 +500,18 @@ function ContactPageContent() {
                             </>
                           )}
                         </button>
+                      </div>
+                      <div aria-live="polite" className="text-[11px] min-h-[16px]">
+                        {copyStatus === "copied" && (
+                          <span className="text-emerald-700 font-medium">
+                            Enquiry text copied to clipboard.
+                          </span>
+                        )}
+                        {copyStatus === "error" && (
+                          <span className="text-red-700 font-medium">
+                            Clipboard blocked by browser — please select and copy the preview text below manually.
+                          </span>
+                        )}
                       </div>
                       <pre className="text-xs text-slate-700 whitespace-pre-wrap break-words font-sans leading-relaxed max-h-40 overflow-y-auto">
                         {buildPlainPreviewText()}
@@ -510,9 +526,11 @@ function ContactPageContent() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() =>
-                          trackConversionEvent("whatsapp_cta_click", {
-                            cta_location: "contact_handoff_retry",
-                            context_ref: formData.product || "enquiry",
+                          trackWhatsAppClick({
+                            ctaLocation: "contact_page",
+                            productName: inferSubjectFromContext(formData.product),
+                            ctaType: "handoff_whatsapp",
+                            contextRef: "contact_handoff_retry",
                           })
                         }
                        
@@ -527,9 +545,10 @@ function ContactPageContent() {
                         <a
                         href={handoffMailtoHref}
                         onClick={() =>
-                          trackConversionEvent("contact_method_selected", {
+                          trackAnalyticsEvent("demo_cta_click", {
                             method: "email_fallback",
-                            cta_location: "contact_handoff_panel",
+                            cta_location: "contact_page",
+                            cta_surface: "contact_handoff_panel",
                           })
                         }
                        

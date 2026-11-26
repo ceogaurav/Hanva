@@ -5,7 +5,22 @@ export const metadata = {
   description:
     "Enterprise cloud telephony infrastructure in India. Virtual PBX, intelligent call routing, encrypted recording, and carrier gateway trunking via Vi and Tata Teleservices.",
   alternates: {
-    canonical: "https://hanva.in/products/cloud-telephony/",
+    canonical: "https://www.hanva.in/products/cloud-telephony/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/cloud-telephony/",
+    siteName: "Hanva Technologies",
+    title: "Cloud Telephony & Virtual PBX Service Provider in India | Hanva Technologies",
+    description: "Enterprise cloud telephony infrastructure in India. Virtual PBX, intelligent call routing, encrypted recording, and carrier gateway trunking via Vi and Tata Teleservices.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Cloud Telephony & Virtual PBX Service Provider in India" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cloud Telephony & Virtual PBX Service Provider in India | Hanva Technologies",
+    description: "Enterprise cloud telephony infrastructure in India. Virtual PBX, intelligent call routing, encrypted recording, and carrier gateway trunking via Vi and Tata Teleservices.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -136,7 +151,7 @@ export default function CloudTelephonyPage() {
         },
         {
           question: "How long are call recordings stored?",
-          answer: "By default, encrypted call recordings are retained in secure cloud storage for 90 days. Extended archiving plans (up to 3 years) are available for regulated industries.",
+          answer: "Encrypted call recordings follow configurable retention tiers (Standard, Extended, and Custom Enterprise Terms) defined in your service agreement.",
         },
         {
           question: "Are virtual numbers allocated from authorized telecom operators?",

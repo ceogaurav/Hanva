@@ -6,7 +6,22 @@ export const metadata = {
   description:
     "High-throughput enterprise cloud PBX, dedicated carrier PRI/SIP trunks via Vodafone Idea and Tata Teleservices, unified multi-branch billing, and enterprise service support.",
   alternates: {
-    canonical: "https://hanva.in/solutions/enterprise/",
+    canonical: "https://www.hanva.in/solutions/enterprise/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/solutions/enterprise/",
+    siteName: "Hanva Technologies",
+    title: "Enterprise Cloud Voice Architecture & SIP Trunking | Hanva Technologies",
+    description: "High-throughput enterprise cloud PBX, dedicated carrier PRI/SIP trunks via Vodafone Idea and Tata Teleservices, unified multi-branch billing, and enterprise service support.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Enterprise Cloud Voice Architecture & SIP Trunking" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Enterprise Cloud Voice Architecture & SIP Trunking | Hanva Technologies",
+    description: "High-throughput enterprise cloud PBX, dedicated carrier PRI/SIP trunks via Vodafone Idea and Tata Teleservices, unified multi-branch billing, and enterprise service support.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

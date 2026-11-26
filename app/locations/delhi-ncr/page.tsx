@@ -2,28 +2,28 @@ import * as React from "react";
 import { LocationLayout } from "@/components/shared/location-layout";
 
 export const metadata = {
-  title: "Cloud Telephony & Telecalling CRM in Delhi NCR (011 Virtual Numbers)",
+  title: "SaaS, Dialers & 011 Telephony Delhi NCR",
   description:
-    "Enterprise cloud telephony, 011 virtual numbers, auto-dialers, and telecalling CRM for Delhi NCR, Gurugram, and Noida. E-commerce number masking and high-volume sales calling.",
+    "Remote SaaS onboarding, digital marketing, e-commerce engineering, and 011 virtual cloud telephony for Delhi, Gurugram, and Noida businesses.",
   alternates: {
-    canonical: "https://hanva.in/locations/delhi-ncr/",
+    canonical: "https://www.hanva.in/locations/delhi-ncr/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/locations/delhi-ncr/",
+    url: "https://www.hanva.in/locations/delhi-ncr/",
     siteName: "Hanva Technologies",
-    title: "Cloud Telephony & Telecalling CRM in Delhi NCR | Hanva Technologies",
+    title: "SaaS, Dialers & 011 Telephony Delhi NCR",
     description:
-      "Enterprise cloud telephony, 011 virtual numbers, auto-dialers, and telecalling CRM for Delhi NCR, Gurugram, and Noida.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Delhi NCR Telephony Hub" }],
+      "Remote CRM, Restaurant POS, Salon Software, Google Ads/SEO, and 011 cloud telephony across Delhi NCR.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Delhi NCR Remote Coverage" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cloud Telephony & Telecalling CRM in Delhi NCR | Hanva Technologies",
+    title: "SaaS, Dialers & 011 Telephony Delhi NCR",
     description:
-      "Enterprise cloud telephony, 011 virtual numbers, auto-dialers, and telecalling CRM for Delhi NCR, Gurugram, and Noida.",
-    images: ["https://hanva.in/og-image.png"],
+      "Remote SaaS, digital marketing, and 011 cloud telephony solutions for Delhi NCR.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -32,27 +32,27 @@ const delhiNcrServiceSchema = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://hanva.in/locations/delhi-ncr/#webpage",
-      url: "https://hanva.in/locations/delhi-ncr/",
+      "@id": "https://www.hanva.in/locations/delhi-ncr/#webpage",
+      url: "https://www.hanva.in/locations/delhi-ncr/",
       name: "Cloud Telephony & Telecalling CRM in Delhi NCR — Hanva",
       description:
         "Enterprise cloud telephony infrastructure, 011 virtual numbers, and predictive auto-dialers for Delhi NCR, Gurugram, and Noida businesses.",
       isPartOf: {
         "@type": "WebSite",
-        "@id": "https://hanva.in/#website",
+        "@id": "https://www.hanva.in/#website",
         name: "Hanva Technologies",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
       },
     },
     {
       "@type": "Service",
-      "@id": "https://hanva.in/locations/delhi-ncr/#service",
+      "@id": "https://www.hanva.in/locations/delhi-ncr/#service",
       name: "Cloud Telephony & Outbound Call Center Solutions — Delhi NCR",
       serviceType: "Cloud Telephony, Auto Dialer, 011 Virtual Numbers, and Telecalling CRM",
       provider: {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
         telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
@@ -182,6 +182,15 @@ export default function DelhiNcrLocationPage() {
           description: "Deploy shared team inboxes, document intake, and verified business messaging templates.",
           href: "/products/whatsapp-crm/",
         },
+      ]}
+      remoteEngagementNote="Delhi, Gurugram, and Noida businesses work with Hanva remotely via digital KYC onboarding, guided WhatsApp demos (+91 8423711043), and cloud deployment for sales teams, F&B outlets, salons, and digital commerce."
+      solutionsPortfolio={[
+        { category: "SaaS Product", title: "Hanva CRM", description: "Lead management, built-in IVR blasts, C2C calling & team attendance for NCR sales teams.", href: "/products/crm/" },
+        { category: "SaaS Product", title: "Hanva Restaurant POS", description: "Offline-resilient POS, KDS, QR ordering & recipe stock for Delhi/Gurugram eateries.", href: "/products/restaurant-pos/" },
+        { category: "SaaS Product", title: "Hanva Salon Software", description: "GST billing, online booking & loyalty tools for independent beauty & wellness brands.", href: "/products/salon-software/" },
+        { category: "IT Service", title: "Google Ads & SEO Services", description: "Capture pan-India and NCR commercial search demand across Web & Google Ads.", href: "/digital-marketing/" },
+        { category: "IT Service", title: "E-commerce & Web Apps", description: "Custom D2C/B2B ordering portals, mobile apps & API automation.", href: "/software-development/ecommerce-development/" },
+        { category: "Buyer Guide", title: "Restaurant POS & KOT Guide", description: "Learn how offline POS, KDS, and recipe BOM controls protect dining margins.", href: "/resources/restaurant-pos-kot-inventory-guide/" },
       ]}
       relatedIndustries={[
         {

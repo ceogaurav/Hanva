@@ -27,24 +27,24 @@ export const metadata = {
   description:
     "Explore Hanva's business communication hubs in Bengaluru, Mumbai, Delhi NCR, Hyderabad, Pune, and Chennai. Genuine local virtual STD DIDs and cloud CRM.",
   alternates: {
-    canonical: "https://hanva.in/locations/",
+    canonical: "https://www.hanva.in/locations/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/locations/",
+    url: "https://www.hanva.in/locations/",
     siteName: "Hanva Technologies",
     title: "Cloud Telephony & B2B Telecalling Solutions Across India | Hanva Technologies",
     description:
       "Explore Hanva's business communication hubs in Bengaluru, Mumbai, Delhi NCR, Hyderabad, Pune, and Chennai. Genuine local virtual STD DIDs and cloud CRM.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Regional Locations Hub" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Regional Locations Hub" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Cloud Telephony & B2B Telecalling Solutions Across India | Hanva Technologies",
     description:
       "Explore Hanva's business communication hubs in Bengaluru, Mumbai, Delhi NCR, Hyderabad, Pune, and Chennai. Genuine local virtual STD DIDs and cloud CRM.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -54,7 +54,7 @@ const locationsHubSchema = {
   name: "Hanva Geographic Business Telephony Hubs",
   description:
     "Enterprise cloud telephony, virtual landline DIDs, and telecalling CRM architectures across Indian metropolitan commercial hubs.",
-  url: "https://hanva.in/locations/",
+  url: "https://www.hanva.in/locations/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
@@ -82,7 +82,7 @@ const locations = [
     stdCode: "022",
     slug: "/locations/mumbai/",
     description:
-      "Low-latency cloud telephony and 100% compliant stereo call recording for BFSI firms, NBFC lending collections, wealth management, insurance brokerages, and logistics dispatchers in MMR.",
+      "Carrier-grade cloud telephony and dual-channel cloud call recording for BFSI firms, NBFC lending collections, wealth management, insurance brokerages, and logistics dispatchers in MMR.",
     sectors: ["BFSI & Digital Lending DSAs", "Insurance & IRDAI Brokers", "Logistics & Fleet Dispatch"],
     carrierNote: "022 Virtual DID Series via Tata Teleservices & Vodafone Idea Trunks",
   },

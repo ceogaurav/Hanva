@@ -5,16 +5,30 @@ export const metadata = {
   description:
     "Automate outbound telecalling. Connect sales agents only when a live human answers, skipping busy tones and manual dialing. Supports 15s pulse billing.",
   alternates: {
-    canonical: "https://hanva.in/products/auto-dialer/",
+    canonical: "https://www.hanva.in/products/auto-dialer/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/auto-dialer/",
+    siteName: "Hanva Technologies",
+    title: "Auto Dialer Software for Sales Teams in India — Progressive Dialing | Hanva Technologies",
+    description: "Automate outbound telecalling. Connect sales agents only when a live human answers, skipping busy tones and manual dialing. Supports 15s pulse billing.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Auto Dialer Software for Sales Teams in India — Progressive Dialing" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Auto Dialer Software for Sales Teams in India — Progressive Dialing | Hanva Technologies",
+    description: "Automate outbound telecalling. Connect sales agents only when a live human answers, skipping busy tones and manual dialing. Supports 15s pulse billing.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
 const autoDialerSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "Service",
   name: "Hanva Progressive Auto-Dialer",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web Browser Application / Android",
+  serviceType: "Enterprise Cloud Telephony & CRM Software",
   provider: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
@@ -131,7 +145,7 @@ export default function AutoDialerPage() {
         },
         {
           question: "Can we use our existing GSM mobile SIM cards with the dialer?",
-          answer: "Yes. Hanva supports a mobile telecalling mode via our Android application. The dialer triggers calls through the phone's native SIM plan while centrally logging talk time, recordings, and dispositions into your Hanva CRM dashboard.",
+          answer: "Yes. Hanva supports a companion mobile SIM telecalling mode via our Android application that logs call durations and dispositions into your Hanva CRM dashboard (centralized call audio recording applies to cloud/WebRTC trunk sessions).",
         },
         {
           question: "How does the 15-second OBD voice pulse work?",

@@ -6,24 +6,24 @@ export const metadata = {
   description:
     "Automate policy renewal cadences, manage claims assistance IVR queues, dispatch quote comparisons via WhatsApp, and archive 100% of policyholder calls.",
   alternates: {
-    canonical: "https://hanva.in/industry/insurance/",
+    canonical: "https://www.hanva.in/industry/insurance/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/industry/insurance/",
+    url: "https://www.hanva.in/industry/insurance/",
     siteName: "Hanva Technologies",
     title: "Insurance Renewal Telecalling & Claims IVR | Hanva Technologies",
     description:
       "Automate policy renewal cadences, manage claims assistance IVR queues, dispatch quote comparisons via WhatsApp, and archive 100% of policyholder calls.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Insurance Telephony" }],
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Insurance Telephony" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Insurance Renewal Telecalling & Claims IVR | Hanva Technologies",
     description:
       "Automate policy renewal cadences, manage claims assistance IVR queues, dispatch quote comparisons via WhatsApp, and archive 100% of policyholder calls.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -60,7 +60,7 @@ export default function InsuranceIndustryPage() {
         },
         {
           challenge: "Policyholders seeking urgent roadside or hospitalization claims assistance face long hold times on general office phone lines.",
-          solution: "Dedicated Claims Assistance IVR priority trees route callers directly to senior claims coordinators with zero queue delay.",
+          solution: "Dedicated Claims Assistance IVR priority trees route callers directly to senior claims coordinators to minimize hold times.",
         },
         {
           challenge: "Clients request premium quote breakdowns and plan comparisons during calls, but agents struggle to dispatch them quickly.",
@@ -68,7 +68,7 @@ export default function InsuranceIndustryPage() {
         },
         {
           challenge: "Regulatory guidelines require insurance intermediaries to maintain verifiable voice recordings of policy terms disclosures and customer consent.",
-          solution: "100% automated stereo voice recording with role-based playback access and tamper-evident audit trails stored in Indian cloud storage.",
+          solution: "Automated dual-channel cloud voice recording with role-based playback access and tamper-evident audit trails stored in Indian cloud storage.",
         },
       ]}
       workflowTitle="The 4-Stage Insurance Renewal & Claims Cycle"
@@ -108,7 +108,7 @@ export default function InsuranceIndustryPage() {
           description: "High-priority IVR routing allows policyholders in distress to bypass standard menus and reach hospital desk or roadside support immediately.",
         },
         {
-          metric: "100%",
+          metric: "Dual-Channel",
           metricLabel: "Voice Archival",
           title: "Regulatory Call Recording",
           description: "Centralized dual-channel audio recording archive stored securely in India to substantiate verbal terms disclosures and prevent mis-selling disputes.",

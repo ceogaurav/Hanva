@@ -9,7 +9,22 @@ export const metadata = {
   description:
     "Statutory Privacy Policy of Hanva Technologies Private Limited. Information collection, voice recording retention, and data protection under the Indian DPDP Act, 2023.",
   alternates: {
-    canonical: "https://hanva.in/company/privacy-policy/",
+    canonical: "https://www.hanva.in/company/privacy-policy/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/company/privacy-policy/",
+    siteName: "Hanva Technologies",
+    title: "Privacy Policy | Hanva Technologies",
+    description: "Statutory Privacy Policy of Hanva Technologies Private Limited. Information collection, voice recording retention, and data protection under the Indian DPDP Act, 2023.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Privacy Policy" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Hanva Technologies",
+    description: "Statutory Privacy Policy of Hanva Technologies Private Limited. Information collection, voice recording retention, and data protection under the Indian DPDP Act, 2023.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -19,7 +34,7 @@ const privacySchema = {
   name: "Privacy Policy of Hanva Technologies Private Limited",
   description:
     "Official privacy policy governing data protection, telecom KYC, and voice recording retention at Hanva Technologies.",
-  url: "https://hanva.in/company/privacy-policy/",
+  url: "https://www.hanva.in/company/privacy-policy/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
@@ -71,7 +86,7 @@ export default function PrivacyPolicyPage() {
               Hanva Technologies Private Limited (&quot;Hanva&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), incorporated under the Companies Act, 2013 (CIN: U78100KA2025PTC205168), is committed to safeguarding the privacy and security of your corporate and personal information.
             </p>
             <p>
-              This Privacy Policy explains how we collect, store, process, and protect information when you visit our website (<code>https://hanva.in</code>), subscribe to our cloud telephony, IVR, or CRM software, or interact with our sales and technical support desks. This policy is formulated in compliance with the Digital Personal Data Protection (DPDP) Act, 2023 and the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011.
+              This Privacy Policy explains how we collect, store, process, and protect information when you visit our website (<code>https://www.hanva.in</code>), subscribe to our cloud telephony, IVR, or CRM software, or interact with our sales and technical support desks. This policy is formulated in compliance with the Digital Personal Data Protection (DPDP) Act, 2023 and the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011.
             </p>
           </section>
 

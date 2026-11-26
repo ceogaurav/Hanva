@@ -2,28 +2,28 @@ import * as React from "react";
 import { LocationLayout } from "@/components/shared/location-layout";
 
 export const metadata = {
-  title: "Cloud Telephony & Telecalling CRM in Pune (020 Virtual Numbers)",
+  title: "Auto CRM, SaaS & 020 Telephony Pune",
   description:
-    "Enterprise cloud telephony, 020 virtual numbers, and telecalling CRM for Pune automotive dealerships, workshop service recall dialers, and manufacturing enterprises in Hinjawadi and PCMC.",
+    "Remote onboarding for Pune and PCMC businesses: Hanva CRM, Salon & Restaurant POS SaaS, custom software development, digital marketing, and 020 virtual numbers.",
   alternates: {
-    canonical: "https://hanva.in/locations/pune/",
+    canonical: "https://www.hanva.in/locations/pune/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/locations/pune/",
+    url: "https://www.hanva.in/locations/pune/",
     siteName: "Hanva Technologies",
-    title: "Cloud Telephony & Telecalling CRM in Pune | Hanva Technologies",
+    title: "Auto CRM, SaaS & 020 Telephony Pune",
     description:
-      "Enterprise cloud telephony, 020 virtual numbers, and telecalling CRM for Pune automotive dealerships and manufacturing enterprises.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Pune Telephony Hub" }],
+      "Remote SaaS products, custom software, digital marketing, and 020 virtual telephony for Pune dealerships and IT firms.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Pune Remote Coverage" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cloud Telephony & Telecalling CRM in Pune | Hanva Technologies",
+    title: "Auto CRM, SaaS & 020 Telephony Pune",
     description:
-      "Enterprise cloud telephony, 020 virtual numbers, and telecalling CRM for Pune automotive dealerships and manufacturing enterprises.",
-    images: ["https://hanva.in/og-image.png"],
+      "Remote SaaS, custom software, and 020 cloud telephony delivery for Pune.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -32,27 +32,27 @@ const puneServiceSchema = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://hanva.in/locations/pune/#webpage",
-      url: "https://hanva.in/locations/pune/",
+      "@id": "https://www.hanva.in/locations/pune/#webpage",
+      url: "https://www.hanva.in/locations/pune/",
       name: "Cloud Telephony & Telecalling CRM in Pune — Hanva",
       description:
         "Enterprise cloud telephony infrastructure, 020 virtual numbers, and auto-dialers for Pune automotive dealerships, workshops, and manufacturing sectors.",
       isPartOf: {
         "@type": "WebSite",
-        "@id": "https://hanva.in/#website",
+        "@id": "https://www.hanva.in/#website",
         name: "Hanva Technologies",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
       },
     },
     {
       "@type": "Service",
-      "@id": "https://hanva.in/locations/pune/#service",
+      "@id": "https://www.hanva.in/locations/pune/#service",
       name: "Cloud Telephony & Automotive CRM Solutions — Pune",
       serviceType: "Cloud Telephony, Auto Dialer, 020 Virtual Numbers, and Telecalling CRM",
       provider: {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
         telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
@@ -174,6 +174,15 @@ export default function PuneLocationPage() {
           href: "/products/whatsapp-crm/",
         },
       ]}
+      remoteEngagementNote="Pune dealerships, IT teams in Hinjawadi, cafes, and salons engage Hanva remotely from our Bengaluru headquarters via structured WhatsApp demos (+91 8423711043), remote training, and cloud SaaS/IT delivery."
+      solutionsPortfolio={[
+        { category: "SaaS Product", title: "Hanva CRM", description: "Follow-ups, C2C calling, IVR campaigns & recording playback for sales and service desks.", href: "/products/crm/" },
+        { category: "SaaS Product", title: "Hanva Restaurant POS", description: "Table QR ordering, KDS & India GST billing for Pune cafes and restaurants.", href: "/products/restaurant-pos/" },
+        { category: "SaaS Product", title: "Hanva Salon Software", description: "Online booking mini-website, GST invoices & stylist commissions for Pune studios.", href: "/products/salon-software/" },
+        { category: "IT Service", title: "Software & SaaS Engineering", description: "Custom ERP, web portals, mobile apps & API bridges built remotely.", href: "/software-development/" },
+        { category: "IT Service", title: "Digital Marketing", description: "SEO, Google Ads & Social Media marketing for growing regional brands.", href: "/digital-marketing/" },
+        { category: "Buyer Guide", title: "SaaS vs Custom CRM/ERP", description: "Compare ready-made SaaS against custom automotive/manufacturing software.", href: "/resources/saas-vs-custom-crm-erp-guide/" },
+      ]}
       relatedIndustries={[
         {
           title: "Automobile Dealerships",
@@ -194,7 +203,7 @@ export default function PuneLocationPage() {
       faqs={[
         {
           question: "Can automobile dealerships in Pune use Android SIM calling to save on call costs?",
-          answer: "Yes. Hanva offers a companion Android Telecaller application that enables dealership telecallers to place outbound service reminder calls using corporate unlimited calling SIMs while still logging call recordings, durations, and dispositions to the central Hanva CRM.",
+          answer: "Yes. Hanva offers a companion Android Telecaller application that enables dealership telecallers to place outbound service reminder calls using corporate SIMs while logging call durations, timestamps, and dispositions to the central Hanva CRM (with centralized audio recording available on cloud/WebRTC trunk calls).",
         },
         {
           question: "How does 020 virtual DID routing help multi-location Pune car dealerships?",

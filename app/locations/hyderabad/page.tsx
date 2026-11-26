@@ -2,28 +2,28 @@ import * as React from "react";
 import { LocationLayout } from "@/components/shared/location-layout";
 
 export const metadata = {
-  title: "Cloud Telephony & Telecalling CRM in Hyderabad (040 Virtual Numbers)",
+  title: "SaaS, IT Services & 040 Voice Hyderabad",
   description:
-    "Enterprise cloud telephony, 040 virtual numbers, and telecalling CRM for Hyderabad healthcare networks, ITeS centers, and real estate developers in HITEC City and Gachibowli.",
+    "Remote onboarding for Hyderabad businesses: Restaurant POS, Hanva CRM, Salon Software, custom software, digital marketing, and 040 virtual cloud telephony.",
   alternates: {
-    canonical: "https://hanva.in/locations/hyderabad/",
+    canonical: "https://www.hanva.in/locations/hyderabad/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in/locations/hyderabad/",
+    url: "https://www.hanva.in/locations/hyderabad/",
     siteName: "Hanva Technologies",
-    title: "Cloud Telephony & Telecalling CRM in Hyderabad | Hanva Technologies",
+    title: "SaaS, IT Services & 040 Voice Hyderabad",
     description:
-      "Enterprise cloud telephony, 040 virtual numbers, and telecalling CRM for Hyderabad healthcare networks, ITeS centers, and real estate developers.",
-    images: [{ url: "https://hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Hyderabad Telephony Hub" }],
+      "Remote cloud SaaS, IT services, and 040 virtual telephony coverage for Hyderabad healthcare, hospitality, and tech businesses.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Hanva Hyderabad Remote Coverage" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cloud Telephony & Telecalling CRM in Hyderabad | Hanva Technologies",
+    title: "SaaS, IT Services & 040 Voice Hyderabad",
     description:
-      "Enterprise cloud telephony, 040 virtual numbers, and telecalling CRM for Hyderabad healthcare networks, ITeS centers, and real estate developers.",
-    images: ["https://hanva.in/og-image.png"],
+      "Remote SaaS software, IT engineering, and 040 cloud telephony delivery for Hyderabad businesses.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -32,27 +32,27 @@ const hyderabadServiceSchema = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://hanva.in/locations/hyderabad/#webpage",
-      url: "https://hanva.in/locations/hyderabad/",
+      "@id": "https://www.hanva.in/locations/hyderabad/#webpage",
+      url: "https://www.hanva.in/locations/hyderabad/",
       name: "Cloud Telephony & Telecalling CRM in Hyderabad — Hanva",
       description:
         "Enterprise cloud telephony infrastructure, 040 virtual numbers, and telecalling CRM for Hyderabad healthcare, ITeS, and real estate sectors.",
       isPartOf: {
         "@type": "WebSite",
-        "@id": "https://hanva.in/#website",
+        "@id": "https://www.hanva.in/#website",
         name: "Hanva Technologies",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
       },
     },
     {
       "@type": "Service",
-      "@id": "https://hanva.in/locations/hyderabad/#service",
+      "@id": "https://www.hanva.in/locations/hyderabad/#service",
       name: "Cloud Telephony & Healthcare Communication Solutions — Hyderabad",
       serviceType: "Cloud Telephony, Smart IVR, 040 Virtual Numbers, and Telecalling CRM",
       provider: {
         "@type": "Corporation",
         name: "Hanva Technologies Private Limited",
-        url: "https://hanva.in",
+        url: "https://www.hanva.in",
         telephone: "+91-8423711043",
         address: {
           "@type": "PostalAddress",
@@ -174,6 +174,15 @@ export default function HyderabadLocationPage() {
           href: "/products/telecalling-crm/",
         },
       ]}
+      remoteEngagementNote="Hanva serves businesses across Hyderabad remotely from our Bengaluru engineering headquarters through digital KYC activation, WhatsApp onboarding (+91 8423711043), and cloud software delivery across ITeS, healthcare, hospitality, and real estate sectors."
+      solutionsPortfolio={[
+        { category: "SaaS Product", title: "Hanva Restaurant POS", description: "Offline-resilient billing, KOT/KDS, QR ordering & recipe BOM for Hyderabad kitchens and cafes.", href: "/products/restaurant-pos/" },
+        { category: "SaaS Product", title: "Hanva CRM", description: "Lead management, built-in IVR, C2C calling & WhatsApp workflows for inside-sales desks.", href: "/products/crm/" },
+        { category: "SaaS Product", title: "Hanva Salon Software", description: "GST invoicing, online booking & staff commissions for Banjara Hills & Jubilee Hills salons.", href: "/products/salon-software/" },
+        { category: "IT Service", title: "Software Development", description: "Custom CRM/ERP, web portals, mobile apps & API automation delivered remotely.", href: "/software-development/" },
+        { category: "IT Service", title: "Digital Marketing", description: "Search Engine Optimization, Google Ads & social media campaigns for Telangana brands.", href: "/digital-marketing/" },
+        { category: "Buyer Guide", title: "Restaurant POS & KOT Guide", description: "Evaluate KDS, CGST/SGST compliance, and recipe inventory before purchasing.", href: "/resources/restaurant-pos-kot-inventory-guide/" },
+      ]}
       relatedIndustries={[
         {
           title: "Healthcare & Diagnostics",
@@ -202,7 +211,7 @@ export default function HyderabadLocationPage() {
         },
         {
           question: "Can our doctors and consultants use Hanva on their personal smartphones?",
-          answer: "Yes. Using Hanva's companion Android application, consultants can place outgoing calls that present the hospital's virtual landline number while keeping their personal mobile number private.",
+          answer: "Yes. Using Hanva's cloud click-to-call and WebRTC mobile/browser workflows, consultants can place outgoing calls that present the hospital's virtual landline number while keeping their personal mobile number private.",
         },
         {
           question: "Is patient consultation call recording compliant with Indian data regulations?",

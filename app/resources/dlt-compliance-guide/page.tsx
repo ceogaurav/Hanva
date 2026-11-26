@@ -25,7 +25,24 @@ export const metadata = {
   description:
     "A pragmatic enterprise guide to Telecom Regulatory Authority of India (TRAI) Distributed Ledger Technology (DLT) registration for voice headers and SMS templates.",
   alternates: {
-    canonical: "https://hanva.in/resources/dlt-compliance-guide/",
+    canonical: "https://www.hanva.in/resources/dlt-compliance-guide/",
+  },
+  openGraph: {
+    type: "article",
+    locale: "en_IN",
+    url: "https://www.hanva.in/resources/dlt-compliance-guide/",
+    siteName: "Hanva Technologies",
+    title: "TRAI DLT Compliance & Registration Guide | Hanva Technologies",
+    description:
+      "A pragmatic enterprise guide to Telecom Regulatory Authority of India (TRAI) Distributed Ledger Technology (DLT) registration for voice headers and SMS templates.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "TRAI DLT Compliance Guide" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TRAI DLT Compliance & Registration Guide | Hanva Technologies",
+    description:
+      "A pragmatic enterprise guide to TRAI DLT registration for voice headers and SMS templates.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -35,11 +52,37 @@ const dltGuideSchema = {
   headline: "TRAI DLT Compliance & Entity Registration Guide for Indian Businesses",
   description:
     "Step-by-step guidance on registering as a Principal Entity (PE), securing approved voice caller IDs, and whitelisting message templates on Indian telecom DLT portals.",
+  image: "https://www.hanva.in/og-image.png",
+  datePublished: "2026-11-24",
+  dateModified: "2026-11-26",
+  author: {
+    "@type": "Organization",
+    name: "Hanva Engineering & Editorial Board",
+    url: "https://www.hanva.in/company/about/",
+  },
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://www.hanva.in/icon.png",
+    },
   },
-  url: "https://hanva.in/resources/dlt-compliance-guide/",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://www.hanva.in/resources/dlt-compliance-guide/",
+  },
+  url: "https://www.hanva.in/resources/dlt-compliance-guide/",
+};
+
+const dltBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.hanva.in/" },
+    { "@type": "ListItem", position: 2, name: "Resources", item: "https://www.hanva.in/resources/" },
+    { "@type": "ListItem", position: 3, name: "DLT Compliance Guide", item: "https://www.hanva.in/resources/dlt-compliance-guide/" },
+  ],
 };
 
 const dltSteps = [
@@ -115,21 +158,28 @@ const faqs: FAQItem[] = [
 
 export default function DltComplianceGuidePage() {
   return (
-    <div className="py-10 lg:py-16 bg-white min-h-screen">
+    <div className="pt-10 pb-28 lg:py-16 bg-white min-h-screen">
       <SchemaOrg data={dltGuideSchema} />
+      <SchemaOrg data={dltBreadcrumbSchema} />
 
       <Container className="space-y-12">
         {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-blue-600 transition-colors">
-            Home
-          </Link>
-          <span className="text-slate-300">/</span>
-          <Link href="/resources/" className="hover:text-blue-600 transition-colors">
-            Resources
-          </Link>
-          <span className="text-slate-300">/</span>
-          <span className="text-slate-900 font-medium">DLT Compliance Guide</span>
+        <nav aria-label="Breadcrumb">
+          <ol className="flex items-center space-x-2 text-xs text-slate-600">
+            <li>
+              <Link href="/" className="hover:text-blue-600 transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-slate-400">/</li>
+            <li>
+              <Link href="/resources/" className="hover:text-blue-600 transition-colors">
+                Resources
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-slate-400">/</li>
+            <li className="text-slate-900 font-medium" aria-current="page">DLT Compliance Guide</li>
+          </ol>
         </nav>
 
         {/* Hero Header */}

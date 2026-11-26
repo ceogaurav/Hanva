@@ -5,16 +5,30 @@ export const metadata = {
   description:
     "WhatsApp Business messaging integration via authorized solution provider gateways. Automated brochure sharing, post-call messaging, and shared team inboxes.",
   alternates: {
-    canonical: "https://hanva.in/products/whatsapp-crm/",
+    canonical: "https://www.hanva.in/products/whatsapp-crm/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/whatsapp-crm/",
+    siteName: "Hanva Technologies",
+    title: "WhatsApp Business CRM Integration — Sales Automation & BSP Gateways | Hanva Technologies",
+    description: "WhatsApp Business messaging integration via authorized solution provider gateways. Automated brochure sharing, post-call messaging, and shared team inboxes.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "WhatsApp Business CRM Integration — Sales Automation & BSP Gateways" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WhatsApp Business CRM Integration — Sales Automation & BSP Gateways | Hanva Technologies",
+    description: "WhatsApp Business messaging integration via authorized solution provider gateways. Automated brochure sharing, post-call messaging, and shared team inboxes.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
 const whatsAppCrmSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "Service",
   name: "Hanva WhatsApp Business CRM Integration",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Cloud Web Application",
+  serviceType: "Enterprise Cloud Telephony & CRM Software",
   provider: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

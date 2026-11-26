@@ -2,11 +2,26 @@ import * as React from "react";
 import { CompareLayout } from "@/components/shared/compare-layout";
 
 export const metadata = {
-  title: "Exotel Alternative in India — Unified Telephony & CRM | Hanva",
+  title: "Exotel Alternative in India — Unified Telephony & CRM",
   description:
     "Evaluating an Exotel alternative? Compare Hanva's native telecalling CRM, 15-second OBD pulse billing option, and transparent commercial models.",
   alternates: {
-    canonical: "https://hanva.in/compare/exotel-alternative/",
+    canonical: "https://www.hanva.in/compare/exotel-alternative/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/compare/exotel-alternative/",
+    siteName: "Hanva Technologies",
+    title: "Exotel Alternative in India — Unified Telephony & CRM | Hanva Technologies",
+    description: "Evaluating an Exotel alternative? Compare Hanva's native telecalling CRM, 15-second OBD pulse billing option, and transparent commercial models.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Exotel Alternative in India — Unified Telephony & CRM" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Exotel Alternative in India — Unified Telephony & CRM | Hanva Technologies",
+    description: "Evaluating an Exotel alternative? Compare Hanva's native telecalling CRM, 15-second OBD pulse billing option, and transparent commercial models.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -16,7 +31,7 @@ const exotelCompareSchema = {
   name: "Hanva vs Exotel Alternative Comparison",
   description:
     "Architectural and commercial comparison between Exotel cloud telephony APIs and Hanva unified cloud telephony CRM platform in India.",
-  url: "https://hanva.in/compare/exotel-alternative/",
+  url: "https://www.hanva.in/compare/exotel-alternative/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

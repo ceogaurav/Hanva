@@ -22,7 +22,22 @@ export const metadata = {
   description:
     "Learn how Hanva secures enterprise voice communications: application-level access controls, TLS 1.3 / SRTP encryption, and data privacy governance.",
   alternates: {
-    canonical: "https://hanva.in/company/security-and-trust/",
+    canonical: "https://www.hanva.in/company/security-and-trust/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/company/security-and-trust/",
+    siteName: "Hanva Technologies",
+    title: "Security, Trust & Regulatory Compliance | Hanva Technologies",
+    description: "Learn how Hanva secures enterprise voice communications: application-level access controls, TLS 1.3 / SRTP encryption, and data privacy governance.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Security, Trust & Regulatory Compliance" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Security, Trust & Regulatory Compliance | Hanva Technologies",
+    description: "Learn how Hanva secures enterprise voice communications: application-level access controls, TLS 1.3 / SRTP encryption, and data privacy governance.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -32,7 +47,7 @@ const securitySchema = {
   name: "Security, Trust and Compliance at Hanva Technologies",
   description:
     "Enterprise security architecture, telecom transport encryption, access controls, and data privacy framework of Hanva Technologies.",
-  url: "https://hanva.in/company/security-and-trust/",
+  url: "https://www.hanva.in/company/security-and-trust/",
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
@@ -116,7 +131,7 @@ export default function SecurityAndTrustPage() {
                   <div className="h-9 w-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-2">
                     <Icon className="h-4 w-4" />
                   </div>
-                  <CardTitle className="text-base text-slate-900">{pillar.title}</CardTitle>
+                  <CardTitle as="h2" className="text-base text-slate-900">{pillar.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-xs text-slate-600 leading-relaxed">{pillar.description}</p>
@@ -133,7 +148,7 @@ export default function SecurityAndTrustPage() {
               <ShieldCheck className="h-4 w-4" />
               <span>Statutory Telecom Governance</span>
             </div>
-            <CardTitle className="text-xl text-slate-900">
+            <CardTitle as="h2" className="text-xl text-slate-900">
               Department of Telecommunications (DoT) & TRAI Compliance
             </CardTitle>
           </CardHeader>

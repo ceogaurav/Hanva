@@ -1,20 +1,34 @@
 import { ProductLayout } from "@/components/shared/product-layout";
 
 export const metadata = {
-  title: "Smart Multi-Level IVR System & Visual Flow Builder — Hanva",
+  title: "Smart Multi-Level IVR System & Visual Flow Builder",
   description:
     "Design advanced multi-level IVR call flows with visual drag-and-drop routing, time-based conditions, CRM data lookups, and API webhooks.",
   alternates: {
-    canonical: "https://hanva.in/products/smart-ivr/",
+    canonical: "https://www.hanva.in/products/smart-ivr/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/smart-ivr/",
+    siteName: "Hanva Technologies",
+    title: "Smart Multi-Level IVR System & Visual Flow Builder | Hanva Technologies",
+    description: "Design advanced multi-level IVR call flows with visual drag-and-drop routing, time-based conditions, CRM data lookups, and API webhooks.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Smart Multi-Level IVR System & Visual Flow Builder" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Smart Multi-Level IVR System & Visual Flow Builder | Hanva Technologies",
+    description: "Design advanced multi-level IVR call flows with visual drag-and-drop routing, time-based conditions, CRM data lookups, and API webhooks.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
 const smartIvrSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "Service",
   name: "Hanva Smart IVR Flow Builder",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Cloud Web Application",
+  serviceType: "Enterprise Cloud Telephony & CRM Software",
   provider: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

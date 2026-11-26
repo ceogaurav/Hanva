@@ -2,16 +2,28 @@
 
 import * as React from "react";
 import Link, { type LinkProps } from "next/link";
-import { trackConversionEvent, inferPageCategory } from "@/lib/analytics";
+import {
+  inferPageCategory,
+  inferSubjectFromContext,
+  normalizeCtaLocation,
+  trackAnalyticsEvent,
+  trackProductSelect,
+  trackWhatsAppClick,
+  type AllowedSaasProductName,
+  type TrackedSubjectName,
+  type WhatsAppCtaType,
+} from "@/lib/analytics";
 
 interface TrackedExternalProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   ctaLocation: string;
   contextRef?: string;
+  productName?: TrackedSubjectName;
+  ctaType?: WhatsAppCtaType;
 }
 
 export const TrackedWhatsAppLink = React.forwardRef<HTMLAnchorElement, TrackedExternalProps>(
   function TrackedWhatsAppLink(
-    { ctaLocation, contextRef = "direct", onClick, children, ...props },
+    { ctaLocation, contextRef = "direct", productName, ctaType, onClick, children, ...props },
     ref
   ) {
     return (
@@ -19,9 +31,11 @@ export const TrackedWhatsAppLink = React.forwardRef<HTMLAnchorElement, TrackedEx
         ref={ref}
         {...props}
         onClick={(e) => {
-          trackConversionEvent("whatsapp_cta_click", {
-            cta_location: ctaLocation,
-            context_ref: contextRef,
+          trackWhatsAppClick({
+            ctaLocation,
+            contextRef,
+            productName,
+            ctaType,
           });
           onClick?.(e);
         }}
@@ -39,8 +53,9 @@ export const TrackedPhoneLink = React.forwardRef<HTMLAnchorElement, TrackedExter
         ref={ref}
         {...props}
         onClick={(e) => {
-          trackConversionEvent("phone_cta_click", {
-            cta_location: ctaLocation,
+          trackAnalyticsEvent("phone_click", {
+            cta_location: normalizeCtaLocation(ctaLocation),
+            cta_surface: ctaLocation,
             target_channel: "sales_desk",
           });
           onClick?.(e);
@@ -74,18 +89,62 @@ export const TrackedDemoLink = React.forwardRef<HTMLAnchorElement, TrackedDemoLi
         onClick={(e) => {
           const pathname = typeof window !== "undefined" ? window.location.pathname : "/";
           const category = inferPageCategory(pathname);
-          trackConversionEvent("demo_cta_click", {
-            cta_location: ctaLocation,
+          const normalizedLoc = normalizeCtaLocation(ctaLocation);
+
+          trackAnalyticsEvent("demo_cta_click", {
+            cta_location: normalizedLoc,
+            cta_surface: ctaLocation,
             cta_label_key: ctaLabelKey,
             target_path: "/company/contact/",
           });
+
           if (category === "product" || productSlug) {
-            trackConversionEvent("product_page_to_contact", {
-              cta_location: ctaLocation,
-              product_slug: productSlug || pathname.replace(/^\/products\/|\/$/g, "") || "products_hub",
+            trackAnalyticsEvent("select_item", {
+              cta_location: normalizedLoc,
+              product_name: inferSubjectFromContext(productSlug || pathname),
               target_path: "/company/contact/",
             });
           }
+          onClick?.(e);
+        }}
+      >
+        {children}
+      </Link>
+    );
+  }
+);
+
+interface TrackedProductLinkProps extends LinkProps {
+  productName: AllowedSaasProductName;
+  itemListName?: string;
+  ctaLocation?: string;
+  className?: string;
+  children: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+}
+
+export const TrackedProductLink = React.forwardRef<HTMLAnchorElement, TrackedProductLinkProps>(
+  function TrackedProductLink(
+    {
+      productName,
+      itemListName = "Hanva SaaS Products",
+      ctaLocation = "product_section",
+      onClick,
+      children,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <Link
+        ref={ref}
+        {...props}
+        onClick={(e) => {
+          trackProductSelect({
+            productName,
+            itemListName,
+            ctaLocation,
+          });
           onClick?.(e);
         }}
       >

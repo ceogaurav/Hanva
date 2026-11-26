@@ -5,7 +5,12 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className="relative w-full max-w-full overflow-x-auto">
+  <div
+    className="relative w-full max-w-full overflow-x-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg"
+    tabIndex={0}
+    role="region"
+    aria-label="Data comparison table"
+  >
     <table
       ref={ref}
       className={cn("w-full caption-bottom text-sm", className)}

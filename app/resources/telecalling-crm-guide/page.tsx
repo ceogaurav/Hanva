@@ -1,7 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArticleLayout } from "@/components/shared/article-layout";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell,
+  TableCaption, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Users, ShieldAlert, PhoneCall, CheckCircle2, TrendingUp, Lock, ArrowRight, ShieldCheck, HelpCircle } from "lucide-react";
 
@@ -10,14 +11,20 @@ export const metadata = {
   description:
     "The operational guide to Telecalling CRM: automate lead assignment, eliminate lead theft, enforce 2-click dispositions, and measure daily telecaller KPIs in India.",
   alternates: {
-    canonical: "https://hanva.in/resources/telecalling-crm-guide/",
+    canonical: "https://www.hanva.in/resources/telecalling-crm-guide/",
   },
   openGraph: {
     title: "Telecalling CRM Guide: Workflows, Masking & KPIs",
     description:
       "How integrated dialer CRMs eliminate spreadsheet lead leakage, automate lead assignment, enforce disposition tagging, and give sales directors real-time visibility.",
-    url: "https://hanva.in/resources/telecalling-crm-guide/",
+    url: "https://www.hanva.in/resources/telecalling-crm-guide/",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Telecalling CRM Guide: Workflows, Masking & KPIs | Hanva Technologies",
+    description: "The operational guide to Telecalling CRM: automate lead assignment, eliminate lead theft, enforce 2-click dispositions, and measure daily telecaller KPIs in India.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -30,22 +37,22 @@ const articleSchema = {
   author: {
     "@type": "Organization",
     name: "Hanva Engineering & Editorial Board",
-    url: "https://hanva.in/company/about/",
+    url: "https://www.hanva.in/company/about/",
   },
   publisher: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",
-    url: "https://hanva.in",
+    url: "https://www.hanva.in",
     logo: {
       "@type": "ImageObject",
-      url: "https://hanva.in/icon.png",
+      url: "https://www.hanva.in/icon.png",
     },
   },
   datePublished: "2026-11-25",
   dateModified: "2026-11-25",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://hanva.in/resources/telecalling-crm-guide/",
+    "@id": "https://www.hanva.in/resources/telecalling-crm-guide/",
   },
 };
 
@@ -68,7 +75,7 @@ const faqs = [
   {
     question: "Can our telecallers use an Android app if they work from home or in the field?",
     answer:
-      "Yes. Companion Android telecaller applications allow agents to place calls from anywhere while automatically tracking talk duration, capturing call recordings (subject to device permissions and OS policies), and enforcing post-call disposition logging before the next lead opens.",
+      "Yes. Companion Android telecaller applications allow agents to place calls via mobile SIMs while logging talk duration and enforcing post-call disposition logging before moving to the next lead (centralized audio recording applies to cloud/WebRTC trunk sessions).",
   },
   {
     question: "How quickly should an incoming web lead be contacted?",
@@ -224,36 +231,37 @@ export default function TelecallingCrmGuidePage() {
 
         <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
           <Table>
+            <TableCaption className="sr-only">Technical and commercial comparison table</TableCaption>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold text-slate-900">Primary Disposition</TableHead>
-                <TableHead className="font-bold text-slate-900">Secondary Stage Tag</TableHead>
-                <TableHead className="font-bold text-slate-900">Automated CRM Workflow</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Primary Disposition</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Secondary Stage Tag</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Automated CRM Workflow</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
               <TableRow>
-                <TableCell className="font-bold text-emerald-700">Interested</TableCell>
+                <th scope="row" className="font-bold text-emerald-700">Interested</th>
                 <TableCell>Site Visit Scheduled / Demo Booked</TableCell>
                 <TableCell>Creates calendar event, sends WhatsApp brochure & location map</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-blue-700">Callback Requested</TableCell>
+                <th scope="row" className="font-bold text-blue-700">Callback Requested</th>
                 <TableCell>Busy Now / Call Later (Specific Time)</TableCell>
                 <TableCell>Locks reminder in telecaller task queue, reschedules auto-dialer</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-amber-700">No Response (NR)</TableCell>
+                <th scope="row" className="font-bold text-amber-700">No Response (NR)</th>
                 <TableCell>Ringing / Switched Off / Busy</TableCell>
                 <TableCell>Adds to automated recycling queue for retry after 4 hours</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-slate-600">Not Interested</TableCell>
+                <th scope="row" className="font-bold text-slate-600">Not Interested</th>
                 <TableCell>Budget Mismatch / Location Preference</TableCell>
                 <TableCell>Archives lead, moves to 90-day cold nurture drip campaign</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-bold text-rose-700">Junk / Invalid</TableCell>
+                <th scope="row" className="font-bold text-rose-700">Junk / Invalid</th>
                 <TableCell>Wrong Number / Out of Service</TableCell>
                 <TableCell>Permanently marks unserviceable, excludes from future campaigns</TableCell>
               </TableRow>
@@ -274,28 +282,28 @@ export default function TelecallingCrmGuidePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 text-xs">
           <div className="p-4 border border-slate-200 rounded-xl bg-slate-50 space-y-1">
-            <h4 className="font-bold text-slate-900">1. Daily Talk Time Target: 2.5 to 3.5 Hours</h4>
+            <h3 className="font-bold text-slate-900">1. Daily Talk Time Target: 2.5 to 3.5 Hours</h3>
             <p className="text-slate-600 leading-relaxed">
               Measures genuine connected conversation time with prospects, excluding ringing, dialing, and idle intervals.
             </p>
           </div>
 
           <div className="p-4 border border-slate-200 rounded-xl bg-slate-50 space-y-1">
-            <h4 className="font-bold text-slate-900">2. Call Volume Target: 80 to 120 Attempts</h4>
+            <h3 className="font-bold text-slate-900">2. Call Volume Target: 80 to 120 Attempts</h3>
             <p className="text-slate-600 leading-relaxed">
               When utilizing progressive auto-dialing, agents easily reach 80–120 dialed contacts across an 8-hour shift.
             </p>
           </div>
 
           <div className="p-4 border border-slate-200 rounded-xl bg-slate-50 space-y-1">
-            <h4 className="font-bold text-slate-900">3. First-Call Connect Rate: 28% to 42%</h4>
+            <h3 className="font-bold text-slate-900">3. First-Call Connect Rate: 28% to 42%</h3>
             <p className="text-slate-600 leading-relaxed">
               Percentage of outbound dials answered by a human. Improved via local STD matching and multi-DID rotation.
             </p>
           </div>
 
           <div className="p-4 border border-slate-200 rounded-xl bg-slate-50 space-y-1">
-            <h4 className="font-bold text-slate-900">4. Scheduled Follow-up Adherence: &gt;90%</h4>
+            <h3 className="font-bold text-slate-900">4. Scheduled Follow-up Adherence: &gt;90%</h3>
             <p className="text-slate-600 leading-relaxed">
               Ensures that promised callbacks and site visit confirmations happen promptly at the requested hour.
             </p>
@@ -314,31 +322,32 @@ export default function TelecallingCrmGuidePage() {
 
         <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
           <Table>
+            <TableCaption className="sr-only">Technical and commercial comparison table</TableCaption>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold text-slate-900">Operational Factor</TableHead>
-                <TableHead className="font-bold text-slate-900">Decoupled Telephony + External CRM</TableHead>
-                <TableHead className="font-bold text-blue-700 bg-blue-50/30">Unified Native Telecalling CRM</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Operational Factor</TableHead>
+                <TableHead scope="col" className="font-bold text-slate-900">Decoupled Telephony + External CRM</TableHead>
+                <TableHead scope="col" className="font-bold text-blue-700 bg-blue-50/30">Unified Native Telecalling CRM</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Licensing Costs</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Licensing Costs</th>
                 <TableCell>Pays twice: Telephony rental + CRM subscription per seat</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Single consolidated subscription for dialer and CRM</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Data Synchronization</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Data Synchronization</th>
                 <TableCell>Relies on webhooks; sync breaks when APIs change or rate limit</TableCell>
-                <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Zero sync lag; calls, recordings, and deals live in one database</TableCell>
+                <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Direct native sync; calls, logs, and deals live in one database</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Agent Experience</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Agent Experience</th>
                 <TableCell>Requires managing two browser tabs, pop-up plugins, and logins</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Single unified interface for calling, taking notes, and messaging</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-semibold text-slate-900">Number Masking</TableCell>
+                <th scope="row" className="font-semibold text-slate-900">Number Masking</th>
                 <TableCell>Difficult to configure across disconnected web interfaces</TableCell>
                 <TableCell className="bg-blue-50/30 text-blue-900 font-medium">Native built-in masking across web and mobile apps</TableCell>
               </TableRow>

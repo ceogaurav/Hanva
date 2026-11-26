@@ -122,8 +122,9 @@ pnpm start -p 3000
 - **Legal Entity:** HANVA Technologies Private Limited
 - **Corporate Identification Number (CIN):** `U78100KA2025PTC205168`
 - **GSTIN:** `29AAICH0526K1ZF`
-- **Registered Office:** Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya, Bengaluru, Karnataka 560068, India
-- **Customer Care & Sales Desk:** `+91 96060 99404` | `info@hanva.in`
+- **Registered Office (RoC):** No 10/35, Muniyappa Layout Papannareddy, Bommanahalli, Bengaluru, Karnataka 560068, India
+- **Operational Office:** Raj Arcade, 7th Main, Near Hosur Main Road, Garvebhavi Palya, Bengaluru, Karnataka 560068, India
+- **Customer Care & Sales Desk:** `+91 8423711043` | `info@hanva.in`
 - **Canonical Website:** [https://hanva.in](https://hanva.in)
 
 ---

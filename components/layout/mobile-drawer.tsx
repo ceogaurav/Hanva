@@ -7,7 +7,7 @@ import { X, Phone, MessageSquare, ChevronRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { CONTACT_CONFIG } from "@/lib/config";
-import { trackConversionEvent } from "@/lib/analytics";
+import { trackAnalyticsEvent, trackWhatsAppClick } from "@/lib/analytics";
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -51,14 +51,15 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       setTimeout(() => closeBtnRef.current?.focus(), 10);
     } else {
       document.body.style.overflow = "";
-      if (prevFocusRef.current && typeof prevFocusRef.current.focus === "function") {
-        prevFocusRef.current.focus();
-        prevFocusRef.current = null;
-      }
     }
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
+      if (isOpen && prevFocusRef.current && typeof prevFocusRef.current.focus === "function") {
+        const toFocus = prevFocusRef.current;
+        prevFocusRef.current = null;
+        setTimeout(() => toFocus.focus(), 0);
+      }
     };
   }, [isOpen, onClose]);
 
@@ -107,8 +108,9 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               <a
                 href={`tel:${CONTACT_CONFIG.phoneTel}`}
                 onClick={() =>
-                  trackConversionEvent("phone_cta_click", {
-                    cta_location: "mobile_drawer",
+                  trackAnalyticsEvent("phone_click", {
+                    cta_location: "header",
+                    cta_surface: "mobile_drawer",
                     target_channel: "sales_desk",
                   })
                 }
@@ -119,14 +121,16 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               </a>
               <a
                 href={`${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
-                  "Hello Hanva Team, I would like to enquire about your cloud telephony and CRM."
+                  "Hello Hanva Team, I would like to enquire about your software products and IT solutions."
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() =>
-                  trackConversionEvent("whatsapp_cta_click", {
-                    cta_location: "mobile_drawer",
-                    context_ref: pathname || "/",
+                  trackWhatsAppClick({
+                    ctaLocation: "mobile_drawer",
+                    productName: "general_enquiry",
+                    ctaType: "general_whatsapp",
+                    contextRef: pathname || "/",
                   })
                 }
                 className="flex items-center justify-center space-x-1.5 p-2.5 rounded-lg bg-[#25D366] text-slate-950 text-xs font-semibold touch-target"
@@ -136,10 +140,104 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               </a>
             </div>
 
-            {/* Core Links */}
+            {/* SaaS Products Section */}
             <div className="space-y-1 border-t border-slate-100 pt-3">
               <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
-                Products
+                SaaS Products
+              </div>
+              <Link
+                href="/products/crm/"
+                className="flex items-center justify-between p-2.5 rounded-lg text-sm font-semibold text-blue-700 bg-blue-50/40 hover:bg-blue-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Hanva CRM</span>
+                <ChevronRight className="h-4 w-4 text-blue-600" />
+              </Link>
+              <Link
+                href="/products/salon-software/"
+                className="flex items-center justify-between p-2.5 rounded-lg text-sm font-semibold text-rose-700 bg-rose-50/40 hover:bg-rose-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Hanva Salon Software</span>
+                <ChevronRight className="h-4 w-4 text-rose-600" />
+              </Link>
+              <Link
+                href="/products/restaurant-pos/"
+                className="flex items-center justify-between p-2.5 rounded-lg text-sm font-semibold text-amber-800 bg-amber-50/40 hover:bg-amber-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Hanva Restaurant POS</span>
+                <ChevronRight className="h-4 w-4 text-amber-700" />
+              </Link>
+            </div>
+
+            {/* Digital Marketing & Software Development */}
+            <div className="space-y-1 border-t border-slate-100 pt-3">
+              <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
+                Digital Marketing &amp; Software Dev
+              </div>
+              <Link
+                href="/digital-marketing/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-semibold text-slate-900 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Digital Marketing Hub</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/digital-marketing/seo-services/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>SEO Services</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/digital-marketing/performance-marketing/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Google Ads &amp; Performance</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/digital-marketing/social-media-marketing/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Social Media Marketing</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/software-development/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-semibold text-slate-900 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Software Development Hub</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/software-development/custom-crm-development/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Custom CRM / ERP Development</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/software-development/web-application-development/"
+                className="flex items-center justify-between p-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 touch-target"
+                onClick={onClose}
+              >
+                <span>Web &amp; Mobile App Development</span>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+            </div>
+
+            {/* Telecom Core Links */}
+            <div className="space-y-1 border-t border-slate-100 pt-3">
+              <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-2 py-1">
+                Telecom &amp; Voice Suite
               </div>
               <Link
                 href="/products/cloud-telephony/"
@@ -427,16 +525,16 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             <Link
             href="/company/contact/"
             onClick={() => {
-              trackConversionEvent("demo_cta_click", {
-                cta_location: "mobile_drawer",
+              trackAnalyticsEvent("demo_cta_click", {
+                cta_location: "header",
+                cta_surface: "mobile_drawer",
                 cta_label_key: "book_consultation_demo",
                 target_path: "/company/contact/",
               });
               onClose();
             }}
-            className="block w-full"
           >
-              Book Consultation & Demo
+              Request Consultation &amp; Demo
             </Link>
           </Button>
         </div>

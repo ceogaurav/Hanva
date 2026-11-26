@@ -1,0 +1,299 @@
+{
+  "route_status": {
+    "pre_65_ok": 65,
+    "new_4_ok": 4,
+    "failures": []
+  },
+  "sitemap": {
+    "status": 200,
+    "url_count": 69,
+    "all_www": true,
+    "missing_routes": []
+  },
+  "seo_and_schema": [
+    {
+      "route": "/resources/salon-management-software-guide/",
+      "title": "How to Choose Salon Management Software in India | Hanva Technologies",
+      "title_len": 69,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/resources/salon-management-software-guide/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/resources/restaurant-pos-kot-inventory-guide/",
+      "title": "Restaurant POS Software India: Billing, KOT & Inventory | Hanva Technologies",
+      "title_len": 76,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/resources/restaurant-pos-kot-inventory-guide/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/resources/crm-with-ivr-vs-telecalling-crm/",
+      "title": "CRM with IVR vs Telecalling CRM: Buyer Comparison Guide | Hanva Technologies",
+      "title_len": 76,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/resources/crm-with-ivr-vs-telecalling-crm/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/resources/saas-vs-custom-crm-erp-guide/",
+      "title": "SaaS vs Custom CRM and ERP: Which Suits Your Business? | Hanva Technologies",
+      "title_len": 75,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/resources/saas-vs-custom-crm-erp-guide/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/resources/",
+      "title": "Business Telephony, IVR & CRM Knowledge Hub | Hanva Technologies",
+      "title_len": 64,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/resources/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 1,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/locations/bengaluru/",
+      "title": "Cloud Telephony & Telecalling CRM in Bengaluru (080 Virtual Numbers) | Hanva Technologies",
+      "title_len": 89,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/locations/bengaluru/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/locations/hyderabad/",
+      "title": "Cloud Telephony & Telecalling CRM in Hyderabad (040 Virtual Numbers) | Hanva Technologies",
+      "title_len": 89,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/locations/hyderabad/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/locations/chennai/",
+      "title": "Cloud Telephony & Telecalling CRM in Chennai (044 Virtual Numbers) | Hanva Technologies",
+      "title_len": 87,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/locations/chennai/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/locations/mumbai/",
+      "title": "Cloud Telephony & Telecalling CRM in Mumbai (022 Virtual Numbers) | Hanva Technologies",
+      "title_len": 86,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/locations/mumbai/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/locations/delhi-ncr/",
+      "title": "Cloud Telephony & Telecalling CRM in Delhi NCR (011 Virtual Numbers) | Hanva Technologies",
+      "title_len": 89,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/locations/delhi-ncr/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    },
+    {
+      "route": "/locations/pune/",
+      "title": "Cloud Telephony & Telecalling CRM in Pune (020 Virtual Numbers) | Hanva Technologies",
+      "title_len": 84,
+      "has_description": true,
+      "canonical": "https://www.hanva.in/locations/pune/",
+      "canonical_is_www": true,
+      "h1_count": 1,
+      "json_ld_blocks": 3,
+      "json_ld_valid": true,
+      "overflow_desktop": false,
+      "console_errors": 0,
+      "page_errors": 0
+    }
+  ],
+  "whatsapp_checks": {
+    "/resources/salon-management-software-guide/": [
+      {
+        "text": "WhatsApp Sales Desk",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20enquire%20about%20your%20software%20products%20and%20IT%20solutions."
+      },
+      {
+        "text": "Request a Hanva Salon Software Demo",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Salon%20Software."
+      },
+      {
+        "text": "WhatsApp",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fresources%2Fsalon-management-software-guide%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+      }
+    ],
+    "/resources/restaurant-pos-kot-inventory-guide/": [
+      {
+        "text": "WhatsApp Sales Desk",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20enquire%20about%20your%20software%20products%20and%20IT%20solutions."
+      },
+      {
+        "text": "Request a Hanva Restaurant POS Demo",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20Restaurant%20POS."
+      },
+      {
+        "text": "WhatsApp",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fresources%2Frestaurant-pos-kot-inventory-guide%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+      }
+    ],
+    "/resources/crm-with-ivr-vs-telecalling-crm/": [
+      {
+        "text": "WhatsApp Sales Desk",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20enquire%20about%20your%20software%20products%20and%20IT%20solutions."
+      },
+      {
+        "text": "Request a Hanva CRM Demo",
+        "href": "https://wa.me/918423711043?text=I'm%20interested%20in%20a%20demo%20of%20Hanva%20CRM."
+      },
+      {
+        "text": "WhatsApp",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fresources%2Fcrm-with-ivr-vs-telecalling-crm%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+      }
+    ],
+    "/resources/saas-vs-custom-crm-erp-guide/": [
+      {
+        "text": "WhatsApp Sales Desk",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20enquire%20about%20your%20software%20products%20and%20IT%20solutions."
+      },
+      {
+        "text": "Discuss Your Software Requirements",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20would%20like%20to%20discuss%20my%20software%20requirements%20(SaaS%20vs%20Custom%20CRM%2FERP%20Development)."
+      },
+      {
+        "text": "WhatsApp",
+        "href": "https://wa.me/918423711043?text=Hello%20Hanva%20Team%2C%20I%20am%20browsing%20%2Fresources%2Fsaas-vs-custom-crm-erp-guide%2F%20and%20would%20like%20to%20enquire%20about%20your%20solutions."
+      }
+    ]
+  },
+  "internal_link_check": {
+    "checked": 64,
+    "broken": []
+  },
+  "responsive_overflow": [
+    {
+      "viewport": "tablet_768",
+      "route": "/resources/salon-management-software-guide/",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/resources/restaurant-pos-kot-inventory-guide/",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/resources/crm-with-ivr-vs-telecalling-crm/",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/resources/saas-vs-custom-crm-erp-guide/",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/locations/bengaluru/",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet_768",
+      "route": "/locations/hyderabad/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/resources/salon-management-software-guide/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/resources/restaurant-pos-kot-inventory-guide/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/resources/crm-with-ivr-vs-telecalling-crm/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/resources/saas-vs-custom-crm-erp-guide/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/locations/bengaluru/",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile_375",
+      "route": "/locations/hyderabad/",
+      "overflow": false
+    }
+  ],
+  "mobile_drawer_test": {
+    "initially_closed": true,
+    "drawer_opened": true,
+    "resources_link_visible": true,
+    "closed_after_nav": true
+  }
+}

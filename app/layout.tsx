@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LayoutShell } from "@/components/layout/layout-shell";
+import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hanva.in"),
+  metadataBase: new URL("https://www.hanva.in"),
   title: {
     default: "Hanva Technologies — Cloud Telephony, Smart IVR & Telecalling CRM",
     template: "%s | Hanva Technologies",
@@ -45,14 +46,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://hanva.in",
+    url: "https://www.hanva.in",
     siteName: "Hanva Technologies",
     title: "Hanva Technologies — Cloud Telephony, Smart IVR & Telecalling CRM",
     description:
       "Enterprise cloud telephony, multi-level smart IVR, automated dialers, and sales telecalling CRM for Indian businesses.",
     images: [
       {
-        url: "https://hanva.in/og-image.png",
+        url: "https://www.hanva.in/og-image.png",
         width: 1200,
         height: 630,
         alt: "Hanva Technologies Logo and Platform",
@@ -64,7 +65,7 @@ export const metadata: Metadata = {
     title: "Hanva Technologies — Cloud Telephony, Smart IVR & Telecalling CRM",
     description:
       "Enterprise cloud telephony, multi-level smart IVR, automated dialers, and sales telecalling CRM for Indian businesses.",
-    images: ["https://hanva.in/og-image.png"],
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
@@ -107,7 +108,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <LayoutShell>{children}</LayoutShell>
+        <LayoutShell footer={<Footer />}>{children}</LayoutShell>
       </body>
     </html>
   );

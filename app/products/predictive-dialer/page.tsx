@@ -5,16 +5,30 @@ export const metadata = {
   description:
     "Enterprise predictive dialer for high-density outbound contact centers. Algorithmic pacing, carrier signaling disconnect filtering, and high-throughput carrier trunking.",
   alternates: {
-    canonical: "https://hanva.in/products/predictive-dialer/",
+    canonical: "https://www.hanva.in/products/predictive-dialer/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/products/predictive-dialer/",
+    siteName: "Hanva Technologies",
+    title: "Predictive Dialer for Outbound Call Centers | Hanva Technologies",
+    description: "Enterprise predictive dialer for high-density outbound contact centers. Algorithmic pacing, carrier signaling disconnect filtering, and high-throughput carrier trunking.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Predictive Dialer for Outbound Call Centers" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Predictive Dialer for Outbound Call Centers | Hanva Technologies",
+    description: "Enterprise predictive dialer for high-density outbound contact centers. Algorithmic pacing, carrier signaling disconnect filtering, and high-throughput carrier trunking.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 
 const predictiveDialerSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "Service",
   name: "Hanva Enterprise Predictive Dialer",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Cloud Contact Center Platform",
+  serviceType: "Enterprise Cloud Telephony & CRM Software",
   provider: {
     "@type": "Organization",
     name: "Hanva Technologies Private Limited",

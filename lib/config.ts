@@ -29,6 +29,24 @@ export const CONTACT_CONFIG = {
   responseTimeSLA: "Within 2 business hours"
 } as const;
 
+export const SAAS_DEMO_WHATSAPP_MESSAGES = {
+  crm: "I'm interested in a demo of Hanva CRM.",
+  salon: "I'm interested in a demo of Hanva Salon Software.",
+  pos: "I'm interested in a demo of Hanva Restaurant POS.",
+} as const;
+
+export type SaasProductKey = keyof typeof SAAS_DEMO_WHATSAPP_MESSAGES;
+
+export function buildSaasDemoWhatsAppUrl(product: SaasProductKey): string {
+  return `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
+    SAAS_DEMO_WHATSAPP_MESSAGES[product]
+  )}`;
+}
+
+export function buildServiceWhatsAppUrl(message: string): string {
+  return `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+}
+
 export interface ContactEnquiryPayload {
   fullName: string;
   companyName?: string;

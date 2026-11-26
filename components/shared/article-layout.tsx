@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
-import { SchemaOrg } from "@/components/shared/schema-org";
+import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { TrackedDemoLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG } from "@/lib/config";
 import {
@@ -53,6 +53,11 @@ export interface ArticleLayoutProps {
   relatedIndustries?: RelatedLink[];
   faqs: FAQItem[];
   schemaData?: Record<string, unknown>;
+  customWhatsappUrl?: string;
+  ctaButtonLabel?: string;
+  ctaBannerTitle?: string;
+  ctaBannerDescription?: string;
+  relatedHeading?: string;
 }
 
 export function ArticleLayout({
@@ -73,10 +78,17 @@ export function ArticleLayout({
   relatedIndustries,
   faqs,
   schemaData,
+  customWhatsappUrl,
+  ctaButtonLabel = "Ask on WhatsApp",
+  ctaBannerTitle = "Ready to Implement Modern Business Telephony?",
+  ctaBannerDescription = "Connect with a Hanva communication consultant to review customized IVR menus, auto-dialer queues, or telecalling CRM workflows tailored to your team.",
+  relatedHeading = "Related Telecom & CRM Capabilities",
 }: ArticleLayoutProps) {
-  const whatsappUrl = `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
-    `Hello Hanva Team, I read your guide "${title}" and would like to learn more. Reference: ${whatsappRef}`
-  )}`;
+  const whatsappUrl =
+    customWhatsappUrl ||
+    `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
+      `Hello Hanva Team, I read your guide "${title}" and would like to learn more. Reference: ${whatsappRef}`
+    )}`;
 
   const faqSchema =
     faqs && faqs.length > 0
@@ -94,10 +106,18 @@ export function ArticleLayout({
         }
       : null;
 
+  const enrichedArticleSchema = schemaData
+    ? {
+        image: "https://www.hanva.in/og-image.png",
+        ...schemaData,
+      }
+    : null;
+
   return (
     <article className="pt-10 pb-28 lg:py-14 bg-white min-h-screen overflow-x-clip">
-      {schemaData && <SchemaOrg data={schemaData} />}
+      {enrichedArticleSchema && <SchemaOrg data={enrichedArticleSchema} />}
       {faqSchema && <SchemaOrg data={faqSchema} />}
+      <SchemaOrg data={buildBreadcrumbSchema(breadcrumbs)} />
 
       <Container className="space-y-10">
         {/* 1. Breadcrumbs */}
@@ -223,8 +243,8 @@ export function ArticleLayout({
         {relatedProducts && relatedProducts.length > 0 && (
           <div className="space-y-4 max-w-4xl pt-6 border-t border-slate-200">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Related Telecom & CRM Capabilities</h2>
-              <p className="text-xs text-slate-500 mt-1">Explore software tools directly relevant to this guide.</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">{relatedHeading}</h2>
+              <p className="text-xs text-slate-500 mt-1">Explore software tools and services directly relevant to this guide.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {relatedProducts.map((p, i) => (
@@ -288,39 +308,36 @@ export function ArticleLayout({
         <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-6 sm:p-8 text-white space-y-6 max-w-4xl">
           <div className="space-y-2">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-              Ready to Implement Modern Business Telephony?
+              {ctaBannerTitle}
             </h2>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Connect with a Hanva communication consultant to review customized IVR menus, auto-dialer queues, 
-              or telecalling CRM workflows tailored to your team.
+              {ctaBannerDescription}
             </p>
           </div>
           <div className="space-y-2">
             <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3">
-              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
-                <TrackedDemoLink
-                href="/company/contact/"
-                ctaLocation="article_bottom_banner"
-                ctaLabelKey="request_architecture_demo"
-               
-              >
-                  <span>Request Architecture Demo</span>
-                  <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
-                </TrackedDemoLink>
-              </Button>
-              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
+              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-5 text-xs sm:text-sm text-center">
                 <TrackedWhatsAppLink
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 ctaLocation="article_bottom_banner"
                 contextRef={whatsappRef}
-               
               >
                   <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
-                  <span>Ask on WhatsApp</span>
+                  <span>{ctaButtonLabel}</span>
                   <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
                 </TrackedWhatsAppLink>
+              </Button>
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
+                <TrackedDemoLink
+                href="/company/contact/"
+                ctaLocation="article_bottom_banner"
+                ctaLabelKey="request_architecture_demo"
+              >
+                  <span>Contact Form</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                </TrackedDemoLink>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto bg-transparent border-slate-600 text-white hover:bg-slate-800 hover:text-white whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
                 <Link href="/pricing/calculator/">
@@ -330,7 +347,7 @@ export function ArticleLayout({
               </Button>
             </div>
             <p className="text-[11px] text-slate-300">
-              WhatsApp opens a prepared enquiry message — review and press Send in WhatsApp to start chatting.
+              Clicking WhatsApp opens a prepared enquiry message to {CONTACT_CONFIG.phoneDisplay} — initiating a demo enquiry does not automatically confirm an appointment.
             </p>
           </div>
         </div>

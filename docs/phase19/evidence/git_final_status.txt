@@ -1,0 +1,96 @@
+ M .env.example
+ M HANVA_CLAIMS_REGISTRY.md
+ M README.md
+ M app/company/about/page.tsx
+ M app/company/careers/page.tsx
+ M app/company/contact/layout.tsx
+ M app/company/contact/page.tsx
+ M app/company/privacy-policy/page.tsx
+ M app/company/security-and-trust/page.tsx
+ M app/company/terms-of-service/page.tsx
+ M app/compare/exotel-alternative/page.tsx
+ M app/compare/knowlarity-alternative/page.tsx
+ M app/compare/telecmi-alternative/page.tsx
+ M app/industry/automobile/page.tsx
+ M app/industry/education/page.tsx
+ M app/industry/financial-services/page.tsx
+ M app/industry/healthcare/page.tsx
+ M app/industry/insurance/page.tsx
+ M app/industry/logistics/page.tsx
+ M app/industry/page.tsx
+ M app/industry/real-estate/page.tsx
+ M app/industry/recruitment/page.tsx
+ M app/layout.tsx
+ M app/locations/bengaluru/page.tsx
+ M app/locations/chennai/page.tsx
+ M app/locations/delhi-ncr/page.tsx
+ M app/locations/hyderabad/page.tsx
+ M app/locations/mumbai/page.tsx
+ M app/locations/page.tsx
+ M app/locations/pune/page.tsx
+ M app/page.tsx
+ M app/pricing/calculator/layout.tsx
+ M app/pricing/calculator/page.tsx
+ M app/pricing/page.tsx
+ M app/products/auto-dialer/page.tsx
+ M app/products/call-center-software/page.tsx
+ M app/products/cloud-telephony/page.tsx
+ M app/products/crm/page.tsx
+ M app/products/ivr-system/page.tsx
+ M app/products/page.tsx
+ M app/products/predictive-dialer/page.tsx
+ M app/products/smart-ivr/page.tsx
+ M app/products/telecalling-crm/page.tsx
+ M app/products/toll-free-numbers/page.tsx
+ M app/products/virtual-numbers/page.tsx
+ M app/products/whatsapp-crm/page.tsx
+ M app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+ M app/resources/cloud-telephony-pricing-guide/page.tsx
+ M app/resources/dlt-compliance-guide/page.tsx
+ M app/resources/how-ivr-systems-work/page.tsx
+ M app/resources/page.tsx
+ M app/resources/telecalling-crm-guide/page.tsx
+ M app/resources/what-is-cloud-telephony/page.tsx
+ M app/resources/whatsapp-business-api-guide/page.tsx
+ M app/robots.ts
+ M app/sitemap.ts
+ M app/solutions/customer-support/page.tsx
+ M app/solutions/enterprise/page.tsx
+ M app/solutions/page.tsx
+ M app/solutions/sales-automation/page.tsx
+ M components/analytics/tracked-links.tsx
+ M components/layout/footer.tsx
+ M components/layout/header.tsx
+ M components/layout/layout-shell.tsx
+ M components/layout/mobile-action-bar.tsx
+ M components/layout/mobile-drawer.tsx
+ M components/shared/article-layout.tsx
+ M components/shared/compare-layout.tsx
+ M components/shared/location-layout.tsx
+ M components/shared/product-layout.tsx
+ M components/shared/schema-org.tsx
+ M components/shared/solution-layout.tsx
+ M components/ui/card.tsx
+ M components/ui/input.tsx
+ M components/ui/table.tsx
+ M lib/analytics.ts
+ M lib/config.ts
+ M next.config.mjs
+ M package.json
+ M pnpm-lock.yaml
+ M tsconfig.json
+?? app/digital-marketing/
+?? app/products/restaurant-pos/
+?? app/products/salon-software/
+?? app/resources/crm-with-ivr-vs-telecalling-crm/
+?? app/resources/restaurant-pos-kot-inventory-guide/
+?? app/resources/saas-vs-custom-crm-erp-guide/
+?? app/resources/salon-management-software-guide/
+?? app/software-development/
+?? components/analytics/analytics-provider.tsx
+?? components/analytics/consent-banner.tsx
+?? components/shared/product-visual-placeholder.tsx
+?? components/shared/service-layout.tsx
+?? docs/
+?? eslint.config.mjs
+?? lib/utm.ts

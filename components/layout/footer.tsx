@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
 import { TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { FooterConsentButton } from "@/components/analytics/consent-banner";
 import { CONTACT_CONFIG } from "@/lib/config";
 import { Phone, Mail, MapPin, ShieldCheck, CheckCircle2 } from "lucide-react";
 
@@ -16,7 +17,7 @@ export function Footer() {
             <Logo size="lg" inverted />
           </Link>
           <p className="text-xs text-slate-400 max-w-md">
-            Enterprise cloud telephony infrastructure, multi-level smart IVR, automated telecalling dialers, and integrated sales CRM for Indian businesses.
+            Comprehensive IT solutions, SaaS products (Hanva CRM, Hanva Salon Software, Hanva Restaurant POS), digital marketing, custom software development, and enterprise cloud telephony.
           </p>
         </div>
 
@@ -76,15 +77,25 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 2: CRM & Messaging */}
+          {/* Column 2: SaaS Products & Services */}
           <div className="space-y-3">
             <div className="text-xs font-semibold text-white uppercase tracking-wider">
-              CRM & Messaging
+              SaaS &amp; IT Services
             </div>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/products/crm/" className="hover:text-white transition-colors">
-                  Platform Sales CRM
+                  Hanva CRM
+                </Link>
+              </li>
+              <li>
+                <Link href="/products/salon-software/" className="hover:text-white transition-colors">
+                  Hanva Salon Software
+                </Link>
+              </li>
+              <li>
+                <Link href="/products/restaurant-pos/" className="hover:text-white transition-colors">
+                  Hanva Restaurant POS
                 </Link>
               </li>
               <li>
@@ -94,17 +105,32 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/products/whatsapp-crm/" className="hover:text-white transition-colors">
-                  WhatsApp CRM & API
+                  WhatsApp CRM &amp; API
                 </Link>
               </li>
               <li className="pt-2">
                 <div className="text-[11px] font-semibold text-white uppercase tracking-wider">
-                  Commercial
+                  Services
                 </div>
               </li>
               <li>
+                <Link href="/digital-marketing/" className="hover:text-white transition-colors">
+                  Digital Marketing
+                </Link>
+              </li>
+              <li>
+                <Link href="/digital-marketing/seo-services/" className="hover:text-white transition-colors">
+                  SEO &amp; Google Ads
+                </Link>
+              </li>
+              <li>
+                <Link href="/software-development/" className="hover:text-white transition-colors">
+                  Software Development
+                </Link>
+              </li>
+              <li>
                 <Link href="/pricing/" className="hover:text-white transition-colors">
-                  Pricing & Plan Tiers
+                  Pricing &amp; Plan Tiers
                 </Link>
               </li>
               <li>
@@ -374,7 +400,7 @@ export function Footer() {
           <div>
             &copy; {new Date().getFullYear()} Hanva Technologies Private Limited. All rights reserved.
           </div>
-          <div className="flex items-center space-x-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link href="/company/privacy-policy/" className="hover:text-slate-200 transition-colors">
               Privacy Policy
             </Link>
@@ -384,6 +410,7 @@ export function Footer() {
             <Link href="/company/security-and-trust/" className="hover:text-slate-200 transition-colors">
               Security & Trust
             </Link>
+            <FooterConsentButton />
           </div>
         </div>
       </Container>

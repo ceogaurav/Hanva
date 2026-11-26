@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { MessageSquare, HelpCircle, ShieldCheck, ExternalLink, ArrowRight } from "lucide-react";
 import { CONTACT_CONFIG } from "@/lib/config";
-import { trackConversionEvent } from "@/lib/analytics";
+import { trackConversionEvent, trackWhatsAppClick } from "@/lib/analytics";
 
 function getVolumeBucket(calls: number): string {
   if (calls <= 10000) return "1k-10k";
@@ -110,7 +110,7 @@ export default function CalculatorPage() {
           <div className="lg:col-span-7 space-y-6">
             <Card className="shadow-sm border-slate-200">
               <CardHeader className="pb-4">
-                <CardTitle className="text-lg">1. Call Volume &amp; Seat Parameters</CardTitle>
+                <CardTitle as="h2" className="text-lg">1. Call Volume &amp; Seat Parameters</CardTitle>
                 <CardDescription className="text-slate-600">
                   Adjust sliders or enter exact values to simulate outbound broadcast pulse metering.
                 </CardDescription>
@@ -223,7 +223,7 @@ export default function CalculatorPage() {
                 <div className="pt-4 border-t border-slate-100 space-y-4">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                      <span className="font-medium text-slate-800 block">
+                      <span id="crm-seat-toggle-label" className="font-medium text-slate-800 block">
                         Include CRM Seat Benchmark?
                       </span>
                       <span className="text-[11px] text-slate-600">
@@ -233,6 +233,7 @@ export default function CalculatorPage() {
                     <button
                       type="button"
                       role="switch"
+                      aria-labelledby="crm-seat-toggle-label"
                       aria-checked={includeCrmSeats}
                       onClick={() => {
                         markCalculatorStarted("crm_toggle");
@@ -367,7 +368,7 @@ export default function CalculatorPage() {
                   </span>
                 </div>
                 <div aria-live="polite" className="pt-1">
-                  <CardTitle className="text-2xl text-white">
+                  <CardTitle as="h2" className="text-2xl text-white">
                     ~₹{hanvaTotalEstimated.toLocaleString()}{" "}
                     <span className="text-xs font-normal text-slate-300">/ month + 18% GST (Est.)</span>
                   </CardTitle>
@@ -413,7 +414,6 @@ export default function CalculatorPage() {
                     <Link
                     href={contactProposalHref}
                     onClick={() => trackCalculationComplete("proposal_contact_cta")}
-                    className="block w-full"
                   >
                       <span>Request Formal Sales Proposal</span>
                       <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
@@ -428,12 +428,13 @@ export default function CalculatorPage() {
                       rel="noopener noreferrer"
                       onClick={() => {
                         trackCalculationComplete("quote_whatsapp_cta");
-                        trackConversionEvent("whatsapp_cta_click", {
-                          cta_location: "calculator_summary",
-                          context_ref: includeCrmSeats ? "obd_plus_crm" : "obd_only",
+                        trackWhatsAppClick({
+                          ctaLocation: "calculator_summary",
+                          productName: "cloud_telephony",
+                          ctaType: "service_whatsapp",
+                          contextRef: includeCrmSeats ? "obd_plus_crm" : "obd_only",
                         });
                       }}
-                      className="block w-full"
                     >
                         <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
                         <span>Send Simulation via WhatsApp</span>

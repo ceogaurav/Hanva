@@ -6,7 +6,22 @@ export const metadata = {
   description:
     "Enterprise customer support routing: multi-level smart IVR, automatic call distribution (ACD), call recording audits, and CRM timeline syncing.",
   alternates: {
-    canonical: "https://hanva.in/solutions/customer-support/",
+    canonical: "https://www.hanva.in/solutions/customer-support/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/solutions/customer-support/",
+    siteName: "Hanva Technologies",
+    title: "Inbound Customer Support & IVR Routing Solutions | Hanva Technologies",
+    description: "Enterprise customer support routing: multi-level smart IVR, automatic call distribution (ACD), call recording audits, and CRM timeline syncing.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Inbound Customer Support & IVR Routing Solutions" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Inbound Customer Support & IVR Routing Solutions | Hanva Technologies",
+    description: "Enterprise customer support routing: multi-level smart IVR, automatic call distribution (ACD), call recording audits, and CRM timeline syncing.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

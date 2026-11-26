@@ -6,7 +6,22 @@ export const metadata = {
   description:
     "Accelerate telecalling velocity, eliminate manual dialing latency, and automate post-call WhatsApp messaging for inside sales teams.",
   alternates: {
-    canonical: "https://hanva.in/solutions/sales-automation/",
+    canonical: "https://www.hanva.in/solutions/sales-automation/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.hanva.in/solutions/sales-automation/",
+    siteName: "Hanva Technologies",
+    title: "Outbound Sales Call Automation Solutions | Hanva Technologies",
+    description: "Accelerate telecalling velocity, eliminate manual dialing latency, and automate post-call WhatsApp messaging for inside sales teams.",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Outbound Sales Call Automation Solutions" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Outbound Sales Call Automation Solutions | Hanva Technologies",
+    description: "Accelerate telecalling velocity, eliminate manual dialing latency, and automate post-call WhatsApp messaging for inside sales teams.",
+    images: ["https://www.hanva.in/og-image.png"],
   },
 };
 

@@ -1,0 +1,94 @@
+CRM REPOSITORY RECONCILIATION MATRIX
+local=/Users/apple/Downloads/CRM (origin=gauravhotstar/CRM @ 3d3f81a7 + dirty working tree)
+upstream_mirror_origin=seobanks/CRM @ bec603f9 (+10 commits beyond 3d3f81a7)
+
+Overlapping paths modified in BOTH (12):
+  [OVERLAP] app/actions/tenant-settings.ts
+  [OVERLAP] app/actions/whatsapp.ts
+  [OVERLAP] app/admin/ivr-upload/page.tsx
+  [OVERLAP] app/admin/page.tsx
+  [OVERLAP] app/admin/settings/page.tsx
+  [OVERLAP] app/api/webhooks/cloudconnect/route.ts
+  [OVERLAP] app/api/webhooks/ivr/route.ts
+  [OVERLAP] app/api/webhooks/whatsapp/route.ts
+  [OVERLAP] app/telecaller/leads/page.tsx
+  [OVERLAP] components/leads-table.tsx
+  [OVERLAP] components/telecaller-lead-filters.tsx
+  [OVERLAP] lib/whatsapp-rate-limiter.ts
+
+Paths unique to seobanks/CRM absent on local disk (10):
+  [SEOBANKS_ONLY] app/api/admin/reports/calls/route.ts
+  [SEOBANKS_ONLY] components/admin/logins-report-modal.tsx
+  [SEOBANKS_ONLY] components/admin/performance-table-modal.tsx
+  [SEOBANKS_ONLY] components/reports-share-modal.tsx
+  [SEOBANKS_ONLY] components/telecaller/AttendanceReminderModal.tsx
+  [SEOBANKS_ONLY] lib/bankscart-logo-base64.ts
+  [SEOBANKS_ONLY] lib/did-registry-cache.ts
+  [SEOBANKS_ONLY] lib/share-logins-report.ts
+  [SEOBANKS_ONLY] lib/share-performance-table.ts
+  [SEOBANKS_ONLY] public/bankscart-logo.png
+
+Dirty paths unique to local workspace (63):
+  [LOCAL_DIRTY_ONLY] .DS_Store
+  [LOCAL_DIRTY_ONLY] .agents
+  [LOCAL_DIRTY_ONLY] app/actions/invoice-action.ts
+  [LOCAL_DIRTY_ONLY] app/actions/ivr-upload-action.ts
+  [LOCAL_DIRTY_ONLY] app/actions/razorpay-actions.ts
+  [LOCAL_DIRTY_ONLY] app/actions/super-admin.ts
+  [LOCAL_DIRTY_ONLY] app/actions/whatsapp-billing-alerts.ts
+  [LOCAL_DIRTY_ONLY] app/admin/attendance/dashboard.tsx
+  [LOCAL_DIRTY_ONLY] app/admin/attendance/kiosk/page.tsx
+  [LOCAL_DIRTY_ONLY] app/admin/invoices
+  [LOCAL_DIRTY_ONLY] app/admin/leads/new/page.tsx
+  [LOCAL_DIRTY_ONLY] app/admin/master-data/page.tsx
+  [LOCAL_DIRTY_ONLY] app/admin/upload/page.tsx
+  [LOCAL_DIRTY_ONLY] app/admin/users/page.tsx
+  [LOCAL_DIRTY_ONLY] app/api/admin/ai-call/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/admin/campaign-health-watchdog
+  [LOCAL_DIRTY_ONLY] app/api/admin/delete-file/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/admin/init-meili/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/admin/leads/bulk-assign/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/admin/master-data/entry/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/admin/master-data/stats/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/admin/operations
+  [LOCAL_DIRTY_ONLY] app/api/admin/upload-companies/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/admin/users/[id]/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/admin/users/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/companies
+  [LOCAL_DIRTY_ONLY] app/api/cron/campaign-health-watchdog
+  [LOCAL_DIRTY_ONLY] app/api/cron/ozonetel-campaign-sync
+  [LOCAL_DIRTY_ONLY] app/api/cron/sla/route.ts
+  [LOCAL_DIRTY_ONLY] app/api/mobile
+  [LOCAL_DIRTY_ONLY] app/api/payments
+  [LOCAL_DIRTY_ONLY] app/api/telecaller
+  [LOCAL_DIRTY_ONLY] app/auth/callback
+  [LOCAL_DIRTY_ONLY] app/auth/login/page.tsx
+  [LOCAL_DIRTY_ONLY] app/page.tsx
+  [LOCAL_DIRTY_ONLY] app/pay
+  [LOCAL_DIRTY_ONLY] app/super-admin/did-registry/page.tsx
+  [LOCAL_DIRTY_ONLY] app/super-admin/page.tsx
+  [LOCAL_DIRTY_ONLY] app/telecaller/global-search/page.tsx
+  [LOCAL_DIRTY_ONLY] components/admin/OperationsSnapshot.tsx
+  [LOCAL_DIRTY_ONLY] components/admin/company-eligibility-search.tsx
+  [LOCAL_DIRTY_ONLY] components/admin/user-form.tsx
+  [LOCAL_DIRTY_ONLY] components/attendance-widget.tsx
+  [LOCAL_DIRTY_ONLY] components/attendance/face-auth-modal.tsx
+  [LOCAL_DIRTY_ONLY] components/invoice
+  [LOCAL_DIRTY_ONLY] components/telecaller/GeofenceAccessGuard.tsx
+  [LOCAL_DIRTY_ONLY] components/ui/button.tsx
+  [LOCAL_DIRTY_ONLY] components/ui/confirm-dialog.tsx
+  [LOCAL_DIRTY_ONLY] components/ui/cool-feedback-dialog.tsx
+  [LOCAL_DIRTY_ONLY] config/sidebar-nav.ts
+  [LOCAL_DIRTY_ONLY] lib/admin
+  [LOCAL_DIRTY_ONLY] lib/ivr-tracker.ts
+  [LOCAL_DIRTY_ONLY] lib/number-to-words.ts
+  [LOCAL_DIRTY_ONLY] lib/ozonetel-campaign-health.ts
+  [LOCAL_DIRTY_ONLY] lib/ozonetel-cloudagent.ts
+  [LOCAL_DIRTY_ONLY] lib/supabase/middleware.ts
+  [LOCAL_DIRTY_ONLY] middleware.ts
+  [LOCAL_DIRTY_ONLY] package.json
+  [LOCAL_DIRTY_ONLY] pnpm-lock.yaml
+  [LOCAL_DIRTY_ONLY] public/branding
+  [LOCAL_DIRTY_ONLY] recovered_failed_leads.json
+  [LOCAL_DIRTY_ONLY] scripts/update-campaign-flows.ts
+  [LOCAL_DIRTY_ONLY] services

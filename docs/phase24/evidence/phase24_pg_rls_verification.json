@@ -1,0 +1,86 @@
+{
+  "engine": "PGlite PostgreSQL 19.0 WASM",
+  "executedAt": "2026-11-27T05:24:20.415Z",
+  "total": 13,
+  "passed": 13,
+  "results": [
+    {
+      "id": "T-DB-1",
+      "name": "Tenant A telecaller cannot read Tenant B leads",
+      "pass": true,
+      "detail": "rows=aaaa1111-0000-4000-8000-000000000001"
+    },
+    {
+      "id": "T-DB-2",
+      "name": "Tenant A telecaller cannot mutate Tenant B lead",
+      "pass": true,
+      "detail": "updated=0"
+    },
+    {
+      "id": "T-DB-3",
+      "name": "Tenant A admin user list excludes Tenant B users",
+      "pass": true,
+      "detail": "count=3"
+    },
+    {
+      "id": "T-DB-4",
+      "name": "Telecaller self role-escalation blocked by RLS WITH CHECK",
+      "pass": true,
+      "detail": "blocked=true"
+    },
+    {
+      "id": "T-DB-5",
+      "name": "Non-super-admin blocked from hijacking tenant_did_registry",
+      "pass": true,
+      "detail": "blocked=true"
+    },
+    {
+      "id": "T-DB-6",
+      "name": "Wallets visible only to own tenant admins (zero telecaller/cross-tenant visibility)",
+      "pass": true,
+      "detail": "adminA=1, empA=0"
+    },
+    {
+      "id": "T-DB-7",
+      "name": "handle_new_user ignores user_metadata.role privilege escalation",
+      "pass": true,
+      "detail": "assigned_role=telecaller"
+    },
+    {
+      "id": "T-DB-8",
+      "name": "get_next_auto_dial_lead enforces tenant & caller lock",
+      "pass": true,
+      "detail": "leadTenant=11111111-1111-4111-8111-111111111111, foreignCallBlocked=true"
+    },
+    {
+      "id": "T-DB-9",
+      "name": "get_telecaller_lead_counts rejects cross-tenant inspection",
+      "pass": true,
+      "detail": "blocked=true"
+    },
+    {
+      "id": "T-DB-10",
+      "name": "bulk_assign_leads rejects cross-tenant lead array",
+      "pass": true,
+      "detail": "blocked=true"
+    },
+    {
+      "id": "T-DB-11",
+      "name": "wallet_ledger unique constraint blocks duplicate Razorpay recharge",
+      "pass": true,
+      "detail": "duplicateBlocked=true"
+    },
+    {
+      "id": "T-DB-13",
+      "name": "Attendance rows isolated strictly by tenant even for admin role",
+      "pass": true,
+      "detail": "rows=1"
+    },
+    {
+      "id": "T-DB-12",
+      "name": "security_audit_logs admin read + rollback_23_2.sql reversible execution pass",
+      "pass": true,
+      "detail": "rollback executed cleanly"
+    }
+  ]
+}

@@ -1,0 +1,2342 @@
+diff --git a/app/company/contact/page.tsx b/app/company/contact/page.tsx
+index f8a381c..52c836f 100644
+--- a/app/company/contact/page.tsx
++++ b/app/company/contact/page.tsx
+@@ -38,13 +38,17 @@ interface FormErrors {
+ }
+ 
+ const PRODUCT_OPTION_MAP: Record<string, string> = {
++  crm: "Hanva CRM",
++  "salon-software": "Hanva Salon Software",
++  "restaurant-pos": "Hanva Restaurant POS",
++  "digital-marketing": "Digital Marketing Services (SEO, Google Ads & Social)",
++  "software-development": "Custom Software, CRM/ERP & AI Development",
+   "cloud-telephony": "Smart IVR & Cloud Telephony",
+   "ivr-system": "Smart IVR & Cloud Telephony",
+   "smart-ivr": "Smart IVR & Cloud Telephony",
+   "auto-dialer": "Auto & Predictive Dialers",
+   "predictive-dialer": "Auto & Predictive Dialers",
+   "call-center-software": "Auto & Predictive Dialers",
+-  crm: "Telecalling & Sales CRM",
+   "telecalling-crm": "Telecalling & Sales CRM",
+   "whatsapp-crm": "WhatsApp Business CRM",
+   "virtual-numbers": "Virtual Numbers & 1800 Toll-Free",
+@@ -53,10 +57,10 @@ const PRODUCT_OPTION_MAP: Record<string, string> = {
+ };
+ 
+ function mapTeamSizeFromSeats(seats: number): string {
+-  if (seats <= 4) return "1-5 agents";
+-  if (seats <= 15) return "5-15 agents";
+-  if (seats <= 50) return "15-50 agents";
+-  return "50+ agents";
++  if (seats <= 5) return "Single Outlet / 1-5 Staff";
++  if (seats <= 15) return "6-15 Staff / Agents";
++  if (seats <= 50) return "16-50 Staff / Agents";
++  return "50+ Multi-Team Enterprise";
+ }
+ 
+ function deriveSearchParamContext(searchParams: ReturnType<typeof useSearchParams>) {
+@@ -147,8 +151,8 @@ function ContactPageContent() {
+     companyName: "",
+     workEmail: "",
+     phone: "",
+-    teamSize: initialContext.updates.teamSize || "5-15 agents",
+-    product: initialContext.updates.product || "Smart IVR & Cloud Telephony",
++    teamSize: initialContext.updates.teamSize || "Single Outlet / 1-5 Staff",
++    product: initialContext.updates.product || "Hanva CRM",
+     notes: initialContext.updates.notes || "",
+     honeypot: "",
+   }));
+@@ -177,12 +181,10 @@ function ContactPageContent() {
+       newErrors.fullName = "Full name must be at least 2 characters.";
+     }
+ 
+-    const emailTrimmed = formData.workEmail.trim();
++    const emailTrimmed = (formData.workEmail || "").trim();
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+-    if (!emailTrimmed) {
+-      newErrors.workEmail = "Please enter your work email.";
+-    } else if (!emailRegex.test(emailTrimmed)) {
+-      newErrors.workEmail = "Please enter a valid business email address.";
++    if (emailTrimmed && !emailRegex.test(emailTrimmed)) {
++      newErrors.workEmail = "Please enter a valid email address (or leave blank for WhatsApp-only).";
+     }
+ 
+     const phoneDigits = formData.phone.replace(/\D/g, "");
+@@ -198,13 +200,15 @@ function ContactPageContent() {
+   const buildPlainPreviewText = () => {
+     const lines = [
+       "Hello Hanva Team,",
+-      "I would like to enquire about your business communication solutions.",
++      formData.product
++        ? `I would like to enquire about ${formData.product}.`
++        : "I would like to enquire about your software products and IT solutions.",
+       `Name: ${formData.fullName.trim()}`,
+       formData.companyName?.trim() ? `Company: ${formData.companyName.trim()}` : null,
+-      `Work Email: ${formData.workEmail.trim()}`,
++      formData.workEmail?.trim() ? `Email: ${formData.workEmail.trim()}` : null,
+       `Mobile: ${formData.phone.trim()}`,
+-      `Team Size: ${formData.teamSize}`,
+-      `Interested Product: ${formData.product}`,
++      formData.teamSize ? `Scale / Team: ${formData.teamSize}` : null,
++      `Interested Product / Service: ${formData.product}`,
+       formData.notes?.trim() ? `Requirements:\n${formData.notes.trim()}` : null,
+     ].filter(Boolean);
+     return lines.join("\n");
+@@ -288,9 +292,9 @@ function ContactPageContent() {
+     }
+   };
+ 
+-  const emailSubject = `Enquiry: ${formData.product || "Cloud Telephony & CRM"}`;
++  const emailSubject = `Enquiry: ${formData.product || "Hanva Software & IT Solutions"}`;
+   const directMailtoHref = `mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent(
+-    "Enquiry: Cloud Telephony & Telecalling CRM"
++    emailSubject
+   )}`;
+   const handoffMailtoHref = `mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent(
+     emailSubject
+@@ -308,13 +312,13 @@ function ContactPageContent() {
+           <div className="lg:col-span-5 space-y-6 min-w-0 w-full">
+             <div>
+               <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
+-                Sales & Support Desk
++                Sales &amp; Engineering Desk
+               </span>
+               <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1 break-words">
+-                Let&apos;s Build Your Voice Architecture
++                Request a Demo, Consultation &amp; Custom Pricing
+               </h1>
+               <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed break-words">
+-                Connect directly with our Bengaluru telephony engineers for statutory DoT KYC guidance, Vi/Tata DID provisioning, and CRM scoping.
++                Speak directly with our Bengaluru team for demos and custom pricing across <strong>Hanva CRM</strong>, <strong>Salon Software</strong>, <strong>Restaurant POS</strong>, Digital Marketing, Software Development, and Cloud Telephony.
+               </p>
+             </div>
+ 
+@@ -674,12 +678,11 @@ function ContactPageContent() {
+                       <Input
+                         id="workEmail"
+                         name="workEmail"
+-                        label="Work Email *"
++                        label="Business Email (Optional for WhatsApp)"
+                         type="email"
+-                        placeholder="e.g. rajesh@company.com"
++                        placeholder="e.g. you@business.com"
+                         autoComplete="email"
+-                        required
+-                        value={formData.workEmail}
++                        value={formData.workEmail || ""}
+                         onFocus={() => markFormStarted("workEmail")}
+                         onChange={(e) => {
+                           markFormStarted("workEmail");
+@@ -713,7 +716,7 @@ function ContactPageContent() {
+                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                       <div className="space-y-1.5">
+                         <label htmlFor="team-size" className="block text-xs font-medium text-slate-700">
+-                          Team Size
++                          Business / Team Size (Optional)
+                         </label>
+                         <select
+                           id="team-size"
+@@ -725,16 +728,16 @@ function ContactPageContent() {
+                             setFormData({ ...formData, teamSize: e.target.value });
+                           }}
+                         >
+-                          <option value="1-5 agents">1 - 5 calling agents</option>
+-                          <option value="5-15 agents">5 - 15 calling agents</option>
+-                          <option value="15-50 agents">15 - 50 calling agents</option>
+-                          <option value="50+ agents">50+ enterprise contact center</option>
++                          <option value="Single Outlet / 1-5 Staff">Single Outlet / 1 - 5 Staff</option>
++                          <option value="6-15 Staff / Agents">6 - 15 Staff / Agents</option>
++                          <option value="16-50 Staff / Agents">16 - 50 Staff / Agents</option>
++                          <option value="50+ Multi-Team Enterprise">50+ Multi-Team Enterprise</option>
+                         </select>
+                       </div>
+ 
+                       <div className="space-y-1.5">
+                         <label htmlFor="product-interest" className="block text-xs font-medium text-slate-700">
+-                          Primary Product Interest
++                          Product or Service Interest
+                         </label>
+                         <select
+                           id="product-interest"
+@@ -746,26 +749,37 @@ function ContactPageContent() {
+                             setFormData({ ...formData, product: e.target.value });
+                           }}
+                         >
+-                          <option value="Smart IVR & Cloud Telephony">Smart IVR &amp; Cloud Telephony</option>
+-                          <option value="Auto & Predictive Dialers">Auto &amp; Predictive Dialers</option>
+-                          <option value="Telecalling & Sales CRM">Telecalling &amp; Sales CRM</option>
+-                          <option value="WhatsApp Business CRM">WhatsApp Business CRM</option>
+-                          <option value="Virtual Numbers & 1800 Toll-Free">Virtual Numbers &amp; 1800 Toll-Free</option>
+-                          <option value="Enterprise Telecom & CRM Suite">Enterprise Telecom &amp; CRM Suite</option>
++                          <optgroup label="Flagship SaaS Software">
++                            <option value="Hanva CRM">Hanva CRM (Sales, IVR &amp; WhatsApp)</option>
++                            <option value="Hanva Salon Software">Hanva Salon Software</option>
++                            <option value="Hanva Restaurant POS">Hanva Restaurant POS</option>
++                          </optgroup>
++                          <optgroup label="Services &amp; Custom Engineering">
++                            <option value="Digital Marketing Services (SEO, Google Ads & Social)">Digital Marketing (SEO, Ads &amp; Social)</option>
++                            <option value="Custom Software, CRM/ERP & AI Development">Custom Software, CRM/ERP &amp; AI</option>
++                          </optgroup>
++                          <optgroup label="Telecom &amp; Cloud Telephony">
++                            <option value="Smart IVR & Cloud Telephony">Smart IVR &amp; Cloud Telephony</option>
++                            <option value="Auto & Predictive Dialers">Auto &amp; Predictive Dialers</option>
++                            <option value="Telecalling & Sales CRM">Telecalling CRM</option>
++                            <option value="WhatsApp Business CRM">WhatsApp Business CRM</option>
++                            <option value="Virtual Numbers & 1800 Toll-Free">Virtual Numbers &amp; 1800 Toll-Free</option>
++                            <option value="Enterprise Telecom & CRM Suite">Enterprise Telecom &amp; CRM Suite</option>
++                          </optgroup>
+                         </select>
+                       </div>
+                     </div>
+ 
+                     <div className="space-y-1.5">
+                       <label htmlFor="contact-notes" className="block text-xs font-medium text-slate-700">
+-                        Specific Requirements (Optional)
++                        Requirements / Questions (Optional)
+                       </label>
+                       <textarea
+                         id="contact-notes"
+                         rows={3}
+                         maxLength={1000}
+                         className="flex w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 placeholder:text-slate-400"
+-                        placeholder="Tell us about your current calling volume, pulse requirements, or team setup..."
++                        placeholder="Share your business type (salon, cafe, sales desk, custom project), outlet/seat count, or demo questions..."
+                         value={formData.notes}
+                         onFocus={() => markFormStarted("notes")}
+                         onChange={(e) => {
+diff --git a/app/digital-marketing/page.tsx b/app/digital-marketing/page.tsx
+index 6f34b90..ac51ae7 100644
+--- a/app/digital-marketing/page.tsx
++++ b/app/digital-marketing/page.tsx
+@@ -12,7 +12,7 @@ import { ArrowRight, CheckCircle2, MessageSquare, TrendingUp, ExternalLink } fro
+ export const metadata = {
+   title: "Digital Marketing Services — SEO & Google Ads",
+   description:
+-    "Hanva Technologies provides Search Engine Optimization (SEO), Google Ads, Social Media Marketing, and integrated digital marketing campaigns for Indian and international businesses.",
++    "Search Engine Optimization (SEO), Google Ads performance marketing, and social media campaigns engineered for qualified enquiries across India and globally.",
+   alternates: {
+     canonical: "https://www.hanva.in/digital-marketing/",
+   },
+@@ -131,7 +131,7 @@ export default function DigitalMarketingHubPage() {
+               </TrackedWhatsAppLink>
+             </Button>
+             <Button asChild variant="outline" size="lg">
+-              <Link href="/company/contact/">
++              <Link href="/company/contact/?product=digital-marketing">
+                 <span>Request Campaign Consultation</span>
+                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+               </Link>
+@@ -210,6 +210,33 @@ export default function DigitalMarketingHubPage() {
+         </Container>
+       </section>
+ 
++      <section className="py-10 bg-slate-50 border-y border-slate-100">
++        <Container className="space-y-6">
++          <div className="max-w-2xl space-y-1.5">
++            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Digital Marketing &amp; Search Strategy Guides</h2>
++            <p className="text-xs sm:text-sm text-slate-600">
++              Practical resources on compliant Indian local SEO, Google Business Profile hygiene, and aligning organic search with Google Ads.
++            </p>
++          </div>
++          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
++            <Link href="/resources/local-seo-guide-for-businesses/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Local SEO Guide for Indian Businesses</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Google Business Profile address vs SAB compliance, NAP hygiene, and city landing pages without doorway abuse.</p>
++            </Link>
++            <Link href="/resources/seo-vs-google-ads-for-smbs/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>SEO vs Google Ads for SMBs: Decision Guide</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">When to prioritize organic SEO compounding vs immediate Search ads with negative keyword hygiene.</p>
++            </Link>
++          </div>
++        </Container>
++      </section>
++
+       <section>
+         <Container className="max-w-4xl space-y-6">
+           <h2 className="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+diff --git a/app/digital-marketing/performance-marketing/page.tsx b/app/digital-marketing/performance-marketing/page.tsx
+index 21749a3..8ff3b6d 100644
+--- a/app/digital-marketing/performance-marketing/page.tsx
++++ b/app/digital-marketing/performance-marketing/page.tsx
+@@ -83,6 +83,18 @@ export default function PerformanceMarketingPage() {
+         { title: "Hanva CRM", description: "Manage and call incoming campaign leads inside Hanva CRM.", href: "/products/crm/" },
+         { title: "Cloud Telephony & IVR", description: "Track and route inbound campaign phone calls.", href: "/products/cloud-telephony/" },
+       ]}
++      guides={[
++        {
++          title: "Guide: SEO vs Google Ads for Indian SMBs",
++          description: "Compare ad group targeting, negative keyword hygiene & organic compounding timelines.",
++          href: "/resources/seo-vs-google-ads-for-smbs/",
++        },
++        {
++          title: "Guide: Local SEO & GBP Hygiene",
++          description: "Complement paid campaigns with clean Google Business Profile & regional page health.",
++          href: "/resources/local-seo-guide-for-businesses/",
++        },
++      ]}
+       faqs={[
+         {
+           question: "Do you guarantee a fixed number of leads or cost per lead?",
+diff --git a/app/digital-marketing/seo-services/page.tsx b/app/digital-marketing/seo-services/page.tsx
+index 94bde9e..5b9c6fa 100644
+--- a/app/digital-marketing/seo-services/page.tsx
++++ b/app/digital-marketing/seo-services/page.tsx
+@@ -83,6 +83,18 @@ export default function SeoServicesPage() {
+         { title: "Web Application Development", description: "Ensure your website stack supports fast, SEO-friendly rendering.", href: "/software-development/web-application-development/" },
+         { title: "Hanva CRM", description: "Track and follow up on inbound SEO enquiries from one CRM.", href: "/products/crm/" },
+       ]}
++      guides={[
++        {
++          title: "Guide: Local SEO for Indian Businesses",
++          description: "GBP storefront vs Service-Area rules, NAP hygiene & regional pages without doorway penalties.",
++          href: "/resources/local-seo-guide-for-businesses/",
++        },
++        {
++          title: "Guide: SEO vs Google Ads for SMBs",
++          description: "Decide when to prioritize organic search assets vs immediate Search ads.",
++          href: "/resources/seo-vs-google-ads-for-smbs/",
++        },
++      ]}
+       faqs={[
+         {
+           question: "Do you guarantee first-page Google rankings?",
+diff --git a/app/page.tsx b/app/page.tsx
+index 0090d7a..71882e6 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
+ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+ import { SchemaOrg } from "@/components/shared/schema-org";
+ import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
+-import { TrackedDemoLink, TrackedProductLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
++import { TrackedCtaObserver, TrackedDemoLink, TrackedProductLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
+ import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl, buildServiceWhatsAppUrl } from "@/lib/config";
+ import {
+   ArrowRight,
+@@ -26,7 +26,7 @@ import {
+ export const metadata = {
+   title: "IT Solutions, SaaS Products & Cloud Telephony",
+   description:
+-    "Hanva Technologies is a comprehensive IT solutions, digital transformation, and SaaS software provider in India offering Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, Digital Marketing, Software Development, and Cloud Telephony.",
++    "Hanva Technologies delivers SaaS software (Hanva CRM, Salon Software, Restaurant POS), SEO & Google Ads, custom software development, and cloud telephony in India.",
+   alternates: {
+     canonical: "https://www.hanva.in/",
+   },
+@@ -143,34 +143,59 @@ export default function HomePage() {
+             Hanva Technologies is a comprehensive IT solutions, digital transformation, and SaaS software provider helping businesses in India and globally automate operations, acquire customers, and scale.
+           </p>
+ 
+-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
+-            <Button asChild variant="primary" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6">
+-              <Link href="/products/">
+-                <span>Explore SaaS Products</span>
+-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-              </Link>
+-            </Button>
+-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6 border-slate-300">
+-              <TrackedDemoLink href="/company/contact/" ctaLocation="home_hero" ctaLabelKey="request_consultation">
+-                <span>Request Consultation</span>
+-              </TrackedDemoLink>
+-            </Button>
+-          </div>
++          <TrackedCtaObserver ctaLocation="hero" ctaType="homepage_hero_cta">
++            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
++              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6 font-semibold shadow-sm">
++                <TrackedWhatsAppLink
++                  href={generalWhatsappUrl}
++                  target="_blank"
++                  rel="noopener noreferrer"
++                  ctaLocation="home_hero"
++                  contextRef="/"
++                  experimentId="EXP-22A"
++                  variantId="whatsapp_primary_hero"
++                >
++                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                  <span>Enquire on WhatsApp</span>
++                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
++                </TrackedWhatsAppLink>
++              </Button>
++              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6">
++                <Link href="/products/">
++                  <span>Explore SaaS Products</span>
++                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                </Link>
++              </Button>
++              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6 border-slate-300">
++                <TrackedDemoLink href="/company/contact/" ctaLocation="home_hero" ctaLabelKey="request_consultation">
++                  <span>Request Consultation</span>
++                </TrackedDemoLink>
++              </Button>
++            </div>
++          </TrackedCtaObserver>
+ 
+-          <div className="flex items-center justify-center">
+-            <TrackedWhatsAppLink
+-              href={generalWhatsappUrl}
+-              target="_blank"
+-              rel="noopener noreferrer"
+-              ctaLocation="home_hero"
+-              contextRef="/"
+-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline py-1"
+-            >
+-              <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
+-              <span>Chat with Hanva on WhatsApp (+91 8423711043)</span>
+-              <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+-            </TrackedWhatsAppLink>
++          <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs">
++            <Link href="/products/crm/" className="rounded-full border border-blue-200 bg-blue-50/70 px-3 py-1 font-medium text-blue-800 hover:bg-blue-100 transition-colors">
++              Hanva CRM
++            </Link>
++            <Link href="/products/salon-software/" className="rounded-full border border-rose-200 bg-rose-50/70 px-3 py-1 font-medium text-rose-800 hover:bg-rose-100 transition-colors">
++              Hanva Salon Software
++            </Link>
++            <Link href="/products/restaurant-pos/" className="rounded-full border border-amber-200 bg-amber-50/70 px-3 py-1 font-medium text-amber-900 hover:bg-amber-100 transition-colors">
++              Hanva Restaurant POS
++            </Link>
++            <Link href="/digital-marketing/" className="rounded-full border border-slate-200 bg-white px-3 py-1 font-medium text-slate-700 hover:bg-slate-50 transition-colors">
++              SEO &amp; Ads Services
++            </Link>
++            <Link href="/software-development/" className="rounded-full border border-slate-200 bg-white px-3 py-1 font-medium text-slate-700 hover:bg-slate-50 transition-colors">
++              Custom Software Dev
++            </Link>
+           </div>
++
++          <p className="text-[11px] sm:text-xs text-slate-600">
++            Hanva Technologies Pvt. Ltd. (Bengaluru HQ) • Official WhatsApp:{" "}
++            <span className="font-semibold text-slate-800">{CONTACT_CONFIG.phoneDisplay}</span> • Contact us for pricing
++          </p>
+         </Container>
+       </section>
+ 
+@@ -457,6 +482,25 @@ export default function HomePage() {
+                 Digital Marketing Overview &rarr;
+               </Link>
+             </div>
++            <div className="pt-1 flex flex-wrap items-center gap-4 text-xs">
++              <TrackedWhatsAppLink
++                href={buildServiceWhatsAppUrl("Hello Hanva Team, I would like to enquire about Digital Marketing services (SEO, Google Ads & Social Media).")}
++                target="_blank"
++                rel="noopener noreferrer"
++                ctaLocation="product_section"
++                productName="digital_marketing"
++                ctaType="service_whatsapp"
++                contextRef="/digital-marketing/"
++                className="inline-flex items-center gap-1.5 font-semibold text-emerald-700 hover:underline"
++              >
++                <MessageSquare className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
++                <span>Enquire on WhatsApp</span>
++                <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
++              </TrackedWhatsAppLink>
++              <Link href="/company/contact/?product=digital-marketing" className="text-slate-600 hover:text-slate-900 hover:underline">
++                Contact us for pricing &rarr;
++              </Link>
++            </div>
+           </div>
+ 
+           {/* 8. Software Development */}
+@@ -486,6 +530,25 @@ export default function HomePage() {
+                 E-commerce Development &rarr;
+               </Link>
+             </div>
++            <div className="pt-1 flex flex-wrap items-center gap-4 text-xs">
++              <TrackedWhatsAppLink
++                href={buildServiceWhatsAppUrl("Hello Hanva Team, I would like to enquire about Custom Software Development services.")}
++                target="_blank"
++                rel="noopener noreferrer"
++                ctaLocation="product_section"
++                productName="software_development"
++                ctaType="service_whatsapp"
++                contextRef="/software-development/"
++                className="inline-flex items-center gap-1.5 font-semibold text-emerald-700 hover:underline"
++              >
++                <MessageSquare className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
++                <span>Discuss Project on WhatsApp</span>
++                <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
++              </TrackedWhatsAppLink>
++              <Link href="/company/contact/?product=software-development" className="text-slate-600 hover:text-slate-900 hover:underline">
++                Contact us for pricing &rarr;
++              </Link>
++            </div>
+           </div>
+         </Container>
+       </section>
+diff --git a/app/products/crm/page.tsx b/app/products/crm/page.tsx
+index d0fc0b1..cc72bb4 100644
+--- a/app/products/crm/page.tsx
++++ b/app/products/crm/page.tsx
+@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
+ import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
+ import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
+ import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
+-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
++import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+ import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
+ import {
+   CheckCircle2,
+@@ -178,29 +178,33 @@ export default function HanvaCrmPage() {
+             </p>
+           </div>
+ 
+-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+-            <Button asChild variant="primary" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+-              <TrackedWhatsAppLink
+-                href={whatsappUrl}
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                ctaLocation="hero"
+-                productName="hanva_crm"
+-                ctaType="product_demo_whatsapp"
+-                contextRef="/products/crm/"
+-              >
+-                <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-                <span>Request Demo on WhatsApp</span>
+-                <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+-              </TrackedWhatsAppLink>
+-            </Button>
+-            <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+-              <TrackedDemoLink href="/company/contact/?product=crm" ctaLocation="crm_hero" productSlug="crm">
+-                <span>Contact Us for Pricing</span>
+-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-              </TrackedDemoLink>
+-            </Button>
+-          </div>
++          <TrackedCtaObserver ctaLocation="hero" productName="hanva_crm" ctaType="crm_hero_cta">
++            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
++              <Button asChild variant="primary" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
++                <TrackedWhatsAppLink
++                  href={whatsappUrl}
++                  target="_blank"
++                  rel="noopener noreferrer"
++                  ctaLocation="hero"
++                  productName="hanva_crm"
++                  ctaType="product_demo_whatsapp"
++                  contextRef="/products/crm/"
++                  experimentId="EXP-22C"
++                  variantId="request_demo_whatsapp"
++                >
++                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                  <span>Request Demo on WhatsApp</span>
++                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
++                </TrackedWhatsAppLink>
++              </Button>
++              <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
++                <TrackedDemoLink href="/company/contact/?product=crm" ctaLocation="crm_hero" productSlug="crm">
++                  <span>Contact Us for Pricing</span>
++                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                </TrackedDemoLink>
++              </Button>
++            </div>
++          </TrackedCtaObserver>
+ 
+           <p className="text-xs text-slate-600">
+             Clicking WhatsApp opens a chat with <span className="font-semibold">+91 8423711043</span> to initiate a guided demo enquiry (not an automated booking confirmation). Contact us for pricing.
+@@ -384,6 +388,60 @@ export default function HanvaCrmPage() {
+               <p className="text-xs text-slate-600">Need bespoke ERP/CRM workflows? Explore our custom engineering service.</p>
+             </Link>
+           </div>
++          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
++            <Link href="/resources/crm-with-ivr-vs-telecalling-crm/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Buyer Guide: CRM with IVR vs Telecalling CRM</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Compare multi-channel IVR/WhatsApp CRM vs outbound voice-first telecalling workflows.</p>
++            </Link>
++            <Link href="/resources/ivr-crm-for-businesses/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Operational Guide: IVR CRM Routing &amp; Call Audits</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">How teams combine DID routing, 5,000-row IVR blasts, C2C calling &amp; audio audits.</p>
++            </Link>
++            <Link href="/resources/lead-management-process-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Playbook: Lead Management, Scoring &amp; KYC Vaults</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Structured SOP from webhook/CSV intake and role assignment through KYC collection.</p>
++            </Link>
++            <Link href="/resources/saas-vs-custom-crm-erp-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Decision Guide: Ready-Made SaaS vs Custom CRM/ERP</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Evaluate when ready-to-deploy Hanva CRM outperforms custom bespoke software builds.</p>
++            </Link>
++          </div>
++        </Container>
++      </section>
++
++      {/* Included vs Explicit Scope Clarifications */}
++      <section>
++        <Container className="grid grid-cols-1 md:grid-cols-2 gap-6">
++          <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 space-y-2">
++            <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800">What Is Included (Verified)</div>
++            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
++              <li>Role-based portals for Admin, Team Leader, Telecaller, and KYC Team</li>
++              <li>CSV bulk lead import, webhook intake, lead scoring, and follow-up queues</li>
++              <li>Carrier C2C calling &amp; 5,000-row IVR campaigns (CloudConnect, Ozonetel, Fonada)</li>
++              <li>HTML5 browser recording playback on call reports, Fonada WABA &amp; attendance</li>
++            </ul>
++          </div>
++          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2">
++            <div className="text-xs font-semibold uppercase tracking-wider text-slate-700">Important Scope Boundaries</div>
++            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
++              <li>Automated bulk email or SMS blast dispatches are not active outbound modules</li>
++              <li>Live supervisor wallboard is not an active operational display</li>
++              <li>Companion Android dialing tracks call duration/status (trunk audio applies to cloud C2C/IVR)</li>
++              <li>No built-in online subscription billing; pricing is scoped transparently per team</li>
++            </ul>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/products/page.tsx b/app/products/page.tsx
+index a351754..533e383 100644
+--- a/app/products/page.tsx
++++ b/app/products/page.tsx
+@@ -26,7 +26,7 @@ import {
+ export const metadata = {
+   title: "SaaS Products & Cloud Telephony Suite",
+   description:
+-    "Explore Hanva's SaaS products (Hanva CRM, Hanva Salon Software, Hanva Restaurant POS) and enterprise telecom suite including Cloud Telephony, Smart IVR, Auto Dialers, and WhatsApp CRM.",
++    "Explore Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, plus enterprise Cloud Telephony, Smart IVR, Auto Dialers, and WhatsApp Business CRM solutions.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/",
+   },
+diff --git a/app/products/restaurant-pos/page.tsx b/app/products/restaurant-pos/page.tsx
+index a4282c5..c69128d 100644
+--- a/app/products/restaurant-pos/page.tsx
++++ b/app/products/restaurant-pos/page.tsx
+@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
+ import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
+ import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
+ import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
+-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
++import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+ import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
+ import {
+   CheckCircle2,
+@@ -21,7 +21,7 @@ import {
+ export const metadata = {
+   title: "Hanva Restaurant POS — Billing, KDS & QR Ordering",
+   description:
+-    "Restaurant POS and billing software designed to simplify dine-in, takeaway, delivery orders, KOT, Kitchen Display System (KDS), QR menu ordering, GST billing, UPI QR, and recipe inventory.",
++    "Restaurant POS and GST billing software for dine-in, cafes & cloud kitchens: offline queue, KOT, Kitchen Display System (KDS), QR ordering, and recipe BOM.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/restaurant-pos/",
+   },
+@@ -179,29 +179,33 @@ export default function HanvaRestaurantPosPage() {
+             </p>
+           </div>
+ 
+-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+-            <Button asChild size="lg" className="bg-amber-700 hover:bg-amber-800 text-white h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+-              <TrackedWhatsAppLink
+-                href={whatsappUrl}
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                ctaLocation="hero"
+-                productName="hanva_restaurant_pos"
+-                ctaType="product_demo_whatsapp"
+-                contextRef="/products/restaurant-pos/"
+-              >
+-                <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-                <span>Request Demo on WhatsApp</span>
+-                <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+-              </TrackedWhatsAppLink>
+-            </Button>
+-            <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+-              <TrackedDemoLink href="/company/contact/?product=restaurant-pos" ctaLocation="pos_hero" productSlug="restaurant-pos">
+-                <span>Contact Us for Pricing</span>
+-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-              </TrackedDemoLink>
+-            </Button>
+-          </div>
++          <TrackedCtaObserver ctaLocation="hero" productName="hanva_restaurant_pos" ctaType="pos_hero_cta">
++            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
++              <Button asChild size="lg" className="bg-amber-700 hover:bg-amber-800 text-white h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
++                <TrackedWhatsAppLink
++                  href={whatsappUrl}
++                  target="_blank"
++                  rel="noopener noreferrer"
++                  ctaLocation="hero"
++                  productName="hanva_restaurant_pos"
++                  ctaType="product_demo_whatsapp"
++                  contextRef="/products/restaurant-pos/"
++                  experimentId="EXP-22C"
++                  variantId="request_demo_whatsapp"
++                >
++                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                  <span>Request Demo on WhatsApp</span>
++                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
++                </TrackedWhatsAppLink>
++              </Button>
++              <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
++                <TrackedDemoLink href="/company/contact/?product=restaurant-pos" ctaLocation="pos_hero" productSlug="restaurant-pos">
++                  <span>Contact Us for Pricing</span>
++                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                </TrackedDemoLink>
++              </Button>
++            </div>
++          </TrackedCtaObserver>
+ 
+           <p className="text-xs text-slate-600">
+             Clicking WhatsApp opens a chat with <span className="font-semibold">+91 8423711043</span> to initiate a guided demo enquiry (not an automated booking confirmation). Contact us for pricing.
+@@ -379,6 +383,56 @@ export default function HanvaRestaurantPosPage() {
+               <p className="text-slate-600">Offline-resilient billing, GST tax summaries, and Z-Report closing.</p>
+             </div>
+           </div>
++          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
++            <div className="space-y-1">
++              <div className="text-sm font-bold text-slate-900">Restaurant Billing, KDS, Inventory &amp; API Guides</div>
++              <p className="text-xs text-slate-600">
++                Explore technical guidance on India CGST/SGST billing, offline POS sync, kitchen routing, FIFO/WAC recipes, and Partner API webhooks.
++              </p>
++            </div>
++            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 text-xs font-semibold">
++              <Link href="/resources/restaurant-pos-kot-inventory-guide/" className="inline-flex items-center text-amber-800 hover:underline">
++                <span>POS, KOT &amp; Inventory Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/resources/restaurant-billing-software-guide/" className="inline-flex items-center text-amber-800 hover:underline">
++                <span>India GST &amp; Offline Billing Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/resources/cloud-kitchen-management-guide/" className="inline-flex items-center text-amber-800 hover:underline">
++                <span>Cloud Kitchen KDS &amp; BOM Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/software-development/api-integration-automation/" className="inline-flex items-center text-blue-700 hover:underline">
++                <span>API Integration &amp; Workflows</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++            </div>
++          </div>
++        </Container>
++      </section>
++
++      {/* Included vs Explicit Scope Clarifications */}
++      <section>
++        <Container className="grid grid-cols-1 md:grid-cols-2 gap-6">
++          <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 space-y-2">
++            <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800">What Is Included (Verified)</div>
++            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
++              <li>Dine-in, takeaway, delivery &amp; scheduled POS with IndexedDB offline order sync</li>
++              <li>Station KOT splitting, live KDS board w/ duplicate-print lock, Captain &amp; Kiosk PWAs</li>
++              <li>50/50 CGST/SGST tax splits, multi-tender split payments &amp; dynamic NPCI UPI QR</li>
++              <li>FIFO/WAC recipe BOM inventory, procurement (PR/PO/GRN), Partner API &amp; 22 reports</li>
++            </ul>
++          </div>
++          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2">
++            <div className="text-xs font-semibold uppercase tracking-wider text-slate-700">Important Scope Boundaries</div>
++            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
++              <li>No native Swiggy, Zomato, or UberEats adapters (use scoped Partner REST API &amp; webhooks)</li>
++              <li>Multi-tender split payments supported; splitting 1 order into separate bills is not implemented</li>
++              <li>Direct thermal printer / Windows print-bridge compatibility verified per hardware model</li>
++              <li>Multi-branch staff permission enforcement &amp; self-service branch creation are partial</li>
++            </ul>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/products/salon-software/page.tsx b/app/products/salon-software/page.tsx
+index 8729b4b..b62ba9c 100644
+--- a/app/products/salon-software/page.tsx
++++ b/app/products/salon-software/page.tsx
+@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
+ import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
+ import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
+ import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
+-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
++import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+ import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
+ import {
+   CheckCircle2,
+@@ -21,7 +21,7 @@ import {
+ export const metadata = {
+   title: "Hanva Salon Software — Billing, Booking & Staff",
+   description:
+-    "Salon billing and management software to simplify appointments, GST invoicing, online booking mini-website, staff commissions, payroll, inventory auto-consumption, and loyalty.",
++    "Salon billing and management software for Indian salons & spas: GST invoicing, online booking mini-site, staff commissions, auto-consumption, and loyalty.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/salon-software/",
+   },
+@@ -179,29 +179,33 @@ export default function HanvaSalonSoftwarePage() {
+             </p>
+           </div>
+ 
+-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+-            <Button asChild size="lg" className="bg-rose-600 hover:bg-rose-700 text-white h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+-              <TrackedWhatsAppLink
+-                href={whatsappUrl}
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                ctaLocation="hero"
+-                productName="hanva_salon_software"
+-                ctaType="product_demo_whatsapp"
+-                contextRef="/products/salon-software/"
+-              >
+-                <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-                <span>Request Demo on WhatsApp</span>
+-                <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+-              </TrackedWhatsAppLink>
+-            </Button>
+-            <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+-              <TrackedDemoLink href="/company/contact/?product=salon-software" ctaLocation="salon_hero" productSlug="salon-software">
+-                <span>Contact Us for Pricing</span>
+-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-              </TrackedDemoLink>
+-            </Button>
+-          </div>
++          <TrackedCtaObserver ctaLocation="hero" productName="hanva_salon_software" ctaType="salon_hero_cta">
++            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
++              <Button asChild size="lg" className="bg-rose-600 hover:bg-rose-700 text-white h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
++                <TrackedWhatsAppLink
++                  href={whatsappUrl}
++                  target="_blank"
++                  rel="noopener noreferrer"
++                  ctaLocation="hero"
++                  productName="hanva_salon_software"
++                  ctaType="product_demo_whatsapp"
++                  contextRef="/products/salon-software/"
++                  experimentId="EXP-22C"
++                  variantId="request_demo_whatsapp"
++                >
++                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                  <span>Request Demo on WhatsApp</span>
++                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
++                </TrackedWhatsAppLink>
++              </Button>
++              <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
++                <TrackedDemoLink href="/company/contact/?product=salon-software" ctaLocation="salon_hero" productSlug="salon-software">
++                  <span>Contact Us for Pricing</span>
++                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                </TrackedDemoLink>
++              </Button>
++            </div>
++          </TrackedCtaObserver>
+ 
+           <p className="text-xs text-slate-600">
+             Clicking WhatsApp opens a chat with <span className="font-semibold">+91 8423711043</span> to initiate a guided demo enquiry (not an automated booking confirmation). Contact us for pricing.
+@@ -375,6 +379,56 @@ export default function HanvaSalonSoftwarePage() {
+               <p className="text-slate-600">Online booking mini-site, loyalty wallets, and gift cards.</p>
+             </div>
+           </div>
++          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
++            <div className="space-y-1">
++              <div className="text-sm font-bold text-slate-900">Salon Software Evaluation &amp; Operational Guides</div>
++              <p className="text-xs text-slate-600">
++                Explore India SAC/HSN GST billing mechanics, online booking workflows, commission checklists, and local salon visibility guides.
++              </p>
++            </div>
++            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 text-xs font-semibold">
++              <Link href="/resources/salon-management-software-guide/" className="inline-flex items-center text-rose-700 hover:underline">
++                <span>Salon Software Buyer Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/resources/salon-billing-software-guide/" className="inline-flex items-center text-rose-700 hover:underline">
++                <span>Salon GST Billing Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/resources/salon-appointment-management-guide/" className="inline-flex items-center text-rose-700 hover:underline">
++                <span>Appointments &amp; Online Booking Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/digital-marketing/" className="inline-flex items-center text-blue-700 hover:underline">
++                <span>Salon Digital Marketing</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++            </div>
++          </div>
++        </Container>
++      </section>
++
++      {/* Included vs Scope Clarifications */}
++      <section>
++        <Container className="grid grid-cols-1 md:grid-cols-2 gap-6">
++          <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 space-y-2">
++            <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800">Included for Single-Outlet Salons</div>
++            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
++              <li>Inclusive &amp; exclusive GST checkout, split POS payments, cash Z-reports &amp; digital bills</li>
++              <li>Appointment calendar, chair/room resources, waitlists &amp; public booking mini-website</li>
++              <li>PIN Staff Portal, tiered commissions, payroll &amp; service auto-consumption stock</li>
++              <li>Offline browser queue for uninterrupted counter checkout &amp; 15 built-in reports</li>
++            </ul>
++          </div>
++          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2">
++            <div className="text-xs font-semibold uppercase tracking-wider text-slate-700">Important Scope Boundaries</div>
++            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
++              <li>Engineered for single-outlet salons — no multi-branch outlet switching or chain rollups</li>
++              <li>Does not ship Razorpay online checkout or standalone SMS gateway integrations</li>
++              <li>Automated WhatsApp flows depend on verified provider credentials and client opt-in</li>
++              <li>Contact us for pricing tailored to your outlet and setup needs</li>
++            </ul>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/resources/auto-dialer-vs-predictive-dialer/page.tsx b/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+index 137fa3c..6ae817e 100644
+--- a/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
++++ b/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "Compare Preview, Progressive, and Predictive dialers. Learn how call pacing algorithms affect agent idle time, dropped call rates, and Truecaller spam risk in India.",
+     url: "https://www.hanva.in/resources/auto-dialer-vs-predictive-dialer/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Auto Dialer vs Predictive Dialer Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/cloud-telephony-pricing-guide/page.tsx b/app/resources/cloud-telephony-pricing-guide/page.tsx
+index c635bf4..d9efe23 100644
+--- a/app/resources/cloud-telephony-pricing-guide/page.tsx
++++ b/app/resources/cloud-telephony-pricing-guide/page.tsx
+@@ -19,7 +19,10 @@ export const metadata = {
+     description:
+       "A transparent breakdown of telecom billing in India: why 60-second rounding inflates phone bills by 25%-30%, channel rental math, DID setup charges, and hidden telco tariffs.",
+     url: "https://www.hanva.in/resources/cloud-telephony-pricing-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Cloud Telephony Pricing Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/how-ivr-systems-work/page.tsx b/app/resources/how-ivr-systems-work/page.tsx
+index 1925e6e..d4b4a19 100644
+--- a/app/resources/how-ivr-systems-work/page.tsx
++++ b/app/resources/how-ivr-systems-work/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "A deep dive into multi-level interactive voice response: DTMF tone detection, speech synthesis, skill-based queue distribution, and webhook CRM synchronization.",
+     url: "https://www.hanva.in/resources/how-ivr-systems-work/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "How IVR Systems Work Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/page.tsx b/app/resources/page.tsx
+index 9dc98d1..d3708c6 100644
+--- a/app/resources/page.tsx
++++ b/app/resources/page.tsx
+@@ -103,6 +103,26 @@ const articles = [
+     date: "November 2026",
+     keyTopics: ["GST Salon Billing", "Online Booking", "Staff Commissions", "Auto-Consumption Stock"],
+   },
++  {
++    slug: "/resources/salon-billing-software-guide/",
++    pillar: "Salon Software",
++    title: "Salon Billing Software in India: GST Invoicing, Split POS & Z-Reports",
++    description:
++      "Front-desk billing guide covering SAC 9997 services vs retail HSN goods, inclusive/exclusive GST checkout, split POS tenders, Z-reports & offline queues.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["SAC 9997 vs HSN", "Split POS Tenders", "Digital Bills", "Cash Z-Reports"],
++  },
++  {
++    slug: "/resources/salon-appointment-management-guide/",
++    pillar: "Salon Software",
++    title: "Salon Appointment & Online Booking Management: Eliminating Chair Clashes",
++    description:
++      "Manage stylist and treatment-room calendars, waitlists, public online booking mini-websites, customer visit history & PIN staff portal schedules.",
++    readTime: "9 min read",
++    date: "November 2026",
++    keyTopics: ["Stylist & Room Slots", "Online Booking Link", "Waitlists", "Staff Portal"],
++  },
+   {
+     slug: "/resources/restaurant-pos-kot-inventory-guide/",
+     pillar: "Restaurant POS",
+@@ -113,6 +133,26 @@ const articles = [
+     date: "November 2026",
+     keyTopics: ["POS vs KOT vs KDS", "CGST & SGST", "Recipe BOM Stock", "Cafes & Cloud Kitchens"],
+   },
++  {
++    slug: "/resources/restaurant-billing-software-guide/",
++    pillar: "Restaurant POS",
++    title: "Restaurant Billing Software in India: GST Splits, UPI QR & Offline POS",
++    description:
++      "India restaurant GST rules (5% vs 18% context), dynamic NPCI UPI QR, multi-tender split payments, Z-reports, IndexedDB offline queuing & print bridges.",
++    readTime: "11 min read",
++    date: "November 2026",
++    keyTopics: ["CGST & SGST Splits", "Dynamic NPCI UPI QR", "Offline IndexedDB", "Multi-Tender Pay"],
++  },
++  {
++    slug: "/resources/cloud-kitchen-management-guide/",
++    pillar: "Restaurant POS",
++    title: "Cloud Kitchen Management Guide: KDS Routing, Recipe BOM & Partner APIs",
++    description:
++      "Run delivery kitchens efficiently with station KDS boards, duplicate-KOT protection, FIFO/WAC recipe BOM depletion, pincode zones & REST API webhooks.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["Station KDS", "FIFO / WAC Recipes", "Delivery Zones", "Partner REST API"],
++  },
+   {
+     slug: "/resources/crm-with-ivr-vs-telecalling-crm/",
+     pillar: "CRM & IVR",
+@@ -123,6 +163,46 @@ const articles = [
+     date: "November 2026",
+     keyTopics: ["CRM Pipelines", "Built-in IVR", "C2C & Auto-Dialing", "Real Estate & EdTech"],
+   },
++  {
++    slug: "/resources/ivr-crm-for-businesses/",
++    pillar: "CRM & IVR",
++    title: "IVR CRM for Businesses: Routing, Outbound Campaigns & Call Audits",
++    description:
++      "Operational manual for uniting virtual DID routing, chunked 5,000-row IVR blasts, carrier C2C webhooks, HTML5 browser recordings & WABA templates.",
++    readTime: "11 min read",
++    date: "November 2026",
++    keyTopics: ["DID Registry", "IVR Blasts", "C2C Webhooks", "Browser Audio Audits"],
++  },
++  {
++    slug: "/resources/lead-management-process-guide/",
++    pillar: "CRM & IVR",
++    title: "Lead Management Process Guide: From Webhook Capture to KYC Verification",
++    description:
++      "Structured B2B and inside-sales workflow covering webhook/CSV intake, role routing, lead scoring, follow-up cadences, KYC portals & DPDP consent.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["Webhook Intake", "Role Assignment", "KYC Portals", "DPDP 2023 Consent"],
++  },
++  {
++    slug: "/resources/local-seo-guide-for-businesses/",
++    pillar: "Digital Marketing",
++    title: "Local SEO Guide for Indian Businesses: GBP Hygiene & Regional Pages",
++    description:
++      "Compliant Local SEO architecture aligned with Google Business Profile storefront vs Service-Area rules and Google Search Essentials spam policies.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["GBP Compliance", "Service-Area Rules", "No Doorway Pages", "Local Schema"],
++  },
++  {
++    slug: "/resources/seo-vs-google-ads-for-smbs/",
++    pillar: "Digital Marketing",
++    title: "SEO vs Google Ads for Indian SMBs: When to Deploy Organic vs Paid Search",
++    description:
++      "Compare compounding organic SEO against structured Google Search Ads across speed, ad-group/negative keyword hygiene & conversion tracking.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["Organic SEO", "Google Search Ads", "Negative Keywords", "Conversion Tracking"],
++  },
+   {
+     slug: "/resources/saas-vs-custom-crm-erp-guide/",
+     pillar: "Software Strategy",
+@@ -133,6 +213,26 @@ const articles = [
+     date: "November 2026",
+     keyTopics: ["Buy vs Build", "TCO & Maintenance", "Custom Workflows", "Data Ownership"],
+   },
++  {
++    slug: "/resources/custom-crm-development-guide/",
++    pillar: "Software Strategy",
++    title: "Custom CRM & ERP Development Guide: Scoping, Modeling & Rollout",
++    description:
++      "Engineering blueprint covering domain entity modeling, multi-department approval matrices, RBAC boundaries, API bridges & legacy data migration.",
++    readTime: "11 min read",
++    date: "November 2026",
++    keyTopics: ["Domain Modeling", "RBAC Permissions", "ERP Integrations", "Staged Migration"],
++  },
++  {
++    slug: "/resources/software-development-cost-factors/",
++    pillar: "Software Strategy",
++    title: "Software Development Cost Factors in India: What Drives Custom Estimates",
++    description:
++      "Transparent breakdown of the six architectural drivers behind bespoke CRM, portal, mobile & integration investment—with clear pre-quote checklists.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["Workflow Complexity", "RBAC & DPDP", "Third-Party APIs", "Ongoing AMC"],
++  },
+   {
+     slug: "/resources/what-is-cloud-telephony/",
+     pillar: "Cloud Telephony & IVR",
+@@ -239,8 +339,8 @@ export default function ResourcesHubPage() {
+             Business Communication, Cloud Telephony &amp; CRM Architecture Guides
+           </h1>
+           <p className="text-base sm:text-xl text-slate-600 leading-relaxed">
+-            Practical, peer-reviewed engineering guides, dialer comparisons, regulatory manuals, and pricing frameworks 
+-            designed to help Indian business owners, sales leaders, and telecalling operations build scalable customer interaction engines.
++            Practical, peer-reviewed architecture guides, GST billing playbooks, CRM/IVR comparisons, digital marketing guides, and custom software blueprints 
++            designed for Indian business owners, salon &amp; restaurant operators, sales leaders, and engineering teams.
+           </p>
+ 
+           <div className="space-y-2 pt-2">
+diff --git a/app/resources/telecalling-crm-guide/page.tsx b/app/resources/telecalling-crm-guide/page.tsx
+index 06f1d2a..2fd584d 100644
+--- a/app/resources/telecalling-crm-guide/page.tsx
++++ b/app/resources/telecalling-crm-guide/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "How integrated dialer CRMs eliminate spreadsheet lead leakage, automate lead assignment, enforce disposition tagging, and give sales directors real-time visibility.",
+     url: "https://www.hanva.in/resources/telecalling-crm-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Telecalling CRM Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/what-is-cloud-telephony/page.tsx b/app/resources/what-is-cloud-telephony/page.tsx
+index a3043a6..eb71de9 100644
+--- a/app/resources/what-is-cloud-telephony/page.tsx
++++ b/app/resources/what-is-cloud-telephony/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "Understand cloud PBX architecture, virtual landline DIDs, SIP trunking, and how modern softphones replace legacy EPABX hardware without capital expenditure.",
+     url: "https://www.hanva.in/resources/what-is-cloud-telephony/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "What Is Cloud Telephony Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/whatsapp-business-api-guide/page.tsx b/app/resources/whatsapp-business-api-guide/page.tsx
+index c4f6ef4..00dd5ee 100644
+--- a/app/resources/whatsapp-business-api-guide/page.tsx
++++ b/app/resources/whatsapp-business-api-guide/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "The definitive guide to official Meta WABA gateways: green badge verification, 24-hour service messaging windows, pre-approved utility templates, and multi-agent shared inboxes.",
+     url: "https://www.hanva.in/resources/whatsapp-business-api-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "WhatsApp Business API Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/sitemap.ts b/app/sitemap.ts
+index ce64049..2fb8b9a 100644
+--- a/app/sitemap.ts
++++ b/app/sitemap.ts
+@@ -2,12 +2,13 @@ import { MetadataRoute } from "next";
+ 
+ export default function sitemap(): MetadataRoute.Sitemap {
+   const baseUrl = "https://www.hanva.in";
++  const RELEASE_DATE_PHASE21 = new Date("2026-11-26T00:00:00.000Z");
+   const RELEASE_DATE_PHASE14 = new Date("2026-11-26T00:00:00.000Z");
+   const RELEASE_DATE_PHASE12 = new Date("2026-11-26T00:00:00.000Z");
+   const RELEASE_DATE_PHASE10 = new Date("2026-11-25T00:00:00.000Z");
+   const RELEASE_DATE_CORE = new Date("2026-11-24T00:00:00.000Z");
+ 
+-  // All 52 canonical routes for Hanva Technologies (Phase 10)
++  // All 79 canonical routes for Hanva Technologies (Phase 21)
+   const routes = [
+     // 1. Core Homepage & Commercial Gateways (4)
+     "/",
+@@ -83,12 +84,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
+     "/compare/knowlarity-alternative/",
+     "/compare/telecmi-alternative/",
+ 
+-    // 9. Knowledge Hub & Topical Resource Guides (12)
++    // 9. Knowledge Hub & Topical Resource Guides (22)
+     "/resources/",
+     "/resources/salon-management-software-guide/",
++    "/resources/salon-billing-software-guide/",
++    "/resources/salon-appointment-management-guide/",
+     "/resources/restaurant-pos-kot-inventory-guide/",
++    "/resources/restaurant-billing-software-guide/",
++    "/resources/cloud-kitchen-management-guide/",
+     "/resources/crm-with-ivr-vs-telecalling-crm/",
++    "/resources/ivr-crm-for-businesses/",
++    "/resources/lead-management-process-guide/",
+     "/resources/saas-vs-custom-crm-erp-guide/",
++    "/resources/custom-crm-development-guide/",
++    "/resources/software-development-cost-factors/",
++    "/resources/local-seo-guide-for-businesses/",
++    "/resources/seo-vs-google-ads-for-smbs/",
+     "/resources/what-is-cloud-telephony/",
+     "/resources/how-ivr-systems-work/",
+     "/resources/auto-dialer-vs-predictive-dialer/",
+@@ -141,6 +152,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
+ 
+     let lastModified = RELEASE_DATE_PHASE12;
+     if (
++      route === "/resources/ivr-crm-for-businesses/" ||
++      route === "/resources/lead-management-process-guide/" ||
++      route === "/resources/salon-billing-software-guide/" ||
++      route === "/resources/salon-appointment-management-guide/" ||
++      route === "/resources/restaurant-billing-software-guide/" ||
++      route === "/resources/cloud-kitchen-management-guide/" ||
++      route === "/resources/local-seo-guide-for-businesses/" ||
++      route === "/resources/seo-vs-google-ads-for-smbs/" ||
++      route === "/resources/custom-crm-development-guide/" ||
++      route === "/resources/software-development-cost-factors/"
++    ) {
++      lastModified = RELEASE_DATE_PHASE21;
++    } else if (
+       route === "/products/salon-software/" ||
+       route === "/products/restaurant-pos/" ||
+       route.startsWith("/digital-marketing/") ||
+diff --git a/app/software-development/custom-crm-development/page.tsx b/app/software-development/custom-crm-development/page.tsx
+index 7bde3a3..247d9a0 100644
+--- a/app/software-development/custom-crm-development/page.tsx
++++ b/app/software-development/custom-crm-development/page.tsx
+@@ -59,6 +59,23 @@ export default function CustomCrmDevelopmentPage() {
+         { title: "API Integration & Automation", description: "Connect existing ERPs, webhooks, and AI workflows.", href: "/software-development/api-integration-automation/" },
+         { title: "SaaS Product Development", description: "Building a multi-tenant commercial product for external customers.", href: "/software-development/saas-product-development/" },
+       ]}
++      guides={[
++        {
++          title: "Guide: Custom CRM Architecture & Rollout",
++          description: "Domain entities, multi-department approvals, RBAC tiers & legacy data migration.",
++          href: "/resources/custom-crm-development-guide/",
++        },
++        {
++          title: "Guide: SaaS vs Custom CRM & ERP",
++          description: "Decide objectively when off-the-shelf SaaS wins vs bespoke engineering.",
++          href: "/resources/saas-vs-custom-crm-erp-guide/",
++        },
++        {
++          title: "Guide: Software Development Cost Factors",
++          description: "Six architectural cost drivers behind custom CRM, web & integration estimates.",
++          href: "/resources/software-development-cost-factors/",
++        },
++      ]}
+       faqs={[
+         {
+           question: "How is this different from Hanva CRM?",
+diff --git a/app/software-development/page.tsx b/app/software-development/page.tsx
+index 9ce7d5d..9854d1b 100644
+--- a/app/software-development/page.tsx
++++ b/app/software-development/page.tsx
+@@ -12,7 +12,7 @@ import { ArrowRight, Code2, MessageSquare, ExternalLink } from "lucide-react";
+ export const metadata = {
+   title: "Software Development — Web, Mobile, CRM & AI",
+   description:
+-    "Custom software development by Hanva Technologies: website and web application development, mobile apps, custom CRM/ERP systems, e-commerce platforms, API integrations, and tailored AI solutions.",
++    "Custom web applications, Android mobile apps, bespoke CRM/ERP platforms, e-commerce storefronts, API integrations, and AI automation by Hanva Technologies.",
+   alternates: {
+     canonical: "https://www.hanva.in/software-development/",
+   },
+@@ -170,7 +170,7 @@ export default function SoftwareDevelopmentHubPage() {
+               </TrackedWhatsAppLink>
+             </Button>
+             <Button asChild variant="outline" size="lg">
+-              <Link href="/company/contact/">
++              <Link href="/company/contact/?product=software-development">
+                 <span>Request Technical Scoping</span>
+                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+               </Link>
+@@ -207,6 +207,40 @@ export default function SoftwareDevelopmentHubPage() {
+         </Container>
+       </section>
+ 
++      <section className="py-10 bg-slate-50 border-y border-slate-100">
++        <Container className="space-y-6">
++          <div className="max-w-2xl space-y-1.5">
++            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Custom Software Architecture &amp; Scoping Guides</h2>
++            <p className="text-xs sm:text-sm text-slate-600">
++              Evaluate ready-made SaaS against bespoke CRM/ERP development, understand engineering cost drivers, and plan clean rollouts.
++            </p>
++          </div>
++          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
++            <Link href="/resources/saas-vs-custom-crm-erp-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>SaaS vs Custom CRM &amp; ERP</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Decision guide comparing off-the-shelf SaaS speed vs bespoke systems across TCO &amp; control.</p>
++            </Link>
++            <Link href="/resources/custom-crm-development-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Custom CRM Development Guide</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Domain entity modeling, RBAC hierarchies, ERP/telephony APIs &amp; legacy data migration.</p>
++            </Link>
++            <Link href="/resources/software-development-cost-factors/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Software Development Cost Factors</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">The six architectural drivers that determine bespoke development effort &amp; AMC budgets.</p>
++            </Link>
++          </div>
++        </Container>
++      </section>
++
+       <section>
+         <Container className="max-w-4xl space-y-6">
+           <h2 className="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+diff --git a/components/analytics/consent-banner.tsx b/components/analytics/consent-banner.tsx
+index 2a27464..3dfd024 100644
+--- a/components/analytics/consent-banner.tsx
++++ b/components/analytics/consent-banner.tsx
+@@ -46,17 +46,17 @@ export function ConsentBanner() {
+     <aside
+       role="region"
+       aria-label="Analytics and Cookie Preferences"
+-      className="fixed bottom-[76px] lg:bottom-4 right-3 left-3 sm:left-auto sm:max-w-md z-40 rounded-xl border border-slate-200 bg-white/95 backdrop-blur-md p-4 shadow-xl text-xs text-slate-700"
++      className="fixed bottom-[68px] lg:bottom-4 right-3 left-3 sm:left-auto sm:max-w-md z-40 rounded-xl border border-slate-200 bg-white/95 backdrop-blur-md p-3 sm:p-4 shadow-xl text-xs text-slate-700"
+     >
+-      <div className="flex items-start justify-between gap-3">
+-        <div className="flex items-start gap-2.5">
+-          <div className="h-7 w-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+-            <ShieldCheck className="h-4 w-4" aria-hidden="true" />
++      <div className="flex items-start justify-between gap-2.5 sm:gap-3">
++        <div className="flex items-start gap-2 sm:gap-2.5">
++          <div className="h-6 w-6 sm:h-7 sm:w-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
++            <ShieldCheck className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
+           </div>
+-          <div className="space-y-1">
+-            <p className="font-semibold text-slate-900">Privacy &amp; Analytics Preferences</p>
+-            <p className="text-[11px] leading-relaxed text-slate-600">
+-              We use privacy-preserving analytics (no phone, email, or message capture) to measure product interest and page performance. Optional analytics remain paused unless accepted.{" "}
++          <div className="space-y-0.5 sm:space-y-1">
++            <p className="font-semibold text-slate-900">Privacy &amp; Analytics</p>
++            <p className="text-[11px] leading-snug sm:leading-relaxed text-slate-600">
++              Non-PII analytics remain paused unless accepted.{" "}
+               <Link href="/company/privacy-policy/" className="text-blue-600 underline hover:text-blue-700">
+                 Privacy Policy
+               </Link>
+@@ -76,12 +76,12 @@ export function ConsentBanner() {
+         )}
+       </div>
+ 
+-      <div className="mt-3 flex flex-wrap items-center justify-end gap-2">
++      <div className="mt-2.5 sm:mt-3 flex items-center justify-end gap-2">
+         <button
+           type="button"
+           onClick={() => handleChoice("denied")}
+           data-consent-action="decline"
+-          className="px-3.5 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 hover:bg-slate-50 font-semibold text-xs min-h-[38px] transition-colors cursor-pointer"
++          className="px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-800 hover:bg-slate-50 font-semibold text-xs min-h-[36px] transition-colors cursor-pointer"
+         >
+           Decline
+         </button>
+@@ -89,7 +89,7 @@ export function ConsentBanner() {
+           type="button"
+           onClick={() => handleChoice("granted")}
+           data-consent-action="accept"
+-          className="px-3.5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-semibold text-xs min-h-[38px] transition-colors cursor-pointer"
++          className="px-3.5 py-1.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-semibold text-xs min-h-[36px] transition-colors cursor-pointer"
+         >
+           Accept Analytics
+         </button>
+diff --git a/components/analytics/tracked-links.tsx b/components/analytics/tracked-links.tsx
+index 257c38b..10d496f 100644
+--- a/components/analytics/tracked-links.tsx
++++ b/components/analytics/tracked-links.tsx
+@@ -7,6 +7,8 @@ import {
+   inferSubjectFromContext,
+   normalizeCtaLocation,
+   trackAnalyticsEvent,
++  trackCtaClick,
++  trackCtaView,
+   trackProductSelect,
+   trackWhatsAppClick,
+   type AllowedSaasProductName,
+@@ -19,11 +21,23 @@ interface TrackedExternalProps extends React.AnchorHTMLAttributes<HTMLAnchorElem
+   contextRef?: string;
+   productName?: TrackedSubjectName;
+   ctaType?: WhatsAppCtaType;
++  experimentId?: string;
++  variantId?: string;
+ }
+ 
+ export const TrackedWhatsAppLink = React.forwardRef<HTMLAnchorElement, TrackedExternalProps>(
+   function TrackedWhatsAppLink(
+-    { ctaLocation, contextRef = "direct", productName, ctaType, onClick, children, ...props },
++    {
++      ctaLocation,
++      contextRef = "direct",
++      productName,
++      ctaType,
++      experimentId,
++      variantId,
++      onClick,
++      children,
++      ...props
++    },
+     ref
+   ) {
+     return (
+@@ -37,6 +51,13 @@ export const TrackedWhatsAppLink = React.forwardRef<HTMLAnchorElement, TrackedEx
+             productName,
+             ctaType,
+           });
++          trackCtaClick({
++            ctaLocation,
++            productName,
++            ctaType: ctaType || "whatsapp_enquiry",
++            experimentId,
++            variantId,
++          });
+           onClick?.(e);
+         }}
+       >
+@@ -71,6 +92,8 @@ interface TrackedDemoLinkProps extends LinkProps {
+   ctaLocation: string;
+   ctaLabelKey?: string;
+   productSlug?: string;
++  experimentId?: string;
++  variantId?: string;
+   className?: string;
+   children: React.ReactNode;
+   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+@@ -79,7 +102,16 @@ interface TrackedDemoLinkProps extends LinkProps {
+ 
+ export const TrackedDemoLink = React.forwardRef<HTMLAnchorElement, TrackedDemoLinkProps>(
+   function TrackedDemoLink(
+-    { ctaLocation, ctaLabelKey = "request_demo", productSlug, onClick, children, ...props },
++    {
++      ctaLocation,
++      ctaLabelKey = "request_demo",
++      productSlug,
++      experimentId,
++      variantId,
++      onClick,
++      children,
++      ...props
++    },
+     ref
+   ) {
+     return (
+@@ -90,18 +122,27 @@ export const TrackedDemoLink = React.forwardRef<HTMLAnchorElement, TrackedDemoLi
+           const pathname = typeof window !== "undefined" ? window.location.pathname : "/";
+           const category = inferPageCategory(pathname);
+           const normalizedLoc = normalizeCtaLocation(ctaLocation);
++          const subject = inferSubjectFromContext(productSlug || pathname);
+ 
+           trackAnalyticsEvent("demo_cta_click", {
+             cta_location: normalizedLoc,
+             cta_surface: ctaLocation,
+             cta_label_key: ctaLabelKey,
++            product_name: subject,
+             target_path: "/company/contact/",
+           });
++          trackCtaClick({
++            ctaLocation,
++            productName: subject,
++            ctaType: ctaLabelKey,
++            experimentId,
++            variantId,
++          });
+ 
+           if (category === "product" || productSlug) {
+             trackAnalyticsEvent("select_item", {
+               cta_location: normalizedLoc,
+-              product_name: inferSubjectFromContext(productSlug || pathname),
++              product_name: subject,
+               target_path: "/company/contact/",
+             });
+           }
+@@ -114,6 +155,72 @@ export const TrackedDemoLink = React.forwardRef<HTMLAnchorElement, TrackedDemoLi
+   }
+ );
+ 
++export function TrackedCtaObserver({
++  ctaLocation,
++  productName,
++  ctaType = "conversion_banner",
++  experimentId,
++  variantId,
++  className,
++  children,
++}: {
++  ctaLocation: string;
++  productName?: TrackedSubjectName;
++  ctaType?: string;
++  experimentId?: string;
++  variantId?: string;
++  className?: string;
++  children: React.ReactNode;
++}) {
++  const containerRef = React.useRef<HTMLDivElement>(null);
++
++  React.useEffect(() => {
++    const el = containerRef.current;
++    if (!el || typeof IntersectionObserver === "undefined") return;
++
++    const triggerIfVisible = () => {
++      trackCtaView({
++        ctaLocation,
++        productName,
++        ctaType,
++        experimentId,
++        variantId,
++      });
++    };
++
++    const observer = new IntersectionObserver(
++      (entries) => {
++        for (const entry of entries) {
++          if (entry.isIntersecting) {
++            triggerIfVisible();
++          }
++        }
++      },
++      { threshold: 0.25 }
++    );
++    observer.observe(el);
++
++    const onConsentChange = () => {
++      const rect = el.getBoundingClientRect();
++      if (rect.top < window.innerHeight && rect.bottom > 0) {
++        triggerIfVisible();
++      }
++    };
++    window.addEventListener("hanva:consent-change", onConsentChange);
++
++    return () => {
++      observer.disconnect();
++      window.removeEventListener("hanva:consent-change", onConsentChange);
++    };
++  }, [ctaLocation, productName, ctaType, experimentId, variantId]);
++
++  return (
++    <div ref={containerRef} className={className}>
++      {children}
++    </div>
++  );
++}
++
+ interface TrackedProductLinkProps extends LinkProps {
+   productName: AllowedSaasProductName;
+   itemListName?: string;
+diff --git a/components/layout/header.tsx b/components/layout/header.tsx
+index f4fdc2f..63ded1b 100644
+--- a/components/layout/header.tsx
++++ b/components/layout/header.tsx
+@@ -37,11 +37,13 @@ import {
+   ShoppingBag,
+ } from "lucide-react";
+ 
+-import { CONTACT_CONFIG } from "@/lib/config";
+-import { trackAnalyticsEvent, trackWhatsAppClick } from "@/lib/analytics";
++import { CONTACT_CONFIG, resolveRouteContext } from "@/lib/config";
++import { inferSubjectFromContext, trackAnalyticsEvent, trackCtaClick, trackWhatsAppClick } from "@/lib/analytics";
+ 
+ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
+   const pathname = usePathname();
++  const routeCtx = resolveRouteContext(pathname);
++  const subjectName = inferSubjectFromContext(pathname || "/");
+   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
+   const navRef = React.useRef<HTMLElement>(null);
+   const hoverOpenedAtRef = React.useRef<number>(0);
+@@ -612,16 +614,22 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
+           <div className="flex items-center space-x-3">
+             <Button asChild variant="primary" size="default" className="hidden lg:inline-flex">
+               <Link
+-              href="/company/contact/"
+-              onClick={() =>
+-                trackAnalyticsEvent("demo_cta_click", {
+-                  cta_location: "header",
+-                  cta_surface: "header_main",
+-                  cta_label_key: "request_demo_enquiry",
+-                  target_path: "/company/contact/",
+-                })
+-              }
+-            >
++                href={routeCtx.contactHref}
++                onClick={() => {
++                  trackAnalyticsEvent("demo_cta_click", {
++                    cta_location: "header",
++                    cta_surface: "header_main",
++                    cta_label_key: "request_demo_enquiry",
++                    product_name: subjectName,
++                    target_path: "/company/contact/",
++                  });
++                  trackCtaClick({
++                    ctaLocation: "header",
++                    productName: subjectName,
++                    ctaType: "request_demo_button",
++                  });
++                }}
++              >
+                 Request Demo
+               </Link>
+             </Button>
+diff --git a/components/layout/mobile-action-bar.tsx b/components/layout/mobile-action-bar.tsx
+index f837ea4..2afd80a 100644
+--- a/components/layout/mobile-action-bar.tsx
++++ b/components/layout/mobile-action-bar.tsx
+@@ -3,17 +3,15 @@
+ import * as React from "react";
+ import Link from "next/link";
+ import { usePathname } from "next/navigation";
+-import { Phone, MessageSquare, Calendar, Sparkles } from "lucide-react";
+-import { CONTACT_CONFIG } from "@/lib/config";
+-import { trackAnalyticsEvent, trackWhatsAppClick } from "@/lib/analytics";
++import { Phone, MessageSquare, Calendar, Layers } from "lucide-react";
++import { CONTACT_CONFIG, resolveRouteContext } from "@/lib/config";
++import { inferSubjectFromContext, trackAnalyticsEvent, trackCtaClick, trackWhatsAppClick } from "@/lib/analytics";
+ 
+ export function MobileActionBar() {
+   const pathname = usePathname();
+   const isContactPage = pathname?.startsWith("/company/contact");
+-
+-  const whatsappUrl = `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
+-    `Hello Hanva Team, I am browsing ${pathname || "/"} and would like to enquire about your solutions.`
+-  )}`;
++  const routeCtx = resolveRouteContext(pathname);
++  const subjectName = inferSubjectFromContext(pathname || "/");
+ 
+   return (
+     <nav
+@@ -23,13 +21,19 @@ export function MobileActionBar() {
+       <div className="grid grid-cols-3 gap-1.5 sm:gap-2 max-w-md mx-auto w-full">
+         <a
+           href={`tel:${CONTACT_CONFIG.phoneTel}`}
+-          onClick={() =>
++          onClick={() => {
+             trackAnalyticsEvent("phone_click", {
+               cta_location: "floating_button",
+               cta_surface: "mobile_action_bar",
++              product_name: subjectName,
+               target_channel: "sales_desk",
+-            })
+-          }
++            });
++            trackCtaClick({
++              ctaLocation: "floating_button",
++              productName: subjectName,
++              ctaType: "phone_call",
++            });
++          }}
+           className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-slate-900 text-white text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-1"
+           aria-label="Call Hanva Sales Desk"
+         >
+@@ -38,17 +42,23 @@ export function MobileActionBar() {
+         </a>
+ 
+         <a
+-          href={whatsappUrl}
++          href={routeCtx.whatsappUrl}
+           target="_blank"
+           rel="noopener noreferrer"
+-          onClick={() =>
++          onClick={() => {
+             trackWhatsAppClick({
+               ctaLocation: "floating_button",
++              productName: subjectName,
+               contextRef: pathname || "/",
+-            })
+-          }
++            });
++            trackCtaClick({
++              ctaLocation: "floating_button",
++              productName: subjectName,
++              ctaType: routeCtx.isSaasProduct ? "product_demo_whatsapp" : "mobile_bar_whatsapp",
++            });
++          }}
+           className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-[#25D366] text-slate-950 text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-[#20BD5A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-1"
+-          aria-label="Open WhatsApp Chat (press Send manually)"
++          aria-label={`Open WhatsApp Chat for ${routeCtx.subjectLabel} (press Send manually)`}
+         >
+           <MessageSquare className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
+           <span className="truncate">WhatsApp</span>
+@@ -56,34 +66,39 @@ export function MobileActionBar() {
+ 
+         {isContactPage ? (
+           <Link
+-            href="/pricing/calculator/"
++            href="/products/"
+             onClick={() =>
+-              trackAnalyticsEvent("demo_cta_click", {
+-                cta_location: "floating_button",
+-                cta_surface: "mobile_action_bar",
+-                cta_label_key: "pulse_calculator",
+-                target_path: "/pricing/calculator/",
++              trackCtaClick({
++                ctaLocation: "floating_button",
++                productName: subjectName,
++                ctaType: "saas_portfolio_browse",
+               })
+             }
+             className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-blue-600 text-white text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-1"
+-            aria-label="Estimate Voice Costs in Calculator"
++            aria-label="Browse SaaS Products"
+           >
+-            <Sparkles className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
+-            <span className="truncate">Calculator</span>
++            <Layers className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
++            <span className="truncate">Products</span>
+           </Link>
+         ) : (
+           <Link
+-            href="/company/contact/"
+-            onClick={() =>
++            href={routeCtx.contactHref}
++            onClick={() => {
+               trackAnalyticsEvent("demo_cta_click", {
+                 cta_location: "floating_button",
+                 cta_surface: "mobile_action_bar",
+                 cta_label_key: "book_demo",
++                product_name: subjectName,
+                 target_path: "/company/contact/",
+-              })
+-            }
++              });
++              trackCtaClick({
++                ctaLocation: "floating_button",
++                productName: subjectName,
++                ctaType: "request_demo_form",
++              });
++            }}
+             className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-blue-600 text-white text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-1"
+-            aria-label="Request Demo Enquiry"
++            aria-label={`Request Demo for ${routeCtx.subjectLabel}`}
+           >
+             <Calendar className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
+             <span className="truncate">Request Demo</span>
+diff --git a/components/shared/article-layout.tsx b/components/shared/article-layout.tsx
+index 1b892f7..5dc3a78 100644
+--- a/components/shared/article-layout.tsx
++++ b/components/shared/article-layout.tsx
+@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge";
+ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+ import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
+ import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
+-import { TrackedDemoLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
+-import { CONTACT_CONFIG } from "@/lib/config";
++import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
++import { CONTACT_CONFIG, resolveRouteContext } from "@/lib/config";
++import { inferSubjectFromContext } from "@/lib/analytics";
+ import {
+   CheckCircle2,
+   ArrowRight,
+@@ -89,6 +90,8 @@ export function ArticleLayout({
+     `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
+       `Hello Hanva Team, I read your guide "${title}" and would like to learn more. Reference: ${whatsappRef}`
+     )}`;
++  const routeCtx = resolveRouteContext(whatsappRef);
++  const subjectName = inferSubjectFromContext(whatsappRef);
+ 
+   const faqSchema =
+     faqs && faqs.length > 0
+@@ -113,6 +116,16 @@ export function ArticleLayout({
+       }
+     : null;
+ 
++  const summarySecondaryLink = pillarHref.includes("salon-software")
++    ? { href: "/products/salon-software/", label: "Explore Hanva Salon Software" }
++    : pillarHref.includes("restaurant-pos")
++      ? { href: "/products/restaurant-pos/", label: "Explore Hanva Restaurant POS" }
++      : pillarHref.includes("digital-marketing")
++        ? { href: "/digital-marketing/", label: "Explore Digital Marketing Services" }
++        : pillarHref.includes("software-development")
++          ? { href: "/software-development/", label: "Explore Custom Software Services" }
++          : { href: "/pricing/calculator/", label: "Simulate OBD Voice Pulse Costs" };
++
+   return (
+     <article className="pt-10 pb-28 lg:py-14 bg-white min-h-screen overflow-x-clip">
+       {enrichedArticleSchema && <SchemaOrg data={enrichedArticleSchema} />}
+@@ -204,11 +217,11 @@ export function ArticleLayout({
+             </TrackedDemoLink>
+             <span className="text-slate-400" aria-hidden="true">|</span>
+             <Link
+-              href="/pricing/calculator/"
++              href={summarySecondaryLink.href}
+               className="inline-flex items-center font-semibold text-emerald-700 hover:text-emerald-900 hover:underline"
+             >
+               <Sparkles className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
+-              <span>Simulate OBD Voice Pulse Costs</span>
++              <span>{summarySecondaryLink.label}</span>
+             </Link>
+           </div>
+         </div>
+@@ -305,52 +318,56 @@ export function ArticleLayout({
+         )}
+ 
+         {/* 9. Contextual Conversion Banner */}
+-        <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-6 sm:p-8 text-white space-y-6 max-w-4xl">
+-          <div className="space-y-2">
+-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+-              {ctaBannerTitle}
+-            </h2>
+-            <p className="text-sm text-slate-300 leading-relaxed">
+-              {ctaBannerDescription}
+-            </p>
+-          </div>
+-          <div className="space-y-2">
+-            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3">
+-              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-5 text-xs sm:text-sm text-center">
+-                <TrackedWhatsAppLink
+-                href={whatsappUrl}
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                ctaLocation="article_bottom_banner"
+-                contextRef={whatsappRef}
+-              >
+-                  <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+-                  <span>{ctaButtonLabel}</span>
+-                  <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
+-                </TrackedWhatsAppLink>
+-              </Button>
+-              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
+-                <TrackedDemoLink
+-                href="/company/contact/"
+-                ctaLocation="article_bottom_banner"
+-                ctaLabelKey="request_architecture_demo"
+-              >
+-                  <span>Contact Form</span>
+-                  <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+-                </TrackedDemoLink>
+-              </Button>
+-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto bg-transparent border-slate-600 text-white hover:bg-slate-800 hover:text-white whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
+-                <Link href="/pricing/calculator/">
+-                  <Sparkles className="mr-2 h-4 w-4 text-emerald-400 shrink-0 inline" aria-hidden="true" />
+-                  <span>Pulse Savings Calculator</span>
+-                </Link>
+-              </Button>
++        <TrackedCtaObserver ctaLocation="article_banner" productName={subjectName} ctaType="article_bottom_cta">
++          <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-6 sm:p-8 text-white space-y-6 max-w-4xl">
++            <div className="space-y-2">
++              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
++                {ctaBannerTitle}
++              </h2>
++              <p className="text-sm text-slate-300 leading-relaxed">
++                {ctaBannerDescription}
++              </p>
++            </div>
++            <div className="space-y-2">
++              <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3">
++                <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-5 text-xs sm:text-sm text-center">
++                  <TrackedWhatsAppLink
++                    href={whatsappUrl}
++                    target="_blank"
++                    rel="noopener noreferrer"
++                    ctaLocation="article_bottom_banner"
++                    productName={subjectName}
++                    contextRef={whatsappRef}
++                  >
++                    <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
++                    <span>{ctaButtonLabel}</span>
++                    <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
++                  </TrackedWhatsAppLink>
++                </Button>
++                <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
++                  <TrackedDemoLink
++                    href={routeCtx.contactHref}
++                    ctaLocation="article_bottom_banner"
++                    ctaLabelKey="request_architecture_demo"
++                    productSlug={routeCtx.productSlug || undefined}
++                  >
++                    <span>Contact Form</span>
++                    <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
++                  </TrackedDemoLink>
++                </Button>
++                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto bg-transparent border-slate-600 text-white hover:bg-slate-800 hover:text-white whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
++                  <Link href={summarySecondaryLink.href}>
++                    <Sparkles className="mr-2 h-4 w-4 text-emerald-400 shrink-0 inline" aria-hidden="true" />
++                    <span>{summarySecondaryLink.label}</span>
++                  </Link>
++                </Button>
++              </div>
++              <p className="text-[11px] text-slate-300">
++                Clicking WhatsApp opens a prepared enquiry message to {CONTACT_CONFIG.phoneDisplay} — initiating a demo enquiry does not automatically confirm an appointment.
++              </p>
+             </div>
+-            <p className="text-[11px] text-slate-300">
+-              Clicking WhatsApp opens a prepared enquiry message to {CONTACT_CONFIG.phoneDisplay} — initiating a demo enquiry does not automatically confirm an appointment.
+-            </p>
+           </div>
+-        </div>
++        </TrackedCtaObserver>
+       </Container>
+     </article>
+   );
+diff --git a/components/shared/service-layout.tsx b/components/shared/service-layout.tsx
+index daa57ef..683b486 100644
+--- a/components/shared/service-layout.tsx
++++ b/components/shared/service-layout.tsx
+@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge";
+ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+ import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
+ import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
+-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+-import { CONTACT_CONFIG, buildServiceWhatsAppUrl } from "@/lib/config";
++import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
++import { CONTACT_CONFIG, buildServiceWhatsAppUrl, resolveRouteContext } from "@/lib/config";
++import { inferSubjectFromContext } from "@/lib/analytics";
+ import {
+   CheckCircle2,
+   ArrowRight,
+@@ -52,6 +53,7 @@ export interface ServiceLayoutProps {
+   stages: EngagementStage[];
+   suitableCustomers: ServiceCustomerType[];
+   relatedLinks: { title: string; description: string; href: string }[];
++  guides?: { title: string; description: string; href: string }[];
+   faqs: FAQItem[];
+   serviceType: string;
+   canonicalUrl: string;
+@@ -72,11 +74,14 @@ export function ServiceLayout({
+   stages,
+   suitableCustomers,
+   relatedLinks,
++  guides,
+   faqs,
+   serviceType,
+   canonicalUrl,
+ }: ServiceLayoutProps) {
+   const whatsappUrl = buildServiceWhatsAppUrl(whatsappMessage);
++  const routeCtx = resolveRouteContext(contextRef);
++  const subjectName = inferSubjectFromContext(contextRef);
+ 
+   const serviceSchema = {
+     "@context": "https://schema.org",
+@@ -152,31 +157,36 @@ export function ServiceLayout({
+             <p className="text-base sm:text-xl text-slate-600 leading-relaxed">{subtitle}</p>
+           </div>
+ 
+-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+-            <Button asChild variant="primary" size="lg" className="h-auto min-h-[48px] py-2.5 px-6">
+-              <TrackedWhatsAppLink
+-                href={whatsappUrl}
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                ctaLocation="service_hero"
+-                contextRef={contextRef}
+-              >
+-                <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-                <span>Enquire on WhatsApp</span>
+-                <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+-              </TrackedWhatsAppLink>
+-            </Button>
+-            <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-6">
+-              <TrackedDemoLink
+-                href="/company/contact/"
+-                ctaLocation="service_hero"
+-                ctaLabelKey="contact_consultation"
+-              >
+-                <span>Schedule Discovery Call</span>
+-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+-              </TrackedDemoLink>
+-            </Button>
+-          </div>
++          <TrackedCtaObserver ctaLocation="hero" productName={subjectName} ctaType="service_hero_cta">
++            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
++              <Button asChild variant="primary" size="lg" className="h-auto min-h-[48px] py-2.5 px-6">
++                <TrackedWhatsAppLink
++                  href={whatsappUrl}
++                  target="_blank"
++                  rel="noopener noreferrer"
++                  ctaLocation="service_hero"
++                  productName={subjectName}
++                  ctaType="service_whatsapp"
++                  contextRef={contextRef}
++                >
++                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                  <span>Enquire on WhatsApp</span>
++                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
++                </TrackedWhatsAppLink>
++              </Button>
++              <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-6">
++                <TrackedDemoLink
++                  href={routeCtx.contactHref}
++                  ctaLocation="service_hero"
++                  ctaLabelKey="contact_consultation"
++                  productSlug={routeCtx.productSlug || undefined}
++                >
++                  <span>Schedule Discovery Call</span>
++                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
++                </TrackedDemoLink>
++              </Button>
++            </div>
++          </TrackedCtaObserver>
+ 
+           {/* Problem & Solution Cards */}
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+@@ -303,6 +313,23 @@ export function ServiceLayout({
+               </Link>
+             ))}
+           </div>
++          {guides && guides.length > 0 && (
++            <div className={`grid grid-cols-1 ${guides.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"} gap-5 pt-2`}>
++              {guides.map((guide) => (
++                <Link
++                  key={guide.href}
++                  href={guide.href}
++                  className="group rounded-xl border border-blue-200/80 bg-blue-50/30 p-5 hover:border-blue-400 hover:bg-blue-50/60 transition-colors space-y-1.5"
++                >
++                  <div className="flex items-center justify-between text-sm font-bold text-slate-900 group-hover:text-blue-700">
++                    <span>{guide.title}</span>
++                    <ArrowUpRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++                  </div>
++                  <p className="text-xs text-slate-600 leading-relaxed">{guide.description}</p>
++                </Link>
++              ))}
++            </div>
++          )}
+         </Container>
+       </section>
+ 
+@@ -340,6 +367,8 @@ export function ServiceLayout({
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   ctaLocation="service_bottom"
++                  productName={subjectName}
++                  ctaType="service_whatsapp"
+                   contextRef={contextRef}
+                 >
+                   <MessageSquare className="mr-2 h-4 w-4" aria-hidden="true" />
+diff --git a/lib/analytics.ts b/lib/analytics.ts
+index 387ceae..7ac34a6 100644
+--- a/lib/analytics.ts
++++ b/lib/analytics.ts
+@@ -71,6 +71,10 @@ export type AnalyticsEventName =
+   | "scroll_depth"
+   | "contact_page_view"
+   | "product_view"
++  | "pricing_view"
++  | "product_comparison_view"
++  | "cta_view"
++  | "cta_click"
+   | "whatsapp_click"
+   | "form_start"
+   | "form_submit"
+@@ -141,6 +145,7 @@ const DISALLOWED_PII_KEYS = new Set([
+ 
+ let inMemoryConsentFallback: AnalyticsConsentState = "unset";
+ let lastTrackedPageViewPath: string | null = null;
++const firedCtaViewKeys = new Set<string>();
+ const consentListeners = new Set<() => void>();
+ 
+ export function getConfiguredAnalyticsIds(): {
+@@ -325,20 +330,41 @@ export function normalizeCtaLocation(raw?: string): CtaLocation {
+ export function inferSubjectFromContext(pathOrRef?: string): TrackedSubjectName {
+   const ref = (pathOrRef || "").toLowerCase();
+   if (ref.includes("salon")) return "hanva_salon_software";
+-  if (ref.includes("restaurant") || ref === "pos" || ref.includes("/pos") || ref.includes("_pos")) {
++  if (
++    ref.includes("restaurant") ||
++    ref.includes("cloud-kitchen") ||
++    ref === "pos" ||
++    ref.includes("/pos") ||
++    ref.includes("_pos")
++  ) {
+     return "hanva_restaurant_pos";
+   }
+-  if (ref.includes("telecalling-crm")) return "cloud_telephony";
+-  if (ref.includes("sales crm") || ref.includes("hanva crm") || ref.includes("/crm") || ref === "crm" || ref.includes("crm_")) {
++  if (
++    ref.includes("sales crm") ||
++    ref.includes("hanva crm") ||
++    ref.includes("ivr-crm") ||
++    ref.includes("lead-management") ||
++    ref.includes("crm-with-ivr") ||
++    ref.includes("/crm") ||
++    ref === "crm" ||
++    ref.includes("crm_")
++  ) {
+     return "hanva_crm";
+   }
+-  if (ref.includes("digital-marketing") || ref.includes("seo") || ref.includes("marketing")) {
++  if (ref.includes("telecalling-crm")) return "cloud_telephony";
++  if (
++    ref.includes("digital-marketing") ||
++    ref.includes("seo") ||
++    ref.includes("google-ads") ||
++    ref.includes("marketing")
++  ) {
+     return "digital_marketing";
+   }
+   if (
+     ref.includes("software-development") ||
+     ref.includes("saas-vs-custom") ||
+-    ref.includes("custom-crm")
++    ref.includes("custom-crm") ||
++    ref.includes("cost-factors")
+   ) {
+     return "software_development";
+   }
+@@ -351,6 +377,7 @@ export function inferSubjectFromContext(pathOrRef?: string): TrackedSubjectName
+     ref.includes("toll-free") ||
+     ref.includes("call-center") ||
+     ref.includes("whatsapp-crm") ||
++    ref.includes("dlt") ||
+     ref.includes("obd")
+   ) {
+     return "cloud_telephony";
+@@ -456,6 +483,7 @@ export function trackAnalyticsEvent(
+ 
+ export function resetPageViewDeduplication(): void {
+   lastTrackedPageViewPath = null;
++  firedCtaViewKeys.clear();
+ }
+ 
+ export function trackRouteViewEvents(pathnameInput: string, force = false): void {
+@@ -473,6 +501,7 @@ export function trackRouteViewEvents(pathnameInput: string, force = false): void
+     return;
+   }
+   lastTrackedPageViewPath = pagePath;
++  firedCtaViewKeys.clear();
+ 
+   syncUtmAttribution(pagePath, true);
+   trackAnalyticsEvent("page_view", {
+@@ -494,6 +523,18 @@ export function trackRouteViewEvents(pathnameInput: string, force = false): void
+       item_count: 3,
+       items_csv: "hanva_crm,hanva_salon_software,hanva_restaurant_pos",
+     });
++    trackAnalyticsEvent("product_comparison_view", {
++      comparison_scope: "saas_portfolio_matrix",
++      item_count: 3,
++    });
++  } else if (cleanNoTrailing.startsWith("/compare/")) {
++    trackAnalyticsEvent("product_comparison_view", {
++      comparison_scope: cleanNoTrailing.replace("/compare/", ""),
++    });
++  } else if (cleanNoTrailing === "/pricing" || cleanNoTrailing === "/pricing/calculator") {
++    trackAnalyticsEvent("pricing_view", {
++      pricing_surface: cleanNoTrailing === "/pricing/calculator" ? "pulse_calculator" : "commercial_pricing",
++    });
+   } else if (cleanNoTrailing === "/company/contact") {
+     trackAnalyticsEvent("contact_page_view", {
+       page_category: "contact",
+@@ -501,6 +542,51 @@ export function trackRouteViewEvents(pathnameInput: string, force = false): void
+   }
+ }
+ 
++export function trackCtaView(options: {
++  ctaLocation: string;
++  productName?: TrackedSubjectName;
++  ctaType?: string;
++  experimentId?: string;
++  variantId?: string;
++}): AnalyticsEventRecord | null {
++  if (typeof window === "undefined") return null;
++  if (!hasAnalyticsConsent()) return null;
++
++  const pagePath = normalizePathname(window.location.pathname || "/");
++  const normalizedLocation = normalizeCtaLocation(options.ctaLocation);
++  const dedupKey = `${pagePath}::${options.ctaLocation}::${options.ctaType || "section"}`;
++  if (firedCtaViewKeys.has(dedupKey)) return null;
++  firedCtaViewKeys.add(dedupKey);
++
++  return trackAnalyticsEvent("cta_view", {
++    product_name: options.productName || inferSubjectFromContext(pagePath),
++    cta_location: normalizedLocation,
++    cta_surface: options.ctaLocation,
++    cta_type: options.ctaType || "conversion_section",
++    experiment_id: options.experimentId,
++    variant_id: options.variantId,
++  });
++}
++
++export function trackCtaClick(options: {
++  ctaLocation: string;
++  productName?: TrackedSubjectName;
++  ctaType?: string;
++  experimentId?: string;
++  variantId?: string;
++}): AnalyticsEventRecord | null {
++  const currentPath = typeof window !== "undefined" ? normalizePathname(window.location.pathname) : "/";
++  const normalizedLocation = normalizeCtaLocation(options.ctaLocation);
++  return trackAnalyticsEvent("cta_click", {
++    product_name: options.productName || inferSubjectFromContext(currentPath),
++    cta_location: normalizedLocation,
++    cta_surface: options.ctaLocation,
++    cta_type: options.ctaType || "primary_cta",
++    experiment_id: options.experimentId,
++    variant_id: options.variantId,
++  });
++}
++
+ export function trackWhatsAppClick(options: {
+   ctaLocation: string;
+   productName?: TrackedSubjectName;
+diff --git a/lib/config.ts b/lib/config.ts
+index 4689045..404534c 100644
+--- a/lib/config.ts
++++ b/lib/config.ts
+@@ -64,16 +64,20 @@ export interface ContactEnquiryPayload {
+ export function buildWhatsAppContactUrl(payload: ContactEnquiryPayload): string {
+   const cleanName = payload.fullName.trim();
+   const cleanCompany = (payload.companyName || "").trim();
+-  const cleanEmail = payload.workEmail.trim();
++  const cleanEmail = (payload.workEmail || "").trim();
+   const cleanPhone = payload.phone.trim();
+   const cleanTeamSize = (payload.teamSize || "").trim();
+   const cleanProduct = (payload.product || "").trim();
+   const cleanNotes = (payload.notes || "").trim();
+ 
++  const introLine = cleanProduct
++    ? `I would like to enquire about ${cleanProduct}.`
++    : "I would like to enquire about your software products and IT solutions.";
++
+   const lines: string[] = [
+     "Hello Hanva Team,",
+     "",
+-    "I would like to enquire about your business communication solutions.",
++    introLine,
+     "",
+     `Name: ${cleanName}`,
+   ];
+@@ -82,15 +86,18 @@ export function buildWhatsAppContactUrl(payload: ContactEnquiryPayload): string
+     lines.push(`Company: ${cleanCompany}`);
+   }
+ 
+-  lines.push(`Work Email: ${cleanEmail}`);
++  if (cleanEmail) {
++    lines.push(`Email: ${cleanEmail}`);
++  }
++
+   lines.push(`Mobile: ${cleanPhone}`);
+ 
+   if (cleanTeamSize) {
+-    lines.push(`Team Size: ${cleanTeamSize}`);
++    lines.push(`Scale / Team: ${cleanTeamSize}`);
+   }
+ 
+   if (cleanProduct) {
+-    lines.push(`Interested Product: ${cleanProduct}`);
++    lines.push(`Interested Product / Service: ${cleanProduct}`);
+   }
+ 
+   if (cleanNotes) {
+@@ -102,3 +109,129 @@ export function buildWhatsAppContactUrl(payload: ContactEnquiryPayload): string
+   const message = lines.join("\n");
+   return `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+ }
++
++export interface RouteConversionContext {
++  productSlug: string | null;
++  whatsappUrl: string;
++  contactHref: string;
++  subjectLabel: string;
++  isSaasProduct: boolean;
++}
++
++/**
++ * Resolves exact product-specific or service-specific WhatsApp messages and
++ * contact prefill links based on the visitor's active route.
++ */
++export function resolveRouteContext(pathname?: string | null): RouteConversionContext {
++  const path = (pathname || "/").toLowerCase();
++
++  // 1. Hanva Salon Software cluster
++  if (path.includes("salon-software") || path.includes("salon-billing") || path.includes("salon-appointment") || path.includes("salon-management")) {
++    return {
++      productSlug: "salon-software",
++      whatsappUrl: buildSaasDemoWhatsAppUrl("salon"),
++      contactHref: "/company/contact/?product=salon-software",
++      subjectLabel: "Hanva Salon Software",
++      isSaasProduct: true,
++    };
++  }
++
++  // 2. Hanva Restaurant POS cluster
++  if (path.includes("restaurant-pos") || path.includes("restaurant-billing") || path.includes("cloud-kitchen")) {
++    return {
++      productSlug: "restaurant-pos",
++      whatsappUrl: buildSaasDemoWhatsAppUrl("pos"),
++      contactHref: "/company/contact/?product=restaurant-pos",
++      subjectLabel: "Hanva Restaurant POS",
++      isSaasProduct: true,
++    };
++  }
++
++  // 3. Hanva CRM cluster
++  if (
++    path.startsWith("/products/crm") ||
++    path.includes("ivr-crm-for-businesses") ||
++    path.includes("lead-management-process") ||
++    path.includes("crm-with-ivr-vs-telecalling-crm")
++  ) {
++    return {
++      productSlug: "crm",
++      whatsappUrl: buildSaasDemoWhatsAppUrl("crm"),
++      contactHref: "/company/contact/?product=crm",
++      subjectLabel: "Hanva CRM",
++      isSaasProduct: true,
++    };
++  }
++
++  // 4. Digital Marketing cluster
++  if (path.startsWith("/digital-marketing") || path.includes("local-seo") || path.includes("seo-vs-google-ads")) {
++    return {
++      productSlug: "digital-marketing",
++      whatsappUrl: buildServiceWhatsAppUrl(
++        "Hello Hanva Team, I would like to enquire about Digital Marketing (SEO, Google Ads & Social Media) services."
++      ),
++      contactHref: "/company/contact/?product=digital-marketing",
++      subjectLabel: "Digital Marketing Services",
++      isSaasProduct: false,
++    };
++  }
++
++  // 5. Software Development cluster
++  if (
++    path.startsWith("/software-development") ||
++    path.includes("custom-crm-development") ||
++    path.includes("saas-vs-custom") ||
++    path.includes("software-development-cost")
++  ) {
++    return {
++      productSlug: "software-development",
++      whatsappUrl: buildServiceWhatsAppUrl(
++        "Hello Hanva Team, I would like to enquire about Custom Software Development services."
++      ),
++      contactHref: "/company/contact/?product=software-development",
++      subjectLabel: "Custom Software Development",
++      isSaasProduct: false,
++    };
++  }
++
++  // 6. Telecom & Voice sub-products
++  const telecomMappings: Array<[string, string, string]> = [
++    ["telecalling-crm", "telecalling-crm", "Telecalling CRM"],
++    ["whatsapp-crm", "whatsapp-crm", "WhatsApp Business CRM"],
++    ["whatsapp-business-api", "whatsapp-crm", "WhatsApp Business API"],
++    ["cloud-telephony", "cloud-telephony", "Cloud Telephony & PBX"],
++    ["smart-ivr", "smart-ivr", "Smart Multi-Level IVR"],
++    ["ivr-system", "ivr-system", "IVR Service"],
++    ["how-ivr", "ivr-system", "IVR Service"],
++    ["auto-dialer", "auto-dialer", "Auto Dialer"],
++    ["predictive-dialer", "predictive-dialer", "Predictive Dialer"],
++    ["call-center", "call-center-software", "Call Center Software"],
++    ["virtual-numbers", "virtual-numbers", "Virtual Numbers"],
++    ["toll-free", "toll-free-numbers", "1800 Toll-Free Numbers"],
++    ["dlt-compliance", "cloud-telephony", "TRAI DLT & Cloud Telephony"],
++  ];
++
++  for (const [needle, slug, label] of telecomMappings) {
++    if (path.includes(needle)) {
++      return {
++        productSlug: slug,
++        whatsappUrl: buildServiceWhatsAppUrl(
++          `Hello Hanva Team, I would like to enquire about ${label}.`
++        ),
++        contactHref: `/company/contact/?product=${slug}`,
++        subjectLabel: label,
++        isSaasProduct: false,
++      };
++    }
++  }
++
++  return {
++    productSlug: null,
++    whatsappUrl: buildServiceWhatsAppUrl(
++      "Hello Hanva Team, I would like to enquire about your SaaS products and IT solutions."
++    ),
++    contactHref: "/company/contact/",
++    subjectLabel: "Hanva Solutions",
++    isSaasProduct: false,
++  };
++}
+diff --git a/tsconfig.json b/tsconfig.json
+index 6b8aacc..23db0a9 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -37,6 +37,7 @@
+   ],
+   "exclude": [
+     "node_modules",
+-    "preview"
++    "preview",
++    "docs"
+   ]
+ }

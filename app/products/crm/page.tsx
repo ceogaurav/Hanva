@@ -7,6 +7,7 @@ import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
 import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { CrmWorkflowExplorer } from "@/components/interactive/crm-workflow-explorer";
 import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
 import {
   CheckCircle2,
@@ -281,6 +282,24 @@ export default function HanvaCrmPage() {
         </Container>
       </section>
 
+      {/* Interactive Demonstration Experience */}
+      <section>
+        <Container className="space-y-6">
+          <div className="max-w-2xl space-y-1.5">
+            <Badge className="bg-blue-100 text-blue-800 border-blue-200 text-xs">
+              Hands-On Simulation
+            </Badge>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Interactive Product Demonstration: Lead to Conversion
+            </h2>
+            <p className="text-sm text-slate-600">
+              Walk through the actual sales lifecycle inside Hanva CRM—from webhook ingestion to carrier C2C calling and browser audio review.
+            </p>
+          </div>
+          <CrmWorkflowExplorer />
+        </Container>
+      </section>
+
       {/* Product Workflow Storytelling */}
       <section className="py-12 bg-slate-50/70 border-y border-slate-100">
         <Container className="space-y-14">
@@ -388,7 +407,28 @@ export default function HanvaCrmPage() {
               <p className="text-xs text-slate-600">Need bespoke ERP/CRM workflows? Explore our custom engineering service.</p>
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <Link href="/resources/crm-implementation-checklist/" className="rounded-xl border border-blue-200 bg-blue-50/30 p-5 hover:border-blue-400 space-y-1.5 transition-colors">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>CRM Implementation Checklist</span>
+                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">Phase-by-phase rollout: data cleansing, custom pipeline design, telephony integration &amp; agent training.</p>
+            </Link>
+            <Link href="/resources/crm-vs-spreadsheets-lead-management/" className="rounded-xl border border-blue-200 bg-blue-50/30 p-5 hover:border-blue-400 space-y-1.5 transition-colors">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>CRM vs Spreadsheets Comparison</span>
+                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">Why sales teams graduate from Excel: calculate lead leakage, 1-click dialing, and DPDP data security.</p>
+            </Link>
+            <Link href="/industry/telecalling-and-bpo/" className="rounded-xl border border-blue-200 bg-blue-50/30 p-5 hover:border-blue-400 space-y-1.5 transition-colors">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>Telecalling &amp; BPO Operations Solution</span>
+                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">High-velocity calling architecture with automated queues, call recording audits, and shift attendance.</p>
+            </Link>
             <Link href="/resources/crm-with-ivr-vs-telecalling-crm/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
               <div className="flex items-center justify-between text-sm font-bold text-slate-900">
                 <span>Buyer Guide: CRM with IVR vs Telecalling CRM</span>
@@ -409,13 +449,6 @@ export default function HanvaCrmPage() {
                 <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
               </div>
               <p className="text-xs text-slate-600">Structured SOP from webhook/CSV intake and role assignment through KYC collection.</p>
-            </Link>
-            <Link href="/resources/saas-vs-custom-crm-erp-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
-              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
-                <span>Decision Guide: Ready-Made SaaS vs Custom CRM/ERP</span>
-                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
-              </div>
-              <p className="text-xs text-slate-600">Evaluate when ready-to-deploy Hanva CRM outperforms custom bespoke software builds.</p>
             </Link>
           </div>
         </Container>

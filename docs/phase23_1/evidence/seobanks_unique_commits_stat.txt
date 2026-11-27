@@ -1,0 +1,146 @@
+commit bec603f93a7a905bbaba1d18a3252355b4b97626
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Thu Nov 5 19:51:30 2026 +0530
+
+    fix(reports): route telecaller performance and chart calls through cached admin API endpoint to eliminate client RLS timeout 500 errors
+
+ app/api/admin/reports/calls/route.ts  | 118 ++++++++++++++++++++++++++++++++++
+ components/performance-chart.tsx      |  50 +++++++-------
+ components/telecaller-performance.tsx |  48 +++++---------
+ 3 files changed, 155 insertions(+), 61 deletions(-)
+
+commit 2316c4987e2860f698c0740f3d30b2464e4a6b9c
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Thu Nov 5 19:07:31 2026 +0530
+
+    fix(reports): resolve telecaller call metrics showing 0, eliminate statement timeouts, and stop unassigned IVR blast log flood
+
+ app/admin/reports/page.tsx             |  9 +++-
+ app/api/webhooks/cloudconnect/route.ts | 10 ----
+ components/export-buttons.tsx          | 16 ++++---
+ components/lead-conversion-chart.tsx   |  2 +-
+ components/lead-conversion-funnel.tsx  |  2 +-
+ components/lead-source-roi-chart.tsx   |  2 +-
+ components/performance-chart.tsx       |  5 +-
+ components/revenue-forecast-chart.tsx  |  2 +-
+ components/telecaller-performance.tsx  | 88 ++++++++++++++++++++--------------
+ 9 files changed, 77 insertions(+), 59 deletions(-)
+
+commit bd8958af07f7cab307952cd8bd3da80a6beca72c
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Thu Nov 5 16:32:42 2026 +0530
+
+    fix(webhooks): pass correct arguments to channel.httpSend
+
+ app/api/webhooks/cloudconnect/route.ts    | 6 +-----
+ app/api/webhooks/ozonetel/sticky/route.ts | 6 +-----
+ 2 files changed, 2 insertions(+), 10 deletions(-)
+
+commit 1e52566547467168d2be58e5298babc28acd9b1a
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Thu Nov 5 16:30:18 2026 +0530
+
+    fix(webhooks): eliminate 406 errors with call_logs upsert, fix Realtime channel memory leak and client allocation
+
+ app/api/webhooks/c2c/route.ts             |   2 +-
+ app/api/webhooks/cloudconnect/route.ts    | 133 ++++++++++++++++--------------
+ app/api/webhooks/ozonetel/sticky/route.ts |  74 ++++++++++-------
+ 3 files changed, 116 insertions(+), 93 deletions(-)
+
+commit 6f0bf4f95683a541af28af4fb5622531ba85e9ca
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Wed Nov 4 19:36:47 2026 +0530
+
+    perf: reduce Supabase ingestion by caching DID registry and optimizing client polling intervals
+
+ app/actions/did-registry-actions.ts               |   4 +
+ app/api/webhooks/cloudconnect/route.ts            |  50 ++++-------
+ app/api/webhooks/ivr/route.ts                     |  26 +++---
+ components/telecaller/AttendanceReminderModal.tsx |   4 +-
+ components/telecaller/LiveLeaderboard.tsx         |   2 +-
+ lib/did-registry-cache.ts                         | 105 ++++++++++++++++++++++
+ 6 files changed, 145 insertions(+), 46 deletions(-)
+
+commit 83e5b1988adc95ec4dd4574f781aca892041548a
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Fri Oct 30 15:14:14 2026 +0530
+
+    fix(telecaller): sort leads in descending order (latest first)
+
+ app/telecaller/leads/page.tsx | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+commit d50185ca5fb8ccc1889aa37c412a33127853bea3
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Thu Oct 29 12:41:46 2026 +0530
+
+    feat(logins): add daily and monthly performance screenshot share with BanksCart branding, Excel heatmaps, and 1-click WhatsApp copy
+
+ app/admin/logins/page.tsx                |  82 +++-
+ components/admin/logins-report-modal.tsx | 242 +++++++++++
+ lib/share-logins-report.ts               | 706 +++++++++++++++++++++++++++++++
+ 3 files changed, 1014 insertions(+), 16 deletions(-)
+
+commit 6399911f3274efce5b91a81e1bc74a2a464a12f4
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Thu Oct 29 12:31:14 2026 +0530
+
+    feat(branding): integrate official BanksCart.com logo into performance table screenshot and modal preview
+
+ components/admin/performance-table-modal.tsx |  45 ++++++++------
+ lib/bankscart-logo-base64.ts                 |   1 +
+ lib/share-performance-table.ts               |  88 ++++++++++++++-------------
+ public/bankscart-logo.png                    | Bin 0 -> 103417 bytes
+ 4 files changed, 74 insertions(+), 60 deletions(-)
+
+commit a8b16d67188295c030b2f2c6155fe513e88312ab
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Thu Oct 29 12:20:00 2026 +0530
+
+    feat(reports): add BanksCart branding, medals, 1-click clipboard copy, and preview modal
+
+ components/admin/performance-table-modal.tsx | 183 +++++++++++++
+ components/reports-share-modal.tsx           |  43 +--
+ components/telecaller-performance.tsx        |  46 ++--
+ lib/share-performance-table.ts               | 374 +++++++++++++++++++--------
+ 4 files changed, 491 insertions(+), 155 deletions(-)
+
+commit 74a05e7883882db22fc6b1706c13ac08785518c7
+Author: ceogaurav <rajpootsingh260@gmail.com>
+Date:   Thu Oct 29 11:39:28 2026 +0530
+
+    feat(reports): add heatmap calling performance screenshot share and updates
+
+ .gitignore                                        |   4 +-
+ app/actions/tenant-settings.ts                    |  54 +-
+ app/actions/whatsapp.ts                           | 529 +++++++++---
+ app/admin/ivr-upload/page.tsx                     |  22 +-
+ app/admin/page.tsx                                |   2 +-
+ app/admin/reports/page.tsx                        |  51 +-
+ app/admin/settings/page.tsx                       | 403 +++++++++-
+ app/api/cron/daily-report/route.ts                |  10 +-
+ app/api/debug/daily-report/route.ts               |   1 +
+ app/api/webhooks/cloudconnect/route.ts            | 127 ++-
+ app/api/webhooks/ivr/route.ts                     |  34 +-
+ app/api/webhooks/whatsapp/route.ts                | 932 ++++++++++++----------
+ app/telecaller/attendance/enhanced-page.tsx       |   2 +-
+ app/telecaller/calls/page.tsx                     |   9 +-
+ app/telecaller/layout.tsx                         |   2 +
+ app/telecaller/leads/page.tsx                     |  29 +
+ app/telecaller/page.tsx                           |   2 +-
+ app/telecaller/reports/page.tsx                   |   3 +
+ components/export-buttons.tsx                     |  44 +-
+ components/leads-table.tsx                        |   3 +
+ components/my-performance-chart.tsx               |   2 +
+ components/performance-chart.tsx                  |  22 +-
+ components/recent-activity.tsx                    |   1 +
+ components/reports-share-modal.tsx                | 530 ++++++++++++
+ components/telecaller-lead-filters.tsx            | 105 ++-
+ components/telecaller-leads-table.tsx             |  48 +-
+ components/telecaller-performance.tsx             |  59 +-
+ components/telecaller/AttendanceReminderModal.tsx | 417 ++++++++++
+ lib/attendance-service.ts                         |  28 +-
+ lib/share-performance-table.ts                    | 391 +++++++++
+ lib/whatsapp-rate-limiter.ts                      | 100 +++
+ scripts/tenant-lead-whatsapp-listener.js          | 123 ++-
+ 32 files changed, 3403 insertions(+), 686 deletions(-)

@@ -1,0 +1,17 @@
+source_url,target_url,anchor_text_direction,implementation_status,rationale,priority
+/products/salon-software/,/resources/salon-management-software-guide/,Salon Software Buyer Guide,IMPLEMENTED (Phase 20),Fixes missing body link from flagship Salon page into Phase 17 buyer guide; strengthens topical cluster,P0
+/products/salon-software/,/digital-marketing/,Salon Digital Marketing Services,IMPLEMENTED (Phase 20),Connects SaaS salon prospects seeking customer acquisition to Hanva Digital Marketing hub,P1
+/products/restaurant-pos/,/resources/restaurant-pos-kot-inventory-guide/,Restaurant POS & KOT Buyer Guide,IMPLEMENTED (Phase 20),Establishes reciprocal contextual link to KOT & recipe BOM buyer guide,P0
+/products/restaurant-pos/,/software-development/api-integration-automation/,API Integration & Workflows,IMPLEMENTED (Phase 20),Channels operators needing custom ERP/webhook integrations from POS page to API service page,P1
+/products/crm/,/resources/crm-with-ivr-vs-telecalling-crm/,Buyer Guide: CRM with IVR vs Telecalling CRM,IMPLEMENTED (Phase 20),Clarifies multi-channel CRM vs dialer intent directly from flagship CRM page,P0
+/products/crm/,/resources/saas-vs-custom-crm-erp-guide/,Decision Guide: Ready-Made SaaS vs Custom CRM/ERP,IMPLEMENTED (Phase 20),Captures mid-market buyers weighing ready-made SaaS against bespoke builds,P1
+/software-development/custom-crm-development/,/resources/saas-vs-custom-crm-erp-guide/,SaaS vs Custom CRM/ERP Decision Guide,RECOMMENDED (Days 1-30),Complete bidirectional internal link inside bespoke CRM development related-capabilities grid,P1
+/products/crm/,/compare/exotel-alternative/,Compare Exotel Alternative with Unified CRM,RECOMMENDED (Days 1-30),Fixes zero body-level incoming links (`body_in_links_count = 0`) on /compare/exotel-alternative/,P1
+/products/telecalling-crm/,/compare/telecmi-alternative/,Compare TeleCMI Alternative for Outbound Calling,RECOMMENDED (Days 1-30),Fixes zero body-level incoming links on /compare/telecmi-alternative/,P1
+/products/ivr-system/,/compare/knowlarity-alternative/,Compare Knowlarity Alternative for Smart IVR,RECOMMENDED (Days 1-30),Fixes zero body-level incoming links on /compare/knowlarity-alternative/,P1
+/digital-marketing/seo-services/,/software-development/web-application-development/,Technical Web Application & SEO Architecture,RECOMMENDED (Days 31-60),Cross-links technical SEO service prospects needing site rebuilds cleanly into Web Dev,P1
+/digital-marketing/performance-marketing/,/products/crm/,Route Ad Leads Directly into Hanva CRM,RECOMMENDED (Days 31-60),Highlights Hanva's closed-loop paid acquisition + telecalling CRM workflow,P1
+/resources/salon-management-software-guide/,/products/salon-software/,Explore Hanva Salon Software Platform,VERIFIED EXISTING,Contextual product link already confirmed live in crawl,Maintained
+/resources/restaurant-pos-kot-inventory-guide/,/products/restaurant-pos/,Explore Hanva Restaurant POS Features,VERIFIED EXISTING,Contextual product link already confirmed live in crawl,Maintained
+/resources/crm-with-ivr-vs-telecalling-crm/,/products/crm/,Evaluate Hanva CRM with Built-in IVR,VERIFIED EXISTING,Contextual product link already confirmed live in crawl,Maintained
+/resources/saas-vs-custom-crm-erp-guide/,/software-development/custom-crm-development/,Explore Custom CRM & ERP Engineering,VERIFIED EXISTING,Contextual engineering link already confirmed live in crawl,Maintained

@@ -1,0 +1,140 @@
+{
+  "pricing": [
+    {
+      "event": "page_view",
+      "timestamp": "2026-11-26T14:07:06.896Z",
+      "page_path": "/pricing/",
+      "page_category": "pricing",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "page_title": "Cloud Telephony & CRM Pricing Plans | Hanva Technologies",
+        "page_path": "/pricing/"
+      }
+    },
+    {
+      "event": "pricing_view",
+      "timestamp": "2026-11-26T14:07:06.897Z",
+      "page_path": "/pricing/",
+      "page_category": "pricing",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "pricing_surface": "commercial_pricing",
+        "page_path": "/pricing/"
+      }
+    }
+  ],
+  "products": [
+    {
+      "event": "page_view",
+      "timestamp": "2026-11-26T14:07:07.182Z",
+      "page_path": "/products/",
+      "page_category": "product",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "page_title": "SaaS Products & Cloud Telephony Suite | Hanva Technologies",
+        "page_path": "/products/"
+      }
+    },
+    {
+      "event": "view_item_list",
+      "timestamp": "2026-11-26T14:07:07.182Z",
+      "page_path": "/products/",
+      "page_category": "product",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "item_list_id": "hanva_saas_products",
+        "item_list_name": "Hanva SaaS & Telecom Products",
+        "item_count": 3,
+        "items_csv": "hanva_crm,hanva_salon_software,hanva_restaurant_pos",
+        "page_path": "/products/"
+      }
+    },
+    {
+      "event": "product_comparison_view",
+      "timestamp": "2026-11-26T14:07:07.182Z",
+      "page_path": "/products/",
+      "page_category": "product",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "comparison_scope": "saas_portfolio_matrix",
+        "item_count": 3,
+        "page_path": "/products/"
+      }
+    }
+  ],
+  "contact": [
+    {
+      "event": "page_view",
+      "timestamp": "2026-11-26T14:07:07.953Z",
+      "page_path": "/company/contact/",
+      "page_category": "contact",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "page_title": "Contact Hanva Technologies \u2014 Sales & Support Desk | Hanva Technologies",
+        "page_path": "/company/contact/"
+      }
+    },
+    {
+      "event": "contact_page_view",
+      "timestamp": "2026-11-26T14:07:07.953Z",
+      "page_path": "/company/contact/",
+      "page_category": "contact",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "page_category": "contact",
+        "page_path": "/company/contact/"
+      }
+    },
+    {
+      "event": "form_error",
+      "timestamp": "2026-11-26T14:07:08.541Z",
+      "page_path": "/company/contact/",
+      "page_category": "contact",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "form_name": "contact_demo_enquiry",
+        "error_count": 2,
+        "error_fields": "fullName,phone",
+        "page_path": "/company/contact/"
+      }
+    },
+    {
+      "event": "form_start",
+      "timestamp": "2026-11-26T14:07:08.554Z",
+      "page_path": "/company/contact/",
+      "page_category": "contact",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "form_name": "contact_demo_enquiry",
+        "first_field_name": "fullName",
+        "page_path": "/company/contact/"
+      }
+    },
+    {
+      "event": "form_submit",
+      "timestamp": "2026-11-26T14:07:08.601Z",
+      "page_path": "/company/contact/",
+      "page_category": "contact",
+      "device_class": "desktop",
+      "params": {
+        "traffic_channel": "direct",
+        "form_name": "contact_demo_enquiry",
+        "product_name": "hanva_salon_software",
+        "selected_team_size_bucket": "Single Outlet / 1-5 Staff",
+        "handoff_method": "whatsapp_client_url",
+        "popup_blocked": false,
+        "delivery_confirmed": false,
+        "page_path": "/company/contact/"
+      }
+    }
+  ]
+}

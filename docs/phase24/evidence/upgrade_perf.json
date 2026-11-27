@@ -1,0 +1,13 @@
+{
+  "nextVersion": "15.5.29",
+  "reactVersion": "19.3.1",
+  "startupReadyMs": 644.24,
+  "coldLoginMs": {
+    "status": 200,
+    "ms": 5.5
+  },
+  "warmLoginAvgMs": 3.39,
+  "apiUnauthAvgMs": 2.15,
+  "apiCronValidAvgMs": 2.06,
+  "serverRssMb": 234.3
+}

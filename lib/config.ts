@@ -35,16 +35,23 @@ export const SAAS_DEMO_WHATSAPP_MESSAGES = {
   pos: "I'm interested in a demo of Hanva Restaurant POS.",
 } as const;
 
+export const SERVICE_WHATSAPP_MESSAGES = {
+  digitalMarketing: "I'm interested in Digital Marketing services from Hanva Technologies.",
+  softwareDevelopment: "I'm interested in Custom Software Development services from Hanva Technologies.",
+  telecom: "I'm interested in Telecom and Cloud Telephony services from Hanva Technologies.",
+} as const;
+
 export type SaasProductKey = keyof typeof SAAS_DEMO_WHATSAPP_MESSAGES;
 
-export function buildSaasDemoWhatsAppUrl(product: SaasProductKey): string {
-  return `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
-    SAAS_DEMO_WHATSAPP_MESSAGES[product]
-  )}`;
+export function buildSaasDemoWhatsAppUrl(product: SaasProductKey, sourceChannel?: string): string {
+  const base = SAAS_DEMO_WHATSAPP_MESSAGES[product];
+  const text = sourceChannel ? `${base} I found you through ${sourceChannel}.` : base;
+  return `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(text)}`;
 }
 
-export function buildServiceWhatsAppUrl(message: string): string {
-  return `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+export function buildServiceWhatsAppUrl(message: string, sourceChannel?: string): string {
+  const text = sourceChannel ? `${message} (Source: ${sourceChannel})` : message;
+  return `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(text)}`;
 }
 
 export interface ContactEnquiryPayload {
@@ -126,7 +133,14 @@ export function resolveRouteContext(pathname?: string | null): RouteConversionCo
   const path = (pathname || "/").toLowerCase();
 
   // 1. Hanva Salon Software cluster
-  if (path.includes("salon-software") || path.includes("salon-billing") || path.includes("salon-appointment") || path.includes("salon-management")) {
+  if (
+    path.includes("salon-software") ||
+    path.includes("salon-billing") ||
+    path.includes("salon-appointment") ||
+    path.includes("salon-management") ||
+    path.includes("salons-and-spas") ||
+    path.includes("salon-software-setup-checklist")
+  ) {
     return {
       productSlug: "salon-software",
       whatsappUrl: buildSaasDemoWhatsAppUrl("salon"),
@@ -137,7 +151,13 @@ export function resolveRouteContext(pathname?: string | null): RouteConversionCo
   }
 
   // 2. Hanva Restaurant POS cluster
-  if (path.includes("restaurant-pos") || path.includes("restaurant-billing") || path.includes("cloud-kitchen")) {
+  if (
+    path.includes("restaurant-pos") ||
+    path.includes("restaurant-billing") ||
+    path.includes("cloud-kitchen") ||
+    path.includes("restaurants-and-cafes") ||
+    path.includes("restaurant-pos-implementation-checklist")
+  ) {
     return {
       productSlug: "restaurant-pos",
       whatsappUrl: buildSaasDemoWhatsAppUrl("pos"),
@@ -152,7 +172,10 @@ export function resolveRouteContext(pathname?: string | null): RouteConversionCo
     path.startsWith("/products/crm") ||
     path.includes("ivr-crm-for-businesses") ||
     path.includes("lead-management-process") ||
-    path.includes("crm-with-ivr-vs-telecalling-crm")
+    path.includes("crm-with-ivr-vs-telecalling-crm") ||
+    path.includes("telecalling-and-bpo") ||
+    path.includes("crm-implementation-checklist") ||
+    path.includes("crm-vs-spreadsheets")
   ) {
     return {
       productSlug: "crm",
@@ -167,9 +190,7 @@ export function resolveRouteContext(pathname?: string | null): RouteConversionCo
   if (path.startsWith("/digital-marketing") || path.includes("local-seo") || path.includes("seo-vs-google-ads")) {
     return {
       productSlug: "digital-marketing",
-      whatsappUrl: buildServiceWhatsAppUrl(
-        "Hello Hanva Team, I would like to enquire about Digital Marketing (SEO, Google Ads & Social Media) services."
-      ),
+      whatsappUrl: buildServiceWhatsAppUrl(SERVICE_WHATSAPP_MESSAGES.digitalMarketing),
       contactHref: "/company/contact/?product=digital-marketing",
       subjectLabel: "Digital Marketing Services",
       isSaasProduct: false,
@@ -185,9 +206,7 @@ export function resolveRouteContext(pathname?: string | null): RouteConversionCo
   ) {
     return {
       productSlug: "software-development",
-      whatsappUrl: buildServiceWhatsAppUrl(
-        "Hello Hanva Team, I would like to enquire about Custom Software Development services."
-      ),
+      whatsappUrl: buildServiceWhatsAppUrl(SERVICE_WHATSAPP_MESSAGES.softwareDevelopment),
       contactHref: "/company/contact/?product=software-development",
       subjectLabel: "Custom Software Development",
       isSaasProduct: false,
@@ -213,11 +232,13 @@ export function resolveRouteContext(pathname?: string | null): RouteConversionCo
 
   for (const [needle, slug, label] of telecomMappings) {
     if (path.includes(needle)) {
+      const message =
+        slug === "cloud-telephony"
+          ? SERVICE_WHATSAPP_MESSAGES.telecom
+          : `Hello Hanva Team, I would like to enquire about ${label}.`;
       return {
         productSlug: slug,
-        whatsappUrl: buildServiceWhatsAppUrl(
-          `Hello Hanva Team, I would like to enquire about ${label}.`
-        ),
+        whatsappUrl: buildServiceWhatsAppUrl(message),
         contactHref: `/company/contact/?product=${slug}`,
         subjectLabel: label,
         isSaasProduct: false,

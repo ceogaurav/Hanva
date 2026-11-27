@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "description": "100% synthetic non-production QA fixtures for Hanva Website-to-CRM Phase 23 verification",
+    "note": "Zero real customer PII or real credentials"
+  },
+  "valid_cases": [
+    {
+      "id": "crm_india",
+      "payload": {
+        "full_name": "QA Synthetic Aarav",
+        "company_name": "QA Alpha Motors",
+        "email": "qa.aarav@hanva-qa.example",
+        "phone": "9876543001",
+        "product_or_service": "crm",
+        "team_size": "16-50 Staff / Agents",
+        "city": "Bengaluru",
+        "notes": "Synthetic CRM + IVR demo test",
+        "preferred_channel": "whatsapp",
+        "consent_accepted": true,
+        "source_page": "/products/crm/",
+        "utm_source": "google",
+        "utm_medium": "organic",
+        "utm_campaign": "qa_crm_test",
+        "lead_idempotency_key": "qa-key-crm-000000000001"
+      },
+      "expected_status": 201,
+      "expected_category": "Product enquiry",
+      "expected_queue": "saas_crm_demo",
+      "expected_e164": "+919876543001"
+    },
+    {
+      "id": "salon_india",
+      "payload": {
+        "full_name": "QA Synthetic Meera",
+        "company_name": "QA Aura Studio",
+        "phone": "+91 98765-43002",
+        "product_or_service": "salon-software",
+        "team_size": "6-15 Staff / Agents",
+        "notes": "Synthetic Salon appointment & GST billing test",
+        "consent_accepted": true,
+        "source_page": "/products/salon-software/",
+        "lead_idempotency_key": "qa-key-salon-000000000002"
+      },
+      "expected_status": 201,
+      "expected_category": "Product enquiry",
+      "expected_queue": "saas_salon_demo",
+      "expected_e164": "+919876543002"
+    },
+    {
+      "id": "pos_india",
+      "payload": {
+        "full_name": "QA Synthetic Kabir",
+        "phone": "09876543003",
+        "product_or_service": "Hanva Restaurant POS",
+        "consent_accepted": true,
+        "source_page": "/products/restaurant-pos/",
+        "lead_idempotency_key": "qa-key-pos-000000000003"
+      },
+      "expected_status": 201,
+      "expected_category": "Product enquiry",
+      "expected_queue": "saas_pos_demo",
+      "expected_e164": "+919876543003"
+    },
+    {
+      "id": "digital_marketing_service",
+      "payload": {
+        "full_name": "QA Synthetic Riya",
+        "email": "qa.riya@hanva-qa.example",
+        "phone": "9876543004",
+        "product_or_service": "digital-marketing",
+        "consent_accepted": true,
+        "source_page": "/digital-marketing/",
+        "lead_idempotency_key": "qa-key-dm-000000000004"
+      },
+      "expected_status": 201,
+      "expected_category": "Service enquiry",
+      "expected_queue": "digital_marketing_desk",
+      "expected_e164": "+919876543004"
+    },
+    {
+      "id": "software_dev_service",
+      "payload": {
+        "full_name": "QA Synthetic Dev",
+        "phone": "9876543005",
+        "product_or_service": "software-development",
+        "consent_accepted": true,
+        "source_page": "/software-development/",
+        "lead_idempotency_key": "qa-key-sd-000000000005"
+      },
+      "expected_status": 201,
+      "expected_category": "Service enquiry",
+      "expected_queue": "custom_engineering_desk",
+      "expected_e164": "+919876543005"
+    },
+    {
+      "id": "telecom_service",
+      "payload": {
+        "full_name": "QA Synthetic Vikram",
+        "phone": "9876543006",
+        "product_or_service": "cloud-telephony",
+        "consent_accepted": true,
+        "source_page": "/products/cloud-telephony/",
+        "lead_idempotency_key": "qa-key-tel-000000000006"
+      },
+      "expected_status": 201,
+      "expected_category": "Service enquiry",
+      "expected_queue": "cloud_telephony_desk",
+      "expected_e164": "+919876543006"
+    },
+    {
+      "id": "intl_uk_whatsapp_only",
+      "payload": {
+        "full_name": "QA Synthetic Oliver",
+        "phone": "+44 7700 900123",
+        "product_or_service": "crm",
+        "consent_accepted": true,
+        "source_page": "/company/contact/",
+        "lead_idempotency_key": "qa-key-uk-000000000007"
+      },
+      "expected_status": 201,
+      "expected_category": "Product enquiry",
+      "expected_queue": "saas_crm_demo",
+      "expected_e164": "+447700900123",
+      "expected_country": "GB"
+    },
+    {
+      "id": "intl_us",
+      "payload": {
+        "full_name": "QA Synthetic Maya",
+        "phone": "+1-415-555-0199",
+        "product_or_service": "restaurant-pos",
+        "consent_accepted": true,
+        "source_page": "/products/restaurant-pos/",
+        "lead_idempotency_key": "qa-key-us-000000000008"
+      },
+      "expected_status": 201,
+      "expected_category": "Product enquiry",
+      "expected_queue": "saas_pos_demo",
+      "expected_e164": "+14155550199",
+      "expected_country": "US_CA"
+    },
+    {
+      "id": "cross_product_same_phone",
+      "payload": {
+        "full_name": "QA Synthetic Aarav",
+        "phone": "+919876543001",
+        "product_or_service": "restaurant-pos",
+        "consent_accepted": true,
+        "source_page": "/products/restaurant-pos/",
+        "lead_idempotency_key": "qa-key-cross-000000000009"
+      },
+      "expected_status": 201,
+      "expected_category": "Product enquiry",
+      "expected_queue": "saas_pos_demo",
+      "expected_e164": "+919876543001"
+    }
+  ]
+}

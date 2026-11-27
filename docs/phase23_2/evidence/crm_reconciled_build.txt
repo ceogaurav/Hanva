@@ -1,0 +1,717 @@
+
+> hanva-crm@0.1.0 build /Users/apple/Downloads/CRM-reconciled
+> next build
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings
+
+./node_modules/.pnpm/@vladmandic+face-api@1.7.15/node_modules/@vladmandic/face-api/dist/face-api.esm.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/.pnpm/@vladmandic+face-api@1.7.15/node_modules/@vladmandic/face-api/dist/face-api.esm.js
+./hooks/use-face-auth.ts
+./app/admin/attendance/kiosk/page.tsx
+
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+./app/(dashboard)/ai-calling/page.tsx
+84:6  Warning: React Hook useEffect has a missing dependency: 'fetchLeads'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/attendance/dashboard.tsx
+688:6  Warning: React Hook useMemo has a missing dependency: 'determineStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+708:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+743:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+760:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+1681:31  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+1708:31  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/attendance/kiosk/page.tsx
+98:6  Warning: React Hook useEffect has missing dependencies: 'ambientFlashMode', 'checkoutWaitHours', 'kioskLogo', 'kioskName', 'kioskTheme', and 'kioskVoice'. Either include them or remove the dependency array. You can also replace multiple useState variables with useReducer if 'setSettingsName' needs the current value of 'kioskName'.  react-hooks/exhaustive-deps
+166:6  Warning: React Hook useEffect has missing dependencies: 'checkOfflineQueue', 'loadBroadcasts', 'loadEmployees', 'loadLogsToday', 'stopCamera', and 'triggerBackgroundSync'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1121:6  Warning: React Hook useEffect has missing dependencies: 'detectFaceInVideo', 'handleAttendanceTransaction', 'matchFace', and 'speakKioskMessage'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1177:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/documents/page.tsx
+48:36  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/integrations/page.tsx
+39:6  Warning: React Hook useEffect has a missing dependency: 'loadWebhookUrl'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/ivr-upload/page.tsx
+379:6  Warning: React Hook useEffect has a missing dependency: 'fetchInitialData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+454:6  Warning: React Hook useEffect has missing dependencies: 'fetchHistory' and 'getEffectiveStatus'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+899:6  Warning: React Hook useMemo has a missing dependency: 'getEffectiveStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+916:6  Warning: React Hook useMemo has a missing dependency: 'getEffectiveStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/leads/[id]/page.tsx
+197:6  Warning: React Hook useEffect has a missing dependency: 'fetchTimelineData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/logins/page.tsx
+1339:11  Warning: The 'today' object construction makes the dependencies of useMemo Hook (at line 1379) change on every render. To fix this, wrap the initialization of 'today' in its own useMemo() Hook.  react-hooks/exhaustive-deps
+
+./app/admin/operations/page.tsx
+47:6  Warning: React Hook useEffect has a missing dependency: 'fetchDashboardData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/properties/page.tsx
+61:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/team/page.tsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'fetchTeam'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/upload/page.tsx
+138:6  Warning: React Hook useEffect has missing dependencies: 'checkActiveTelecallersCount', 'fetchTelecallers', and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/whatsapp/page.tsx
+191:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+330:6  Warning: React Hook useEffect has missing dependencies: 'fetchLeadsAndUsers' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+412:6  Warning: React Hook useEffect has missing dependencies: 'selectedLead' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/mobile/attendance/page.tsx
+56:4  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/super-admin/page.tsx
+500:6  Warning: React Hook useEffect has a missing dependency: 'fetchOrganizations'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/attendance/enhanced-page.tsx
+121:6  Warning: React Hook useEffect has a missing dependency: 'loadAttendanceData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/chat/page.tsx
+178:6  Warning: React Hook useEffect has missing dependencies: 'fetchLeadsAndUsers' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+234:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/leads/[id]/page.tsx
+271:8  Warning: React Hook useCallback has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/page.tsx
+199:6  Warning: React Hook useCallback has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/properties/page.tsx
+54:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/DailyLateReport.tsx
+27:6  Warning: React Hook useEffect has a missing dependency: 'fetchLateComers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin/disbursement-modal.tsx
+70:8  Warning: React Hook useEffect has missing dependencies: 'handleSearch', 'searchLoading', and 'showForm'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin-attendance-adjustment.tsx
+79:6  Warning: React Hook useEffect has a missing dependency: 'loadUsers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+85:6  Warning: React Hook useEffect has a missing dependency: 'loadAttendanceRecords'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance/face-auth-modal.tsx
+60:6  Warning: React Hook useEffect has a missing dependency: 'startCamera'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+221:6  Warning: React Hook useEffect has missing dependencies: 'completeAttendanceTransaction', 'detectFaceInVideo', and 'matchFace'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+485:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance/face-registration-modal.tsx
+157:6  Warning: React Hook useEffect has a missing dependency: 'detectFaceInVideo'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+191:6  Warning: React Hook useEffect has a missing dependency: 'saveFaceRegistration'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+423:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance-analytics.tsx
+72:6  Warning: React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+674:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance-audit-trail.tsx
+36:6  Warning: React Hook useEffect has a missing dependency: 'loadAuditTrail'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance-notifications.tsx
+65:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance-widget.tsx
+158:6  Warning: React Hook useEffect has missing dependencies: 'checkOut' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+531:205  Warning: React Hook useMemo has missing dependencies: 'lateThresholdHour' and 'lateThresholdMinute'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/clock-in-toggle.tsx
+19:8  Warning: React Hook useEffect has a missing dependency: 'fetchStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/device/camera-capture.tsx
+27:6  Warning: React Hook useEffect has a missing dependency: 'startCamera'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+95:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/enhanced-call-history.tsx
+54:6  Warning: React Hook useEffect has a missing dependency: 'initializeComponent'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/follow-ups-list.tsx
+30:6  Warning: React Hook useEffect has a missing dependency: 'fetchFollowUps'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/invoice/hanva-tax-invoice.tsx
+74:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+371:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/kyc-team/KycLeadsTable.tsx
+72:6  Warning: React Hook useEffect has a missing dependency: 'fetchLeads'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-notes.tsx
+38:6  Warning: React Hook useEffect has a missing dependency: 'fetchNotes'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-site-visits.tsx
+32:8  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-status-updater.tsx
+173:6  Warning: React Hook useEffect has a missing dependency: 'handleReset'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+188:6  Warning: React Hook useEffect has missing dependencies: 'elapsedTime' and 'status'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/leave-management.tsx
+55:6  Warning: React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/mobile-attendance.tsx
+323:33  Warning: The ref value 'videoRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'videoRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+486:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+599:17  Warning: Image elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./components/notification-bell.tsx
+43:6  Warning: React Hook useEffect has a missing dependency: 'supabase.auth'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/notification-center.tsx
+44:6  Warning: React Hook useEffect has a missing dependency: 'supabase.auth'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+78:6  Warning: React Hook useEffect has missing dependencies: 'fetchNotifications', 'fetchUnreadCount', and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/notification-provider.tsx
+75:6  Warning: React Hook useEffect has missing dependencies: 'requestPermissionAndSubscribe' and 'subscribeToPush'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/property-matcher.tsx
+16:6  Warning: React Hook useEffect has a missing dependency: 'fetchMatches'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/push-subscriber.tsx
+61:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/pwa/splash-screen.tsx
+105:24  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/schedule-follow-up-modal.tsx
+140:6  Warning: React Hook useEffect has missing dependencies: 'date' and 'fetchLeads'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+156:6  Warning: React Hook useEffect has a missing dependency: 'checkConflicts'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+160:6  Warning: React Hook useEffect has a missing dependency: 'checkExistingFollowUp'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/smart-matches.tsx
+21:8  Warning: React Hook useEffect has a missing dependency: 'fetchMatches'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+68:33  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/telecaller/GeofenceAccessGuard.tsx
+149:6  Warning: React Hook useEffect has a missing dependency: 'verifyAccess'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/GlobalAutoDialer.tsx
+70:8  Warning: React Hook useEffect has a missing dependency: 'handleDatabaseStatusChange'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/LiveLeaderboard.tsx
+96:8  Warning: React Hook useEffect has a missing dependency: 'org?.id'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/daily-welcome-modal.tsx
+71:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller-ticker.tsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/96) ...
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/users/[id]/route.js:1:10633)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/users/[id]/route.js:1:10633)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at i (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/assistant/route.js:113:10303)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at i (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/assistant/route.js:113:10303)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at o (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/init-meili/route.js:1:10730)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at o (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/init-meili/route.js:1:10730)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/companies/search/route.js:37:8216)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/companies/search/route.js:37:8216)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at s (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/ai-call/route.js:1:11329)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at s (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/ai-call/route.js:1:11329)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+   Generating static pages (24/96) 
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/broadcast/route.js:1:10875)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/broadcast/route.js:1:10875)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/leads/bulk-assign/route.js:1:10414)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/leads/bulk-assign/route.js:1:10414)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/delete-file/route.js:1:10018)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/delete-file/route.js:1:10018)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at s (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/ai-call/route.js:1:11329)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at s (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/ai-call/route.js:1:11329)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at o (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/init-meili/route.js:1:10730)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at o (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/init-meili/route.js:1:10730)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/companies/search/route.js:37:8216)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/companies/search/route.js:37:8216)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/users/[id]/route.js:1:10633)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/users/[id]/route.js:1:10633)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at i (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/assistant/route.js:113:10303)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at i (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/assistant/route.js:113:10303)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at o (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/upload-companies/route.js:1:10261)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at o (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/upload-companies/route.js:1:10261)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at o (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/init-meili/route.js:1:10730)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at o (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/admin/init-meili/route.js:1:10730)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/companies/search/route.js:37:8216)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at a (/Users/apple/Downloads/CRM-reconciled/.next/server/app/api/companies/search/route.js:37:8216)
+    at g (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:6212)
+    at v (/Users/apple/Downloads/CRM-reconciled/.next/server/chunks/2190.js:29:7724)
+    at em (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137693)
+    at e_ (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at Array.toJSON (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142242)
+    at eT (/Users/apple/Downloads/CRM-reconciled/node_modules/.pnpm/next@14.2.35_@opentelemetry+api@1.9.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142721)
+   Generating static pages (48/96) 
+   Generating static pages (72/96) 
+ ✓ Generating static pages (96/96)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    2.22 kB         156 kB
+├ ○ /_not-found                          162 B          87.9 kB
+├ ƒ /admin                               7.65 kB         111 kB
+├ ƒ /admin/attendance                    20.9 kB         363 kB
+├ ƒ /admin/attendance/analytics          10.4 kB         331 kB
+├ ƒ /admin/attendance/kiosk              14.2 kB         227 kB
+├ ƒ /admin/c2c-reports                   8.46 kB         305 kB
+├ ƒ /admin/calls                         15.1 kB         330 kB
+├ ƒ /admin/chat                          8.74 kB         189 kB
+├ ƒ /admin/deals                         192 B           236 kB
+├ ƒ /admin/dialer-assignment             11.1 kB         200 kB
+├ ƒ /admin/disbursement-report           17.4 kB         333 kB
+├ ƒ /admin/documents                     7.3 kB          179 kB
+├ ƒ /admin/inbox                         7.61 kB         245 kB
+├ ƒ /admin/integrations                  5.67 kB         112 kB
+├ ƒ /admin/integrations/portals          162 B          87.9 kB
+├ ƒ /admin/invoices/[id]                 3.32 kB         105 kB
+├ ƒ /admin/ivr-reports                   9.43 kB         328 kB
+├ ƒ /admin/ivr-upload                    31.6 kB         256 kB
+├ ƒ /admin/kyc                           4.53 kB         231 kB
+├ ƒ /admin/lead/new                      5.43 kB         204 kB
+├ ƒ /admin/leaderboard                   2.65 kB         114 kB
+├ ƒ /admin/leads                         19.9 kB         437 kB
+├ ƒ /admin/leads/[id]                    21.8 kB         437 kB
+├ ƒ /admin/leads/new                     5.29 kB         212 kB
+├ ƒ /admin/leave-management              11.4 kB         223 kB
+├ ƒ /admin/logins                        23.2 kB         351 kB
+├ ƒ /admin/master-data                   10.7 kB         145 kB
+├ ƒ /admin/notifications                 5.8 kB          195 kB
+├ ƒ /admin/operations                    13.9 kB         177 kB
+├ ƒ /admin/properties                    4.75 kB        99.2 kB
+├ ƒ /admin/reports                       27.5 kB         462 kB
+├ ƒ /admin/reports/attendance            6.75 kB         195 kB
+├ ƒ /admin/roster                        6.8 kB          115 kB
+├ ƒ /admin/settings                      11.6 kB         210 kB
+├ ƒ /admin/site-visits                   3.18 kB        97.7 kB
+├ ƒ /admin/team                          8.85 kB         212 kB
+├ ƒ /admin/upload                        16.3 kB         226 kB
+├ ƒ /admin/users                         16 kB           226 kB
+├ ƒ /admin/users/[id]/edit               606 B           209 kB
+├ ƒ /admin/users/new                     206 B           200 kB
+├ ƒ /admin/wallboard                     162 B          87.9 kB
+├ ƒ /admin/whatsapp                      18.7 kB         383 kB
+├ ○ /ai-calling                          7.39 kB         196 kB
+├ ƒ /api/admin/ai-call                   0 B                0 B
+├ ƒ /api/admin/broadcast                 0 B                0 B
+├ ƒ /api/admin/campaign-health-watchdog  0 B                0 B
+├ ƒ /api/admin/delete-file               0 B                0 B
+├ ƒ /api/admin/fix-checkout              0 B                0 B
+├ ƒ /api/admin/fix-ivr-logs              0 B                0 B
+├ ƒ /api/admin/holidays                  0 B                0 B
+├ ƒ /api/admin/init-meili                0 B                0 B
+├ ƒ /api/admin/leads/bulk-assign         0 B                0 B
+├ ƒ /api/admin/leads/export              0 B                0 B
+├ ƒ /api/admin/master-data/entry         0 B                0 B
+├ ƒ /api/admin/master-data/stats         0 B                0 B
+├ ƒ /api/admin/operations/snapshot       0 B                0 B
+├ ƒ /api/admin/reports/calls             0 B                0 B
+├ ƒ /api/admin/upload-companies          0 B                0 B
+├ ƒ /api/admin/users                     0 B                0 B
+├ ƒ /api/admin/users/[id]                0 B                0 B
+├ ƒ /api/assistant                       0 B                0 B
+├ ƒ /api/click-to-call                   0 B                0 B
+├ ƒ /api/companies/search                0 B                0 B
+├ ƒ /api/cron/auto-checkout              0 B                0 B
+├ ƒ /api/cron/auto-refill                0 B                0 B
+├ ƒ /api/cron/campaign-health-watchdog   0 B                0 B
+├ ƒ /api/cron/daily-report               0 B                0 B
+├ ƒ /api/cron/kyc                        0 B                0 B
+├ ƒ /api/cron/ozonetel-campaign-sync     0 B                0 B
+├ ƒ /api/cron/process-webhooks           0 B                0 B
+├ ƒ /api/cron/sla                        0 B                0 B
+├ ƒ /api/cron/smart-notifications        0 B                0 B
+├ ƒ /api/debug/daily-report              0 B                0 B
+├ ƒ /api/kyc-members                     0 B                0 B
+├ ƒ /api/mobile/login                    0 B                0 B
+├ ƒ /api/notifications/send              0 B                0 B
+├ ƒ /api/notifications/subscribe         0 B                0 B
+├ ƒ /api/notifications/unsubscribe       0 B                0 B
+├ ƒ /api/payments/razorpay/webhook       0 B                0 B
+├ ƒ /api/telecaller/sim-calls            0 B                0 B
+├ ƒ /api/transfer-lead                   0 B                0 B
+├ ƒ /api/webhooks/ai-obd                 0 B                0 B
+├ ƒ /api/webhooks/c2c                    0 B                0 B
+├ ƒ /api/webhooks/cloudconnect           0 B                0 B
+├ ƒ /api/webhooks/fonada                 0 B                0 B
+├ ƒ /api/webhooks/fonada/worker          0 B                0 B
+├ ƒ /api/webhooks/inbound-routing        0 B                0 B
+├ ƒ /api/webhooks/incoming-leads         0 B                0 B
+├ ƒ /api/webhooks/ivr                    0 B                0 B
+├ ƒ /api/webhooks/ozonetel/callback      0 B                0 B
+├ ƒ /api/webhooks/ozonetel/ivr           0 B                0 B
+├ ƒ /api/webhooks/ozonetel/sticky        0 B                0 B
+├ ƒ /api/webhooks/portals                0 B                0 B
+├ ƒ /api/webhooks/trigger-push           0 B                0 B
+├ ƒ /api/webhooks/unicorn-call-outcomes  0 B                0 B
+├ ƒ /api/webhooks/whatsapp               0 B                0 B
+├ ƒ /auth/callback                       0 B                0 B
+├ ○ /auth/login                          14.8 kB         181 kB
+├ ○ /auth/signup                         4.81 kB         202 kB
+├ ○ /auth/update-password                5.63 kB         175 kB
+├ ○ /debug                               5.32 kB         238 kB
+├ ○ /debug/error-130                     5.58 kB         100 kB
+├ ○ /debug/follow-ups-test               5.4 kB          232 kB
+├ ƒ /kyc-team                            183 B          96.6 kB
+├ ƒ /kyc-team/[id]                       11.6 kB         203 kB
+├ ƒ /kyc-team/leads                      6.83 kB         205 kB
+├ ƒ /kyc-team/leads/[id]                 11.6 kB         203 kB
+├ ƒ /kyc-upload/[token]                  2.39 kB        90.1 kB
+├ ○ /mobile/attendance                   14.4 kB         204 kB
+├ ○ /offline                             162 B          87.9 kB
+├ ƒ /pay/[tenantId]                      8.77 kB         113 kB
+├ ○ /pwa-demo                            18.5 kB         122 kB
+├ ○ /super-admin                         19 kB           384 kB
+├ ○ /super-admin/analytics               5.06 kB         224 kB
+├ ○ /super-admin/did-registry            7.77 kB         211 kB
+├ ƒ /telecaller                          27.4 kB         359 kB
+├ ƒ /telecaller/attendance               15.2 kB         218 kB
+├ ƒ /telecaller/calls                    5.8 kB          100 kB
+├ ƒ /telecaller/chat                     6.93 kB         176 kB
+├ ƒ /telecaller/deals                    192 B           236 kB
+├ ƒ /telecaller/documents                5.99 kB         166 kB
+├ ƒ /telecaller/follow-ups               3.72 kB         230 kB
+├ ƒ /telecaller/global-search            8.76 kB         127 kB
+├ ƒ /telecaller/leads                    13.4 kB         425 kB
+├ ƒ /telecaller/leads/[id]               13.7 kB         416 kB
+├ ƒ /telecaller/leave                    9.75 kB         217 kB
+├ ƒ /telecaller/logins                   12.1 kB         186 kB
+├ ƒ /telecaller/notes                    5.75 kB         223 kB
+├ ƒ /telecaller/properties               3.19 kB        97.7 kB
+├ ƒ /telecaller/reports                  8.72 kB         274 kB
+├ ƒ /telecaller/site-visits              2.75 kB        97.2 kB
+├ ƒ /telecaller/tasks                    4.09 kB         115 kB
+└ ○ /visual-demo                         14.8 kB         259 kB
++ First Load JS shared by all            87.7 kB
+  ├ chunks/2410-a85a767a0911ba0c.js      31.9 kB
+  ├ chunks/54980837-d20d8ec8a650ee95.js  53.6 kB
+  └ other shared chunks (total)          2.21 kB
+
+
+ƒ Middleware                             82.5 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

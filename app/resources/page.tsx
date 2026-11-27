@@ -94,6 +94,56 @@ const pillars = [
 
 const articles = [
   {
+    slug: "/resources/crm-implementation-checklist/",
+    pillar: "CRM & Sales",
+    title: "CRM Implementation Checklist: Complete Setup & Rollout Guide",
+    description:
+      "A practical 5-phase CRM implementation checklist for Indian SMBs: lead cleansing, custom pipelines, C2C telephony integration, role security, and team adoption.",
+    readTime: "12 min read",
+    date: "November 2026",
+    keyTopics: ["Data Cleansing", "Pipeline Design", "C2C Telephony", "Role Permissions", "Post-Launch QA"],
+  },
+  {
+    slug: "/resources/salon-software-setup-checklist/",
+    pillar: "Salon Software",
+    title: "Salon Software Setup Checklist: Step-by-Step Onboarding Guide",
+    description:
+      "Operational setup blueprint for salon & spa owners: service menus, staff PINs, commission slabs, GST billing, auto-consumption recipes, and online booking.",
+    readTime: "11 min read",
+    date: "November 2026",
+    keyTopics: ["Service Catalog", "Stylist PINs", "Commission Rules", "Auto-Consumption", "Thermal Printing"],
+  },
+  {
+    slug: "/resources/restaurant-pos-implementation-checklist/",
+    pillar: "Restaurant POS",
+    title: "Restaurant POS Implementation Checklist: Go-Live Rollout Guide",
+    description:
+      "Complete go-live checklist for restaurants & cafes: menu engineering, GST tax slabs, KOT printer IPs, KDS touch boards, offline failover drills, and recipe BOM.",
+    readTime: "12 min read",
+    date: "November 2026",
+    keyTopics: ["Menu Matrix", "KOT Printer IPs", "Digital KDS", "Offline Queue Drill", "Recipe BOM"],
+  },
+  {
+    slug: "/resources/crm-vs-spreadsheets-lead-management/",
+    pillar: "CRM & Sales",
+    title: "CRM vs Spreadsheets for Lead Management: The SMB Transition Guide",
+    description:
+      "Objective comparison: how manual spreadsheets cause lead leakage and dialer fatigue, and why dedicated CRM doubles telecaller productivity.",
+    readTime: "10 min read",
+    date: "November 2026",
+    keyTopics: ["Lead Leakage", "1-Click C2C Calling", "Export Permissions", "Call Audio QA", "48-Hour Migration"],
+  },
+  {
+    slug: "/resources/cloud-telephony-vs-traditional-pbx/",
+    pillar: "Cloud Telephony",
+    title: "Cloud Telephony vs Traditional PBX: Enterprise Architecture Comparison",
+    description:
+      "Technical evaluation comparing on-premise hardware EPABX and PRI lines against virtual cloud telephony: Capex vs Opex, remote telecalling, and CRM sync.",
+    readTime: "11 min read",
+    date: "November 2026",
+    keyTopics: ["Capex vs Opex", "Virtual Numbers", "In-Browser Softphones", "Call Recording Archival"],
+  },
+  {
     slug: "/resources/salon-management-software-guide/",
     pillar: "Salon Software",
     title: "How to Choose Salon Management Software in India: Complete Buying Guide",

@@ -1,0 +1,56 @@
+cluster,source_page,source_role,target_page,target_role,anchor_intent,directional_relationship
+Cluster A: Hanva CRM,/resources/ivr-crm-for-businesses/,Supporting Article,/products/crm/,Primary Pillar,Hanva CRM platform overview & demo,Upward to Pillar
+Cluster A: Hanva CRM,/resources/ivr-crm-for-businesses/,Supporting Article,/products/telecalling-crm/,Product Sub-Pillar,Outbound Telecalling CRM workflow,Across to Product Subpage
+Cluster A: Hanva CRM,/resources/ivr-crm-for-businesses/,Supporting Article,/resources/crm-with-ivr-vs-telecalling-crm/,Sibling Guide,Compare CRM with IVR vs Telecalling CRM,Across to Sibling Guide
+Cluster A: Hanva CRM,/resources/ivr-crm-for-businesses/,Supporting Article,/resources/how-ivr-systems-work/,Sibling Guide,How IVR DTMF routing architecture works,Across to Sibling Guide
+Cluster A: Hanva CRM,/resources/lead-management-process-guide/,Supporting Article,/products/crm/,Primary Pillar,Hanva CRM lead management & KYC platform,Upward to Pillar
+Cluster A: Hanva CRM,/resources/lead-management-process-guide/,Supporting Article,/resources/telecalling-crm-guide/,Sibling Guide,Telecalling CRM disposition & KPI guide,Across to Sibling Guide
+Cluster A: Hanva CRM,/resources/lead-management-process-guide/,Supporting Article,/resources/whatsapp-business-api-guide/,Sibling Guide,WhatsApp Business API templates & CRM integration,Across to Sibling Guide
+Cluster A: Hanva CRM,/resources/lead-management-process-guide/,Supporting Article,/company/security-and-trust/,Trust Page,Security & privacy practices at Hanva,Supporting Trust Link
+Cluster A: Hanva CRM,/products/crm/,Primary Pillar,/resources/ivr-crm-for-businesses/,Supporting Article,IVR CRM Operational Guide for Businesses,Downward to Spoke
+Cluster A: Hanva CRM,/products/crm/,Primary Pillar,/resources/lead-management-process-guide/,Supporting Article,Lead Management Process & SOP Guide,Downward to Spoke
+Cluster B: Hanva Salon Software,/resources/salon-billing-software-guide/,Supporting Article,/products/salon-software/,Primary Pillar,Hanva Salon Software overview & demo,Upward to Pillar
+Cluster B: Hanva Salon Software,/resources/salon-billing-software-guide/,Supporting Article,/resources/salon-management-software-guide/,Sibling Guide,Complete Salon Software Buying Guide,Across to Sibling Guide
+Cluster B: Hanva Salon Software,/resources/salon-billing-software-guide/,Supporting Article,/resources/salon-appointment-management-guide/,Sibling Guide,Salon Appointment & Booking Management Guide,Across to Sibling Guide
+Cluster B: Hanva Salon Software,/resources/salon-billing-software-guide/,Supporting Article,/software-development/web-application-development/,Cross-Cluster Service,Web application & POS architecture notes,Cross-Cluster Context
+Cluster B: Hanva Salon Software,/resources/salon-appointment-management-guide/,Supporting Article,/products/salon-software/,Primary Pillar,Hanva Salon Software booking & staff platform,Upward to Pillar
+Cluster B: Hanva Salon Software,/resources/salon-appointment-management-guide/,Supporting Article,/resources/salon-billing-software-guide/,Sibling Guide,India Salon GST Billing & POS Guide,Across to Sibling Guide
+Cluster B: Hanva Salon Software,/resources/salon-appointment-management-guide/,Supporting Article,/resources/salon-management-software-guide/,Sibling Guide,How to Choose Salon Management Software,Across to Sibling Guide
+Cluster B: Hanva Salon Software,/resources/salon-appointment-management-guide/,Supporting Article,/digital-marketing/seo-services/,Cross-Cluster Service,Local SEO visibility for salon bookings,Cross-Cluster Context
+Cluster B: Hanva Salon Software,/products/salon-software/,Primary Pillar,/resources/salon-billing-software-guide/,Supporting Article,Salon GST Billing Software Guide,Downward to Spoke
+Cluster B: Hanva Salon Software,/products/salon-software/,Primary Pillar,/resources/salon-appointment-management-guide/,Supporting Article,Salon Appointment & Online Booking Guide,Downward to Spoke
+Cluster C: Hanva Restaurant POS,/resources/restaurant-billing-software-guide/,Supporting Article,/products/restaurant-pos/,Primary Pillar,Hanva Restaurant POS platform & demo,Upward to Pillar
+Cluster C: Hanva Restaurant POS,/resources/restaurant-billing-software-guide/,Supporting Article,/resources/restaurant-pos-kot-inventory-guide/,Sibling Guide,Restaurant POS KOT KDS & Inventory Buying Guide,Across to Sibling Guide
+Cluster C: Hanva Restaurant POS,/resources/restaurant-billing-software-guide/,Supporting Article,/resources/cloud-kitchen-management-guide/,Sibling Guide,Cloud Kitchen KDS Inventory & API Workflow Guide,Across to Sibling Guide
+Cluster C: Hanva Restaurant POS,/resources/restaurant-billing-software-guide/,Supporting Article,/digital-marketing/seo-services/,Cross-Cluster Service,Local SEO visibility for restaurants and cafes,Cross-Cluster Context
+Cluster C: Hanva Restaurant POS,/resources/cloud-kitchen-management-guide/,Supporting Article,/products/restaurant-pos/,Primary Pillar,Hanva Restaurant POS for KDS & BOM inventory,Upward to Pillar
+Cluster C: Hanva Restaurant POS,/resources/cloud-kitchen-management-guide/,Supporting Article,/resources/restaurant-pos-kot-inventory-guide/,Sibling Guide,POS vs KOT vs KDS architecture comparison,Across to Sibling Guide
+Cluster C: Hanva Restaurant POS,/resources/cloud-kitchen-management-guide/,Supporting Article,/software-development/api-integration-automation/,Cross-Cluster Service,Custom Partner REST API & webhook integrations,Cross-Cluster Context
+Cluster C: Hanva Restaurant POS,/products/restaurant-pos/,Primary Pillar,/resources/restaurant-billing-software-guide/,Supporting Article,India Restaurant GST Billing Software Guide,Downward to Spoke
+Cluster C: Hanva Restaurant POS,/products/restaurant-pos/,Primary Pillar,/resources/cloud-kitchen-management-guide/,Supporting Article,Cloud Kitchen KDS & Recipe Inventory Guide,Downward to Spoke
+Cluster D: Digital Marketing,/resources/local-seo-guide-for-businesses/,Supporting Article,/digital-marketing/seo-services/,Primary Pillar,Hanva Technical & Local SEO Services,Upward to Sub-Pillar
+Cluster D: Digital Marketing,/resources/local-seo-guide-for-businesses/,Supporting Article,/digital-marketing/,Hub Pillar,Hanva Digital Marketing Services overview,Upward to Hub Pillar
+Cluster D: Digital Marketing,/resources/local-seo-guide-for-businesses/,Supporting Article,/resources/seo-vs-google-ads-for-smbs/,Sibling Guide,Compare Organic SEO vs Google Ads for SMBs,Across to Sibling Guide
+Cluster D: Digital Marketing,/resources/local-seo-guide-for-businesses/,Supporting Article,/locations/,Location Directory,Explore Hanva India city technology hubs,Cross-Cluster Context
+Cluster D: Digital Marketing,/resources/seo-vs-google-ads-for-smbs/,Supporting Article,/digital-marketing/performance-marketing/,Primary Pillar,Hanva Google Ads & Performance Marketing,Upward to Sub-Pillar
+Cluster D: Digital Marketing,/resources/seo-vs-google-ads-for-smbs/,Supporting Article,/digital-marketing/seo-services/,Primary Pillar,Hanva SEO Services & Organic Architecture,Upward to Sub-Pillar
+Cluster D: Digital Marketing,/resources/seo-vs-google-ads-for-smbs/,Supporting Article,/resources/local-seo-guide-for-businesses/,Sibling Guide,Local SEO & Google Business Profile Guide,Across to Sibling Guide
+Cluster D: Digital Marketing,/resources/seo-vs-google-ads-for-smbs/,Supporting Article,/products/crm/,Cross-Cluster Product,Track Search & Ad enquiries in Hanva CRM,Cross-Cluster Context
+Cluster D: Digital Marketing,/digital-marketing/seo-services/,Sub-Pillar,/resources/local-seo-guide-for-businesses/,Supporting Article,Local SEO & GBP Compliance Guide,Downward to Spoke
+Cluster D: Digital Marketing,/digital-marketing/seo-services/,Sub-Pillar,/resources/seo-vs-google-ads-for-smbs/,Supporting Article,SEO vs Google Ads Decision Guide,Downward to Spoke
+Cluster D: Digital Marketing,/digital-marketing/performance-marketing/,Sub-Pillar,/resources/seo-vs-google-ads-for-smbs/,Supporting Article,SEO vs Google Ads for SMBs Guide,Downward to Spoke
+Cluster D: Digital Marketing,/digital-marketing/,Hub Pillar,/resources/local-seo-guide-for-businesses/,Supporting Article,Local SEO Guide for Indian Businesses,Downward to Spoke
+Cluster D: Digital Marketing,/digital-marketing/,Hub Pillar,/resources/seo-vs-google-ads-for-smbs/,Supporting Article,SEO vs Google Ads Decision Guide,Downward to Spoke
+Cluster E: Software Development,/resources/custom-crm-development-guide/,Supporting Article,/software-development/custom-crm-development/,Primary Pillar,Hanva Custom CRM & ERP Engineering,Upward to Sub-Pillar
+Cluster E: Software Development,/resources/custom-crm-development-guide/,Supporting Article,/resources/saas-vs-custom-crm-erp-guide/,Sibling Guide,SaaS vs Custom CRM and ERP Decision Guide,Across to Sibling Guide
+Cluster E: Software Development,/resources/custom-crm-development-guide/,Supporting Article,/resources/software-development-cost-factors/,Sibling Guide,Custom Software Development Cost Factors,Across to Sibling Guide
+Cluster E: Software Development,/resources/custom-crm-development-guide/,Supporting Article,/products/crm/,Cross-Cluster Product,Hanva CRM Ready-Made SaaS Alternative,Cross-Cluster Context
+Cluster E: Software Development,/resources/software-development-cost-factors/,Supporting Article,/software-development/,Hub Pillar,Hanva Custom Software Development Services,Upward to Hub Pillar
+Cluster E: Software Development,/resources/software-development-cost-factors/,Supporting Article,/software-development/custom-crm-development/,Sub-Pillar,Custom CRM & ERP Development Services,Upward to Sub-Pillar
+Cluster E: Software Development,/resources/software-development-cost-factors/,Supporting Article,/resources/custom-crm-development-guide/,Sibling Guide,Custom CRM Architecture & Scoping Guide,Across to Sibling Guide
+Cluster E: Software Development,/resources/software-development-cost-factors/,Supporting Article,/resources/saas-vs-custom-crm-erp-guide/,Sibling Guide,SaaS vs Custom CRM and ERP Decision Guide,Across to Sibling Guide
+Cluster E: Software Development,/software-development/custom-crm-development/,Sub-Pillar,/resources/custom-crm-development-guide/,Supporting Article,Custom CRM & ERP Scoping Guide,Downward to Spoke
+Cluster E: Software Development,/software-development/custom-crm-development/,Sub-Pillar,/resources/software-development-cost-factors/,Supporting Article,Software Development Cost Drivers Guide,Downward to Spoke
+Cluster E: Software Development,/software-development/,Hub Pillar,/resources/custom-crm-development-guide/,Supporting Article,Custom CRM Architecture Guide,Downward to Spoke
+Cluster E: Software Development,/software-development/,Hub Pillar,/resources/software-development-cost-factors/,Supporting Article,Software Development Cost Factors Guide,Downward to Spoke
+Hub Integration,/resources/,Resources Hub Page,All 10 New Supporting Articles,Knowledge Hub Index,Topic directory & filter navigation across all 21 guides,Hub-to-Spoke Index

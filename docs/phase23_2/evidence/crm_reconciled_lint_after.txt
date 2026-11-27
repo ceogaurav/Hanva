@@ -1,0 +1,195 @@
+
+> hanva-crm@0.1.0 lint /Users/apple/Downloads/CRM-reconciled
+> next lint
+
+
+./app/(dashboard)/ai-calling/page.tsx
+84:6  Warning: React Hook useEffect has a missing dependency: 'fetchLeads'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/attendance/dashboard.tsx
+688:6  Warning: React Hook useMemo has a missing dependency: 'determineStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+708:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+743:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+760:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+1681:31  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+1708:31  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/attendance/kiosk/page.tsx
+98:6  Warning: React Hook useEffect has missing dependencies: 'ambientFlashMode', 'checkoutWaitHours', 'kioskLogo', 'kioskName', 'kioskTheme', and 'kioskVoice'. Either include them or remove the dependency array. You can also replace multiple useState variables with useReducer if 'setSettingsName' needs the current value of 'kioskName'.  react-hooks/exhaustive-deps
+166:6  Warning: React Hook useEffect has missing dependencies: 'checkOfflineQueue', 'loadBroadcasts', 'loadEmployees', 'loadLogsToday', 'stopCamera', and 'triggerBackgroundSync'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1121:6  Warning: React Hook useEffect has missing dependencies: 'detectFaceInVideo', 'handleAttendanceTransaction', 'matchFace', and 'speakKioskMessage'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1177:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/documents/page.tsx
+48:36  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/integrations/page.tsx
+39:6  Warning: React Hook useEffect has a missing dependency: 'loadWebhookUrl'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/ivr-upload/page.tsx
+379:6  Warning: React Hook useEffect has a missing dependency: 'fetchInitialData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+454:6  Warning: React Hook useEffect has missing dependencies: 'fetchHistory' and 'getEffectiveStatus'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+899:6  Warning: React Hook useMemo has a missing dependency: 'getEffectiveStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+916:6  Warning: React Hook useMemo has a missing dependency: 'getEffectiveStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/leads/[id]/page.tsx
+197:6  Warning: React Hook useEffect has a missing dependency: 'fetchTimelineData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/logins/page.tsx
+1339:11  Warning: The 'today' object construction makes the dependencies of useMemo Hook (at line 1379) change on every render. To fix this, wrap the initialization of 'today' in its own useMemo() Hook.  react-hooks/exhaustive-deps
+
+./app/admin/operations/page.tsx
+47:6  Warning: React Hook useEffect has a missing dependency: 'fetchDashboardData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/properties/page.tsx
+61:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/team/page.tsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'fetchTeam'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/upload/page.tsx
+138:6  Warning: React Hook useEffect has missing dependencies: 'checkActiveTelecallersCount', 'fetchTelecallers', and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/whatsapp/page.tsx
+191:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+330:6  Warning: React Hook useEffect has missing dependencies: 'fetchLeadsAndUsers' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+412:6  Warning: React Hook useEffect has missing dependencies: 'selectedLead' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/mobile/attendance/page.tsx
+56:4  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/super-admin/page.tsx
+500:6  Warning: React Hook useEffect has a missing dependency: 'fetchOrganizations'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/attendance/enhanced-page.tsx
+121:6  Warning: React Hook useEffect has a missing dependency: 'loadAttendanceData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/chat/page.tsx
+178:6  Warning: React Hook useEffect has missing dependencies: 'fetchLeadsAndUsers' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+234:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/leads/[id]/page.tsx
+271:8  Warning: React Hook useCallback has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/page.tsx
+199:6  Warning: React Hook useCallback has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/properties/page.tsx
+54:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/DailyLateReport.tsx
+27:6  Warning: React Hook useEffect has a missing dependency: 'fetchLateComers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin/disbursement-modal.tsx
+70:8  Warning: React Hook useEffect has missing dependencies: 'handleSearch', 'searchLoading', and 'showForm'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin-attendance-adjustment.tsx
+79:6  Warning: React Hook useEffect has a missing dependency: 'loadUsers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+85:6  Warning: React Hook useEffect has a missing dependency: 'loadAttendanceRecords'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance/face-auth-modal.tsx
+60:6  Warning: React Hook useEffect has a missing dependency: 'startCamera'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+221:6  Warning: React Hook useEffect has missing dependencies: 'completeAttendanceTransaction', 'detectFaceInVideo', and 'matchFace'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+485:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance/face-registration-modal.tsx
+157:6  Warning: React Hook useEffect has a missing dependency: 'detectFaceInVideo'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+191:6  Warning: React Hook useEffect has a missing dependency: 'saveFaceRegistration'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+423:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance-analytics.tsx
+72:6  Warning: React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+674:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance-audit-trail.tsx
+36:6  Warning: React Hook useEffect has a missing dependency: 'loadAuditTrail'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance-notifications.tsx
+65:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance-widget.tsx
+158:6  Warning: React Hook useEffect has missing dependencies: 'checkOut' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+531:205  Warning: React Hook useMemo has missing dependencies: 'lateThresholdHour' and 'lateThresholdMinute'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/clock-in-toggle.tsx
+19:8  Warning: React Hook useEffect has a missing dependency: 'fetchStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/device/camera-capture.tsx
+27:6  Warning: React Hook useEffect has a missing dependency: 'startCamera'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+95:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/enhanced-call-history.tsx
+54:6  Warning: React Hook useEffect has a missing dependency: 'initializeComponent'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/follow-ups-list.tsx
+30:6  Warning: React Hook useEffect has a missing dependency: 'fetchFollowUps'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/invoice/hanva-tax-invoice.tsx
+74:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+371:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/kyc-team/KycLeadsTable.tsx
+72:6  Warning: React Hook useEffect has a missing dependency: 'fetchLeads'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-notes.tsx
+38:6  Warning: React Hook useEffect has a missing dependency: 'fetchNotes'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-site-visits.tsx
+32:8  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-status-updater.tsx
+173:6  Warning: React Hook useEffect has a missing dependency: 'handleReset'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+188:6  Warning: React Hook useEffect has missing dependencies: 'elapsedTime' and 'status'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/leave-management.tsx
+55:6  Warning: React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/mobile-attendance.tsx
+323:33  Warning: The ref value 'videoRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'videoRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+486:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+599:17  Warning: Image elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./components/notification-bell.tsx
+43:6  Warning: React Hook useEffect has a missing dependency: 'supabase.auth'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/notification-center.tsx
+44:6  Warning: React Hook useEffect has a missing dependency: 'supabase.auth'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+78:6  Warning: React Hook useEffect has missing dependencies: 'fetchNotifications', 'fetchUnreadCount', and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/notification-provider.tsx
+75:6  Warning: React Hook useEffect has missing dependencies: 'requestPermissionAndSubscribe' and 'subscribeToPush'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/property-matcher.tsx
+16:6  Warning: React Hook useEffect has a missing dependency: 'fetchMatches'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/push-subscriber.tsx
+61:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/pwa/splash-screen.tsx
+105:24  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/schedule-follow-up-modal.tsx
+140:6  Warning: React Hook useEffect has missing dependencies: 'date' and 'fetchLeads'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+156:6  Warning: React Hook useEffect has a missing dependency: 'checkConflicts'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+160:6  Warning: React Hook useEffect has a missing dependency: 'checkExistingFollowUp'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/smart-matches.tsx
+21:8  Warning: React Hook useEffect has a missing dependency: 'fetchMatches'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+68:33  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/telecaller/GeofenceAccessGuard.tsx
+149:6  Warning: React Hook useEffect has a missing dependency: 'verifyAccess'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/GlobalAutoDialer.tsx
+70:8  Warning: React Hook useEffect has a missing dependency: 'handleDatabaseStatusChange'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/LiveLeaderboard.tsx
+96:8  Warning: React Hook useEffect has a missing dependency: 'org?.id'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/daily-welcome-modal.tsx
+71:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller-ticker.tsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules

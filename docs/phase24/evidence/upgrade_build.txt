@@ -1,0 +1,460 @@
+
+> hanva-crm@0.1.0 build /Users/apple/Downloads/CRM-reconciled
+> next build
+
+   ▲ Next.js 15.5.29
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 12.7s
+
+./node_modules/.pnpm/@vladmandic+face-api@1.7.15/node_modules/@vladmandic/face-api/dist/face-api.esm.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/.pnpm/@vladmandic+face-api@1.7.15/node_modules/@vladmandic/face-api/dist/face-api.esm.js
+./hooks/use-face-auth.ts
+./app/admin/attendance/kiosk/page.tsx
+
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (106kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (253kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ⚠ Compiled with warnings in 6.2s
+
+./node_modules/.pnpm/@vladmandic+face-api@1.7.15/node_modules/@vladmandic/face-api/dist/face-api.esm.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/.pnpm/@vladmandic+face-api@1.7.15/node_modules/@vladmandic/face-api/dist/face-api.esm.js
+./hooks/use-face-auth.ts
+./app/admin/attendance/kiosk/page.tsx
+
+ ✓ Compiled successfully in 19.6s
+   Linting and checking validity of types ...
+
+./app/(dashboard)/ai-calling/page.tsx
+84:6  Warning: React Hook useEffect has a missing dependency: 'fetchLeads'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/attendance/dashboard.tsx
+688:6  Warning: React Hook useMemo has a missing dependency: 'determineStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+708:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+743:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+760:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+1681:31  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+1708:31  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/attendance/kiosk/page.tsx
+98:6  Warning: React Hook useEffect has missing dependencies: 'ambientFlashMode', 'checkoutWaitHours', 'kioskLogo', 'kioskName', 'kioskTheme', and 'kioskVoice'. Either include them or remove the dependency array. You can also replace multiple useState variables with useReducer if 'setSettingsName' needs the current value of 'kioskName'.  react-hooks/exhaustive-deps
+166:6  Warning: React Hook useEffect has missing dependencies: 'checkOfflineQueue', 'loadBroadcasts', 'loadEmployees', 'loadLogsToday', 'stopCamera', and 'triggerBackgroundSync'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1121:6  Warning: React Hook useEffect has missing dependencies: 'detectFaceInVideo', 'handleAttendanceTransaction', 'matchFace', and 'speakKioskMessage'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1177:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/documents/page.tsx
+48:36  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/integrations/page.tsx
+39:6  Warning: React Hook useEffect has a missing dependency: 'loadWebhookUrl'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/ivr-upload/page.tsx
+379:6  Warning: React Hook useEffect has a missing dependency: 'fetchInitialData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+454:6  Warning: React Hook useEffect has missing dependencies: 'fetchHistory' and 'getEffectiveStatus'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+899:6  Warning: React Hook useMemo has a missing dependency: 'getEffectiveStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+916:6  Warning: React Hook useMemo has a missing dependency: 'getEffectiveStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/leads/[id]/page.tsx
+198:6  Warning: React Hook useEffect has a missing dependency: 'fetchTimelineData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/logins/page.tsx
+1339:11  Warning: The 'today' object construction makes the dependencies of useMemo Hook (at line 1379) change on every render. To fix this, wrap the initialization of 'today' in its own useMemo() Hook.  react-hooks/exhaustive-deps
+
+./app/admin/operations/page.tsx
+47:6  Warning: React Hook useEffect has a missing dependency: 'fetchDashboardData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/properties/page.tsx
+61:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/team/page.tsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'fetchTeam'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/upload/page.tsx
+138:6  Warning: React Hook useEffect has missing dependencies: 'checkActiveTelecallersCount', 'fetchTelecallers', and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/whatsapp/page.tsx
+191:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+330:6  Warning: React Hook useEffect has missing dependencies: 'fetchLeadsAndUsers' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+412:6  Warning: React Hook useEffect has missing dependencies: 'selectedLead' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/mobile/attendance/page.tsx
+56:4  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/super-admin/page.tsx
+500:6  Warning: React Hook useEffect has a missing dependency: 'fetchOrganizations'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/attendance/enhanced-page.tsx
+121:6  Warning: React Hook useEffect has a missing dependency: 'loadAttendanceData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/chat/page.tsx
+178:6  Warning: React Hook useEffect has missing dependencies: 'fetchLeadsAndUsers' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+234:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/leads/[id]/page.tsx
+271:8  Warning: React Hook useCallback has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/page.tsx
+199:6  Warning: React Hook useCallback has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/properties/page.tsx
+54:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/DailyLateReport.tsx
+27:6  Warning: React Hook useEffect has a missing dependency: 'fetchLateComers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin/disbursement-modal.tsx
+70:8  Warning: React Hook useEffect has missing dependencies: 'handleSearch', 'searchLoading', and 'showForm'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin-attendance-adjustment.tsx
+79:6  Warning: React Hook useEffect has a missing dependency: 'loadUsers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+85:6  Warning: React Hook useEffect has a missing dependency: 'loadAttendanceRecords'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance/face-auth-modal.tsx
+60:6  Warning: React Hook useEffect has a missing dependency: 'startCamera'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+221:6  Warning: React Hook useEffect has missing dependencies: 'completeAttendanceTransaction', 'detectFaceInVideo', and 'matchFace'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+485:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance/face-registration-modal.tsx
+157:6  Warning: React Hook useEffect has a missing dependency: 'detectFaceInVideo'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+191:6  Warning: React Hook useEffect has a missing dependency: 'saveFaceRegistration'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+423:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance-analytics.tsx
+72:6  Warning: React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+674:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance-audit-trail.tsx
+36:6  Warning: React Hook useEffect has a missing dependency: 'loadAuditTrail'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance-notifications.tsx
+65:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance-widget.tsx
+158:6  Warning: React Hook useEffect has missing dependencies: 'checkOut' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+531:205  Warning: React Hook useMemo has missing dependencies: 'lateThresholdHour' and 'lateThresholdMinute'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/clock-in-toggle.tsx
+19:8  Warning: React Hook useEffect has a missing dependency: 'fetchStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/device/camera-capture.tsx
+27:6  Warning: React Hook useEffect has a missing dependency: 'startCamera'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+95:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/enhanced-call-history.tsx
+54:6  Warning: React Hook useEffect has a missing dependency: 'initializeComponent'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/follow-ups-list.tsx
+30:6  Warning: React Hook useEffect has a missing dependency: 'fetchFollowUps'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/invoice/hanva-tax-invoice.tsx
+74:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+371:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/kyc-team/KycLeadsTable.tsx
+72:6  Warning: React Hook useEffect has a missing dependency: 'fetchLeads'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-notes.tsx
+38:6  Warning: React Hook useEffect has a missing dependency: 'fetchNotes'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-site-visits.tsx
+32:8  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-status-updater.tsx
+173:6  Warning: React Hook useEffect has a missing dependency: 'handleReset'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+188:6  Warning: React Hook useEffect has missing dependencies: 'elapsedTime' and 'status'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/leave-management.tsx
+55:6  Warning: React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/mobile-attendance.tsx
+323:33  Warning: The ref value 'videoRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'videoRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+486:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+599:17  Warning: Image elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./components/notification-bell.tsx
+43:6  Warning: React Hook useEffect has a missing dependency: 'supabase.auth'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/notification-center.tsx
+44:6  Warning: React Hook useEffect has a missing dependency: 'supabase.auth'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+78:6  Warning: React Hook useEffect has missing dependencies: 'fetchNotifications', 'fetchUnreadCount', and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/notification-provider.tsx
+75:6  Warning: React Hook useEffect has missing dependencies: 'requestPermissionAndSubscribe' and 'subscribeToPush'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/property-matcher.tsx
+16:6  Warning: React Hook useEffect has a missing dependency: 'fetchMatches'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/push-subscriber.tsx
+61:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/pwa/splash-screen.tsx
+105:24  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/schedule-follow-up-modal.tsx
+140:6  Warning: React Hook useEffect has missing dependencies: 'date' and 'fetchLeads'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+156:6  Warning: React Hook useEffect has a missing dependency: 'checkConflicts'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+160:6  Warning: React Hook useEffect has a missing dependency: 'checkExistingFollowUp'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/smart-matches.tsx
+21:8  Warning: React Hook useEffect has a missing dependency: 'fetchMatches'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+68:33  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/telecaller/GeofenceAccessGuard.tsx
+149:6  Warning: React Hook useEffect has a missing dependency: 'verifyAccess'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/GlobalAutoDialer.tsx
+70:8  Warning: React Hook useEffect has a missing dependency: 'handleDatabaseStatusChange'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/LiveLeaderboard.tsx
+96:8  Warning: React Hook useEffect has a missing dependency: 'org?.id'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/daily-welcome-modal.tsx
+71:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller-ticker.tsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/40) ...
+   Generating static pages (10/40) 
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+   Generating static pages (20/40) 
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+   Generating static pages (30/40) 
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+Error fetching global tenant data: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are not configured.
+    at f (.next/server/app/api/admin/init-meili/route.js:1:8553)
+    at p (.next/server/chunks/1908.js:29:5525)
+    at s (.next/server/chunks/1908.js:29:7037)
+    at stringify (<anonymous>)
+ ✓ Generating static pages (40/40)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    1.43 kB         170 kB
+├ ○ /_not-found                            279 B         103 kB
+├ ƒ /admin                               7.63 kB         121 kB
+├ ƒ /admin/attendance                    20.8 kB         375 kB
+├ ƒ /admin/attendance/analytics          1.66 kB         111 kB
+├ ƒ /admin/attendance/kiosk              14.2 kB         236 kB
+├ ƒ /admin/c2c-reports                   8.47 kB         322 kB
+├ ƒ /admin/calls                           15 kB         341 kB
+├ ƒ /admin/chat                          7.97 kB         203 kB
+├ ƒ /admin/deals                           172 B         244 kB
+├ ƒ /admin/dialer-assignment             11.2 kB         214 kB
+├ ƒ /admin/disbursement-report           17.4 kB         350 kB
+├ ƒ /admin/documents                      6.3 kB         193 kB
+├ ƒ /admin/inbox                          7.1 kB         254 kB
+├ ƒ /admin/integrations                   5.8 kB         127 kB
+├ ƒ /admin/integrations/portals            279 B         103 kB
+├ ƒ /admin/invoices/[id]                 2.57 kB         120 kB
+├ ƒ /admin/ivr-reports                   9.44 kB         345 kB
+├ ƒ /admin/ivr-upload                      31 kB         265 kB
+├ ƒ /admin/kyc                           3.94 kB         240 kB
+├ ƒ /admin/lead/new                       5.4 kB         218 kB
+├ ƒ /admin/leaderboard                   2.62 kB         129 kB
+├ ƒ /admin/leads                         19.8 kB         450 kB
+├ ƒ /admin/leads/[id]                    21.8 kB         450 kB
+├ ƒ /admin/leads/new                     5.22 kB         221 kB
+├ ƒ /admin/leave-management              11.5 kB         237 kB
+├ ƒ /admin/logins                        23.5 kB         360 kB
+├ ƒ /admin/master-data                   10.8 kB         160 kB
+├ ƒ /admin/notifications                 5.78 kB         209 kB
+├ ƒ /admin/operations                    13.1 kB         191 kB
+├ ƒ /admin/properties                     4.8 kB         114 kB
+├ ƒ /admin/reports                       26.5 kB         473 kB
+├ ƒ /admin/reports/attendance            6.72 kB         210 kB
+├ ƒ /admin/roster                        6.93 kB         130 kB
+├ ƒ /admin/settings                      11.4 kB         224 kB
+├ ƒ /admin/site-visits                   3.24 kB         113 kB
+├ ƒ /admin/team                          8.98 kB         226 kB
+├ ƒ /admin/upload                        16.6 kB         241 kB
+├ ƒ /admin/users                         15.9 kB         234 kB
+├ ƒ /admin/users/[id]/edit                 600 B         218 kB
+├ ƒ /admin/users/new                       190 B         214 kB
+├ ƒ /admin/wallboard                       279 B         103 kB
+├ ƒ /admin/whatsapp                      18.6 kB         396 kB
+├ ○ /ai-calling                          7.35 kB         210 kB
+├ ƒ /api/admin/ai-call                     279 B         103 kB
+├ ƒ /api/admin/broadcast                   279 B         103 kB
+├ ƒ /api/admin/campaign-health-watchdog    279 B         103 kB
+├ ƒ /api/admin/delete-file                 279 B         103 kB
+├ ƒ /api/admin/fix-checkout                279 B         103 kB
+├ ƒ /api/admin/fix-ivr-logs                279 B         103 kB
+├ ƒ /api/admin/holidays                    279 B         103 kB
+├ ƒ /api/admin/init-meili                  279 B         103 kB
+├ ƒ /api/admin/leads/bulk-assign           279 B         103 kB
+├ ƒ /api/admin/leads/export                279 B         103 kB
+├ ƒ /api/admin/master-data/entry           279 B         103 kB
+├ ƒ /api/admin/master-data/stats           279 B         103 kB
+├ ƒ /api/admin/operations/snapshot         279 B         103 kB
+├ ƒ /api/admin/reports/calls               279 B         103 kB
+├ ƒ /api/admin/upload-companies            279 B         103 kB
+├ ƒ /api/admin/users                       279 B         103 kB
+├ ƒ /api/admin/users/[id]                  279 B         103 kB
+├ ƒ /api/assistant                         279 B         103 kB
+├ ƒ /api/click-to-call                     279 B         103 kB
+├ ƒ /api/companies/search                  279 B         103 kB
+├ ƒ /api/cron/auto-checkout                279 B         103 kB
+├ ƒ /api/cron/auto-refill                  279 B         103 kB
+├ ƒ /api/cron/campaign-health-watchdog     279 B         103 kB
+├ ƒ /api/cron/daily-report                 279 B         103 kB
+├ ƒ /api/cron/kyc                          279 B         103 kB
+├ ƒ /api/cron/ozonetel-campaign-sync       279 B         103 kB
+├ ƒ /api/cron/process-webhooks             279 B         103 kB
+├ ƒ /api/cron/sla                          279 B         103 kB
+├ ƒ /api/cron/smart-notifications          279 B         103 kB
+├ ƒ /api/debug/daily-report                279 B         103 kB
+├ ƒ /api/kyc-members                       279 B         103 kB
+├ ƒ /api/mobile/login                      279 B         103 kB
+├ ƒ /api/notifications/send                279 B         103 kB
+├ ƒ /api/notifications/subscribe           279 B         103 kB
+├ ƒ /api/notifications/unsubscribe         279 B         103 kB
+├ ƒ /api/payments/razorpay/webhook         279 B         103 kB
+├ ƒ /api/telecaller/sim-calls              279 B         103 kB
+├ ƒ /api/transfer-lead                     279 B         103 kB
+├ ƒ /api/webhooks/ai-obd                   279 B         103 kB
+├ ƒ /api/webhooks/c2c                      279 B         103 kB
+├ ƒ /api/webhooks/cloudconnect             279 B         103 kB
+├ ƒ /api/webhooks/fonada                   279 B         103 kB
+├ ƒ /api/webhooks/fonada/worker            279 B         103 kB
+├ ƒ /api/webhooks/inbound-routing          279 B         103 kB
+├ ƒ /api/webhooks/incoming-leads           279 B         103 kB
+├ ƒ /api/webhooks/ivr                      279 B         103 kB
+├ ƒ /api/webhooks/ozonetel/callback        279 B         103 kB
+├ ƒ /api/webhooks/ozonetel/ivr             279 B         103 kB
+├ ƒ /api/webhooks/ozonetel/sticky          279 B         103 kB
+├ ƒ /api/webhooks/portals                  279 B         103 kB
+├ ƒ /api/webhooks/trigger-push             279 B         103 kB
+├ ƒ /api/webhooks/unicorn-call-outcomes    279 B         103 kB
+├ ƒ /api/webhooks/whatsapp                 279 B         103 kB
+├ ƒ /auth/callback                         279 B         103 kB
+├ ○ /auth/login                          14.2 kB         195 kB
+├ ○ /auth/signup                         4.77 kB         211 kB
+├ ○ /auth/update-password                4.91 kB         184 kB
+├ ○ /debug                               5.41 kB         246 kB
+├ ○ /debug/error-130                     5.61 kB         115 kB
+├ ○ /debug/follow-ups-test               5.38 kB         245 kB
+├ ƒ /kyc-team                              170 B         106 kB
+├ ƒ /kyc-team/[id]                       11.6 kB         217 kB
+├ ƒ /kyc-team/leads                      6.84 kB         219 kB
+├ ƒ /kyc-team/leads/[id]                 11.5 kB         217 kB
+├ ƒ /kyc-upload/[token]                  2.46 kB         105 kB
+├ ○ /mobile/attendance                   14.4 kB         218 kB
+├ ○ /offline                               279 B         103 kB
+├ ƒ /pay/[tenantId]                      8.73 kB         128 kB
+├ ○ /pwa-demo                            17.9 kB         137 kB
+├ ○ /super-admin                           19 kB         403 kB
+├ ○ /super-admin/analytics               4.42 kB         241 kB
+├ ○ /super-admin/did-registry            7.91 kB         225 kB
+├ ƒ /telecaller                          27.4 kB         371 kB
+├ ƒ /telecaller/attendance               15.2 kB         232 kB
+├ ƒ /telecaller/calls                    5.74 kB         115 kB
+├ ƒ /telecaller/chat                     5.79 kB         185 kB
+├ ƒ /telecaller/deals                      172 B         244 kB
+├ ƒ /telecaller/documents                5.25 kB         181 kB
+├ ƒ /telecaller/follow-ups               3.71 kB         243 kB
+├ ƒ /telecaller/global-search            8.74 kB         141 kB
+├ ƒ /telecaller/leads                    13.6 kB         438 kB
+├ ƒ /telecaller/leads/[id]               13.9 kB         435 kB
+├ ƒ /telecaller/leave                    9.77 kB         231 kB
+├ ƒ /telecaller/logins                   12.2 kB         200 kB
+├ ƒ /telecaller/notes                    5.73 kB         232 kB
+├ ƒ /telecaller/properties               3.15 kB         113 kB
+├ ƒ /telecaller/reports                  7.96 kB         291 kB
+├ ƒ /telecaller/site-visits              2.74 kB         112 kB
+├ ƒ /telecaller/tasks                    4.19 kB         125 kB
+└ ○ /visual-demo                         14.8 kB         270 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/4122-3b65c844e16271d7.js      46.1 kB
+  ├ chunks/520ab65b-9b47a357ee1a239a.js  54.2 kB
+  └ other shared chunks (total)          2.42 kB
+
+
+ƒ Middleware                             90.2 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+real 37.29
+user 75.39
+sys 7.29

@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.hanva.in";
+  const RELEASE_DATE_PHASE25 = new Date("2026-11-27T00:00:00.000Z");
   const RELEASE_DATE_PHASE21 = new Date("2026-11-26T00:00:00.000Z");
   const RELEASE_DATE_PHASE14 = new Date("2026-11-26T00:00:00.000Z");
   const RELEASE_DATE_PHASE12 = new Date("2026-11-26T00:00:00.000Z");
@@ -59,8 +60,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/solutions/customer-support/",
     "/solutions/enterprise/",
 
-    // 7. Industry Verticals (9)
+    // 7. Industry Verticals (12)
     "/industry/",
+    "/industry/salons-and-spas/",
+    "/industry/restaurants-and-cafes/",
+    "/industry/telecalling-and-bpo/",
     "/industry/real-estate/",
     "/industry/healthcare/",
     "/industry/education/",
@@ -84,8 +88,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/compare/knowlarity-alternative/",
     "/compare/telecmi-alternative/",
 
-    // 9. Knowledge Hub & Topical Resource Guides (22)
+    // 9. Knowledge Hub & Topical Resource Guides (27)
     "/resources/",
+    "/resources/crm-implementation-checklist/",
+    "/resources/salon-software-setup-checklist/",
+    "/resources/restaurant-pos-implementation-checklist/",
+    "/resources/crm-vs-spreadsheets-lead-management/",
+    "/resources/cloud-telephony-vs-traditional-pbx/",
     "/resources/salon-management-software-guide/",
     "/resources/salon-billing-software-guide/",
     "/resources/salon-appointment-management-guide/",
@@ -152,6 +161,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     let lastModified = RELEASE_DATE_PHASE12;
     if (
+      route === "/industry/salons-and-spas/" ||
+      route === "/industry/restaurants-and-cafes/" ||
+      route === "/industry/telecalling-and-bpo/" ||
+      route === "/resources/crm-implementation-checklist/" ||
+      route === "/resources/salon-software-setup-checklist/" ||
+      route === "/resources/restaurant-pos-implementation-checklist/" ||
+      route === "/resources/crm-vs-spreadsheets-lead-management/" ||
+      route === "/resources/cloud-telephony-vs-traditional-pbx/" ||
+      route === "/" ||
+      route === "/products/crm/" ||
+      route === "/products/salon-software/" ||
+      route === "/products/restaurant-pos/" ||
+      route === "/digital-marketing/" ||
+      route === "/software-development/"
+    ) {
+      lastModified = RELEASE_DATE_PHASE25;
+    } else if (
       route === "/resources/ivr-crm-for-businesses/" ||
       route === "/resources/lead-management-process-guide/" ||
       route === "/resources/salon-billing-software-guide/" ||

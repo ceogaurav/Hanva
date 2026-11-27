@@ -1,0 +1,21 @@
+ app/digital-marketing/page.tsx                     |  29 +++++-
+ .../performance-marketing/page.tsx                 |  12 +++
+ app/digital-marketing/seo-services/page.tsx        |  12 +++
+ app/page.tsx                                       |   2 +-
+ app/products/crm/page.tsx                          |  30 ++++++
+ app/products/page.tsx                              |   2 +-
+ app/products/restaurant-pos/page.tsx               |  28 +++++-
+ app/products/salon-software/page.tsx               |  28 +++++-
+ .../auto-dialer-vs-predictive-dialer/page.tsx      |   3 +
+ .../cloud-telephony-pricing-guide/page.tsx         |   3 +
+ app/resources/how-ivr-systems-work/page.tsx        |   3 +
+ app/resources/page.tsx                             | 104 ++++++++++++++++++++-
+ app/resources/telecalling-crm-guide/page.tsx       |   3 +
+ app/resources/what-is-cloud-telephony/page.tsx     |   3 +
+ app/resources/whatsapp-business-api-guide/page.tsx |   3 +
+ app/sitemap.ts                                     |  28 +++++-
+ .../custom-crm-development/page.tsx                |  17 ++++
+ app/software-development/page.tsx                  |  36 ++++++-
+ components/shared/article-layout.tsx               |  14 ++-
+ components/shared/service-layout.tsx               |  19 ++++
+ 20 files changed, 367 insertions(+), 12 deletions(-)

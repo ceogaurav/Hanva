@@ -1,0 +1,15 @@
+✅ PASS [T-DB-1] Tenant A telecaller cannot read Tenant B leads: rows=aaaa1111-0000-4000-8000-000000000001
+✅ PASS [T-DB-2] Tenant A telecaller cannot mutate Tenant B lead: updated=0
+✅ PASS [T-DB-3] Tenant A admin user list excludes Tenant B users: count=3
+✅ PASS [T-DB-4] Telecaller self role-escalation blocked by RLS WITH CHECK: blocked=true
+✅ PASS [T-DB-5] Non-super-admin blocked from hijacking tenant_did_registry: blocked=true
+✅ PASS [T-DB-6] Wallets visible only to own tenant admins (zero telecaller/cross-tenant visibility): adminA=1, empA=0
+✅ PASS [T-DB-7] handle_new_user ignores user_metadata.role privilege escalation: assigned_role=telecaller
+✅ PASS [T-DB-8] get_next_auto_dial_lead enforces tenant & caller lock: leadTenant=11111111-1111-4111-8111-111111111111, foreignCallBlocked=true
+✅ PASS [T-DB-9] get_telecaller_lead_counts rejects cross-tenant inspection: blocked=true
+✅ PASS [T-DB-10] bulk_assign_leads rejects cross-tenant lead array: blocked=true
+✅ PASS [T-DB-11] wallet_ledger unique constraint blocks duplicate Razorpay recharge: duplicateBlocked=true
+✅ PASS [T-DB-13] Attendance rows isolated strictly by tenant even for admin role: rows=1
+✅ PASS [T-DB-12] security_audit_logs admin read + rollback_23_2.sql reversible execution pass: rollback executed cleanly
+
+SUMMARY: 13/13 PostgreSQL checks passed.

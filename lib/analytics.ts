@@ -82,7 +82,20 @@ export type AnalyticsEventName =
   | "phone_click"
   | "demo_cta_click"
   | "pricing_calculator_start"
-  | "pricing_calculator_complete";
+  | "pricing_calculator_complete"
+  // Phase 26 & 27 Standardized Event Taxonomy
+  | "product_page_view"
+  | "product_demo_view"
+  | "product_demo_interaction"
+  | "product_interest"
+  | "qualification_completed"
+  | "contact_form_submit"
+  | "enquiry_handoff"
+  | "enquiry_received"
+  | "lead_qualified"
+  | "demo_scheduled"
+  | "demo_completed"
+  | "sale_won";
 
 // Legacy event names from Phase 11 retained solely as alias input mapping into Phase 19 taxonomy
 export type LegacyConversionEventName =
@@ -693,4 +706,75 @@ export function trackConversionEvent(
     return trackAnalyticsEvent("demo_cta_click", params);
   }
   return trackAnalyticsEvent(event, params);
+}
+
+/**
+ * Phase 26 & 27 Standardized Event Trackers
+ * Non-PII, consent-aware, strictly separating clicks, handoffs, qualification, and conversions.
+ */
+export function trackProductDemoView(productName: string, demoModule?: string): AnalyticsEventRecord | null {
+  return trackAnalyticsEvent("product_demo_view", {
+    product_name: productName,
+    demo_module: demoModule || "overview",
+  });
+}
+
+export function trackProductDemoInteraction(
+  productName: string,
+  stepOrTab: string,
+  interactionType: string = "tab_click"
+): AnalyticsEventRecord | null {
+  return trackAnalyticsEvent("product_demo_interaction", {
+    product_name: productName,
+    demo_step: stepOrTab,
+    interaction_type: interactionType,
+  });
+}
+
+export function trackProductInterest(
+  productName: string,
+  contextSource?: string
+): AnalyticsEventRecord | null {
+  return trackAnalyticsEvent("product_interest", {
+    product_name: productName,
+    context_source: contextSource || "qualifier_selector",
+  });
+}
+
+export function trackQualificationCompleted(
+  productName: string,
+  qualificationData?: Record<string, AnalyticsParamValue>
+): AnalyticsEventRecord | null {
+  return trackAnalyticsEvent("qualification_completed", {
+    product_name: productName,
+    ...(qualificationData || {}),
+  });
+}
+
+export function trackEnquiryHandoff(
+  productName: string,
+  destination: "whatsapp" | "form" = "whatsapp"
+): AnalyticsEventRecord | null {
+  return trackAnalyticsEvent("enquiry_handoff", {
+    product_name: productName,
+    destination,
+  });
+}
+
+/**
+ * Strict Qualification Event:
+ * Only recorded when a genuine qualification process (by sales desk or verified backend assessment)
+ * confirms qualified status. Must NEVER be triggered on client-side button clicks, product tabs, or link handoffs.
+ */
+export function trackLeadQualified(
+  productName: string,
+  qualificationSource: "sales_desk_verified" | "automated_criteria_met" = "sales_desk_verified",
+  qualificationNotes?: string
+): AnalyticsEventRecord | null {
+  return trackAnalyticsEvent("lead_qualified", {
+    product_name: productName,
+    qualification_source: qualificationSource,
+    qualification_status: "verified",
+    ...(qualificationNotes ? { qualification_category: qualificationNotes } : {}),
+  });
 }

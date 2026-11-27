@@ -1,0 +1,35 @@
+4dd3467 chore(phase-24): upgrade Next.js 15.5.29 + React 19.3.1, eliminate all 28 audit advisories, migrate async params/cookies/dynamic
+122466d docs(env): track placeholder-only .env.example template
+4ee83f0 security(phase-23.2): purge hardcoded secrets, harden all 53 API routes, add RLS & idempotency migrations, fix TS/ESLint/build
+6cebadb chore(reconcile): merge seobanks/CRM bec603f9 and local Nov 25 working tree onto security/phase-23-2-reconciled
+bec603f fix(reports): route telecaller performance and chart calls through cached admin API endpoint to eliminate client RLS timeout 500 errors
+2316c49 fix(reports): resolve telecaller call metrics showing 0, eliminate statement timeouts, and stop unassigned IVR blast log flood
+bd8958a fix(webhooks): pass correct arguments to channel.httpSend
+1e52566 fix(webhooks): eliminate 406 errors with call_logs upsert, fix Realtime channel memory leak and client allocation
+commit 4dd346777b9212293fb0f1a8972116b2078971ad
+Author: Gaurav Rajpoot <apple@192.168.1.19>
+Date:   Fri Nov 27 10:55:34 2026 +0530
+
+    chore(phase-24): upgrade Next.js 15.5.29 + React 19.3.1, eliminate all 28 audit advisories, migrate async params/cookies/dynamic
+
+ app/admin/attendance/analytics/page.tsx |    2 +
+ app/admin/calls/page.tsx                |    7 +-
+ app/admin/inbox/page.tsx                |    3 +-
+ app/admin/leads/[id]/page.tsx           |    9 +-
+ app/admin/leads/page.tsx                |    3 +-
+ app/admin/reports/page.tsx              |    7 +-
+ app/admin/users/[id]/edit/page.tsx      |    5 +-
+ app/api/admin/users/[id]/route.ts       |    4 +-
+ app/kyc-team/[id]/page.tsx              |    6 +-
+ app/kyc-team/leads/[id]/page.tsx        |    6 +-
+ app/kyc-upload/[token]/page.tsx         |    6 +-
+ app/pay/[tenantId]/page.tsx             |    9 +-
+ app/telecaller/calls/page.tsx           |    7 +-
+ app/telecaller/leads/[id]/page.tsx      |    6 +-
+ app/telecaller/leads/page.tsx           |    7 +-
+ components/timeline-view.tsx            |    3 +-
+ lib/supabase/server-action.ts           |    2 +-
+ next.config.mjs                         |    3 +-
+ package.json                            |   21 +-
+ pnpm-lock.yaml                          | 1899 ++++++++++++++++++-------------
+ 20 files changed, 1179 insertions(+), 836 deletions(-)

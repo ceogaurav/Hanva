@@ -1,0 +1,180 @@
+{
+  "api_tests": [
+    {
+      "name": "valid_crm_india",
+      "ok": true,
+      "detail": "status=201, queue=saas_crm_demo"
+    },
+    {
+      "name": "valid_salon_india",
+      "ok": true,
+      "detail": "status=201, queue=saas_salon_demo"
+    },
+    {
+      "name": "valid_pos_india",
+      "ok": true,
+      "detail": "status=201, queue=saas_pos_demo"
+    },
+    {
+      "name": "valid_digital_marketing_service",
+      "ok": true,
+      "detail": "status=201, queue=digital_marketing_desk"
+    },
+    {
+      "name": "valid_software_dev_service",
+      "ok": true,
+      "detail": "status=201, queue=custom_engineering_desk"
+    },
+    {
+      "name": "valid_telecom_service",
+      "ok": true,
+      "detail": "status=201, queue=cloud_telephony_desk"
+    },
+    {
+      "name": "valid_intl_uk_whatsapp_only",
+      "ok": true,
+      "detail": "status=201, queue=saas_crm_demo"
+    },
+    {
+      "name": "valid_intl_us",
+      "ok": true,
+      "detail": "status=201, queue=saas_pos_demo"
+    },
+    {
+      "name": "valid_cross_product_same_phone",
+      "ok": true,
+      "detail": "status=201, queue=saas_pos_demo"
+    },
+    {
+      "name": "idempotent_retry_replay",
+      "ok": true,
+      "detail": "status=200, replay_status=duplicate_replay"
+    },
+    {
+      "name": "idempotency_key_conflict",
+      "ok": true,
+      "detail": "status=409, error=IDEMPOTENCY_KEY_CONFLICT"
+    },
+    {
+      "name": "duplicate_fingerprint_cooldown",
+      "ok": true,
+      "detail": "status=409, error=DUPLICATE_SUBMISSION"
+    }
+  ],
+  "security_tests": [
+    {
+      "name": "method_get_405",
+      "ok": true,
+      "detail": "status=405"
+    },
+    {
+      "name": "reject_privileged_tenant_id",
+      "ok": true,
+      "detail": "status=400"
+    },
+    {
+      "name": "reject_privileged_assigned_to",
+      "ok": true,
+      "detail": "status=400"
+    },
+    {
+      "name": "reject_privileged_status",
+      "ok": true,
+      "detail": "status=400"
+    },
+    {
+      "name": "reject_foreign_origin",
+      "ok": true,
+      "detail": "status=403"
+    },
+    {
+      "name": "reject_xss_script",
+      "ok": true,
+      "detail": "status=400"
+    },
+    {
+      "name": "reject_honeypot_spam",
+      "ok": true,
+      "detail": "status=400"
+    },
+    {
+      "name": "reject_missing_consent",
+      "ok": true,
+      "detail": "status=400"
+    },
+    {
+      "name": "reject_bad_phone_0",
+      "ok": true,
+      "detail": "phone=12345, status=400"
+    },
+    {
+      "name": "reject_bad_phone_1",
+      "ok": true,
+      "detail": "phone=0000000000, status=400"
+    },
+    {
+      "name": "reject_bad_phone_2",
+      "ok": true,
+      "detail": "phone=+911234567890, status=400"
+    },
+    {
+      "name": "reject_bad_phone_3",
+      "ok": true,
+      "detail": "phone=not-a-phone, status=400"
+    },
+    {
+      "name": "reject_malformed_json",
+      "ok": true,
+      "detail": "status=400"
+    },
+    {
+      "name": "reject_non_json_content_type",
+      "ok": true,
+      "detail": "status=415"
+    },
+    {
+      "name": "reject_oversized_16kb",
+      "ok": true,
+      "detail": "status=413"
+    },
+    {
+      "name": "rate_limit_429_enforced",
+      "ok": true,
+      "detail": "hit_429=True, retry_after=60"
+    }
+  ],
+  "fail_closed_tests": [
+    {
+      "name": "fail_closed_disabled",
+      "ok": true,
+      "detail": "status=503, error_code=CRM_INTEGRATION_BLOCKED"
+    },
+    {
+      "name": "fail_closed_live_unapproved",
+      "ok": true,
+      "detail": "status=503, error_code=CRM_INTEGRATION_BLOCKED"
+    }
+  ],
+  "regression_tests": {
+    "robots_ok": true,
+    "sitemap_count": 79,
+    "api_excluded_from_sitemap": true,
+    "contact_page_intact": true,
+    "route_failures": []
+  },
+  "bundle_scan": {
+    "files_scanned": 18,
+    "leaks_found": 0,
+    "leaks": []
+  },
+  "log_pii_audit": {
+    "log_file": "task-6935.log",
+    "gateway_log_lines": 26,
+    "plaintext_pii_hits": 0,
+    "sample_redacted_line": "{\"timestamp\":\"2026-11-26T14:21:36.943Z\",\"service\":\"hanva-web-lead-gateway\",\"correlation_id\":\"req_d6cb8d22fcdc41af\",\"event\":\"lead_created\",\"http_status\":201,\"integration_mode\":\"sandbox_mock\",\"product_slug\":\"crm\",\"routing_queue\":\"saas_crm_demo\",\"phone_country\":\"IN\",\"contact_digest_prefix\":\"5e128d37fabd\",\"lead_reference\":\"HNV-20261126-0C5DAF54\",\"error_code\":null,\"latency_ms\":2}"
+  },
+  "summary": {
+    "passed": 33,
+    "failed": 0
+  }
+}

@@ -611,21 +611,62 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 text-xs">
-            <Link href="/products/salon-software/" className="rounded-xl border border-rose-200 bg-rose-50/30 p-4 hover:border-rose-300 font-semibold text-slate-900">
-              Salons, Spas &amp; Clinics &rarr;
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
+            <Link href="/industry/salons-and-spas/" className="rounded-xl border border-rose-200 bg-rose-50/40 p-4 hover:border-rose-300 font-semibold text-slate-900 transition-colors">
+              Salons &amp; Spas &rarr;
             </Link>
-            <Link href="/products/restaurant-pos/" className="rounded-xl border border-amber-200 bg-amber-50/30 p-4 hover:border-amber-300 font-semibold text-slate-900">
+            <Link href="/industry/restaurants-and-cafes/" className="rounded-xl border border-amber-200 bg-amber-50/40 p-4 hover:border-amber-300 font-semibold text-slate-900 transition-colors">
               Restaurants &amp; Cafes &rarr;
             </Link>
-            <Link href="/industry/real-estate/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900">
+            <Link href="/industry/telecalling-and-bpo/" className="rounded-xl border border-blue-200 bg-blue-50/40 p-4 hover:border-blue-300 font-semibold text-slate-900 transition-colors">
+              Telecalling &amp; BPO &rarr;
+            </Link>
+            <Link href="/industry/real-estate/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900 transition-colors">
               Real Estate &rarr;
             </Link>
-            <Link href="/industry/healthcare/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900">
+            <Link href="/industry/healthcare/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900 transition-colors">
               Healthcare &rarr;
             </Link>
-            <Link href="/industry/financial-services/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900">
+            <Link href="/industry/financial-services/" className="rounded-xl border border-slate-200 p-4 hover:border-blue-300 font-semibold text-slate-900 transition-colors">
               BFSI &amp; Lending &rarr;
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* 10.5 Knowledge Hub & Implementation Guides */}
+      <section className="py-10 bg-slate-50/60 border-t border-slate-100">
+        <Container className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="space-y-1">
+              <Badge variant="secondary">Practical Operational Resources</Badge>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                Software Implementation &amp; Buying Guides
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600">
+                Actionable rollout checklists, objective software comparisons, and regulatory handbooks for business operators.
+              </p>
+            </div>
+            <Link href="/resources/" className="text-xs sm:text-sm font-semibold text-blue-600 hover:underline">
+              Browse Knowledge Hub &rarr;
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <Link href="/resources/crm-implementation-checklist/" className="rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-300 space-y-1.5 transition-colors">
+              <div className="font-bold text-slate-900">CRM Implementation Checklist</div>
+              <p className="text-slate-600">Phase-by-phase rollout: data cleansing, custom pipeline design, and telephony integration.</p>
+            </Link>
+            <Link href="/resources/salon-software-setup-checklist/" className="rounded-xl border border-slate-200 bg-white p-4 hover:border-rose-300 space-y-1.5 transition-colors">
+              <div className="font-bold text-slate-900">Salon Setup Checklist</div>
+              <p className="text-slate-600">Service menus, stylist commission tiers, back-bar auto-consumption, and online booking.</p>
+            </Link>
+            <Link href="/resources/restaurant-pos-implementation-checklist/" className="rounded-xl border border-slate-200 bg-white p-4 hover:border-amber-300 space-y-1.5 transition-colors">
+              <div className="font-bold text-slate-900">Restaurant POS Checklist</div>
+              <p className="text-slate-600">Menu matrices, KOT printer IPs, digital KDS boards, offline queue testing, and recipe BOM.</p>
+            </Link>
+            <Link href="/resources/crm-vs-spreadsheets-lead-management/" className="rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-300 space-y-1.5 transition-colors">
+              <div className="font-bold text-slate-900">CRM vs Spreadsheets Guide</div>
+              <p className="text-slate-600">Breaking points of Excel in sales: lead leakage calculations and 1-click cloud dialing benefits.</p>
             </Link>
           </div>
         </Container>

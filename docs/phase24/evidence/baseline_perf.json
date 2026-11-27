@@ -1,0 +1,13 @@
+{
+  "nextVersion": "14.2.35",
+  "reactVersion": "18.3.1",
+  "startupReadyMs": 519.55,
+  "coldLoginMs": {
+    "status": 200,
+    "ms": 6.47
+  },
+  "warmLoginAvgMs": 4.02,
+  "apiUnauthAvgMs": 1.82,
+  "apiCronValidAvgMs": 3.77,
+  "serverRssMb": 27.9
+}

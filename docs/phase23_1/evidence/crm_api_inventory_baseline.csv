@@ -1,0 +1,52 @@
+route,file,methods,session_auth_getUser,role_check,webhook_or_cron_secret,tenant_isolation_guard,service_role,fail_open_or_body_id,hardcoded_secret_or_key,rate_limiting,risk_rating,remediation_status
+/api/admin/ai-call,app/api/admin/ai-call/route.ts,POST,YES,YES,NO,NO/PARTIAL,YES,NO,YES,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/broadcast,app/api/admin/broadcast/route.ts,POST,NO,NO,NO,NO/PARTIAL,YES,YES,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/campaign-health-watchdog,app/api/admin/campaign-health-watchdog/route.ts,GET|POST,YES,YES,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/delete-file,app/api/admin/delete-file/route.ts,POST,YES,YES,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/fix-checkout,app/api/admin/fix-checkout/route.ts,GET,NO,NO,NO,NO/PARTIAL,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/fix-ivr-logs,app/api/admin/fix-ivr-logs/route.ts,GET,NO,NO,NO,NO/PARTIAL,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/init-meili,app/api/admin/init-meili/route.ts,GET,YES,YES,NO,YES,NO,NO,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/leads/bulk-assign,app/api/admin/leads/bulk-assign/route.ts,POST,YES,YES,NO,NO/PARTIAL,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/leads/export,app/api/admin/leads/export/route.ts,GET,YES,YES,NO,YES,NO,NO,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/master-data/entry,app/api/admin/master-data/entry/route.ts,DELETE|POST,YES,YES,NO,YES,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/master-data/stats,app/api/admin/master-data/stats/route.ts,GET,YES,YES,NO,YES,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/operations/snapshot,app/api/admin/operations/snapshot/route.ts,GET,YES,YES,NO,YES,NO,NO,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/upload-companies,app/api/admin/upload-companies/route.ts,POST,YES,YES,NO,YES,NO,NO,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/users/[id],app/api/admin/users/[id]/route.ts,PATCH,YES,YES,NO,YES,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/admin/users,app/api/admin/users/route.ts,POST,YES,YES,NO,YES,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/assistant,app/api/assistant/route.ts,POST,NO,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/click-to-call,app/api/click-to-call/route.ts,POST,NO,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/companies/search,app/api/companies/search/route.ts,GET,NO,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/auto-checkout,app/api/cron/auto-checkout/route.ts,GET,NO,NO,YES,YES,YES,YES,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/auto-refill,app/api/cron/auto-refill/route.ts,GET,NO,NO,YES,YES,YES,YES,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/campaign-health-watchdog,app/api/cron/campaign-health-watchdog/route.ts,GET|POST,NO,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/daily-report,app/api/cron/daily-report/route.ts,GET,NO,YES,YES,YES,YES,YES,YES,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/kyc,app/api/cron/kyc/route.ts,GET,NO,NO,YES,YES,YES,YES,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/ozonetel-campaign-sync,app/api/cron/ozonetel-campaign-sync/route.ts,GET|POST,NO,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/process-webhooks,app/api/cron/process-webhooks/route.ts,GET,NO,NO,YES,YES,YES,NO,YES,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/sla,app/api/cron/sla/route.ts,GET,NO,NO,YES,YES,YES,YES,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/cron/smart-notifications,app/api/cron/smart-notifications/route.ts,GET,NO,NO,YES,YES,YES,YES,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/debug/daily-report,app/api/debug/daily-report/route.ts,GET,NO,YES,YES,YES,YES,YES,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/kyc-members,app/api/kyc-members/route.ts,GET,NO,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/mobile/login,app/api/mobile/login/route.ts,POST,NO,NO,NO,YES,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/notifications/send,app/api/notifications/send/route.ts,GET|POST,YES,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/notifications/subscribe,app/api/notifications/subscribe/route.ts,POST,YES,NO,NO,NO/PARTIAL,NO,NO,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/notifications/unsubscribe,app/api/notifications/unsubscribe/route.ts,POST,YES,NO,NO,NO/PARTIAL,NO,NO,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/payments/razorpay/webhook,app/api/payments/razorpay/webhook/route.ts,POST,NO,NO,YES,YES,YES,YES,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/telecaller/sim-calls,app/api/telecaller/sim-calls/route.ts,POST,NO,NO,NO,YES,YES,YES,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/transfer-lead,app/api/transfer-lead/route.ts,POST,YES,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/ai-obd,app/api/webhooks/ai-obd/route.ts,POST,NO,NO,NO,YES,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/c2c,app/api/webhooks/c2c/route.ts,POST,NO,NO,NO,YES,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/cloudconnect,app/api/webhooks/cloudconnect/route.ts,GET|POST,NO,NO,YES,YES,YES,NO,YES,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/fonada,app/api/webhooks/fonada/route.ts,GET|POST,NO,NO,YES,NO/PARTIAL,YES,NO,YES,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/fonada/worker,app/api/webhooks/fonada/worker/route.ts,POST (QStash wrapped),NO,NO,YES,YES,YES,NO,YES,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/inbound-routing,app/api/webhooks/inbound-routing/route.ts,POST,NO,NO,NO,NO/PARTIAL,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/incoming-leads,app/api/webhooks/incoming-leads/route.ts,POST,NO,NO,YES,YES,YES,NO,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/ivr,app/api/webhooks/ivr/route.ts,GET|POST,NO,NO,NO,YES,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/ozonetel/callback,app/api/webhooks/ozonetel/callback/route.ts,GET|POST (re-export),NO,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/ozonetel/ivr,app/api/webhooks/ozonetel/ivr/route.ts,GET|POST (re-export),NO,NO,NO,NO/PARTIAL,NO,NO,NO,NO,HIGH,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/ozonetel/sticky,app/api/webhooks/ozonetel/sticky/route.ts,GET|POST,NO,NO,YES,NO/PARTIAL,YES,NO,YES,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/portals,app/api/webhooks/portals/route.ts,POST,NO,NO,YES,YES,YES,NO,NO,NO,MEDIUM,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/trigger-push,app/api/webhooks/trigger-push/route.ts,POST,NO,NO,NO,NO/PARTIAL,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/unicorn-call-outcomes,app/api/webhooks/unicorn-call-outcomes/route.ts,POST,NO,NO,NO,YES,YES,NO,NO,NO,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET
+/api/webhooks/whatsapp,app/api/webhooks/whatsapp/route.ts,GET|POST,NO,NO,NO,YES,YES,NO,YES,YES,CRITICAL,BLOCKED ON REPO RECONCILIATION & DB TARGET

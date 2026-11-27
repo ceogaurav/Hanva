@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
+import { SalonWorkflowExplorer } from "@/components/interactive/salon-workflow-explorer";
 import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
 import {
@@ -282,6 +283,24 @@ export default function HanvaSalonSoftwarePage() {
         </Container>
       </section>
 
+      {/* Interactive Demonstration Experience */}
+      <section>
+        <Container className="space-y-6">
+          <div className="max-w-2xl space-y-1.5">
+            <Badge className="bg-rose-100 text-rose-800 border-rose-200 text-xs">
+              Hands-On Simulation
+            </Badge>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Interactive Product Demonstration: Salon Operations Flow
+            </h2>
+            <p className="text-sm text-slate-600">
+              Experience the end-to-end salon journey—from online booking mini-site to stylist PIN portal, inventory auto-deduction, split GST checkout, and daily register closing.
+            </p>
+          </div>
+          <SalonWorkflowExplorer />
+        </Container>
+      </section>
+
       {/* Salon Storytelling & Screenshot Slots */}
       <section className="py-12 bg-rose-50/30 border-y border-slate-100">
         <Container className="space-y-14">
@@ -387,6 +406,14 @@ export default function HanvaSalonSoftwarePage() {
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 text-xs font-semibold">
+              <Link href="/industry/salons-and-spas/" className="inline-flex items-center text-rose-700 hover:underline">
+                <span>Salons &amp; Spas Industry Solution</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link href="/resources/salon-software-setup-checklist/" className="inline-flex items-center text-rose-700 hover:underline">
+                <span>Salon Software Setup Checklist</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
               <Link href="/resources/salon-management-software-guide/" className="inline-flex items-center text-rose-700 hover:underline">
                 <span>Salon Software Buyer Guide</span>
                 <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />

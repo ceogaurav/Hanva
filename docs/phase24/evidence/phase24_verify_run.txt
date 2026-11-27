@@ -1,0 +1,17 @@
+✅ PASS [T-SEC-1] 14 protected endpoints return 401 unauthenticated: 401,401,401,401,401,401,401,401,401,401,401,401,401,401
+✅ PASS [T-SEC-2] Maintenance routes enforce 401/405/403: 401/405/405/403
+✅ PASS [T-SEC-3] Role privilege escalation blocked (403): 403/403/403/403
+✅ PASS [T-SEC-4] Cross-tenant isolation returns 403 across 5 APIs: 403/403/403/403/403
+✅ PASS [T-SEC-5] Cron & Debug enforce Bearer CRON_SECRET and omit PII: 401/401/401/200/200
+✅ PASS [T-SEC-6] All 14 webhook defenses + Razorpay HMAC/dedupe hold on Next 15: rzp=200/Already credited, cc=401, rem=401/401/401/401/401/401/401/401/401/503
+✅ PASS [T-SEC-7] CSV export neutralizes formulas and isolates tenants: status=200
+✅ PASS [T-SEC-8] Rate limiter enforces 429 on brute-force login: 401,401,401,401,401,401,401,401,401,401,429,429
+✅ PASS [T-HANVA-ISO] HANVA website stays isolated on sandbox_mock with WhatsApp preserved: status=201, mode=sandbox_mock
+✅ PASS [T-FUNC-1] Next 15 SSR pages & async params/searchParams render without error: login=200, pay=200, kyc=200, guard=307->/auth/login
+✅ PASS [T-FUNC-2] Lead bulk-assign, ExcelJS XLSX export (uuid>=11.1.1), & graceful company-search fallback: bulk=200, compSearch=200 (externalSymlinkMissing:matches=0), xlsxBytes=6407
+✅ PASS [T-FUNC-3] Next 15 async route params PATCH /api/admin/users/[id] succeeds: patchStatus=200
+✅ PASS [T-FUNC-4] Mobile JWT -> SIM-call dedupe, C2C, Reports, Ops Snapshot & Watchdog fail-closed check: mob=200, simDup=true, c2c=200, rep=200, snap=200, wdUnconfigured=500
+✅ PASS [T-FUNC-5] Admin Broadcast, Signed Lead Webhook + Dedupe & Super-Admin Maintenance succeed: bcast=200, inc=200/dup=true, fixChk=200
+✅ PASS [T-FUNC-6] Zero Next.js 15 sync-dynamic-apis warnings or uncaught runtime exceptions in stderr: stderrChunks=2, syncDynamicApiWarnings=false
+
+PHASE 24 SUMMARY: security=9/9, functional=6/6, auditLogs=24

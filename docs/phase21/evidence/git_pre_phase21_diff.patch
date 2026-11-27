@@ -1,0 +1,245 @@
+diff --git a/app/digital-marketing/page.tsx b/app/digital-marketing/page.tsx
+index 6f34b90..b8113c4 100644
+--- a/app/digital-marketing/page.tsx
++++ b/app/digital-marketing/page.tsx
+@@ -12,7 +12,7 @@ import { ArrowRight, CheckCircle2, MessageSquare, TrendingUp, ExternalLink } fro
+ export const metadata = {
+   title: "Digital Marketing Services — SEO & Google Ads",
+   description:
+-    "Hanva Technologies provides Search Engine Optimization (SEO), Google Ads, Social Media Marketing, and integrated digital marketing campaigns for Indian and international businesses.",
++    "Search Engine Optimization (SEO), Google Ads performance marketing, and social media campaigns engineered for qualified enquiries across India and globally.",
+   alternates: {
+     canonical: "https://www.hanva.in/digital-marketing/",
+   },
+diff --git a/app/page.tsx b/app/page.tsx
+index 0090d7a..b9ccfe4 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -26,7 +26,7 @@ import {
+ export const metadata = {
+   title: "IT Solutions, SaaS Products & Cloud Telephony",
+   description:
+-    "Hanva Technologies is a comprehensive IT solutions, digital transformation, and SaaS software provider in India offering Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, Digital Marketing, Software Development, and Cloud Telephony.",
++    "Hanva Technologies delivers SaaS software (Hanva CRM, Salon Software, Restaurant POS), SEO & Google Ads, custom software development, and cloud telephony in India.",
+   alternates: {
+     canonical: "https://www.hanva.in/",
+   },
+diff --git a/app/products/crm/page.tsx b/app/products/crm/page.tsx
+index d0fc0b1..b6b69a7 100644
+--- a/app/products/crm/page.tsx
++++ b/app/products/crm/page.tsx
+@@ -384,6 +384,22 @@ export default function HanvaCrmPage() {
+               <p className="text-xs text-slate-600">Need bespoke ERP/CRM workflows? Explore our custom engineering service.</p>
+             </Link>
+           </div>
++          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
++            <Link href="/resources/crm-with-ivr-vs-telecalling-crm/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Buyer Guide: CRM with IVR vs Telecalling CRM</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Compare multi-channel IVR/WhatsApp CRM vs outbound voice-first telecalling workflows.</p>
++            </Link>
++            <Link href="/resources/saas-vs-custom-crm-erp-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Decision Guide: Ready-Made SaaS vs Custom CRM/ERP</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Evaluate when ready-to-deploy Hanva CRM outperforms custom bespoke software builds.</p>
++            </Link>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/products/page.tsx b/app/products/page.tsx
+index a351754..533e383 100644
+--- a/app/products/page.tsx
++++ b/app/products/page.tsx
+@@ -26,7 +26,7 @@ import {
+ export const metadata = {
+   title: "SaaS Products & Cloud Telephony Suite",
+   description:
+-    "Explore Hanva's SaaS products (Hanva CRM, Hanva Salon Software, Hanva Restaurant POS) and enterprise telecom suite including Cloud Telephony, Smart IVR, Auto Dialers, and WhatsApp CRM.",
++    "Explore Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, plus enterprise Cloud Telephony, Smart IVR, Auto Dialers, and WhatsApp Business CRM solutions.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/",
+   },
+diff --git a/app/products/restaurant-pos/page.tsx b/app/products/restaurant-pos/page.tsx
+index a4282c5..6a02d00 100644
+--- a/app/products/restaurant-pos/page.tsx
++++ b/app/products/restaurant-pos/page.tsx
+@@ -21,7 +21,7 @@ import {
+ export const metadata = {
+   title: "Hanva Restaurant POS — Billing, KDS & QR Ordering",
+   description:
+-    "Restaurant POS and billing software designed to simplify dine-in, takeaway, delivery orders, KOT, Kitchen Display System (KDS), QR menu ordering, GST billing, UPI QR, and recipe inventory.",
++    "Restaurant POS and GST billing software for dine-in, cafes & cloud kitchens: offline queue, KOT, Kitchen Display System (KDS), QR ordering, and recipe BOM.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/restaurant-pos/",
+   },
+@@ -379,6 +379,24 @@ export default function HanvaRestaurantPosPage() {
+               <p className="text-slate-600">Offline-resilient billing, GST tax summaries, and Z-Report closing.</p>
+             </div>
+           </div>
++          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
++            <div className="space-y-1">
++              <div className="text-sm font-bold text-slate-900">Restaurant KOT, Inventory &amp; Integration Resources</div>
++              <p className="text-xs text-slate-600">
++                Explore technical guidance on kitchen routing architecture, recipe BOM costing, and custom webhook or API workflows.
++              </p>
++            </div>
++            <div className="flex flex-wrap items-center gap-3 shrink-0 text-xs font-semibold">
++              <Link href="/resources/restaurant-pos-kot-inventory-guide/" className="inline-flex items-center text-amber-800 hover:underline">
++                <span>Restaurant POS &amp; KOT Buyer Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/software-development/api-integration-automation/" className="inline-flex items-center text-blue-700 hover:underline">
++                <span>API Integration &amp; Workflows</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++            </div>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/products/salon-software/page.tsx b/app/products/salon-software/page.tsx
+index 8729b4b..3da4276 100644
+--- a/app/products/salon-software/page.tsx
++++ b/app/products/salon-software/page.tsx
+@@ -21,7 +21,7 @@ import {
+ export const metadata = {
+   title: "Hanva Salon Software — Billing, Booking & Staff",
+   description:
+-    "Salon billing and management software to simplify appointments, GST invoicing, online booking mini-website, staff commissions, payroll, inventory auto-consumption, and loyalty.",
++    "Salon billing and management software for Indian salons & spas: GST invoicing, online booking mini-site, staff commissions, auto-consumption, and loyalty.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/salon-software/",
+   },
+@@ -375,6 +375,24 @@ export default function HanvaSalonSoftwarePage() {
+               <p className="text-slate-600">Online booking mini-site, loyalty wallets, and gift cards.</p>
+             </div>
+           </div>
++          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
++            <div className="space-y-1">
++              <div className="text-sm font-bold text-slate-900">Salon Software Evaluation &amp; Growth Resources</div>
++              <p className="text-xs text-slate-600">
++                Compare salon GST billing checklists, staff commission rules, and local salon marketing workflows before selecting a platform.
++              </p>
++            </div>
++            <div className="flex flex-wrap items-center gap-3 shrink-0 text-xs font-semibold">
++              <Link href="/resources/salon-management-software-guide/" className="inline-flex items-center text-rose-700 hover:underline">
++                <span>Salon Software Buyer Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/digital-marketing/" className="inline-flex items-center text-blue-700 hover:underline">
++                <span>Salon Digital Marketing Services</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++            </div>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/resources/auto-dialer-vs-predictive-dialer/page.tsx b/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+index 137fa3c..6ae817e 100644
+--- a/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
++++ b/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "Compare Preview, Progressive, and Predictive dialers. Learn how call pacing algorithms affect agent idle time, dropped call rates, and Truecaller spam risk in India.",
+     url: "https://www.hanva.in/resources/auto-dialer-vs-predictive-dialer/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Auto Dialer vs Predictive Dialer Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/cloud-telephony-pricing-guide/page.tsx b/app/resources/cloud-telephony-pricing-guide/page.tsx
+index c635bf4..d9efe23 100644
+--- a/app/resources/cloud-telephony-pricing-guide/page.tsx
++++ b/app/resources/cloud-telephony-pricing-guide/page.tsx
+@@ -19,7 +19,10 @@ export const metadata = {
+     description:
+       "A transparent breakdown of telecom billing in India: why 60-second rounding inflates phone bills by 25%-30%, channel rental math, DID setup charges, and hidden telco tariffs.",
+     url: "https://www.hanva.in/resources/cloud-telephony-pricing-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Cloud Telephony Pricing Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/how-ivr-systems-work/page.tsx b/app/resources/how-ivr-systems-work/page.tsx
+index 1925e6e..d4b4a19 100644
+--- a/app/resources/how-ivr-systems-work/page.tsx
++++ b/app/resources/how-ivr-systems-work/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "A deep dive into multi-level interactive voice response: DTMF tone detection, speech synthesis, skill-based queue distribution, and webhook CRM synchronization.",
+     url: "https://www.hanva.in/resources/how-ivr-systems-work/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "How IVR Systems Work Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/telecalling-crm-guide/page.tsx b/app/resources/telecalling-crm-guide/page.tsx
+index 06f1d2a..2fd584d 100644
+--- a/app/resources/telecalling-crm-guide/page.tsx
++++ b/app/resources/telecalling-crm-guide/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "How integrated dialer CRMs eliminate spreadsheet lead leakage, automate lead assignment, enforce disposition tagging, and give sales directors real-time visibility.",
+     url: "https://www.hanva.in/resources/telecalling-crm-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Telecalling CRM Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/what-is-cloud-telephony/page.tsx b/app/resources/what-is-cloud-telephony/page.tsx
+index a3043a6..eb71de9 100644
+--- a/app/resources/what-is-cloud-telephony/page.tsx
++++ b/app/resources/what-is-cloud-telephony/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "Understand cloud PBX architecture, virtual landline DIDs, SIP trunking, and how modern softphones replace legacy EPABX hardware without capital expenditure.",
+     url: "https://www.hanva.in/resources/what-is-cloud-telephony/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "What Is Cloud Telephony Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/whatsapp-business-api-guide/page.tsx b/app/resources/whatsapp-business-api-guide/page.tsx
+index c4f6ef4..00dd5ee 100644
+--- a/app/resources/whatsapp-business-api-guide/page.tsx
++++ b/app/resources/whatsapp-business-api-guide/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "The definitive guide to official Meta WABA gateways: green badge verification, 24-hour service messaging windows, pre-approved utility templates, and multi-agent shared inboxes.",
+     url: "https://www.hanva.in/resources/whatsapp-business-api-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "WhatsApp Business API Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/software-development/page.tsx b/app/software-development/page.tsx
+index 9ce7d5d..737c231 100644
+--- a/app/software-development/page.tsx
++++ b/app/software-development/page.tsx
+@@ -12,7 +12,7 @@ import { ArrowRight, Code2, MessageSquare, ExternalLink } from "lucide-react";
+ export const metadata = {
+   title: "Software Development — Web, Mobile, CRM & AI",
+   description:
+-    "Custom software development by Hanva Technologies: website and web application development, mobile apps, custom CRM/ERP systems, e-commerce platforms, API integrations, and tailored AI solutions.",
++    "Custom web applications, Android mobile apps, bespoke CRM/ERP platforms, e-commerce storefronts, API integrations, and AI automation by Hanva Technologies.",
+   alternates: {
+     canonical: "https://www.hanva.in/software-development/",
+   },

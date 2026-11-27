@@ -1,0 +1,422 @@
+diff --git a/app/admin/attendance/analytics/page.tsx b/app/admin/attendance/analytics/page.tsx
+index 9563206..f85f7cb 100644
+--- a/app/admin/attendance/analytics/page.tsx
++++ b/app/admin/attendance/analytics/page.tsx
+@@ -1,3 +1,5 @@
++"use client";
++
+ import dynamic from "next/dynamic";
+ import { Skeleton } from "@/components/ui/skeleton";
+ 
+diff --git a/app/admin/calls/page.tsx b/app/admin/calls/page.tsx
+index d9ead09..e66bd9e 100644
+--- a/app/admin/calls/page.tsx
++++ b/app/admin/calls/page.tsx
+@@ -143,11 +143,10 @@ async function DashboardContent({ searchParams }: { searchParams: { from?: strin
+ }
+ 
+ // --- Main Page Component ---
+-export default function TelecallerLeadSummaryPage({
+-  searchParams,
+-}: {
+-  searchParams: { from?: string; to?: string };
++export default async function TelecallerLeadSummaryPage(props: {
++  searchParams: Promise<{ from?: string; to?: string }>;
+ }) {
++  const searchParams = await props.searchParams;
+   const now = new Date();
+   
+   const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
+diff --git a/app/admin/inbox/page.tsx b/app/admin/inbox/page.tsx
+index b1f2ea1..488ba57 100644
+--- a/app/admin/inbox/page.tsx
++++ b/app/admin/inbox/page.tsx
+@@ -8,7 +8,8 @@ import { InboxDetails } from "@/components/inbox-details"
+ 
+ export const dynamic = "force-dynamic"
+ 
+-export default async function InboxPage({ searchParams }: { searchParams: { thread?: string } }) {
++export default async function InboxPage(props: { searchParams: Promise<{ thread?: string }> }) {
++  const searchParams = await props.searchParams
+   const supabase = await createClient()
+   const { data: { user } } = await supabase.auth.getUser()
+   if (!user) redirect('/auth/login')
+diff --git a/app/admin/leads/[id]/page.tsx b/app/admin/leads/[id]/page.tsx
+index 0988d95..77f375f 100644
+--- a/app/admin/leads/[id]/page.tsx
++++ b/app/admin/leads/[id]/page.tsx
+@@ -17,7 +17,7 @@ import {
+ } from "lucide-react"
+ import Link from "next/link"
+ import { useRouter } from "next/navigation"
+-import { useState, useEffect, useMemo } from "react"
++import { use, useState, useEffect, useMemo } from "react"
+ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+ import { LoadingSkeleton } from "@/components/loading-skeleton"
+ import { TimelineView } from "@/components/timeline-view"
+@@ -50,9 +50,9 @@ import { LeadDocuments } from "@/components/lead-documents"
+ 
+ // --- TYPES ---
+ interface EditLeadPageProps {
+-  params: {
++  params: Promise<{
+     id: string
+-  }
++  }>
+ }
+ 
+ interface Lead {
+@@ -89,7 +89,8 @@ interface Telecaller {
+ 
+ // Pipeline steps are now calculated dynamically based on enabled statuses
+ 
+-export default function EditLeadPage({ params }: EditLeadPageProps) {
++export default function EditLeadPage(props: EditLeadPageProps) {
++  const params = use(props.params)
+   const router = useRouter()
+   const supabase = createClient()
+ 
+diff --git a/app/admin/leads/page.tsx b/app/admin/leads/page.tsx
+index 7d41746..5568ed2 100644
+--- a/app/admin/leads/page.tsx
++++ b/app/admin/leads/page.tsx
+@@ -26,7 +26,8 @@ interface SearchParams {
+   dir?: string
+ }
+ 
+-export default function LeadsPage({ searchParams }: { searchParams: SearchParams }) {
++export default async function LeadsPage(props: { searchParams: Promise<SearchParams> }) {
++  const searchParams = await props.searchParams
+   return (
+     <div className="p-4 md:p-6 space-y-6">
+       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+diff --git a/app/admin/reports/page.tsx b/app/admin/reports/page.tsx
+index 2a467a2..6a6a180 100644
+--- a/app/admin/reports/page.tsx
++++ b/app/admin/reports/page.tsx
+@@ -35,11 +35,10 @@ function formatLocalDate(d: Date): string {
+   return `${year}-${month}-${day}`
+ }
+ 
+-export default async function ReportsPage({
+-  searchParams,
+-}: {
+-  searchParams: SearchParams
++export default async function ReportsPage(props: {
++  searchParams: Promise<SearchParams>
+ }) {
++  const searchParams = await props.searchParams
+   const supabase = await createClient()
+ 
+   // 1. Auth & Tenant Profile
+diff --git a/app/admin/users/[id]/edit/page.tsx b/app/admin/users/[id]/edit/page.tsx
+index f1d26f5..ae2bd2a 100644
+--- a/app/admin/users/[id]/edit/page.tsx
++++ b/app/admin/users/[id]/edit/page.tsx
+@@ -8,14 +8,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+ import { Badge } from "@/components/ui/badge"
+ import { Separator } from "@/components/ui/separator"
+ 
+-export default async function EditUserPage({ params }: { params: { id: string } }) {
++export default async function EditUserPage(props: { params: Promise<{ id: string }> }) {
++  const { id } = await props.params
+   const supabase = await createClient()
+   
+   // 1. Fetch User Data
+   const { data: user, error } = await supabase
+     .from("users")
+     .select("*")
+-    .eq("id", params.id)
++    .eq("id", id)
+     .single()
+     
+   if (error || !user) {
+diff --git a/app/api/admin/users/[id]/route.ts b/app/api/admin/users/[id]/route.ts
+index fe9565c..aab8cf0 100644
+--- a/app/api/admin/users/[id]/route.ts
++++ b/app/api/admin/users/[id]/route.ts
+@@ -7,7 +7,7 @@ import {
+ 
+ export async function PATCH(
+   request: Request,
+-  { params }: { params: { id: string } }
++  props: { params: Promise<{ id: string }> }
+ ) {
+   try {
+     const adminCheck = await requireTenantAdmin({
+@@ -17,7 +17,7 @@ export async function PATCH(
+     if (!adminCheck.ok) return adminCheck.response;
+ 
+     const { actor, effectiveTenantId, supabaseAdmin } = adminCheck;
+-    const targetUserId = params.id;
++    const { id: targetUserId } = await props.params;
+ 
+     const { data: targetUser } = await supabaseAdmin
+       .from("users")
+diff --git a/app/kyc-team/[id]/page.tsx b/app/kyc-team/[id]/page.tsx
+index b5e5786..441e429 100644
+--- a/app/kyc-team/[id]/page.tsx
++++ b/app/kyc-team/[id]/page.tsx
+@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
+ import { Phone, User, Briefcase, IndianRupee, CreditCard, MapPin, MessageSquare, ArrowLeft, Clock, Save, Loader2, Edit2, XCircle } from "lucide-react";
+ import { LoadingSkeleton } from "@/components/loading-skeleton";
+ import { useRouter } from "next/navigation";
+-import { useState, useEffect, useCallback } from "react";
++import { use, useState, useEffect, useCallback } from "react";
+ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+ import { useToast } from "@/components/ui/use-toast";
+ 
+@@ -339,9 +339,9 @@ const LeadStatusUpdater = ({ leadId, currentStatus, onStatusUpdate }: LeadStatus
+ 
+ // --- 4. MAIN PAGE ---
+ 
+-export default function KycLeadProfilePage({ params }: { params: { id: string } }) {
++export default function KycLeadProfilePage(props: { params: Promise<{ id: string }> }) {
++  const { id: leadId } = use(props.params);
+   const router = useRouter();
+-  const leadId = params.id;
+   const [lead, setLead] = useState<Lead | null>(null);
+   const [isLoading, setIsLoading] = useState(true);
+   const [error, setError] = useState<string | null>(null);
+diff --git a/app/kyc-team/leads/[id]/page.tsx b/app/kyc-team/leads/[id]/page.tsx
+index 8763054..088cf81 100644
+--- a/app/kyc-team/leads/[id]/page.tsx
++++ b/app/kyc-team/leads/[id]/page.tsx
+@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
+ import { Phone, User, Briefcase, IndianRupee, CreditCard, MapPin, MessageSquare, ArrowLeft, Clock, Save, Loader2, Edit2, XCircle } from "lucide-react";
+ import { LoadingSkeleton } from "@/components/loading-skeleton";
+ import { useRouter } from "next/navigation";
+-import { useState, useEffect, useCallback } from "react";
++import { use, useState, useEffect, useCallback } from "react";
+ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+ import { useToast } from "@/components/ui/use-toast";
+ 
+@@ -339,9 +339,9 @@ const LeadStatusUpdater = ({ leadId, currentStatus, onStatusUpdate }: LeadStatus
+ 
+ // --- 4. MAIN PAGE ---
+ 
+-export default function KycLeadProfilePage({ params }: { params: { id: string } }) {
++export default function KycLeadProfilePage(props: { params: Promise<{ id: string }> }) {
++  const { id: leadId } = use(props.params);
+   const router = useRouter();
+-  const leadId = params.id;
+   const [lead, setLead] = useState<Lead | null>(null);
+   const [isLoading, setIsLoading] = useState(true);
+   const [error, setError] = useState<string | null>(null);
+diff --git a/app/kyc-upload/[token]/page.tsx b/app/kyc-upload/[token]/page.tsx
+index 8730444..2f5704b 100644
+--- a/app/kyc-upload/[token]/page.tsx
++++ b/app/kyc-upload/[token]/page.tsx
+@@ -1,9 +1,11 @@
+ import { ClientKycUpload } from "./client-page"
+ import { notFound } from "next/navigation"
+ 
+-export default function KycUploadPage({ params, searchParams }: { params: { token: string }, searchParams: { req?: string } }) {
++export default async function KycUploadPage(props: { params: Promise<{ token: string }>; searchParams: Promise<{ req?: string }> }) {
+   try {
+-    const decoded = Buffer.from(params.token, 'base64').toString('utf-8');
++    const { token } = await props.params;
++    const searchParams = await props.searchParams;
++    const decoded = Buffer.from(token, 'base64').toString('utf-8');
+     const { leadId, tenantId } = JSON.parse(decoded);
+     
+     if (!leadId || !tenantId) return notFound();
+diff --git a/app/pay/[tenantId]/page.tsx b/app/pay/[tenantId]/page.tsx
+index df297e3..9480503 100644
+--- a/app/pay/[tenantId]/page.tsx
++++ b/app/pay/[tenantId]/page.tsx
+@@ -5,12 +5,11 @@ import { AlertCircle } from "lucide-react"
+ 
+ export const dynamic = "force-dynamic"
+ 
+-export default async function SmartPayPage({
+-  params
+-}: {
+-  params: { tenantId: string }
++export default async function SmartPayPage(props: {
++  params: Promise<{ tenantId: string }>
+ }) {
+-  const info = await getPublicTenantPaymentInfo(params.tenantId)
++  const { tenantId } = await props.params
++  const info = await getPublicTenantPaymentInfo(tenantId)
+ 
+   if (!info.success) {
+     return (
+diff --git a/app/telecaller/calls/page.tsx b/app/telecaller/calls/page.tsx
+index 1a06826..8e0ca83 100644
+--- a/app/telecaller/calls/page.tsx
++++ b/app/telecaller/calls/page.tsx
+@@ -10,11 +10,10 @@ import {
+ } from "lucide-react"
+ import { format, isFuture } from "date-fns"
+ 
+-export default async function CallHistoryPage({
+-  searchParams,
+-}: {
+-  searchParams: { follow_up?: string; call_type?: string }
++export default async function CallHistoryPage(props: {
++  searchParams: Promise<{ follow_up?: string; call_type?: string }>
+ }) {
++  const searchParams = await props.searchParams
+   const supabase = await createClient()
+ 
+   // Get current user
+diff --git a/app/telecaller/leads/[id]/page.tsx b/app/telecaller/leads/[id]/page.tsx
+index f035d6c..31d328e 100644
+--- a/app/telecaller/leads/[id]/page.tsx
++++ b/app/telecaller/leads/[id]/page.tsx
+@@ -12,7 +12,7 @@ import {
+   Loader2, UserCheck, Save, AlertTriangle, Briefcase, Banknote, MapPin, User, X
+ } from "lucide-react"
+ import { useRouter } from "next/navigation"
+-import { useState, useEffect, useCallback, useRef } from "react"
++import { use, useState, useEffect, useCallback, useRef } from "react"
+ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+ import { useToast } from "@/components/ui/use-toast"
+ 
+@@ -211,10 +211,10 @@ const LeadTransferModule = ({ lead, tenantId, onTransferSuccess }: LeadTransferM
+ };
+ 
+ // --- MAIN PAGE COMPONENT ---
+-export default function LeadDetailsPage({ params }: { params: { id: string } }) {
++export default function LeadDetailsPage(props: { params: Promise<{ id: string }> }) {
++    const { id: leadId } = use(props.params)
+     const router = useRouter()
+     const org = useTenant()
+-    const leadId = params.id
+     const supabase = createClient()
+     const { toast } = useToast();
+     
+diff --git a/app/telecaller/leads/page.tsx b/app/telecaller/leads/page.tsx
+index 9984066..a4e05f1 100644
+--- a/app/telecaller/leads/page.tsx
++++ b/app/telecaller/leads/page.tsx
+@@ -26,11 +26,10 @@ interface SearchParams {
+   contacted?: string
+ }
+ 
+-export default async function TelecallerLeadsPage({
+-  searchParams,
+-}: {
+-  searchParams: SearchParams
++export default async function TelecallerLeadsPage(props: {
++  searchParams: Promise<SearchParams>
+ }) {
++  const searchParams = await props.searchParams
+   const supabase = await createClient()
+ 
+   const { data: { user } } = await supabase.auth.getUser()
+diff --git a/components/timeline-view.tsx b/components/timeline-view.tsx
+index 3f86de5..60ae105 100644
+--- a/components/timeline-view.tsx
++++ b/components/timeline-view.tsx
+@@ -1,6 +1,7 @@
+ // components/timeline-view.tsx
+ "use client"
+ 
++import type * as React from "react"
+ import { MessageSquare, History, Calendar, Phone } from "lucide-react"
+ 
+ interface TimelineItem {
+@@ -10,7 +11,7 @@ interface TimelineItem {
+   description: string
+   user: string
+   date: string
+-  icon: JSX.Element
++  icon: React.ReactNode
+ }
+ 
+ interface TimelineViewProps {
+diff --git a/lib/supabase/server-action.ts b/lib/supabase/server-action.ts
+index 52be660..9f47704 100644
+--- a/lib/supabase/server-action.ts
++++ b/lib/supabase/server-action.ts
+@@ -5,7 +5,7 @@ import { cookies } from "next/headers"
+  * Server-side Supabase client for use in Server Actions and API routes
+  */
+ export async function createServerActionClient() {
+-  const cookieStore = cookies()
++  const cookieStore = await cookies()
+   
+   return createServerClient(
+     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+diff --git a/next.config.mjs b/next.config.mjs
+index 0d7fbb1..822ca9d 100644
+--- a/next.config.mjs
++++ b/next.config.mjs
+@@ -11,10 +11,11 @@ const nextConfig = {
+     ignoreBuildErrors: false,
+   },
+ 
+-  // 3. Ultra-Premium Image Optimizations: Auto-compress to AVIF and WebP
++  // 3. Ultra-Premium Image Optimizations: Auto-compress to AVIF and WebP (SVG disabled)
+   images: {
+     formats: ['image/avif', 'image/webp'],
+     minimumCacheTTL: 3600, // Cache optimized images for 1 hour to reduce cold runs
++    dangerouslyAllowSVG: false,
+   },
+ 
+   // 4. Production Console Scrubbing: Eliminate rendering bottlenecks
+diff --git a/package.json b/package.json
+index 94ed142..92fd065 100644
+--- a/package.json
++++ b/package.json
+@@ -62,13 +62,13 @@
+     "lightningcss": "^1.32.0",
+     "lucide-react": "^0.454.0",
+     "meilisearch": "^0.56.0",
+-    "next": "^14.2.35",
++    "next": "^15.5.29",
+     "next-themes": "^0.4.6",
+     "papaparse": "^5.5.3",
+     "razorpay": "^2.9.8",
+-    "react": "^18",
++    "react": "^19.2.9",
+     "react-day-picker": "^8.10.1",
+-    "react-dom": "^18",
++    "react-dom": "^19.2.9",
+     "react-hook-form": "^7.60.0",
+     "react-is": "^19.2.7",
+     "react-resizable-panels": "^2.1.7",
+@@ -77,7 +77,7 @@
+     "sonner": "^2.0.7",
+     "tailwind-merge": "^2.5.5",
+     "tailwindcss-animate": "^1.0.7",
+-    "vaul": "^0.9.9",
++    "vaul": "^1.1.2",
+     "web-push": "^3.6.7",
+     "zod": "^4.6.6"
+   },
+@@ -85,15 +85,15 @@
+     "@tailwindcss/postcss": "^4.1.9",
+     "@types/node": "^22.18.6",
+     "@types/papaparse": "^5.5.2",
+-    "@types/react": "^18.3.24",
+-    "@types/react-dom": "^18",
++    "@types/react": "^19.2.17",
++    "@types/react-dom": "^19.2.3",
+     "@types/web-push": "^3.6.4",
+-    "postcss": "^8.5.18",
++    "postcss": "^8.5.33",
+     "tailwindcss": "^4.1.9",
+     "tw-animate-css": "1.3.3",
+     "typescript": "^5.9.2",
+     "eslint": "^8.57.1",
+-    "eslint-config-next": "14.2.35"
++    "eslint-config-next": "15.5.29"
+   },
+   "pnpm": {
+     "overrides": {
+@@ -101,8 +101,9 @@
+       "browserslist": ">=4.28.7",
+       "glob": ">=10.5.0",
+       "nanoid": ">=3.3.18",
+-      "postcss": ">=8.5.18",
+-      "source-map-js": ">=1.2.2"
++      "postcss": ">=8.5.23",
++      "source-map-js": ">=1.2.2",
++      "uuid": ">=11.1.1"
+     }
+   }
+ }
+\ No newline at end of file

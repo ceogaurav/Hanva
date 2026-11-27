@@ -1,0 +1,33 @@
+ M app/digital-marketing/page.tsx
+ M app/digital-marketing/performance-marketing/page.tsx
+ M app/digital-marketing/seo-services/page.tsx
+ M app/page.tsx
+ M app/products/crm/page.tsx
+ M app/products/page.tsx
+ M app/products/restaurant-pos/page.tsx
+ M app/products/salon-software/page.tsx
+ M app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+ M app/resources/cloud-telephony-pricing-guide/page.tsx
+ M app/resources/how-ivr-systems-work/page.tsx
+ M app/resources/page.tsx
+ M app/resources/telecalling-crm-guide/page.tsx
+ M app/resources/what-is-cloud-telephony/page.tsx
+ M app/resources/whatsapp-business-api-guide/page.tsx
+ M app/sitemap.ts
+ M app/software-development/custom-crm-development/page.tsx
+ M app/software-development/page.tsx
+ M components/shared/article-layout.tsx
+ M components/shared/service-layout.tsx
+?? app/resources/cloud-kitchen-management-guide/
+?? app/resources/custom-crm-development-guide/
+?? app/resources/ivr-crm-for-businesses/
+?? app/resources/lead-management-process-guide/
+?? app/resources/local-seo-guide-for-businesses/
+?? app/resources/restaurant-billing-software-guide/
+?? app/resources/salon-appointment-management-guide/
+?? app/resources/salon-billing-software-guide/
+?? app/resources/seo-vs-google-ads-for-smbs/
+?? app/resources/software-development-cost-factors/
+?? docs/phase20/
+?? docs/phase21/
+?? docs/phase22/

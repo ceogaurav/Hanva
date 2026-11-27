@@ -1,0 +1,80 @@
+diff --git a/next.config.mjs b/next.config.mjs
+index 0d7fbb1..822ca9d 100644
+--- a/next.config.mjs
++++ b/next.config.mjs
+@@ -11,10 +11,11 @@ const nextConfig = {
+     ignoreBuildErrors: false,
+   },
+ 
+-  // 3. Ultra-Premium Image Optimizations: Auto-compress to AVIF and WebP
++  // 3. Ultra-Premium Image Optimizations: Auto-compress to AVIF and WebP (SVG disabled)
+   images: {
+     formats: ['image/avif', 'image/webp'],
+     minimumCacheTTL: 3600, // Cache optimized images for 1 hour to reduce cold runs
++    dangerouslyAllowSVG: false,
+   },
+ 
+   // 4. Production Console Scrubbing: Eliminate rendering bottlenecks
+diff --git a/package.json b/package.json
+index 94ed142..92fd065 100644
+--- a/package.json
++++ b/package.json
+@@ -62,13 +62,13 @@
+     "lightningcss": "^1.32.0",
+     "lucide-react": "^0.454.0",
+     "meilisearch": "^0.56.0",
+-    "next": "^14.2.35",
++    "next": "^15.5.29",
+     "next-themes": "^0.4.6",
+     "papaparse": "^5.5.3",
+     "razorpay": "^2.9.8",
+-    "react": "^18",
++    "react": "^19.2.9",
+     "react-day-picker": "^8.10.1",
+-    "react-dom": "^18",
++    "react-dom": "^19.2.9",
+     "react-hook-form": "^7.60.0",
+     "react-is": "^19.2.7",
+     "react-resizable-panels": "^2.1.7",
+@@ -77,7 +77,7 @@
+     "sonner": "^2.0.7",
+     "tailwind-merge": "^2.5.5",
+     "tailwindcss-animate": "^1.0.7",
+-    "vaul": "^0.9.9",
++    "vaul": "^1.1.2",
+     "web-push": "^3.6.7",
+     "zod": "^4.6.6"
+   },
+@@ -85,15 +85,15 @@
+     "@tailwindcss/postcss": "^4.1.9",
+     "@types/node": "^22.18.6",
+     "@types/papaparse": "^5.5.2",
+-    "@types/react": "^18.3.24",
+-    "@types/react-dom": "^18",
++    "@types/react": "^19.2.17",
++    "@types/react-dom": "^19.2.3",
+     "@types/web-push": "^3.6.4",
+-    "postcss": "^8.5.18",
++    "postcss": "^8.5.33",
+     "tailwindcss": "^4.1.9",
+     "tw-animate-css": "1.3.3",
+     "typescript": "^5.9.2",
+     "eslint": "^8.57.1",
+-    "eslint-config-next": "14.2.35"
++    "eslint-config-next": "15.5.29"
+   },
+   "pnpm": {
+     "overrides": {
+@@ -101,8 +101,9 @@
+       "browserslist": ">=4.28.7",
+       "glob": ">=10.5.0",
+       "nanoid": ">=3.3.18",
+-      "postcss": ">=8.5.18",
+-      "source-map-js": ">=1.2.2"
++      "postcss": ">=8.5.23",
++      "source-map-js": ">=1.2.2",
++      "uuid": ">=11.1.1"
+     }
+   }
+ }
+\ No newline at end of file

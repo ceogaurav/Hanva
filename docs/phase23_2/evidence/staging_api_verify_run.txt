@@ -1,0 +1,13 @@
+✅ PASS [T-API-1] All 14 protected/user/admin/mobile endpoints fail closed with 401 unauthenticated: /api/admin/reports/calls=401, /api/admin/broadcast=401, /api/admin/leads/bulk-assign=401, /api/admin/users=401, /api/admin/leads/export=401, /api/admin/campaign-health-watchdog=401, /api/admin/holidays=401, /api/assistant=401, /api/click-to-call=401, /api/companies/search=401, /api/kyc-members=401, /api/transfer-lead=401, /api/notifications/send=401, /api/telecaller/sim-calls=401
+✅ PASS [T-API-2] Maintenance GET routes fail closed (401 unauth / 405 auth) & non-super-admin POST blocked (403): unauth=401, fixCheckoutGet=405, fixIvrGet=405, empPost=403
+✅ PASS [T-API-3] Telecaller w/ spoofed metadata & Admin role escalation blocked (403): empReports=403, empNotif=403, grantSuper=403, patchSuper=403
+✅ PASS [T-API-4] Cross-tenant API access rejected with 403 across reports/bulk/notif/ai-call/sim-calls: calls=403, bulk=403, notif=403, aiCall=403, sim=403
+✅ PASS [T-API-5] Same-tenant Admin reports, Mobile Login JWT, and SIM-call deduplication succeed: calls=200, login=200, sim1=200, simDup=true
+✅ PASS [T-API-6] Cron & Debug enforce Bearer CRON_SECRET, reject ?key= query auth, omit PII/key prefixes: unauth=401, cronQuery=401, dbgQuery=401, cronValid=200, dbgValid=200
+✅ PASS [T-API-7] Signed Webhooks verify HMAC/headers, reject backdoors/?token=, and deduplicate replays: rzp(401/200/Already credited), cc(401/200), wa(403/200/401), inc(401/200/true)
+✅ PASS [T-HANVA-ISO] HANVA website /api/leads/ stays isolated (non-prod sandbox_mock only, zero prod sync, WhatsApp preserved): status=201, mode=sandbox_mock, synced=false, waPhone=+91 8423711043
+✅ PASS [T-API-8] CSV export neutralizes formula cells (=,+,...) and excludes cross-tenant rows: status=200, neutralized=true, isolated=true
+✅ PASS [T-API-9] All 10 telephony/portal/worker webhooks fail closed unauthenticated (401 / 503 unconfigured QStash): 401/401/401/401/401/401/401/401/401/503
+✅ PASS [T-API-10] Shared rate limiter triggers HTTP 429 on mobile login brute force (>10 requests): 401,401,401,401,401,401,401,401,401,401,429,429
+
+SUMMARY: 11/11 staging HTTP & isolation checks passed. Audit logs written: 19

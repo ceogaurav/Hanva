@@ -21,6 +21,7 @@ import {
   Check,
 } from "lucide-react";
 import { CONTACT_CONFIG, buildWhatsAppContactUrl, type ContactEnquiryPayload } from "@/lib/config";
+import { LeadQualifier } from "@/components/interactive/lead-qualifier";
 import {
   trackAnalyticsEvent,
   trackFormError,
@@ -825,6 +826,22 @@ function ContactPageContent() {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* 30-Second Fast-Track Lead Qualifier */}
+        <div className="mt-16 pt-12 border-t border-slate-200 space-y-6">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">
+              Fast-Track WhatsApp Routing
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Prefer Instant Setup? 3-Click Solution Qualifier
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Select your business vertical, outlet or team size, and immediate operational focus. We will generate a structured, pre-filled WhatsApp enquiry direct to our product specialists on +91 8423711043.
+            </p>
+          </div>
+          <LeadQualifier />
         </div>
       </Container>
     </div>

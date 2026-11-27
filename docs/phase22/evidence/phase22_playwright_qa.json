@@ -1,0 +1,167 @@
+{
+  "generatedAt": "2026-11-26T14:06:44.864023+00:00",
+  "sitemapStatus": 200,
+  "sitemapCount": 79,
+  "routeCount": 79,
+  "non200Routes": [],
+  "schemaErrors": [],
+  "brokenImages": [],
+  "brokenInternalLinks": [],
+  "orphanRoutes": [],
+  "productCtaChecks": [
+    {
+      "route": "/products/crm/",
+      "expectedWa": "I'm interested in a demo of Hanva CRM.",
+      "actualMobileWa": "I'm interested in a demo of Hanva CRM.",
+      "mobileWaMatch": true,
+      "expectedContact": "/company/contact/?product=crm",
+      "actualMobileContact": "/company/contact/?product=crm",
+      "mobileContactMatch": true
+    },
+    {
+      "route": "/products/salon-software/",
+      "expectedWa": "I'm interested in a demo of Hanva Salon Software.",
+      "actualMobileWa": "I'm interested in a demo of Hanva Salon Software.",
+      "mobileWaMatch": true,
+      "expectedContact": "/company/contact/?product=salon-software",
+      "actualMobileContact": "/company/contact/?product=salon-software",
+      "mobileContactMatch": true
+    },
+    {
+      "route": "/products/restaurant-pos/",
+      "expectedWa": "I'm interested in a demo of Hanva Restaurant POS.",
+      "actualMobileWa": "I'm interested in a demo of Hanva Restaurant POS.",
+      "mobileWaMatch": true,
+      "expectedContact": "/company/contact/?product=restaurant-pos",
+      "actualMobileContact": "/company/contact/?product=restaurant-pos",
+      "mobileContactMatch": true
+    },
+    {
+      "route": "/resources/salon-billing-software-guide/",
+      "expectedWa": "I'm interested in a demo of Hanva Salon Software.",
+      "actualMobileWa": "I'm interested in a demo of Hanva Salon Software.",
+      "mobileWaMatch": true,
+      "expectedContact": "/company/contact/?product=salon-software",
+      "actualMobileContact": "/company/contact/?product=salon-software",
+      "mobileContactMatch": true
+    },
+    {
+      "route": "/resources/cloud-kitchen-management-guide/",
+      "expectedWa": "I'm interested in a demo of Hanva Restaurant POS.",
+      "actualMobileWa": "I'm interested in a demo of Hanva Restaurant POS.",
+      "mobileWaMatch": true,
+      "expectedContact": "/company/contact/?product=restaurant-pos",
+      "actualMobileContact": "/company/contact/?product=restaurant-pos",
+      "mobileContactMatch": true
+    },
+    {
+      "route": "/resources/ivr-crm-for-businesses/",
+      "expectedWa": "I'm interested in a demo of Hanva CRM.",
+      "actualMobileWa": "I'm interested in a demo of Hanva CRM.",
+      "mobileWaMatch": true,
+      "expectedContact": "/company/contact/?product=crm",
+      "actualMobileContact": "/company/contact/?product=crm",
+      "mobileContactMatch": true
+    }
+  ],
+  "serviceLinks": {
+    "seoContactHref": "/company/contact/?product=digital-marketing",
+    "customCrmContactHref": "/company/contact/?product=software-development"
+  },
+  "drawerOpened": true,
+  "responsiveFailures": [],
+  "responsiveTestsRun": 56,
+  "contactFormTest": {
+    "preselectedProduct": "Hanva Salon Software",
+    "validationAlertVisible": true,
+    "handoffPreparedWithoutEmail": true,
+    "handoffContainsSalonProduct": true
+  },
+  "analyticsTest": {
+    "preConsentQueueLen": 0,
+    "observedEventsUnique": [
+      "cta_click",
+      "cta_view",
+      "page_view",
+      "product_view",
+      "whatsapp_click"
+    ],
+    "totalEventsObserved": 5,
+    "piiLeaks": [],
+    "hasGenerateLead": false,
+    "eventsSample": [
+      {
+        "event": "page_view",
+        "timestamp": "2026-11-26T14:06:43.835Z",
+        "page_path": "/products/crm/",
+        "page_category": "product",
+        "device_class": "desktop",
+        "params": {
+          "traffic_channel": "direct",
+          "page_title": "Hanva CRM \u2014 Sales, Calling & WhatsApp CRM | Hanva Technologies",
+          "page_path": "/products/crm/"
+        }
+      },
+      {
+        "event": "product_view",
+        "timestamp": "2026-11-26T14:06:43.835Z",
+        "page_path": "/products/crm/",
+        "page_category": "product",
+        "device_class": "desktop",
+        "params": {
+          "traffic_channel": "direct",
+          "product_name": "hanva_crm",
+          "product_category": "saas_product",
+          "page_path": "/products/crm/"
+        }
+      },
+      {
+        "event": "cta_view",
+        "timestamp": "2026-11-26T14:06:43.848Z",
+        "page_path": "/products/crm/",
+        "page_category": "product",
+        "device_class": "desktop",
+        "params": {
+          "traffic_channel": "direct",
+          "product_name": "hanva_crm",
+          "cta_location": "hero",
+          "cta_surface": "hero",
+          "cta_type": "crm_hero_cta",
+          "page_path": "/products/crm/"
+        }
+      },
+      {
+        "event": "whatsapp_click",
+        "timestamp": "2026-11-26T14:06:44.816Z",
+        "page_path": "/products/crm/",
+        "page_category": "product",
+        "device_class": "desktop",
+        "params": {
+          "traffic_channel": "direct",
+          "product_name": "hanva_crm",
+          "cta_location": "hero",
+          "cta_type": "product_demo_whatsapp",
+          "cta_surface": "hero",
+          "page_path": "/products/crm/"
+        }
+      },
+      {
+        "event": "cta_click",
+        "timestamp": "2026-11-26T14:06:44.816Z",
+        "page_path": "/products/crm/",
+        "page_category": "product",
+        "device_class": "desktop",
+        "params": {
+          "traffic_channel": "direct",
+          "product_name": "hanva_crm",
+          "cta_location": "hero",
+          "cta_surface": "hero",
+          "cta_type": "product_demo_whatsapp",
+          "experiment_id": "EXP-22C",
+          "variant_id": "request_demo_whatsapp",
+          "page_path": "/products/crm/"
+        }
+      }
+    ]
+  }
+}

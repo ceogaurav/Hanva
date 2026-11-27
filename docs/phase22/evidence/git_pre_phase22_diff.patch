@@ -1,0 +1,709 @@
+diff --git a/app/digital-marketing/page.tsx b/app/digital-marketing/page.tsx
+index 6f34b90..749ea5c 100644
+--- a/app/digital-marketing/page.tsx
++++ b/app/digital-marketing/page.tsx
+@@ -12,7 +12,7 @@ import { ArrowRight, CheckCircle2, MessageSquare, TrendingUp, ExternalLink } fro
+ export const metadata = {
+   title: "Digital Marketing Services — SEO & Google Ads",
+   description:
+-    "Hanva Technologies provides Search Engine Optimization (SEO), Google Ads, Social Media Marketing, and integrated digital marketing campaigns for Indian and international businesses.",
++    "Search Engine Optimization (SEO), Google Ads performance marketing, and social media campaigns engineered for qualified enquiries across India and globally.",
+   alternates: {
+     canonical: "https://www.hanva.in/digital-marketing/",
+   },
+@@ -210,6 +210,33 @@ export default function DigitalMarketingHubPage() {
+         </Container>
+       </section>
+ 
++      <section className="py-10 bg-slate-50 border-y border-slate-100">
++        <Container className="space-y-6">
++          <div className="max-w-2xl space-y-1.5">
++            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Digital Marketing &amp; Search Strategy Guides</h2>
++            <p className="text-xs sm:text-sm text-slate-600">
++              Practical resources on compliant Indian local SEO, Google Business Profile hygiene, and aligning organic search with Google Ads.
++            </p>
++          </div>
++          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
++            <Link href="/resources/local-seo-guide-for-businesses/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Local SEO Guide for Indian Businesses</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Google Business Profile address vs SAB compliance, NAP hygiene, and city landing pages without doorway abuse.</p>
++            </Link>
++            <Link href="/resources/seo-vs-google-ads-for-smbs/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>SEO vs Google Ads for SMBs: Decision Guide</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">When to prioritize organic SEO compounding vs immediate Search ads with negative keyword hygiene.</p>
++            </Link>
++          </div>
++        </Container>
++      </section>
++
+       <section>
+         <Container className="max-w-4xl space-y-6">
+           <h2 className="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+diff --git a/app/digital-marketing/performance-marketing/page.tsx b/app/digital-marketing/performance-marketing/page.tsx
+index 21749a3..8ff3b6d 100644
+--- a/app/digital-marketing/performance-marketing/page.tsx
++++ b/app/digital-marketing/performance-marketing/page.tsx
+@@ -83,6 +83,18 @@ export default function PerformanceMarketingPage() {
+         { title: "Hanva CRM", description: "Manage and call incoming campaign leads inside Hanva CRM.", href: "/products/crm/" },
+         { title: "Cloud Telephony & IVR", description: "Track and route inbound campaign phone calls.", href: "/products/cloud-telephony/" },
+       ]}
++      guides={[
++        {
++          title: "Guide: SEO vs Google Ads for Indian SMBs",
++          description: "Compare ad group targeting, negative keyword hygiene & organic compounding timelines.",
++          href: "/resources/seo-vs-google-ads-for-smbs/",
++        },
++        {
++          title: "Guide: Local SEO & GBP Hygiene",
++          description: "Complement paid campaigns with clean Google Business Profile & regional page health.",
++          href: "/resources/local-seo-guide-for-businesses/",
++        },
++      ]}
+       faqs={[
+         {
+           question: "Do you guarantee a fixed number of leads or cost per lead?",
+diff --git a/app/digital-marketing/seo-services/page.tsx b/app/digital-marketing/seo-services/page.tsx
+index 94bde9e..5b9c6fa 100644
+--- a/app/digital-marketing/seo-services/page.tsx
++++ b/app/digital-marketing/seo-services/page.tsx
+@@ -83,6 +83,18 @@ export default function SeoServicesPage() {
+         { title: "Web Application Development", description: "Ensure your website stack supports fast, SEO-friendly rendering.", href: "/software-development/web-application-development/" },
+         { title: "Hanva CRM", description: "Track and follow up on inbound SEO enquiries from one CRM.", href: "/products/crm/" },
+       ]}
++      guides={[
++        {
++          title: "Guide: Local SEO for Indian Businesses",
++          description: "GBP storefront vs Service-Area rules, NAP hygiene & regional pages without doorway penalties.",
++          href: "/resources/local-seo-guide-for-businesses/",
++        },
++        {
++          title: "Guide: SEO vs Google Ads for SMBs",
++          description: "Decide when to prioritize organic search assets vs immediate Search ads.",
++          href: "/resources/seo-vs-google-ads-for-smbs/",
++        },
++      ]}
+       faqs={[
+         {
+           question: "Do you guarantee first-page Google rankings?",
+diff --git a/app/page.tsx b/app/page.tsx
+index 0090d7a..b9ccfe4 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -26,7 +26,7 @@ import {
+ export const metadata = {
+   title: "IT Solutions, SaaS Products & Cloud Telephony",
+   description:
+-    "Hanva Technologies is a comprehensive IT solutions, digital transformation, and SaaS software provider in India offering Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, Digital Marketing, Software Development, and Cloud Telephony.",
++    "Hanva Technologies delivers SaaS software (Hanva CRM, Salon Software, Restaurant POS), SEO & Google Ads, custom software development, and cloud telephony in India.",
+   alternates: {
+     canonical: "https://www.hanva.in/",
+   },
+diff --git a/app/products/crm/page.tsx b/app/products/crm/page.tsx
+index d0fc0b1..fb024ac 100644
+--- a/app/products/crm/page.tsx
++++ b/app/products/crm/page.tsx
+@@ -384,6 +384,36 @@ export default function HanvaCrmPage() {
+               <p className="text-xs text-slate-600">Need bespoke ERP/CRM workflows? Explore our custom engineering service.</p>
+             </Link>
+           </div>
++          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
++            <Link href="/resources/crm-with-ivr-vs-telecalling-crm/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Buyer Guide: CRM with IVR vs Telecalling CRM</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Compare multi-channel IVR/WhatsApp CRM vs outbound voice-first telecalling workflows.</p>
++            </Link>
++            <Link href="/resources/ivr-crm-for-businesses/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Operational Guide: IVR CRM Routing &amp; Call Audits</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">How teams combine DID routing, 5,000-row IVR blasts, C2C calling &amp; audio audits.</p>
++            </Link>
++            <Link href="/resources/lead-management-process-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Playbook: Lead Management, Scoring &amp; KYC Vaults</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Structured SOP from webhook/CSV intake and role assignment through KYC collection.</p>
++            </Link>
++            <Link href="/resources/saas-vs-custom-crm-erp-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Decision Guide: Ready-Made SaaS vs Custom CRM/ERP</span>
++                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Evaluate when ready-to-deploy Hanva CRM outperforms custom bespoke software builds.</p>
++            </Link>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/products/page.tsx b/app/products/page.tsx
+index a351754..533e383 100644
+--- a/app/products/page.tsx
++++ b/app/products/page.tsx
+@@ -26,7 +26,7 @@ import {
+ export const metadata = {
+   title: "SaaS Products & Cloud Telephony Suite",
+   description:
+-    "Explore Hanva's SaaS products (Hanva CRM, Hanva Salon Software, Hanva Restaurant POS) and enterprise telecom suite including Cloud Telephony, Smart IVR, Auto Dialers, and WhatsApp CRM.",
++    "Explore Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, plus enterprise Cloud Telephony, Smart IVR, Auto Dialers, and WhatsApp Business CRM solutions.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/",
+   },
+diff --git a/app/products/restaurant-pos/page.tsx b/app/products/restaurant-pos/page.tsx
+index a4282c5..6f0cac4 100644
+--- a/app/products/restaurant-pos/page.tsx
++++ b/app/products/restaurant-pos/page.tsx
+@@ -21,7 +21,7 @@ import {
+ export const metadata = {
+   title: "Hanva Restaurant POS — Billing, KDS & QR Ordering",
+   description:
+-    "Restaurant POS and billing software designed to simplify dine-in, takeaway, delivery orders, KOT, Kitchen Display System (KDS), QR menu ordering, GST billing, UPI QR, and recipe inventory.",
++    "Restaurant POS and GST billing software for dine-in, cafes & cloud kitchens: offline queue, KOT, Kitchen Display System (KDS), QR ordering, and recipe BOM.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/restaurant-pos/",
+   },
+@@ -379,6 +379,32 @@ export default function HanvaRestaurantPosPage() {
+               <p className="text-slate-600">Offline-resilient billing, GST tax summaries, and Z-Report closing.</p>
+             </div>
+           </div>
++          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
++            <div className="space-y-1">
++              <div className="text-sm font-bold text-slate-900">Restaurant Billing, KDS, Inventory &amp; API Guides</div>
++              <p className="text-xs text-slate-600">
++                Explore technical guidance on India CGST/SGST billing, offline POS sync, kitchen routing, FIFO/WAC recipes, and Partner API webhooks.
++              </p>
++            </div>
++            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 text-xs font-semibold">
++              <Link href="/resources/restaurant-pos-kot-inventory-guide/" className="inline-flex items-center text-amber-800 hover:underline">
++                <span>POS, KOT &amp; Inventory Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/resources/restaurant-billing-software-guide/" className="inline-flex items-center text-amber-800 hover:underline">
++                <span>India GST &amp; Offline Billing Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/resources/cloud-kitchen-management-guide/" className="inline-flex items-center text-amber-800 hover:underline">
++                <span>Cloud Kitchen KDS &amp; BOM Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/software-development/api-integration-automation/" className="inline-flex items-center text-blue-700 hover:underline">
++                <span>API Integration &amp; Workflows</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++            </div>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/products/salon-software/page.tsx b/app/products/salon-software/page.tsx
+index 8729b4b..30ba1bd 100644
+--- a/app/products/salon-software/page.tsx
++++ b/app/products/salon-software/page.tsx
+@@ -21,7 +21,7 @@ import {
+ export const metadata = {
+   title: "Hanva Salon Software — Billing, Booking & Staff",
+   description:
+-    "Salon billing and management software to simplify appointments, GST invoicing, online booking mini-website, staff commissions, payroll, inventory auto-consumption, and loyalty.",
++    "Salon billing and management software for Indian salons & spas: GST invoicing, online booking mini-site, staff commissions, auto-consumption, and loyalty.",
+   alternates: {
+     canonical: "https://www.hanva.in/products/salon-software/",
+   },
+@@ -375,6 +375,32 @@ export default function HanvaSalonSoftwarePage() {
+               <p className="text-slate-600">Online booking mini-site, loyalty wallets, and gift cards.</p>
+             </div>
+           </div>
++          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
++            <div className="space-y-1">
++              <div className="text-sm font-bold text-slate-900">Salon Software Evaluation &amp; Operational Guides</div>
++              <p className="text-xs text-slate-600">
++                Explore India SAC/HSN GST billing mechanics, online booking workflows, commission checklists, and local salon visibility guides.
++              </p>
++            </div>
++            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 text-xs font-semibold">
++              <Link href="/resources/salon-management-software-guide/" className="inline-flex items-center text-rose-700 hover:underline">
++                <span>Salon Software Buyer Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/resources/salon-billing-software-guide/" className="inline-flex items-center text-rose-700 hover:underline">
++                <span>Salon GST Billing Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/resources/salon-appointment-management-guide/" className="inline-flex items-center text-rose-700 hover:underline">
++                <span>Appointments &amp; Online Booking Guide</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++              <Link href="/digital-marketing/" className="inline-flex items-center text-blue-700 hover:underline">
++                <span>Salon Digital Marketing</span>
++                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
++              </Link>
++            </div>
++          </div>
+         </Container>
+       </section>
+ 
+diff --git a/app/resources/auto-dialer-vs-predictive-dialer/page.tsx b/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+index 137fa3c..6ae817e 100644
+--- a/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
++++ b/app/resources/auto-dialer-vs-predictive-dialer/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "Compare Preview, Progressive, and Predictive dialers. Learn how call pacing algorithms affect agent idle time, dropped call rates, and Truecaller spam risk in India.",
+     url: "https://www.hanva.in/resources/auto-dialer-vs-predictive-dialer/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Auto Dialer vs Predictive Dialer Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/cloud-telephony-pricing-guide/page.tsx b/app/resources/cloud-telephony-pricing-guide/page.tsx
+index c635bf4..d9efe23 100644
+--- a/app/resources/cloud-telephony-pricing-guide/page.tsx
++++ b/app/resources/cloud-telephony-pricing-guide/page.tsx
+@@ -19,7 +19,10 @@ export const metadata = {
+     description:
+       "A transparent breakdown of telecom billing in India: why 60-second rounding inflates phone bills by 25%-30%, channel rental math, DID setup charges, and hidden telco tariffs.",
+     url: "https://www.hanva.in/resources/cloud-telephony-pricing-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Cloud Telephony Pricing Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/how-ivr-systems-work/page.tsx b/app/resources/how-ivr-systems-work/page.tsx
+index 1925e6e..d4b4a19 100644
+--- a/app/resources/how-ivr-systems-work/page.tsx
++++ b/app/resources/how-ivr-systems-work/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "A deep dive into multi-level interactive voice response: DTMF tone detection, speech synthesis, skill-based queue distribution, and webhook CRM synchronization.",
+     url: "https://www.hanva.in/resources/how-ivr-systems-work/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "How IVR Systems Work Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/page.tsx b/app/resources/page.tsx
+index 9dc98d1..d3708c6 100644
+--- a/app/resources/page.tsx
++++ b/app/resources/page.tsx
+@@ -103,6 +103,26 @@ const articles = [
+     date: "November 2026",
+     keyTopics: ["GST Salon Billing", "Online Booking", "Staff Commissions", "Auto-Consumption Stock"],
+   },
++  {
++    slug: "/resources/salon-billing-software-guide/",
++    pillar: "Salon Software",
++    title: "Salon Billing Software in India: GST Invoicing, Split POS & Z-Reports",
++    description:
++      "Front-desk billing guide covering SAC 9997 services vs retail HSN goods, inclusive/exclusive GST checkout, split POS tenders, Z-reports & offline queues.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["SAC 9997 vs HSN", "Split POS Tenders", "Digital Bills", "Cash Z-Reports"],
++  },
++  {
++    slug: "/resources/salon-appointment-management-guide/",
++    pillar: "Salon Software",
++    title: "Salon Appointment & Online Booking Management: Eliminating Chair Clashes",
++    description:
++      "Manage stylist and treatment-room calendars, waitlists, public online booking mini-websites, customer visit history & PIN staff portal schedules.",
++    readTime: "9 min read",
++    date: "November 2026",
++    keyTopics: ["Stylist & Room Slots", "Online Booking Link", "Waitlists", "Staff Portal"],
++  },
+   {
+     slug: "/resources/restaurant-pos-kot-inventory-guide/",
+     pillar: "Restaurant POS",
+@@ -113,6 +133,26 @@ const articles = [
+     date: "November 2026",
+     keyTopics: ["POS vs KOT vs KDS", "CGST & SGST", "Recipe BOM Stock", "Cafes & Cloud Kitchens"],
+   },
++  {
++    slug: "/resources/restaurant-billing-software-guide/",
++    pillar: "Restaurant POS",
++    title: "Restaurant Billing Software in India: GST Splits, UPI QR & Offline POS",
++    description:
++      "India restaurant GST rules (5% vs 18% context), dynamic NPCI UPI QR, multi-tender split payments, Z-reports, IndexedDB offline queuing & print bridges.",
++    readTime: "11 min read",
++    date: "November 2026",
++    keyTopics: ["CGST & SGST Splits", "Dynamic NPCI UPI QR", "Offline IndexedDB", "Multi-Tender Pay"],
++  },
++  {
++    slug: "/resources/cloud-kitchen-management-guide/",
++    pillar: "Restaurant POS",
++    title: "Cloud Kitchen Management Guide: KDS Routing, Recipe BOM & Partner APIs",
++    description:
++      "Run delivery kitchens efficiently with station KDS boards, duplicate-KOT protection, FIFO/WAC recipe BOM depletion, pincode zones & REST API webhooks.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["Station KDS", "FIFO / WAC Recipes", "Delivery Zones", "Partner REST API"],
++  },
+   {
+     slug: "/resources/crm-with-ivr-vs-telecalling-crm/",
+     pillar: "CRM & IVR",
+@@ -123,6 +163,46 @@ const articles = [
+     date: "November 2026",
+     keyTopics: ["CRM Pipelines", "Built-in IVR", "C2C & Auto-Dialing", "Real Estate & EdTech"],
+   },
++  {
++    slug: "/resources/ivr-crm-for-businesses/",
++    pillar: "CRM & IVR",
++    title: "IVR CRM for Businesses: Routing, Outbound Campaigns & Call Audits",
++    description:
++      "Operational manual for uniting virtual DID routing, chunked 5,000-row IVR blasts, carrier C2C webhooks, HTML5 browser recordings & WABA templates.",
++    readTime: "11 min read",
++    date: "November 2026",
++    keyTopics: ["DID Registry", "IVR Blasts", "C2C Webhooks", "Browser Audio Audits"],
++  },
++  {
++    slug: "/resources/lead-management-process-guide/",
++    pillar: "CRM & IVR",
++    title: "Lead Management Process Guide: From Webhook Capture to KYC Verification",
++    description:
++      "Structured B2B and inside-sales workflow covering webhook/CSV intake, role routing, lead scoring, follow-up cadences, KYC portals & DPDP consent.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["Webhook Intake", "Role Assignment", "KYC Portals", "DPDP 2023 Consent"],
++  },
++  {
++    slug: "/resources/local-seo-guide-for-businesses/",
++    pillar: "Digital Marketing",
++    title: "Local SEO Guide for Indian Businesses: GBP Hygiene & Regional Pages",
++    description:
++      "Compliant Local SEO architecture aligned with Google Business Profile storefront vs Service-Area rules and Google Search Essentials spam policies.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["GBP Compliance", "Service-Area Rules", "No Doorway Pages", "Local Schema"],
++  },
++  {
++    slug: "/resources/seo-vs-google-ads-for-smbs/",
++    pillar: "Digital Marketing",
++    title: "SEO vs Google Ads for Indian SMBs: When to Deploy Organic vs Paid Search",
++    description:
++      "Compare compounding organic SEO against structured Google Search Ads across speed, ad-group/negative keyword hygiene & conversion tracking.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["Organic SEO", "Google Search Ads", "Negative Keywords", "Conversion Tracking"],
++  },
+   {
+     slug: "/resources/saas-vs-custom-crm-erp-guide/",
+     pillar: "Software Strategy",
+@@ -133,6 +213,26 @@ const articles = [
+     date: "November 2026",
+     keyTopics: ["Buy vs Build", "TCO & Maintenance", "Custom Workflows", "Data Ownership"],
+   },
++  {
++    slug: "/resources/custom-crm-development-guide/",
++    pillar: "Software Strategy",
++    title: "Custom CRM & ERP Development Guide: Scoping, Modeling & Rollout",
++    description:
++      "Engineering blueprint covering domain entity modeling, multi-department approval matrices, RBAC boundaries, API bridges & legacy data migration.",
++    readTime: "11 min read",
++    date: "November 2026",
++    keyTopics: ["Domain Modeling", "RBAC Permissions", "ERP Integrations", "Staged Migration"],
++  },
++  {
++    slug: "/resources/software-development-cost-factors/",
++    pillar: "Software Strategy",
++    title: "Software Development Cost Factors in India: What Drives Custom Estimates",
++    description:
++      "Transparent breakdown of the six architectural drivers behind bespoke CRM, portal, mobile & integration investment—with clear pre-quote checklists.",
++    readTime: "10 min read",
++    date: "November 2026",
++    keyTopics: ["Workflow Complexity", "RBAC & DPDP", "Third-Party APIs", "Ongoing AMC"],
++  },
+   {
+     slug: "/resources/what-is-cloud-telephony/",
+     pillar: "Cloud Telephony & IVR",
+@@ -239,8 +339,8 @@ export default function ResourcesHubPage() {
+             Business Communication, Cloud Telephony &amp; CRM Architecture Guides
+           </h1>
+           <p className="text-base sm:text-xl text-slate-600 leading-relaxed">
+-            Practical, peer-reviewed engineering guides, dialer comparisons, regulatory manuals, and pricing frameworks 
+-            designed to help Indian business owners, sales leaders, and telecalling operations build scalable customer interaction engines.
++            Practical, peer-reviewed architecture guides, GST billing playbooks, CRM/IVR comparisons, digital marketing guides, and custom software blueprints 
++            designed for Indian business owners, salon &amp; restaurant operators, sales leaders, and engineering teams.
+           </p>
+ 
+           <div className="space-y-2 pt-2">
+diff --git a/app/resources/telecalling-crm-guide/page.tsx b/app/resources/telecalling-crm-guide/page.tsx
+index 06f1d2a..2fd584d 100644
+--- a/app/resources/telecalling-crm-guide/page.tsx
++++ b/app/resources/telecalling-crm-guide/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "How integrated dialer CRMs eliminate spreadsheet lead leakage, automate lead assignment, enforce disposition tagging, and give sales directors real-time visibility.",
+     url: "https://www.hanva.in/resources/telecalling-crm-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Telecalling CRM Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/what-is-cloud-telephony/page.tsx b/app/resources/what-is-cloud-telephony/page.tsx
+index a3043a6..eb71de9 100644
+--- a/app/resources/what-is-cloud-telephony/page.tsx
++++ b/app/resources/what-is-cloud-telephony/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "Understand cloud PBX architecture, virtual landline DIDs, SIP trunking, and how modern softphones replace legacy EPABX hardware without capital expenditure.",
+     url: "https://www.hanva.in/resources/what-is-cloud-telephony/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "What Is Cloud Telephony Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/resources/whatsapp-business-api-guide/page.tsx b/app/resources/whatsapp-business-api-guide/page.tsx
+index c4f6ef4..00dd5ee 100644
+--- a/app/resources/whatsapp-business-api-guide/page.tsx
++++ b/app/resources/whatsapp-business-api-guide/page.tsx
+@@ -18,7 +18,10 @@ export const metadata = {
+     description:
+       "The definitive guide to official Meta WABA gateways: green badge verification, 24-hour service messaging windows, pre-approved utility templates, and multi-agent shared inboxes.",
+     url: "https://www.hanva.in/resources/whatsapp-business-api-guide/",
++    siteName: "Hanva Technologies",
++    locale: "en_IN",
+     type: "article",
++    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "WhatsApp Business API Guide" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+diff --git a/app/sitemap.ts b/app/sitemap.ts
+index ce64049..2fb8b9a 100644
+--- a/app/sitemap.ts
++++ b/app/sitemap.ts
+@@ -2,12 +2,13 @@ import { MetadataRoute } from "next";
+ 
+ export default function sitemap(): MetadataRoute.Sitemap {
+   const baseUrl = "https://www.hanva.in";
++  const RELEASE_DATE_PHASE21 = new Date("2026-11-26T00:00:00.000Z");
+   const RELEASE_DATE_PHASE14 = new Date("2026-11-26T00:00:00.000Z");
+   const RELEASE_DATE_PHASE12 = new Date("2026-11-26T00:00:00.000Z");
+   const RELEASE_DATE_PHASE10 = new Date("2026-11-25T00:00:00.000Z");
+   const RELEASE_DATE_CORE = new Date("2026-11-24T00:00:00.000Z");
+ 
+-  // All 52 canonical routes for Hanva Technologies (Phase 10)
++  // All 79 canonical routes for Hanva Technologies (Phase 21)
+   const routes = [
+     // 1. Core Homepage & Commercial Gateways (4)
+     "/",
+@@ -83,12 +84,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
+     "/compare/knowlarity-alternative/",
+     "/compare/telecmi-alternative/",
+ 
+-    // 9. Knowledge Hub & Topical Resource Guides (12)
++    // 9. Knowledge Hub & Topical Resource Guides (22)
+     "/resources/",
+     "/resources/salon-management-software-guide/",
++    "/resources/salon-billing-software-guide/",
++    "/resources/salon-appointment-management-guide/",
+     "/resources/restaurant-pos-kot-inventory-guide/",
++    "/resources/restaurant-billing-software-guide/",
++    "/resources/cloud-kitchen-management-guide/",
+     "/resources/crm-with-ivr-vs-telecalling-crm/",
++    "/resources/ivr-crm-for-businesses/",
++    "/resources/lead-management-process-guide/",
+     "/resources/saas-vs-custom-crm-erp-guide/",
++    "/resources/custom-crm-development-guide/",
++    "/resources/software-development-cost-factors/",
++    "/resources/local-seo-guide-for-businesses/",
++    "/resources/seo-vs-google-ads-for-smbs/",
+     "/resources/what-is-cloud-telephony/",
+     "/resources/how-ivr-systems-work/",
+     "/resources/auto-dialer-vs-predictive-dialer/",
+@@ -141,6 +152,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
+ 
+     let lastModified = RELEASE_DATE_PHASE12;
+     if (
++      route === "/resources/ivr-crm-for-businesses/" ||
++      route === "/resources/lead-management-process-guide/" ||
++      route === "/resources/salon-billing-software-guide/" ||
++      route === "/resources/salon-appointment-management-guide/" ||
++      route === "/resources/restaurant-billing-software-guide/" ||
++      route === "/resources/cloud-kitchen-management-guide/" ||
++      route === "/resources/local-seo-guide-for-businesses/" ||
++      route === "/resources/seo-vs-google-ads-for-smbs/" ||
++      route === "/resources/custom-crm-development-guide/" ||
++      route === "/resources/software-development-cost-factors/"
++    ) {
++      lastModified = RELEASE_DATE_PHASE21;
++    } else if (
+       route === "/products/salon-software/" ||
+       route === "/products/restaurant-pos/" ||
+       route.startsWith("/digital-marketing/") ||
+diff --git a/app/software-development/custom-crm-development/page.tsx b/app/software-development/custom-crm-development/page.tsx
+index 7bde3a3..247d9a0 100644
+--- a/app/software-development/custom-crm-development/page.tsx
++++ b/app/software-development/custom-crm-development/page.tsx
+@@ -59,6 +59,23 @@ export default function CustomCrmDevelopmentPage() {
+         { title: "API Integration & Automation", description: "Connect existing ERPs, webhooks, and AI workflows.", href: "/software-development/api-integration-automation/" },
+         { title: "SaaS Product Development", description: "Building a multi-tenant commercial product for external customers.", href: "/software-development/saas-product-development/" },
+       ]}
++      guides={[
++        {
++          title: "Guide: Custom CRM Architecture & Rollout",
++          description: "Domain entities, multi-department approvals, RBAC tiers & legacy data migration.",
++          href: "/resources/custom-crm-development-guide/",
++        },
++        {
++          title: "Guide: SaaS vs Custom CRM & ERP",
++          description: "Decide objectively when off-the-shelf SaaS wins vs bespoke engineering.",
++          href: "/resources/saas-vs-custom-crm-erp-guide/",
++        },
++        {
++          title: "Guide: Software Development Cost Factors",
++          description: "Six architectural cost drivers behind custom CRM, web & integration estimates.",
++          href: "/resources/software-development-cost-factors/",
++        },
++      ]}
+       faqs={[
+         {
+           question: "How is this different from Hanva CRM?",
+diff --git a/app/software-development/page.tsx b/app/software-development/page.tsx
+index 9ce7d5d..0d67872 100644
+--- a/app/software-development/page.tsx
++++ b/app/software-development/page.tsx
+@@ -12,7 +12,7 @@ import { ArrowRight, Code2, MessageSquare, ExternalLink } from "lucide-react";
+ export const metadata = {
+   title: "Software Development — Web, Mobile, CRM & AI",
+   description:
+-    "Custom software development by Hanva Technologies: website and web application development, mobile apps, custom CRM/ERP systems, e-commerce platforms, API integrations, and tailored AI solutions.",
++    "Custom web applications, Android mobile apps, bespoke CRM/ERP platforms, e-commerce storefronts, API integrations, and AI automation by Hanva Technologies.",
+   alternates: {
+     canonical: "https://www.hanva.in/software-development/",
+   },
+@@ -207,6 +207,40 @@ export default function SoftwareDevelopmentHubPage() {
+         </Container>
+       </section>
+ 
++      <section className="py-10 bg-slate-50 border-y border-slate-100">
++        <Container className="space-y-6">
++          <div className="max-w-2xl space-y-1.5">
++            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Custom Software Architecture &amp; Scoping Guides</h2>
++            <p className="text-xs sm:text-sm text-slate-600">
++              Evaluate ready-made SaaS against bespoke CRM/ERP development, understand engineering cost drivers, and plan clean rollouts.
++            </p>
++          </div>
++          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
++            <Link href="/resources/saas-vs-custom-crm-erp-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>SaaS vs Custom CRM &amp; ERP</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Decision guide comparing off-the-shelf SaaS speed vs bespoke systems across TCO &amp; control.</p>
++            </Link>
++            <Link href="/resources/custom-crm-development-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Custom CRM Development Guide</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">Domain entity modeling, RBAC hierarchies, ERP/telephony APIs &amp; legacy data migration.</p>
++            </Link>
++            <Link href="/resources/software-development-cost-factors/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
++              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
++                <span>Software Development Cost Factors</span>
++                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++              </div>
++              <p className="text-xs text-slate-600">The six architectural drivers that determine bespoke development effort &amp; AMC budgets.</p>
++            </Link>
++          </div>
++        </Container>
++      </section>
++
+       <section>
+         <Container className="max-w-4xl space-y-6">
+           <h2 className="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+diff --git a/components/shared/article-layout.tsx b/components/shared/article-layout.tsx
+index 1b892f7..58861ec 100644
+--- a/components/shared/article-layout.tsx
++++ b/components/shared/article-layout.tsx
+@@ -113,6 +113,16 @@ export function ArticleLayout({
+       }
+     : null;
+ 
++  const summarySecondaryLink = pillarHref.includes("salon-software")
++    ? { href: "/products/salon-software/", label: "Explore Hanva Salon Software" }
++    : pillarHref.includes("restaurant-pos")
++      ? { href: "/products/restaurant-pos/", label: "Explore Hanva Restaurant POS" }
++      : pillarHref.includes("digital-marketing")
++        ? { href: "/digital-marketing/", label: "Explore Digital Marketing Services" }
++        : pillarHref.includes("software-development")
++          ? { href: "/software-development/", label: "Explore Custom Software Services" }
++          : { href: "/pricing/calculator/", label: "Simulate OBD Voice Pulse Costs" };
++
+   return (
+     <article className="pt-10 pb-28 lg:py-14 bg-white min-h-screen overflow-x-clip">
+       {enrichedArticleSchema && <SchemaOrg data={enrichedArticleSchema} />}
+@@ -204,11 +214,11 @@ export function ArticleLayout({
+             </TrackedDemoLink>
+             <span className="text-slate-400" aria-hidden="true">|</span>
+             <Link
+-              href="/pricing/calculator/"
++              href={summarySecondaryLink.href}
+               className="inline-flex items-center font-semibold text-emerald-700 hover:text-emerald-900 hover:underline"
+             >
+               <Sparkles className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
+-              <span>Simulate OBD Voice Pulse Costs</span>
++              <span>{summarySecondaryLink.label}</span>
+             </Link>
+           </div>
+         </div>
+diff --git a/components/shared/service-layout.tsx b/components/shared/service-layout.tsx
+index daa57ef..f999ce3 100644
+--- a/components/shared/service-layout.tsx
++++ b/components/shared/service-layout.tsx
+@@ -52,6 +52,7 @@ export interface ServiceLayoutProps {
+   stages: EngagementStage[];
+   suitableCustomers: ServiceCustomerType[];
+   relatedLinks: { title: string; description: string; href: string }[];
++  guides?: { title: string; description: string; href: string }[];
+   faqs: FAQItem[];
+   serviceType: string;
+   canonicalUrl: string;
+@@ -72,6 +73,7 @@ export function ServiceLayout({
+   stages,
+   suitableCustomers,
+   relatedLinks,
++  guides,
+   faqs,
+   serviceType,
+   canonicalUrl,
+@@ -303,6 +305,23 @@ export function ServiceLayout({
+               </Link>
+             ))}
+           </div>
++          {guides && guides.length > 0 && (
++            <div className={`grid grid-cols-1 ${guides.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"} gap-5 pt-2`}>
++              {guides.map((guide) => (
++                <Link
++                  key={guide.href}
++                  href={guide.href}
++                  className="group rounded-xl border border-blue-200/80 bg-blue-50/30 p-5 hover:border-blue-400 hover:bg-blue-50/60 transition-colors space-y-1.5"
++                >
++                  <div className="flex items-center justify-between text-sm font-bold text-slate-900 group-hover:text-blue-700">
++                    <span>{guide.title}</span>
++                    <ArrowUpRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
++                  </div>
++                  <p className="text-xs text-slate-600 leading-relaxed">{guide.description}</p>
++                </Link>
++              ))}
++            </div>
++          )}
+         </Container>
+       </section>
+ 

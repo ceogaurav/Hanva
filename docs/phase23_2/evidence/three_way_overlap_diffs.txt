@@ -1,0 +1,632 @@
+
+==================== app/actions/tenant-settings.ts ====================
+Diff between seobanks(---) and local(+++): 18 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/app/actions/tenant-settings.ts	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/app/actions/tenant-settings.ts	2026-11-14 10:42:25
+@@ -137,12 +137,14 @@
+         const supabaseAdmin = getAdminClient()
+         const tenantId = await resolveUserTenantId(supabaseAdmin, user.id)
+ 
++        const cleanWaba = formData.fonada_waba_number ? String(formData.fonada_waba_number).replace(/\D/g, '') : null;
+         // 2. UPSERT settings using Admin Client (handles both insert if new & bypasses RLS blocks)
+         const payload = {
+             tenant_id: tenantId,
+             fonada_client_id: formData.fonada_client_id || "",
+             fonada_secret: formData.fonada_secret || "",
+-            fonada_waba_number: formData.fonada_waba_number ? String(formData.fonada_waba_number).replace(/\D/g, '') : null,
++            fonada_waba_number: cleanWaba,
++            wa_waba_number: cleanWaba,
+             whatsapp_api_key: formData.whatsapp_api_key || "",
+             whatsapp_ai_agent_enabled: Boolean(formData.whatsapp_ai_agent_enabled),
+             cron_auto_checkout: Boolean(formData.cron_auto_checkout),
+
+==================== app/actions/whatsapp.ts ====================
+Diff between seobanks(---) and local(+++): 24 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/app/actions/whatsapp.ts	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/app/actions/whatsapp.ts	2026-11-17 14:42:42
+@@ -625,7 +625,7 @@
+   }
+ }
+ 
+-import { checkDailyDocMessageLimit, PERSONAL_LOAN_DOCS_MESSAGE } from "@/lib/whatsapp-rate-limiter";
++
+ 
+ // ============================================================================
+ // 6. SEND APPLICATION STATUS UPDATE TEMPLATE (For IVR DTMF Leads)
+@@ -661,8 +661,12 @@
+ 
+     // Template message text
+     const APPLICATION_STATUS_UPDATE_TEXT = `*Application Status*\n\n*Hello!* Thank you for speaking with our *verification team.*\n\nYour initial *phone verification is successfully completed*. To keep your loan application moving forward, *please submit the remaining pending details* in your secure portal.\n\nLet us know if you need any assistance with the upload!\n\n_ICICI Bank Loan Desk_`;
++    const LOAN_STATUS_TEXT = `*Loan Document Reminder*\n\n🚀 *Your Loan Application Is Almost Ready!*\n\nDon't let missing documents delay your loan processing.\n\nUpload your pending documents now and help us move your application to the next stage.\n\n*Which documents have you uploaded?*\n*Please select below:*\n\n_ICICI Loan Desk_\n\n[Salary Slip Uploaded] [PAN Card Uploaded] [Aadhaar Card Uploaded]`;
++
+     let finalContent = (templateName === 'application_status_update') 
+       ? APPLICATION_STATUS_UPDATE_TEXT 
++      : (templateName === 'loan_status')
++      ? LOAN_STATUS_TEXT
+       : `[WhatsApp Template: ${templateName}]`;
+ 
+     // Dispatch template via Fonada AI Gateway (Direct sub-500ms message sender with campaign creator fallback)
+
+==================== app/admin/ivr-upload/page.tsx ====================
+Diff between seobanks(---) and local(+++): 3721 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/app/admin/ivr-upload/page.tsx	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/app/admin/ivr-upload/page.tsx	2026-11-25 15:24:40
+@@ -2,7 +2,7 @@
+ 
+ import { useState, useEffect, useMemo } from "react"
+ import Link from "next/link"
+-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
++import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+ import { Button } from "@/components/ui/button"
+ import { Input } from "@/components/ui/input"
+ import { Label } from "@/components/ui/label"
+@@ -10,22 +10,49 @@
+ import { Badge } from "@/components/ui/badge"
+ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger } from "@/components/ui/dialog"
++import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
++import { Progress } from "@/components/ui/progress"
++import { Switch } from "@/components/ui/switch"
+ import { 
+-  Upload, CheckCircle, AlertCircle, Loader2, History, UploadCloud, 
+-  Wallet, Plus, Minus, Coins, Download, Clock, Zap, Users, Filter, 
+-  Search, ArrowRight, ExternalLink, HelpCircle, Check, Info, Sparkles, 
+-  AlertTriangle, PhoneCall, RefreshCw, FileText
++  Upload, CheckCircle, AlertCircle, Loader2, History,
++  Coins, Download, Clock, Zap, Users, Filter, 
++  Search, ArrowRight, ExternalLink, Info, 
++  AlertTriangle, PhoneCall, PhoneOutgoing, RefreshCw, FileText,
++  CreditCard, ShieldCheck, CheckCircle2, Building2,
++  ChevronRight, BarChart3, Send, FileSpreadsheet,
++  Layers, Radio, HelpCircle, Printer, Activity, ShieldAlert, Timer, PauseCircle
+ } from "lucide-react"
+ import { toast } from "sonner"
+ import Papa from "papaparse"
+ import { createClient } from "@/lib/supabase/client"
+ import { 
+   submitIvrUploadRequest, 
++  submitDirectIvrCampaignUpload,
+   getIvrUploadHistory, 
+   getWalletHistory,
+-  requestCreditRecharge 
++  requestCreditRecharge,
++  getIvrConvertedLeadsForExport,
++  getCampaignStatusByDid,
++  toggleCampaignStatusByDid,
++  getTenantOzonetelCampaigns,
++  toggleOzonetelCampaignStatus,
++  forceCompleteOzonetelCampaign,
++  getBroadcastAggregatedAnalytics
+ } from "@/app/actions/ivr-upload-action"
++import {
++  createRazorpayOrder,
++  verifyRazorpayPayment,
++  getRazorpayConfig
++} from "@/app/actions/razorpay-actions"
++import {
++  sendTenantLowBalanceAlert,
++  saveTenantBillingPhone,
++  resolveTenantBillingPhone,
++  getTenantsInDeficit,
++  dispatchBillingWhatsAppCampaign
++} from "@/app/actions/whatsapp-billing-alerts"
++import { getInvoiceByLedgerId, HanvaInvoiceData } from "@/app/actions/invoice-action"
++import { HanvaTaxInvoice } from "@/components/invoice/hanva-tax-invoice"
+ 
+ export default function IvrUploadPage() {
+   const [tenantId, setTenantId] = useState<string>("")
+@@ -36,15 +63,31 @@
+   const [walletBalance, setWalletBalance] = useState<number | null>(null)
+   const [loadingInitial, setLoadingInitial] = useState(true)
+   const [loadingHistory, setLoadingHistory] = useState(false)
++  const [isExportingAll, setIsExportingAll] = useState(false)
++  const [exportingCampaignId, setExportingCampaignId] = useState<string | null>(null)
++  const [actualDbLeadCount, setActualDbLeadCount] = useState<number | null>(null)
++  const [billingPhone, setBillingPhone] = useState<string>("")
++  const [savingPhone, setSavingPhone] = useState(false)
++  const [sendingWaAlert, setSendingWaAlert] = useState(false)
++  const [isCampaignOpen, setIsCampaignOpen] = useState(false)
++  const [deficitTenants, setDeficitTenants] = useState<any[]>([])
++  const [loadingDeficits, setLoadingDeficits] = useState(false)
+... (3641 more lines truncated in summary; see full workspace diff) ...
+
+==================== app/admin/page.tsx ====================
+Diff between seobanks(---) and local(+++): 70 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/app/admin/page.tsx	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/app/admin/page.tsx	2026-11-20 15:24:04
+@@ -5,6 +5,8 @@
+ import { FileText, Users, Phone, Clock, Activity, PieChart, TrendingUp, TrendingDown, Sparkles, Flame } from "lucide-react"
+ import { redirect } from "next/navigation"
+ import { cn } from "@/lib/utils"
++import { OperationsSnapshot } from "@/components/admin/OperationsSnapshot"
++import { fetchOperationsSnapshot } from "@/lib/admin/operations-snapshot"
+ 
+ export const dynamic = "force-dynamic" 
+  
+@@ -53,14 +55,16 @@
+     { count: activeTelecallers },
+     { count: todaysCalls },
+     { data: recentLeads },
+-    { data: hotLeads }
++    { data: hotLeads },
++    operationsSnapshot
+   ] = await Promise.all([
+     // Fetch ONLY the status column. This is incredibly fast even for 100k+ rows.
+     supabase.from("leads").select("status").eq('tenant_id', tenantId),
+     supabase.from("users").select("*", { count: "exact", head: true }).eq('tenant_id', tenantId).eq("role", "telecaller").eq("is_active", true),
+-    supabase.from("call_logs").select("*", { count: "exact", head: true }).eq('tenant_id', tenantId).in('call_type', ['outbound', 'outbound_c2c']).gte("created_at", todayStr),
++    supabase.from("call_logs").select("*", { count: "exact", head: true }).eq('tenant_id', tenantId).gte("created_at", todayStr),
+     supabase.from("leads").select("id, name, created_at, status, score").eq('tenant_id', tenantId).order("created_at", { ascending: false }).limit(5),
+     supabase.from("leads").select("id, name, score, status").eq('tenant_id', tenantId).gte('score', 50).order("score", { ascending: false }).limit(5),
++    fetchOperationsSnapshot(tenantId, supabase),
+   ])
+ 
+   // Safely calculate all stats
+@@ -128,6 +132,9 @@
+         />
+       </div>
+ 
++      {/* Real-Time Operations Snapshot */}
++      <OperationsSnapshot initialData={operationsSnapshot} tenantId={tenantId} />
++
+       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+         {/* Recent Activity */}
+         <Card className="col-span-4 border border-slate-200/60 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm rounded-2xl overflow-hidden">
+@@ -340,6 +347,29 @@
+           </Card>
+         ))}
+       </div>
++      <Card className="rounded-2xl border border-slate-200/80 dark:border-slate-800 p-5 mt-4">
++        <div className="flex justify-between items-center mb-4">
++          <Skeleton className="h-5 w-48" />
++          <Skeleton className="h-7 w-20" />
++        </div>
++        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
++          <div className="lg:col-span-5 space-y-3">
++            <Skeleton className="h-4 w-32" />
++            <Skeleton className="h-10 w-full" />
++            <Skeleton className="h-16 w-full rounded-xl" />
++          </div>
++          <div className="lg:col-span-4 space-y-3">
++            <Skeleton className="h-4 w-32" />
++            <Skeleton className="h-10 w-full" />
++            <Skeleton className="h-16 w-full rounded-xl" />
++          </div>
++          <div className="lg:col-span-3 space-y-3">
++            <Skeleton className="h-4 w-32" />
++            <Skeleton className="h-10 w-full" />
++            <Skeleton className="h-16 w-full rounded-xl" />
++          </div>
++        </div>
++      </Card>
+       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 mt-4">
+         <Card className="col-span-4">
+           <CardHeader><Skeleton className="h-6 w-[140px]" /></CardHeader>
+
+==================== app/api/webhooks/cloudconnect/route.ts ====================
+Diff between seobanks(---) and local(+++): 889 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/app/api/webhooks/cloudconnect/route.ts	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/app/api/webhooks/cloudconnect/route.ts	2026-11-24 16:34:51
+@@ -2,37 +2,150 @@
+ import { createClient } from '@supabase/supabase-js'
+ import { sendStatusUpdateMessage } from '@/app/actions/whatsapp'
+ import { recordIvrLeadReceived } from '@/lib/ivr-tracker'
+-import { resolveTenantFromDids, extractTenantFromCampaign } from '@/lib/did-registry-cache'
+ 
+ // Helper to lazy-load the Supabase Admin Client to bypass RLS for webhooks
+-// Singleton instance prevents allocating thousands of client objects under high webhook load.
+-let _cachedAdminClient: any = null;
++// This prevents Next.js build-time errors when env variables are missing during static analysis.
+ const getSupabaseAdmin = () => {
+-  if (!_cachedAdminClient) {
+-    _cachedAdminClient = createClient(
+-      process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+-      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+-    );
++  return createClient(
++    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
++    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
++  )
++}
++
++// --- IN-MEMORY CACHES (5-MINUTE TTL) TO DRASTICALLY REDUCE SUPABASE LOG INGESTION & REST QUERIES ---
++const CACHE_TTL_MS = 5 * 60 * 1000;
++let didCacheMap: Map<string, string> | null = null;
++let didCacheExpiresAt = 0;
++
++async function getCachedDidMap(supabaseAdmin: any): Promise<Map<string, string>> {
++  const now = Date.now();
++  if (didCacheMap && now < didCacheExpiresAt) {
++    return didCacheMap;
+   }
+-  return _cachedAdminClient;
+-};
++  const { data } = await supabaseAdmin
++    .from('tenant_did_registry')
++    .select('tenant_id, did_number')
++    .eq('is_active', true);
+ 
+-// Safe helper for Realtime broadcast: uses httpSend and cleans up channel immediately to prevent memory leak
+-async function broadcastScreenPop(supabaseAdmin: any, payload: any) {
++  const nextMap = new Map<string, string>();
++  for (const row of data || []) {
++    if (row.did_number && row.tenant_id) {
++      const clean = String(row.did_number).replace(/\D/g, '').slice(-10);
++      if (clean.length === 10) nextMap.set(clean, row.tenant_id);
++      nextMap.set(String(row.did_number), row.tenant_id);
++    }
++  }
++  didCacheMap = nextMap;
++  didCacheExpiresAt = now + CACHE_TTL_MS;
++  return nextMap;
++}
++
++const orgTriggersCache = new Map<string, { triggers: any; expiresAt: number }>();
++
++async function getCachedOrgTriggers(supabaseAdmin: any, tenantId: string): Promise<any> {
++  const now = Date.now();
++  const cached = orgTriggersCache.get(tenantId);
++  if (cached && now < cached.expiresAt) {
++    return cached.triggers;
++  }
++  const { data: orgData } = await supabaseAdmin
++    .from('organizations')
++    .select('workflow_triggers')
++    .eq('id', tenantId)
++    .maybeSingle();
++
++  const triggers = orgData?.workflow_triggers || {};
++  orgTriggersCache.set(tenantId, { triggers, expiresAt: now + CACHE_TTL_MS });
++  return triggers;
++}
++
++// --- IST TIMEZONE HELPER ---
++function getStartOfTodayIST() {
++  const now = new Date();
++  const istOffset = 5.5 * 60 * 60 * 1000;
++  const nowIST = new Date(now.getTime() + istOffset);
+... (809 more lines truncated in summary; see full workspace diff) ...
+
+==================== app/api/webhooks/ivr/route.ts ====================
+Diff between seobanks(---) and local(+++): 203 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/app/api/webhooks/ivr/route.ts	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/app/api/webhooks/ivr/route.ts	2026-11-24 17:19:12
+@@ -3,7 +3,6 @@
+ import { NextRequest, NextResponse } from "next/server";
+ import { sendStatusUpdateMessage } from "@/app/actions/whatsapp";
+ import { recordIvrLeadReceived } from "@/lib/ivr-tracker";
+-import { resolveTenantFromDids, extractTenantFromCampaign } from "@/lib/did-registry-cache";
+ 
+ export const dynamic = 'force-dynamic';
+ 
+@@ -114,6 +113,13 @@
+     // 🔴 EXTRACT TENANT ID
+     let tenantId = body.tenantId || body.tenant || request.nextUrl.searchParams.get("tenant") || null;
+ 
++    // Priority 1: Extract Tenant UUID directly from CampaignName
++    const fullCampName = body.CampaignName || body.campaignName || '';
++    const uuidFromCamp = fullCampName.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i)?.[0];
++    if (uuidFromCamp) {
++      tenantId = uuidFromCamp;
++    }
++
+     // ===== DID-BASED TENANT ROUTING (Secure auto-routing) =====
+     const potentialDids = [
+       body.did, body.DID, body.Did, body.DialDID, 
+@@ -129,24 +135,23 @@
+ 
+     let matchedDid: string | null = null;
+     if (uniqueDids.length > 0) {
+-      const { tenantId: resolvedTenant, matchedDid: foundDid } = await resolveTenantFromDids(uniqueDids);
+-      if (resolvedTenant) {
+-        tenantId = resolvedTenant;
+-        matchedDid = foundDid;
+-        console.log(`✅ [IVR DID-ROUTE] Found matching DID ${matchedDid} → tenant ${tenantId} (cached)`);
++      const { data: didRecords } = await supabaseAdmin
++        .from('tenant_did_registry')
++        .select('tenant_id, did_number')
++        .in('did_number', uniqueDids)
++        .eq('is_active', true);
++        
++      if (didRecords && didRecords.length > 0) {
++        if (!tenantId) {
++          tenantId = didRecords[0].tenant_id;
++        }
++        matchedDid = didRecords[0].did_number;
++        console.log(`✅ [IVR DID-ROUTE] Found matching DID ${didRecords[0].did_number} → tenant ${tenantId}`);
+       } else {
++        console.warn(`⚠️ [IVR DID-ROUTE] None of the potential DIDs (${uniqueDids.join(', ')}) were found in registry. Falling back to manual tenant param.`);
+         matchedDid = uniqueDids[0] || null;
+       }
+     }
+-
+-    // Fallback: extract tenant from CampaignName (e.g. IVRBlast_DID_TENANTUUID)
+-    if (!tenantId) {
+-      const campaignTenant = extractTenantFromCampaign(body.CampaignName || body.campaignName || campaignName);
+-      if (campaignTenant) {
+-        tenantId = campaignTenant;
+-        console.log(`✅ [IVR CAMPAIGN-ROUTE] Resolved tenant ${tenantId} from campaign: ${campaignName}`);
+-      }
+-    }
+     // ===== END DID ROUTING =====
+ 
+     console.log(`📞 Target Phone: ${customerPhone}, Tenant: ${tenantId}`);
+@@ -195,47 +200,79 @@
+             const digitNote = `📞 [IVR] Customer pressed digit "${digitsPressed}" on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}. Campaign: ${campaignName}.`;
+ 
+             if (existingLead) {
++                const existingStatus = (existingLead.status || '').trim();
++                const skipStatuses = ['Interested', 'follow_up', 'DISBURSED', 'Disbursed', 'Login', 'Documents_Sent'];
++                const isProtectedStatus = existingStatus && skipStatuses.some(s => s.toLowerCase() === existingStatus.toLowerCase());
++
+                 const updatedNotes = existingLead.notes ? `${existingLead.notes}\n\n${digitNote}` : digitNote;
+-                const { error: updErr } = await supabaseAdmin.from('leads').update({
+-                    assigned_to: agentId,
+-                    status: 'new',
+-                    notes: updatedNotes,
+-                    last_contacted: new Date().toISOString()
+-                }).eq('id', existingLead.id);
++                const nowISO = new Date().toISOString();
++
++                let updatePayload: any;
+... (123 more lines truncated in summary; see full workspace diff) ...
+
+==================== app/api/webhooks/whatsapp/route.ts ====================
+Diff between seobanks(---) and local(+++): 50 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/app/api/webhooks/whatsapp/route.ts	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/app/api/webhooks/whatsapp/route.ts	2026-11-14 13:45:25
+@@ -367,7 +367,47 @@
+ }: any) {
+   if (!lead) return;
+   const textLower = (messageText || "").toLowerCase().trim();
++
++  // 0. TENANT RECHARGE / BILLING INQUIRY AUTO-REPLY (Option 2 Razorpay Direct Links)
++  const isRechargeRequest =
++    textLower === "1" ||
++    textLower === "2" ||
++    textLower === "3" ||
++    textLower.includes("recharge") ||
++    textLower.includes("clear due") ||
++    textLower.includes("pay balance") ||
++    textLower.includes("ivr credit") ||
++    textLower.includes("credit balance") ||
++    textLower.includes("top up") ||
++    textLower.includes("topup");
++
++  if (!isMedia && isRechargeRequest) {
++    const cleanPhone = customerPhone.replace(/\D/g, '').slice(-10);
++    const { data: matchedUser } = await supabase
++      .from("users")
++      .select("tenant_id, full_name, role")
++      .eq("phone", cleanPhone)
++      .maybeSingle();
+ 
++    const targetTenantId = matchedUser?.tenant_id || tenantId;
++
++    if (targetTenantId) {
++      try {
++        const { sendTenantLowBalanceAlert } = await import("@/app/actions/whatsapp-billing-alerts");
++        const alertRes = await sendTenantLowBalanceAlert(targetTenantId, {
++          force: true,
++          targetPhone: customerPhone
++        });
++        if (alertRes.success) {
++          console.log(`✅ [WA WEBHOOK] Dispatched recharge links to ${customerPhone} for tenant ${targetTenantId}`);
++          return;
++        }
++      } catch (alertErr) {
++        console.warn("[WA WEBHOOK] Failed to dispatch payment links on request:", alertErr);
++      }
++    }
++  }
++
+   // 1. LIE-DETECTOR RESCUE OVERRIDE
+   if (!isMedia && (textLower === "i am still interested" || textLower.includes("still interested"))) {
+     const rescueMsg = `Thank you for confirming! We apologize for the confusion. A senior executive has been notified and will contact you immediately.`;
+
+==================== app/telecaller/leads/page.tsx ====================
+Diff between seobanks(---) and local(+++): 82 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/app/telecaller/leads/page.tsx	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/app/telecaller/leads/page.tsx	2026-11-25 13:17:55
+@@ -17,11 +17,11 @@
+   search?: string
+   source?: string
+   date_range?: string
+-  from?: string
+-  to?: string
+   page?: string
+   sort_by?: string
+   sort_order?: string
++  mode?: string
++  contacted?: string
+ }
+ 
+ export default async function TelecallerLeadsPage({
+@@ -59,51 +59,32 @@
+   const targetPercent = Math.min(Math.round((dailyCallsDone / dailyTarget) * 100), 100);
+   const callsRemaining = Math.max(dailyTarget - dailyCallsDone, 0);
+ 
++  const isHighMode = searchParams.mode === 'high' || searchParams.mode === 'power' || searchParams.contacted === 'never';
++
+   let query = supabase
+     .from("leads")
+     .select("*", { count: "exact" })
+     .eq("assigned_to", user.id)
++    .order("last_contacted", { ascending: true, nullsFirst: true })  // Never-contacted leads always first
+     .order(sortBy, { ascending: sortOrder })
++    .range(from, to)
+ 
+-  if (sortBy !== "created_at") {
+-    query = query.order("created_at", { ascending: false })
++  if (isHighMode) {
++    // Only HIGH marked leads with zero previous contacts (last_contacted IS NULL)
++    query = query.ilike('priority', 'high')
++    query = query.is('last_contacted', null)
++    if (searchParams.status && searchParams.status !== "all") {
++      query = query.eq("status", searchParams.status)
++    }
++  } else {
++    if (searchParams.status && searchParams.status !== "all") query = query.eq("status", searchParams.status)
++    if (searchParams.priority && searchParams.priority !== "all") query = query.ilike("priority", searchParams.priority)
+   }
+ 
+-  query = query.range(from, to)
+-
+-  if (searchParams.status && searchParams.status !== "all") query = query.eq("status", searchParams.status)
+-  if (searchParams.priority && searchParams.priority !== "all") query = query.eq("priority", searchParams.priority)
+   if (searchParams.search) {
+     query = query.or(`name.ilike.%${searchParams.search}%,email.ilike.%${searchParams.search}%,phone.ilike.%${searchParams.search}%,company.ilike.%${searchParams.search}%`)
+   }
+ 
+-  // 📅 DATE FILTERING (Created Date)
+-  if (searchParams.date_range && searchParams.date_range !== "all") {
+-    const today = new Date()
+-    today.setHours(0, 0, 0, 0)
+-
+-    if (searchParams.date_range === "today") {
+-      query = query.gte("created_at", today.toISOString())
+-    } else if (searchParams.date_range === "yesterday") {
+-      const yesterday = new Date(today)
+-      yesterday.setDate(yesterday.getDate() - 1)
+-      query = query.gte("created_at", yesterday.toISOString()).lt("created_at", today.toISOString())
+-    } else if (searchParams.date_range === "this_week") {
+-      const startOfWeek = new Date(today)
+-      startOfWeek.setDate(startOfWeek.getDate() - 7)
+-      query = query.gte("created_at", startOfWeek.toISOString())
+-    } else if (searchParams.date_range === "this_month") {
+-      const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1)
+-      query = query.gte("created_at", startOfMonth.toISOString())
+-    } else if (searchParams.date_range === "custom" && searchParams.from) {
+-      const fromDate = new Date(searchParams.from)
+-      fromDate.setHours(0, 0, 0, 0)
+-      const toDate = searchParams.to ? new Date(searchParams.to) : new Date(fromDate)
+-      toDate.setHours(23, 59, 59, 999)
+-      query = query.gte("created_at", fromDate.toISOString()).lte("created_at", toDate.toISOString())
+-    }
+-  }
+-
+   const { data: leads, count } = await query
+... (2 more lines truncated in summary; see full workspace diff) ...
+
+==================== components/leads-table.tsx ====================
+Diff between seobanks(---) and local(+++): 35 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/components/leads-table.tsx	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/components/leads-table.tsx	2026-11-13 13:28:41
+@@ -21,7 +21,6 @@
+ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+ import { Input } from "@/components/ui/input"
+ import { LeadStatusDialog } from "@/components/lead-status-dialog"
+-import { classifySentiment } from "@/components/lead-status-updater"
+ import { sendBulkCampaign } from "@/app/actions/campaigns"
+ import { toast } from "sonner"
+ import { QuickActions } from "@/components/quick-actions"
+@@ -321,10 +320,10 @@
+   const sortDirection = searchParams.get('dir') || 'desc'
+   
+   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
+-    name: true, contact: false, company: false, status: true,
++    name: true, contact: true, company: false, status: true,
+     notes: true, priority: false, score: true, created: true,
+     lastContacted: true, loanAmount: true, loanType: false, 
+-    source: false, tags: true, assignedTo: true, actions: false
++    source: false, tags: false, assignedTo: true, actions: false
+   })
+ 
+   const [selectedLeads, setSelectedLeads] = useState<string[]>([])
+@@ -1018,11 +1017,9 @@
+         .eq("id", leadId)
+ 
+       if (error) throw error
+-      toast.success("Lead status updated successfully")
+       router.refresh()
+     } catch (error) {
+       console.error("Error changing lead status:", error)
+-      toast.error("Failed to update lead status")
+     }
+   }
+ 
+
+==================== components/telecaller-lead-filters.tsx ====================
+Diff between seobanks(---) and local(+++): 280 lines
+--- /Users/apple/.gemini/antigravity/brain/5dd5a464-4d64-4198-8b93-df6241973fc8/scratch/seobanks_crm_ro/components/telecaller-lead-filters.tsx	2026-11-26 19:56:48
++++ /Users/apple/Downloads/CRM/components/telecaller-lead-filters.tsx	2026-11-25 13:17:34
+@@ -1,16 +1,15 @@
+ "use client"
+ 
+-import { Label } from "@/components/ui/label"
+-
+ import { Button } from "@/components/ui/button"
+ import { Input } from "@/components/ui/input"
+ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+-import { Search, X, SlidersHorizontal, RefreshCcw, Loader2, Zap, Mic, Sparkles, Calendar } from "lucide-react"
++import { Search, X, SlidersHorizontal, RefreshCcw, Loader2, Zap, Mic, Sparkles, Building2 } from "lucide-react"
+ import { useRouter, useSearchParams } from "next/navigation"
+ import { useState, useEffect, useTransition } from "react"
+ import { Badge } from "@/components/ui/badge"
+ import { cn } from "@/lib/utils"
+ import { toast } from "sonner"
++import { CompanyEligibilitySearch } from "@/components/admin/company-eligibility-search"
+ 
+ export function TelecallerLeadFilters({ initialSearchParams }: { initialSearchParams: any }) {
+   const router = useRouter()
+@@ -20,18 +19,13 @@
+   const [search, setSearch] = useState(initialSearchParams.search || "")
+   const [status, setStatus] = useState(initialSearchParams.status || "all")
+   const [priority, setPriority] = useState(initialSearchParams.priority || "all")
+-  const [dateRange, setDateRange] = useState(initialSearchParams.date_range || "all")
+-  const [fromDate, setFromDate] = useState(initialSearchParams.from || "")
+-  const [toDate, setToDate] = useState(initialSearchParams.to || "")
++  const [showCompanySearch, setShowCompanySearch] = useState(false)
+ 
+   // Sync state with URL
+   useEffect(() => {
+     setSearch(searchParams.get("search") || "")
+     setStatus(searchParams.get("status") || "all")
+     setPriority(searchParams.get("priority") || "all")
+-    setDateRange(searchParams.get("date_range") || "all")
+-    setFromDate(searchParams.get("from") || "")
+-    setToDate(searchParams.get("to") || "")
+   }, [searchParams])
+ 
+   const updateFilters = (key: string, value: string) => {
+@@ -60,80 +54,37 @@
+     })
+   }
+ 
+-  const handleDateRangeChange = (val: string) => {
+-    setDateRange(val)
+-    const params = new URLSearchParams(searchParams.toString())
+-    params.set("page", "1")
+-    params.delete('mode')
+-
+-    if (val !== "custom") {
+-      if (val && val !== "all") {
+-        params.set("date_range", val)
+-      } else {
+-        params.delete("date_range")
+-      }
+-      params.delete("from")
+-      params.delete("to")
+-      setFromDate("")
+-      setToDate("")
+-    } else {
+-      params.set("date_range", "custom")
+-    }
+-
+-    startTransition(() => {
+-      router.push(`/telecaller/leads?${params.toString()}`)
+-    })
+-  }
+-
+-  const handleCustomDateChange = (field: 'from' | 'to', val: string) => {
+-    if (field === 'from') setFromDate(val)
+-    if (field === 'to') setToDate(val)
+-
+-    const params = new URLSearchParams(searchParams.toString())
+-    params.set("page", "1")
+-    params.set("date_range", "custom")
+-    if (val) {
+-      params.set(field, val)
+-    } else {
+... (200 more lines truncated in summary; see full workspace diff) ...

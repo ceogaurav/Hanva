@@ -1,0 +1,164 @@
+122466d docs(env): track placeholder-only .env.example template
+4ee83f0 security(phase-23.2): purge hardcoded secrets, harden all 53 API routes, add RLS & idempotency migrations, fix TS/ESLint/build
+6cebadb chore(reconcile): merge seobanks/CRM bec603f9 and local Nov 25 working tree onto security/phase-23-2-reconciled
+bec603f fix(reports): route telecaller performance and chart calls through cached admin API endpoint to eliminate client RLS timeout 500 errors
+2316c49 fix(reports): resolve telecaller call metrics showing 0, eliminate statement timeouts, and stop unassigned IVR blast log flood
+bd8958a fix(webhooks): pass correct arguments to channel.httpSend
+1e52566 fix(webhooks): eliminate 406 errors with call_logs upsert, fix Realtime channel memory leak and client allocation
+6f0bf4f perf: reduce Supabase ingestion by caching DID registry and optimizing client polling intervals
+83e5b19 fix(telecaller): sort leads in descending order (latest first)
+d50185c feat(logins): add daily and monthly performance screenshot share with BanksCart branding, Excel heatmaps, and 1-click WhatsApp copy
+6399911 feat(branding): integrate official BanksCart.com logo into performance table screenshot and modal preview
+a8b16d6 feat(reports): add BanksCart branding, medals, 1-click clipboard copy, and preview modal
+74a05e7 feat(reports): add heatmap calling performance screenshot share and updates
+3d3f81a feat(ivr-upload): modernize IVR campaign upload hub with contact quality inspector, blast automation scheduling, interactive 5k meter, credit top-up requests, and live lead tracker
+c1d88ee feat(master-data): overhaul Master Data hub with live KPI metrics, tabbed directory explorer, pre-upload CSV validation, single-entry manager, and optimized Meilisearch batch indexing
+commit 122466dd4eb8441e8b8a56a3c844b2cba83d8d4b
+Author: Gaurav Rajpoot <apple@192.168.1.19>
+Date:   Fri Nov 27 10:33:20 2026 +0530
+
+    docs(env): track placeholder-only .env.example template
+
+ .env.example | 65 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+
+commit 4ee83f038ef99aa1b283efe0c01987be2ea52b57
+Author: Gaurav Rajpoot <apple@192.168.1.19>
+Date:   Fri Nov 27 10:33:07 2026 +0530
+
+    security(phase-23.2): purge hardcoded secrets, harden all 53 API routes, add RLS & idempotency migrations, fix TS/ESLint/build
+
+ .DS_Store                                          |  Bin 6148 -> 0 bytes
+ .eslintrc.json                                     |    3 +
+ app/_not-found/page.tsx                            |    2 +-
+ app/actions/ai-obd-dialer.ts                       |   44 +-
+ app/actions/campaigns.ts                           |   43 +-
+ app/actions/cloudconnect.ts                        |   10 +-
+ app/actions/conference.ts                          |   71 +-
+ app/actions/ivr-upload-action.ts                   |   15 +-
+ app/actions/whatsapp-billing-alerts.ts             |   23 +-
+ app/actions/whatsapp.ts                            |  354 ++-
+ app/admin/attendance/dashboard.tsx                 |   13 +-
+ app/admin/attendance/kiosk/page.tsx                |    4 +-
+ app/admin/dialer-assignment/page.tsx               |    4 +-
+ app/admin/disbursement-report/page.tsx             |    2 +-
+ app/admin/ivr-upload/page.tsx                      |    2 +-
+ app/admin/layout.tsx                               |    2 +
+ app/admin/lead/new/page.tsx                        |    2 +-
+ app/admin/leads/[id]/page.tsx                      |    7 +-
+ app/admin/master-data/page.tsx                     |    2 +-
+ app/admin/notifications/page.tsx                   |    2 +-
+ app/admin/page.tsx                                 |    2 +-
+ app/admin/settings/page.tsx                        |    6 +-
+ app/admin/upload/page.tsx                          |    4 +-
+ app/api/admin/ai-call/route.ts                     |   93 +-
+ app/api/admin/broadcast/route.ts                   |  133 +-
+ app/api/admin/campaign-health-watchdog/route.ts    |   43 +-
+ app/api/admin/delete-file/route.ts                 |   46 +-
+ app/api/admin/fix-checkout/route.ts                |   44 +-
+ app/api/admin/fix-ivr-logs/route.ts                |   58 +-
+ app/api/admin/holidays/route.ts                    |   37 +
+ app/api/admin/init-meili/route.ts                  |   38 +-
+ app/api/admin/leads/bulk-assign/route.ts           |  112 +-
+ app/api/admin/leads/export/route.ts                |   69 +-
+ app/api/admin/master-data/entry/route.ts           |   71 +-
+ app/api/admin/master-data/stats/route.ts           |   31 +-
+ app/api/admin/operations/snapshot/route.ts         |   40 +-
+ app/api/admin/reports/calls/route.ts               |   37 +-
+ app/api/admin/upload-companies/route.ts            |   48 +-
+ app/api/admin/users/[id]/route.ts                  |  129 +-
+ app/api/admin/users/route.ts                       |  144 +-
+ app/api/assistant/route.ts                         |   27 +-
+ app/api/click-to-call/route.ts                     |   26 +-
+ app/api/companies/search/route.ts                  |   14 +
+ app/api/cron/auto-checkout/route.ts                |   19 +-
+ app/api/cron/auto-refill/route.ts                  |   23 +-
+ app/api/cron/campaign-health-watchdog/route.ts     |    4 +
+ app/api/cron/daily-report/route.ts                 |   30 +-
+ app/api/cron/kyc/route.ts                          |   15 +-
+ app/api/cron/ozonetel-campaign-sync/route.ts       |    4 +
+ app/api/cron/process-webhooks/route.ts             |   29 +-
+ app/api/cron/sla/route.ts                          |   28 +-
+ app/api/cron/smart-notifications/route.ts          |   44 +-
+ app/api/debug/daily-report/route.ts                |   50 +-
+ app/api/kyc-members/route.ts                       |    8 +-
+ app/api/mobile/login/route.ts                      |   81 +-
+ app/api/notifications/send/route.ts                |   76 +-
+ app/api/payments/razorpay/webhook/route.ts         |   47 +-
+ app/api/telecaller/sim-calls/route.ts              |  146 +-
+ app/api/transfer-lead/route.ts                     |   32 +-
+ app/api/webhooks/ai-obd/route.ts                   |   27 +-
+ app/api/webhooks/c2c/route.ts                      |   28 +-
+ app/api/webhooks/cloudconnect/route.ts             |  115 +-
+ app/api/webhooks/fonada/route.ts                   |   48 +-
+ app/api/webhooks/fonada/worker/route.ts            |   31 +-
+ app/api/webhooks/inbound-routing/route.ts          |   71 +-
+ app/api/webhooks/incoming-leads/route.ts           |  234 +-
+ app/api/webhooks/ivr/route.ts                      |   57 +-
+ app/api/webhooks/ozonetel/sticky/route.ts          |   51 +-
+ app/api/webhooks/portals/route.ts                  |   79 +-
+ app/api/webhooks/trigger-push/route.ts             |   51 +-
+ app/api/webhooks/unicorn-call-outcomes/route.ts    |   49 +-
+ app/api/webhooks/whatsapp/route.ts                 |  226 +-
+ app/debug/error-130/page.tsx                       |    2 +-
+ app/kyc-team/layout.tsx                            |    2 +
+ app/not-found.tsx                                  |    2 +-
+ app/offline/page.tsx                               |    8 +-
+ app/telecaller/attendance/enhanced-page.tsx        |    2 +-
+ app/telecaller/calls/page.tsx                      |    2 +-
+ app/telecaller/chat/page.tsx                       |   14 +-
+ app/telecaller/documents/page.tsx                  |    2 +-
+ app/telecaller/global-search/page.tsx              |    4 +-
+ app/telecaller/layout.tsx                          |    2 +
+ app/telecaller/logins/page.tsx                     |    2 +-
+ app/telecaller/notes/page.tsx                      |    2 +-
+ app/telecaller/page.tsx                            |    2 +-
+ app/telecaller/tasks/page.tsx                      |    6 +-
+ app/visual-demo/page.tsx                           |    4 +-
+ components/admin/OperationsSnapshot.tsx            |    2 +-
+ components/admin/admin-leave-dashboard.tsx         |    2 +-
+ components/admin/company-eligibility-search.tsx    |    2 +-
+ components/admin/create-lead-form.tsx              |    2 +-
+ components/admin/logins-report-modal.tsx           |    6 +-
+ components/ai-guide-assistant.tsx                  |   25 +-
+ components/automations-client.tsx                  |    2 +-
+ components/command-menu.tsx                        |   10 +-
+ components/deals-kanban.tsx                        |    2 +-
+ components/drip-sequence-builder.tsx               |    4 +-
+ components/export-buttons.tsx                      |    2 +-
+ components/lead-conversion-funnel.tsx              |    8 +-
+ components/lead-source-roi-chart.tsx               |    2 +-
+ components/leads-table.tsx                         |   16 +-
+ components/leave-management.tsx                    |    4 +-
+ components/mobile-attendance.tsx                   |    2 +-
+ components/power-dialer.tsx                        |    4 +-
+ components/property-matcher.tsx                    |    2 +-
+ components/revenue-forecast-chart.tsx              |    2 +-
+ components/smart-matches.tsx                       |    4 +-
+ components/task-card.tsx                           |    2 +-
+ components/telecaller-leads-table.tsx              |    2 +
+ components/telecaller/CallScreenPop.tsx            |    4 +-
+ components/telecaller/GeofenceAccessGuard.tsx      |    2 +-
+ components/telecaller/LiveLeaderboard.tsx          |    2 +-
+ components/telecaller/LiveScriptCard.tsx           |    2 +-
+ components/telecaller/daily-welcome-modal.tsx      |    4 +-
+ components/todays-tasks.tsx                        |    2 +-
+ lib/kyc-utils.ts                                   |   40 +-
+ lib/ozonetel-campaign-health.ts                    |    6 +-
+ lib/ozonetel-cloudagent.ts                         |    9 +-
+ lib/security/crm-guards.ts                         |  535 ++++
+ lib/share-performance-table.ts                     |    2 +-
+ lib/supabase/middleware.ts                         |    9 +-
+ lib/supabase/server.ts                             |   29 +-
+ middleware.ts                                      |   28 +-
+ migrations/001_reconciled_missing_tables.sql       |  443 +++
+ .../002_rls_and_security_definer_hardening.sql     |  566 ++++
+ .../003_idempotency_audit_and_rate_limits.sql      |   67 +
+ migrations/rollback_23_2.sql                       |   32 +
+ next.config.mjs                                    |    6 +-
+ open-next.config.ts                                |    3 -
+ package.json                                       |   20 +-
+ pnpm-lock.yaml                                     | 2812 +++++++++++++++++++-
+ scripts/tenant-lead-whatsapp-listener.js           |   21 +-
+ scripts/test-openrouter.ts                         |   16 +-
+ 133 files changed, 6526 insertions(+), 1857 deletions(-)

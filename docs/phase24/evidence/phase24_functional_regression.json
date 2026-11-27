@@ -1,0 +1,43 @@
+{
+  "executedAt": "2026-11-27T05:25:19.963Z",
+  "total": 6,
+  "passed": 6,
+  "results": [
+    {
+      "id": "T-FUNC-1",
+      "name": "Next 15 SSR pages & async params/searchParams render without error",
+      "pass": true,
+      "detail": "login=200, pay=200, kyc=200, guard=307->/auth/login"
+    },
+    {
+      "id": "T-FUNC-2",
+      "name": "Lead bulk-assign, ExcelJS XLSX export (uuid>=11.1.1), & graceful company-search fallback",
+      "pass": true,
+      "detail": "bulk=200, compSearch=200 (externalSymlinkMissing:matches=0), xlsxBytes=6407"
+    },
+    {
+      "id": "T-FUNC-3",
+      "name": "Next 15 async route params PATCH /api/admin/users/[id] succeeds",
+      "pass": true,
+      "detail": "patchStatus=200"
+    },
+    {
+      "id": "T-FUNC-4",
+      "name": "Mobile JWT -> SIM-call dedupe, C2C, Reports, Ops Snapshot & Watchdog fail-closed check",
+      "pass": true,
+      "detail": "mob=200, simDup=true, c2c=200, rep=200, snap=200, wdUnconfigured=500"
+    },
+    {
+      "id": "T-FUNC-5",
+      "name": "Admin Broadcast, Signed Lead Webhook + Dedupe & Super-Admin Maintenance succeed",
+      "pass": true,
+      "detail": "bcast=200, inc=200/dup=true, fixChk=200"
+    },
+    {
+      "id": "T-FUNC-6",
+      "name": "Zero Next.js 15 sync-dynamic-apis warnings or uncaught runtime exceptions in stderr",
+      "pass": true,
+      "detail": "stderrChunks=2, syncDynamicApiWarnings=false"
+    }
+  ]
+}

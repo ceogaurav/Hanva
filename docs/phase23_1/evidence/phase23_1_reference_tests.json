@@ -1,0 +1,62 @@
+{
+  "total": 14,
+  "passed": 14,
+  "results": [
+    {
+      "name": "require_server_secret_fails_closed_when_missing",
+      "ok": true
+    },
+    {
+      "name": "cron_rejects_bearer_undefined_when_secret_unset",
+      "ok": true
+    },
+    {
+      "name": "cron_rejects_wrong_secret_when_real_secret_set",
+      "ok": true
+    },
+    {
+      "name": "cron_accepts_valid_bearer_secret",
+      "ok": true
+    },
+    {
+      "name": "webhook_rejects_missing_signature_fixes_razorpay_fail_open",
+      "ok": true
+    },
+    {
+      "name": "webhook_rejects_tampered_payload",
+      "ok": true
+    },
+    {
+      "name": "webhook_rejects_stale_replay_over_300s",
+      "ok": true
+    },
+    {
+      "name": "webhook_accepts_valid_hmac_and_fresh_timestamp",
+      "ok": true
+    },
+    {
+      "name": "tenant_context_blocks_cross_tenant_override_by_tenant_admin",
+      "ok": true
+    },
+    {
+      "name": "role_hierarchy_blocks_tenant_admin_granting_super_admin",
+      "ok": true
+    },
+    {
+      "name": "role_hierarchy_blocks_telecaller_granting_any_role",
+      "ok": true
+    },
+    {
+      "name": "audit_record_redacts_phone_or_email",
+      "ok": true
+    },
+    {
+      "name": "hanva_production_crm_integration_remains_blocked",
+      "ok": true
+    },
+    {
+      "name": "sql_migration_re_enables_users_rls_and_scopes_definer_rpcs",
+      "ok": true
+    }
+  ]
+}

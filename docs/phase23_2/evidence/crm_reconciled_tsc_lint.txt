@@ -1,0 +1,352 @@
+=== TSC ===
+TSC_OK
+=== LINT ===
+
+> hanva-crm@0.1.0 lint /Users/apple/Downloads/CRM-reconciled
+> next lint
+
+
+./app/(dashboard)/ai-calling/page.tsx
+84:6  Warning: React Hook useEffect has a missing dependency: 'fetchLeads'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/_not-found/page.tsx
+18:55  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+18:76  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/admin/attendance/dashboard.tsx
+688:6  Warning: React Hook useMemo has a missing dependency: 'determineStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+708:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+743:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+760:6  Warning: React Hook useMemo has a missing dependency: 'checkIfHoliday'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+889:120  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+1681:31  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+1708:31  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+1782:98  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/admin/attendance/kiosk/page.tsx
+98:6  Warning: React Hook useEffect has missing dependencies: 'ambientFlashMode', 'checkoutWaitHours', 'kioskLogo', 'kioskName', 'kioskTheme', and 'kioskVoice'. Either include them or remove the dependency array. You can also replace multiple useState variables with useReducer if 'setSettingsName' needs the current value of 'kioskName'.  react-hooks/exhaustive-deps
+166:6  Warning: React Hook useEffect has missing dependencies: 'checkOfflineQueue', 'loadBroadcasts', 'loadEmployees', 'loadLogsToday', 'stopCamera', and 'triggerBackgroundSync'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1121:6  Warning: React Hook useEffect has missing dependencies: 'detectFaceInVideo', 'handleAttendanceTransaction', 'matchFace', and 'speakKioskMessage'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1177:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+1291:121  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+1291:141  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+1516:138  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+1516:152  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./app/admin/dialer-assignment/page.tsx
+295:36  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+295:45  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+413:95  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/admin/disbursement-report/page.tsx
+992:75  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+992:85  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+992:95  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+992:106  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./app/admin/documents/page.tsx
+48:36  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/integrations/page.tsx
+39:6  Warning: React Hook useEffect has a missing dependency: 'loadWebhookUrl'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/ivr-upload/page.tsx
+379:6  Warning: React Hook useEffect has a missing dependency: 'fetchInitialData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+454:6  Warning: React Hook useEffect has missing dependencies: 'fetchHistory' and 'getEffectiveStatus'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+899:6  Warning: React Hook useMemo has a missing dependency: 'getEffectiveStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+916:6  Warning: React Hook useMemo has a missing dependency: 'getEffectiveStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+2841:61  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2841:74  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./app/admin/lead/new/page.tsx
+58:25  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/admin/leads/[id]/page.tsx
+197:6  Warning: React Hook useEffect has a missing dependency: 'fetchTimelineData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+767:83  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/admin/logins/page.tsx
+1339:11  Warning: The 'today' object construction makes the dependencies of useMemo Hook (at line 1379) change on every render. To fix this, wrap the initialization of 'today' in its own useMemo() Hook.  react-hooks/exhaustive-deps
+
+./app/admin/master-data/page.tsx
+773:38  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+773:52  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./app/admin/notifications/page.tsx
+68:85  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/admin/operations/page.tsx
+47:6  Warning: React Hook useEffect has a missing dependency: 'fetchDashboardData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/page.tsx
+18:120  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/admin/properties/page.tsx
+61:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/settings/page.tsx
+486:60  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+486:83  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./app/admin/team/page.tsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'fetchTeam'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/upload/page.tsx
+138:6  Warning: React Hook useEffect has missing dependencies: 'checkActiveTelecallersCount', 'fetchTelecallers', and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+1371:94  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+1371:106  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/admin/whatsapp/page.tsx
+191:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+330:6  Warning: React Hook useEffect has missing dependencies: 'fetchLeadsAndUsers' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+412:6  Warning: React Hook useEffect has missing dependencies: 'selectedLead' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/debug/error-130/page.tsx
+90:69  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+90:79  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./app/mobile/attendance/page.tsx
+56:4  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/not-found.tsx
+27:40  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+27:61  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/offline/page.tsx
+10:49  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+11:51  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+27:98  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+60:58  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/super-admin/page.tsx
+500:6  Warning: React Hook useEffect has a missing dependency: 'fetchOrganizations'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/attendance/enhanced-page.tsx
+121:6  Warning: React Hook useEffect has a missing dependency: 'loadAttendanceData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+395:25  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/telecaller/calls/page.tsx
+167:43  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/telecaller/chat/page.tsx
+178:6  Warning: React Hook useEffect has missing dependencies: 'fetchLeadsAndUsers' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+234:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/documents/page.tsx
+107:89  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/telecaller/global-search/page.tsx
+997:31  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+997:39  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+997:168  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+1018:84  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+1018:160  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+1018:168  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./app/telecaller/leads/[id]/page.tsx
+271:8  Warning: React Hook useCallback has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/telecaller/logins/page.tsx
+363:65  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/telecaller/notes/page.tsx
+61:71  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/telecaller/page.tsx
+199:6  Warning: React Hook useCallback has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+567:120  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/telecaller/properties/page.tsx
+54:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/telecaller/tasks/page.tsx
+130:20  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+147:23  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+180:45  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./app/visual-demo/page.tsx
+60:104  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+60:123  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+91:103  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+91:110  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/DailyLateReport.tsx
+27:6  Warning: React Hook useEffect has a missing dependency: 'fetchLateComers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin/OperationsSnapshot.tsx
+335:26  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/admin/admin-leave-dashboard.tsx
+399:31  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+399:46  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/admin/company-eligibility-search.tsx
+239:47  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+239:55  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/admin/create-lead-form.tsx
+93:84  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/admin/disbursement-modal.tsx
+70:8  Warning: React Hook useEffect has missing dependencies: 'handleSearch', 'searchLoading', and 'showForm'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin-attendance-adjustment.tsx
+79:6  Warning: React Hook useEffect has a missing dependency: 'loadUsers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+85:6  Warning: React Hook useEffect has a missing dependency: 'loadAttendanceRecords'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/ai-guide-assistant.tsx
+69:84  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/attendance/face-auth-modal.tsx
+60:6  Warning: React Hook useEffect has a missing dependency: 'startCamera'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+221:6  Warning: React Hook useEffect has missing dependencies: 'completeAttendanceTransaction', 'detectFaceInVideo', and 'matchFace'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+485:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance/face-registration-modal.tsx
+157:6  Warning: React Hook useEffect has a missing dependency: 'detectFaceInVideo'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+191:6  Warning: React Hook useEffect has a missing dependency: 'saveFaceRegistration'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+423:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance-analytics.tsx
+72:6  Warning: React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+674:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/attendance-audit-trail.tsx
+36:6  Warning: React Hook useEffect has a missing dependency: 'loadAuditTrail'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance-notifications.tsx
+65:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/attendance-widget.tsx
+158:6  Warning: React Hook useEffect has missing dependencies: 'checkOut' and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+531:205  Warning: React Hook useMemo has missing dependencies: 'lateThresholdHour' and 'lateThresholdMinute'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/automations-client.tsx
+91:81  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+91:85  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/clock-in-toggle.tsx
+19:8  Warning: React Hook useEffect has a missing dependency: 'fetchStatus'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/command-menu.tsx
+102:36  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+102:44  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/device/camera-capture.tsx
+27:6  Warning: React Hook useEffect has a missing dependency: 'startCamera'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+95:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/enhanced-call-history.tsx
+54:6  Warning: React Hook useEffect has a missing dependency: 'initializeComponent'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/follow-ups-list.tsx
+30:6  Warning: React Hook useEffect has a missing dependency: 'fetchFollowUps'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/invoice/hanva-tax-invoice.tsx
+74:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+371:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/kyc-team/KycLeadsTable.tsx
+72:6  Warning: React Hook useEffect has a missing dependency: 'fetchLeads'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-notes.tsx
+38:6  Warning: React Hook useEffect has a missing dependency: 'fetchNotes'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-site-visits.tsx
+32:8  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/lead-status-updater.tsx
+173:6  Warning: React Hook useEffect has a missing dependency: 'handleReset'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+188:6  Warning: React Hook useEffect has missing dependencies: 'elapsedTime' and 'status'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/leads-table.tsx
+1423:23  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+1423:29  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2298:126  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+2298:130  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+2301:38  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2301:50  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2302:101  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+2302:104  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+2308:38  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2308:49  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2309:102  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+2309:113  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/leave-management.tsx
+55:6  Warning: React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+329:76  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+366:37  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+366:52  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/mobile-attendance.tsx
+323:33  Warning: The ref value 'videoRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'videoRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+486:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+526:25  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+526:38  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+599:17  Warning: Image elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./components/notification-bell.tsx
+43:6  Warning: React Hook useEffect has a missing dependency: 'supabase.auth'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/notification-center.tsx
+44:6  Warning: React Hook useEffect has a missing dependency: 'supabase.auth'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+78:6  Warning: React Hook useEffect has missing dependencies: 'fetchNotifications', 'fetchUnreadCount', and 'supabase'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/notification-provider.tsx
+75:6  Warning: React Hook useEffect has missing dependencies: 'requestPermissionAndSubscribe' and 'subscribeToPush'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/power-dialer.tsx
+154:17  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+155:175  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/property-matcher.tsx
+16:6  Warning: React Hook useEffect has a missing dependency: 'fetchMatches'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/push-subscriber.tsx
+61:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/pwa/splash-screen.tsx
+105:24  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/schedule-follow-up-modal.tsx
+140:6  Warning: React Hook useEffect has missing dependencies: 'date' and 'fetchLeads'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+156:6  Warning: React Hook useEffect has a missing dependency: 'checkConflicts'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+160:6  Warning: React Hook useEffect has a missing dependency: 'checkExistingFollowUp'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/smart-matches.tsx
+21:8  Warning: React Hook useEffect has a missing dependency: 'fetchMatches'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+47:60  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+56:80  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+68:33  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/task-card.tsx
+43:75  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+43:88  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/telecaller/GeofenceAccessGuard.tsx
+149:6  Warning: React Hook useEffect has a missing dependency: 'verifyAccess'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/GlobalAutoDialer.tsx
+70:8  Warning: React Hook useEffect has a missing dependency: 'handleDatabaseStatusChange'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/LiveLeaderboard.tsx
+96:8  Warning: React Hook useEffect has a missing dependency: 'org?.id'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/telecaller/LiveScriptCard.tsx
+47:11  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+47:27  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/telecaller/daily-welcome-modal.tsx
+71:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+124:17  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+168:20  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/telecaller-ticker.tsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'supabase'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/todays-tasks.tsx
+252:94  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+ ELIFECYCLE  Command failed with exit code 1.

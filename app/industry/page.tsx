@@ -17,6 +17,9 @@ import {
   Sparkles,
   ArrowRight,
   CheckCircle2,
+  Scissors,
+  UtensilsCrossed,
+  Headphones,
 } from "lucide-react";
 
 export const metadata = {
@@ -58,6 +61,51 @@ const industryHubSchema = {
 };
 
 const industries = [
+  {
+    icon: Scissors,
+    badge: "Salon, Spa & Studio SaaS",
+    title: "Salons & Spas",
+    slug: "/industry/salons-and-spas/",
+    description:
+      "Appointment scheduling, online booking mini-site, GST checkout, stylist commission portals, and back-bar consumable auto-consumption.",
+    metrics: "Direct Booking & GST Invoicing",
+    keyCapabilities: [
+      "Master stylist appointment calendar with walk-in waitlist",
+      "Public online booking mini-site for client self-scheduling",
+      "Service-to-product auto-consumption recipe deductions",
+      "Stylist staff portal with PIN login for commission tracking",
+    ],
+  },
+  {
+    icon: UtensilsCrossed,
+    badge: "Restaurant, Cafe & QSR POS",
+    title: "Restaurants & Cafes",
+    slug: "/industry/restaurants-and-cafes/",
+    description:
+      "Offline-first order queue, multi-station thermal KOT printing, live Kitchen Display System (KDS), dynamic UPI QR, and recipe BOM inventory.",
+    metrics: "Zero Offline Downtime",
+    keyCapabilities: [
+      "Offline IndexedDB queue keeping billing active during Wi-Fi drops",
+      "Multi-station KOT routing (Bar, Tandoor, Main Kitchen) and live KDS",
+      "Dynamic NPCI UPI QR code generated directly on customer bills",
+      "Recipe Bill of Materials raw ingredient inventory depletion",
+    ],
+  },
+  {
+    icon: Headphones,
+    badge: "Telesales & BPO Call Operations",
+    title: "Telecalling & BPO",
+    slug: "/industry/telecalling-and-bpo/",
+    description:
+      "Role-based lead management, 1-click cloud C2C dialing via carrier partners, automated follow-up scheduling, and browser-based call recording audits.",
+    metrics: "2x Agent Talk Time",
+    keyCapabilities: [
+      "1-click C2C calling via CloudConnect, Ozonetel, and Fonada",
+      "Lead security vaults preventing unauthorized CSV export",
+      "In-browser HTML5 audio player for call recording reviews",
+      "Real-time call outcome dispositions and agent shift attendance",
+    ],
+  },
   {
     icon: Building2,
     badge: "High-Ticket Lead Acceleration",

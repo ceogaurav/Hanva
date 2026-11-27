@@ -1,0 +1,62 @@
+{
+  "executedAt": "2026-11-27T05:25:19.962Z",
+  "auditLogsRecorded": 24,
+  "total": 9,
+  "passed": 9,
+  "results": [
+    {
+      "id": "T-SEC-1",
+      "name": "14 protected endpoints return 401 unauthenticated",
+      "pass": true,
+      "detail": "401,401,401,401,401,401,401,401,401,401,401,401,401,401"
+    },
+    {
+      "id": "T-SEC-2",
+      "name": "Maintenance routes enforce 401/405/403",
+      "pass": true,
+      "detail": "401/405/405/403"
+    },
+    {
+      "id": "T-SEC-3",
+      "name": "Role privilege escalation blocked (403)",
+      "pass": true,
+      "detail": "403/403/403/403"
+    },
+    {
+      "id": "T-SEC-4",
+      "name": "Cross-tenant isolation returns 403 across 5 APIs",
+      "pass": true,
+      "detail": "403/403/403/403/403"
+    },
+    {
+      "id": "T-SEC-5",
+      "name": "Cron & Debug enforce Bearer CRON_SECRET and omit PII",
+      "pass": true,
+      "detail": "401/401/401/200/200"
+    },
+    {
+      "id": "T-SEC-6",
+      "name": "All 14 webhook defenses + Razorpay HMAC/dedupe hold on Next 15",
+      "pass": true,
+      "detail": "rzp=200/Already credited, cc=401, rem=401/401/401/401/401/401/401/401/401/503"
+    },
+    {
+      "id": "T-SEC-7",
+      "name": "CSV export neutralizes formulas and isolates tenants",
+      "pass": true,
+      "detail": "status=200"
+    },
+    {
+      "id": "T-SEC-8",
+      "name": "Rate limiter enforces 429 on brute-force login",
+      "pass": true,
+      "detail": "401,401,401,401,401,401,401,401,401,401,429,429"
+    },
+    {
+      "id": "T-HANVA-ISO",
+      "name": "HANVA website stays isolated on sandbox_mock with WhatsApp preserved",
+      "pass": true,
+      "detail": "status=201, mode=sandbox_mock"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
+import { RestaurantPosExplorer } from "@/components/interactive/restaurant-pos-explorer";
 import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
 import {
@@ -282,6 +283,24 @@ export default function HanvaRestaurantPosPage() {
         </Container>
       </section>
 
+      {/* Interactive Demonstration Experience */}
+      <section>
+        <Container className="space-y-6">
+          <div className="max-w-2xl space-y-1.5">
+            <Badge className="bg-amber-100 text-amber-800 border-amber-200 text-xs">
+              Hands-On Simulation
+            </Badge>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Interactive Product Demonstration: Restaurant Rush Hour Operations
+            </h2>
+            <p className="text-sm text-slate-600">
+              Test how Hanva Restaurant POS handles rush hour: table QR orders, kitchen KOT routing, offline network failover, GST receipts with dynamic UPI QR, and ingredient cost deduction.
+            </p>
+          </div>
+          <RestaurantPosExplorer />
+        </Container>
+      </section>
+
       {/* Restaurant POS Storytelling & Screenshot Slots */}
       <section className="py-12 bg-amber-50/30 border-y border-slate-100">
         <Container className="space-y-14">
@@ -391,6 +410,14 @@ export default function HanvaRestaurantPosPage() {
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 text-xs font-semibold">
+              <Link href="/industry/restaurants-and-cafes/" className="inline-flex items-center text-amber-800 hover:underline">
+                <span>Restaurants &amp; Cafes Industry Solution</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link href="/resources/restaurant-pos-implementation-checklist/" className="inline-flex items-center text-amber-800 hover:underline">
+                <span>Restaurant POS Implementation Checklist</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
               <Link href="/resources/restaurant-pos-kot-inventory-guide/" className="inline-flex items-center text-amber-800 hover:underline">
                 <span>POS, KOT &amp; Inventory Guide</span>
                 <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />

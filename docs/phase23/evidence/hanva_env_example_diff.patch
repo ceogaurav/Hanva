@@ -1,0 +1,27 @@
+diff --git a/.env.example b/.env.example
+index d2c0238..4687275 100644
+--- a/.env.example
++++ b/.env.example
+@@ -14,5 +14,20 @@ NEXT_PUBLIC_SITE_URL=https://www.hanva.in
+ # NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+ # NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+ 
+-# Future CRM Webhook endpoint for live lead delivery (optional - currently running in transparent preview mode)
+-# CONTACT_FORM_WEBHOOK_URL=https://api.hanva.in/v1/leads
++# Phase 23 Website-to-CRM Integration Mode:
++#   disabled            -> Fail-closed 503 with WhatsApp/Email/Phone fallback (use on live web host until Stage A passes)
++#   sandbox_mock        -> Non-production validation, dedupe & classification sandbox (production_crm_synced=false)
++#   live_signed_gateway -> Server-to-server HMAC gateway (REQUIRES CRM_STAGE_A_SECURITY_APPROVED=true & signing keys)
++CRM_INTEGRATION_MODE=sandbox_mock
++
++# Explicit Stage A security clearance gate (MUST stay false until CRM critical blockers are remediated & signed off)
++CRM_STAGE_A_SECURITY_APPROVED=false
++
++# Server-to-server signed CRM ingestion endpoint & secrets (NEVER prefix with NEXT_PUBLIC_)
++# CRM_WEBSITE_INGEST_URL=https://crm.hanva.in/api/v1/ingest/website-leads
++# CRM_WEBSITE_INGEST_TOKEN=
++# CRM_WEBSITE_HMAC_SECRET=
++
++# Rate-limiting & logging overrides (server-only)
++# LEAD_RATE_LIMIT_MAX=25
++# LEAD_RATE_LIMIT_WINDOW_MS=60000

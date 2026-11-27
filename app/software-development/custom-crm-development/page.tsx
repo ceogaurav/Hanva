@@ -59,6 +59,23 @@ export default function CustomCrmDevelopmentPage() {
         { title: "API Integration & Automation", description: "Connect existing ERPs, webhooks, and AI workflows.", href: "/software-development/api-integration-automation/" },
         { title: "SaaS Product Development", description: "Building a multi-tenant commercial product for external customers.", href: "/software-development/saas-product-development/" },
       ]}
+      guides={[
+        {
+          title: "Guide: Custom CRM Architecture & Rollout",
+          description: "Domain entities, multi-department approvals, RBAC tiers & legacy data migration.",
+          href: "/resources/custom-crm-development-guide/",
+        },
+        {
+          title: "Guide: SaaS vs Custom CRM & ERP",
+          description: "Decide objectively when off-the-shelf SaaS wins vs bespoke engineering.",
+          href: "/resources/saas-vs-custom-crm-erp-guide/",
+        },
+        {
+          title: "Guide: Software Development Cost Factors",
+          description: "Six architectural cost drivers behind custom CRM, web & integration estimates.",
+          href: "/resources/software-development-cost-factors/",
+        },
+      ]}
       faqs={[
         {
           question: "How is this different from Hanva CRM?",

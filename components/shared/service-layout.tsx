@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
-import { CONTACT_CONFIG, buildServiceWhatsAppUrl } from "@/lib/config";
+import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { CONTACT_CONFIG, buildServiceWhatsAppUrl, resolveRouteContext } from "@/lib/config";
+import { inferSubjectFromContext } from "@/lib/analytics";
 import {
   CheckCircle2,
   ArrowRight,
@@ -52,6 +53,7 @@ export interface ServiceLayoutProps {
   stages: EngagementStage[];
   suitableCustomers: ServiceCustomerType[];
   relatedLinks: { title: string; description: string; href: string }[];
+  guides?: { title: string; description: string; href: string }[];
   faqs: FAQItem[];
   serviceType: string;
   canonicalUrl: string;
@@ -72,11 +74,14 @@ export function ServiceLayout({
   stages,
   suitableCustomers,
   relatedLinks,
+  guides,
   faqs,
   serviceType,
   canonicalUrl,
 }: ServiceLayoutProps) {
   const whatsappUrl = buildServiceWhatsAppUrl(whatsappMessage);
+  const routeCtx = resolveRouteContext(contextRef);
+  const subjectName = inferSubjectFromContext(contextRef);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -152,31 +157,36 @@ export function ServiceLayout({
             <p className="text-base sm:text-xl text-slate-600 leading-relaxed">{subtitle}</p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
-            <Button asChild variant="primary" size="lg" className="h-auto min-h-[48px] py-2.5 px-6">
-              <TrackedWhatsAppLink
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                ctaLocation="service_hero"
-                contextRef={contextRef}
-              >
-                <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>Enquire on WhatsApp</span>
-                <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              </TrackedWhatsAppLink>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-6">
-              <TrackedDemoLink
-                href="/company/contact/"
-                ctaLocation="service_hero"
-                ctaLabelKey="contact_consultation"
-              >
-                <span>Schedule Discovery Call</span>
-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
-              </TrackedDemoLink>
-            </Button>
-          </div>
+          <TrackedCtaObserver ctaLocation="hero" productName={subjectName} ctaType="service_hero_cta">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+              <Button asChild variant="primary" size="lg" className="h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedWhatsAppLink
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ctaLocation="service_hero"
+                  productName={subjectName}
+                  ctaType="service_whatsapp"
+                  contextRef={contextRef}
+                >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Enquire on WhatsApp</span>
+                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                </TrackedWhatsAppLink>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-6">
+                <TrackedDemoLink
+                  href={routeCtx.contactHref}
+                  ctaLocation="service_hero"
+                  ctaLabelKey="contact_consultation"
+                  productSlug={routeCtx.productSlug || undefined}
+                >
+                  <span>Schedule Discovery Call</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                </TrackedDemoLink>
+              </Button>
+            </div>
+          </TrackedCtaObserver>
 
           {/* Problem & Solution Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
@@ -303,6 +313,23 @@ export function ServiceLayout({
               </Link>
             ))}
           </div>
+          {guides && guides.length > 0 && (
+            <div className={`grid grid-cols-1 ${guides.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"} gap-5 pt-2`}>
+              {guides.map((guide) => (
+                <Link
+                  key={guide.href}
+                  href={guide.href}
+                  className="group rounded-xl border border-blue-200/80 bg-blue-50/30 p-5 hover:border-blue-400 hover:bg-blue-50/60 transition-colors space-y-1.5"
+                >
+                  <div className="flex items-center justify-between text-sm font-bold text-slate-900 group-hover:text-blue-700">
+                    <span>{guide.title}</span>
+                    <ArrowUpRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">{guide.description}</p>
+                </Link>
+              ))}
+            </div>
+          )}
         </Container>
       </section>
 
@@ -340,6 +367,8 @@ export function ServiceLayout({
                   target="_blank"
                   rel="noopener noreferrer"
                   ctaLocation="service_bottom"
+                  productName={subjectName}
+                  ctaType="service_whatsapp"
                   contextRef={contextRef}
                 >
                   <MessageSquare className="mr-2 h-4 w-4" aria-hidden="true" />

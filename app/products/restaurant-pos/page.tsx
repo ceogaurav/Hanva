@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
 import {
   CheckCircle2,
@@ -21,7 +21,7 @@ import {
 export const metadata = {
   title: "Hanva Restaurant POS — Billing, KDS & QR Ordering",
   description:
-    "Restaurant POS and billing software designed to simplify dine-in, takeaway, delivery orders, KOT, Kitchen Display System (KDS), QR menu ordering, GST billing, UPI QR, and recipe inventory.",
+    "Restaurant POS and GST billing software for dine-in, cafes & cloud kitchens: offline queue, KOT, Kitchen Display System (KDS), QR ordering, and recipe BOM.",
   alternates: {
     canonical: "https://www.hanva.in/products/restaurant-pos/",
   },
@@ -179,29 +179,33 @@ export default function HanvaRestaurantPosPage() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Button asChild size="lg" className="bg-amber-700 hover:bg-amber-800 text-white h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
-              <TrackedWhatsAppLink
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                ctaLocation="hero"
-                productName="hanva_restaurant_pos"
-                ctaType="product_demo_whatsapp"
-                contextRef="/products/restaurant-pos/"
-              >
-                <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>Request Demo on WhatsApp</span>
-                <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              </TrackedWhatsAppLink>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
-              <TrackedDemoLink href="/company/contact/?product=restaurant-pos" ctaLocation="pos_hero" productSlug="restaurant-pos">
-                <span>Contact Us for Pricing</span>
-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
-              </TrackedDemoLink>
-            </Button>
-          </div>
+          <TrackedCtaObserver ctaLocation="hero" productName="hanva_restaurant_pos" ctaType="pos_hero_cta">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <Button asChild size="lg" className="bg-amber-700 hover:bg-amber-800 text-white h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+                <TrackedWhatsAppLink
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ctaLocation="hero"
+                  productName="hanva_restaurant_pos"
+                  ctaType="product_demo_whatsapp"
+                  contextRef="/products/restaurant-pos/"
+                  experimentId="EXP-22C"
+                  variantId="request_demo_whatsapp"
+                >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Request Demo on WhatsApp</span>
+                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                </TrackedWhatsAppLink>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+                <TrackedDemoLink href="/company/contact/?product=restaurant-pos" ctaLocation="pos_hero" productSlug="restaurant-pos">
+                  <span>Contact Us for Pricing</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                </TrackedDemoLink>
+              </Button>
+            </div>
+          </TrackedCtaObserver>
 
           <p className="text-xs text-slate-600">
             Clicking WhatsApp opens a chat with <span className="font-semibold">+91 8423711043</span> to initiate a guided demo enquiry (not an automated booking confirmation). Contact us for pricing.
@@ -378,6 +382,56 @@ export default function HanvaRestaurantPosPage() {
               <div className="text-sm font-bold text-slate-900">Food Outlets</div>
               <p className="text-slate-600">Offline-resilient billing, GST tax summaries, and Z-Report closing.</p>
             </div>
+          </div>
+          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="text-sm font-bold text-slate-900">Restaurant Billing, KDS, Inventory &amp; API Guides</div>
+              <p className="text-xs text-slate-600">
+                Explore technical guidance on India CGST/SGST billing, offline POS sync, kitchen routing, FIFO/WAC recipes, and Partner API webhooks.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 text-xs font-semibold">
+              <Link href="/resources/restaurant-pos-kot-inventory-guide/" className="inline-flex items-center text-amber-800 hover:underline">
+                <span>POS, KOT &amp; Inventory Guide</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link href="/resources/restaurant-billing-software-guide/" className="inline-flex items-center text-amber-800 hover:underline">
+                <span>India GST &amp; Offline Billing Guide</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link href="/resources/cloud-kitchen-management-guide/" className="inline-flex items-center text-amber-800 hover:underline">
+                <span>Cloud Kitchen KDS &amp; BOM Guide</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link href="/software-development/api-integration-automation/" className="inline-flex items-center text-blue-700 hover:underline">
+                <span>API Integration &amp; Workflows</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Included vs Explicit Scope Clarifications */}
+      <section>
+        <Container className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800">What Is Included (Verified)</div>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+              <li>Dine-in, takeaway, delivery &amp; scheduled POS with IndexedDB offline order sync</li>
+              <li>Station KOT splitting, live KDS board w/ duplicate-print lock, Captain &amp; Kiosk PWAs</li>
+              <li>50/50 CGST/SGST tax splits, multi-tender split payments &amp; dynamic NPCI UPI QR</li>
+              <li>FIFO/WAC recipe BOM inventory, procurement (PR/PO/GRN), Partner API &amp; 22 reports</li>
+            </ul>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-700">Important Scope Boundaries</div>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+              <li>No native Swiggy, Zomato, or UberEats adapters (use scoped Partner REST API &amp; webhooks)</li>
+              <li>Multi-tender split payments supported; splitting 1 order into separate bills is not implemented</li>
+              <li>Direct thermal printer / Windows print-bridge compatibility verified per hardware model</li>
+              <li>Multi-branch staff permission enforcement &amp; self-service branch creation are partial</li>
+            </ul>
           </div>
         </Container>
       </section>

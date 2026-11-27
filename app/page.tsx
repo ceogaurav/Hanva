@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SchemaOrg } from "@/components/shared/schema-org";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
-import { TrackedDemoLink, TrackedProductLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
+import { TrackedCtaObserver, TrackedDemoLink, TrackedProductLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl, buildServiceWhatsAppUrl } from "@/lib/config";
 import {
   ArrowRight,
@@ -26,7 +26,7 @@ import {
 export const metadata = {
   title: "IT Solutions, SaaS Products & Cloud Telephony",
   description:
-    "Hanva Technologies is a comprehensive IT solutions, digital transformation, and SaaS software provider in India offering Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, Digital Marketing, Software Development, and Cloud Telephony.",
+    "Hanva Technologies delivers SaaS software (Hanva CRM, Salon Software, Restaurant POS), SEO & Google Ads, custom software development, and cloud telephony in India.",
   alternates: {
     canonical: "https://www.hanva.in/",
   },
@@ -143,34 +143,59 @@ export default function HomePage() {
             Hanva Technologies is a comprehensive IT solutions, digital transformation, and SaaS software provider helping businesses in India and globally automate operations, acquire customers, and scale.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
-            <Button asChild variant="primary" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6">
-              <Link href="/products/">
-                <span>Explore SaaS Products</span>
-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6 border-slate-300">
-              <TrackedDemoLink href="/company/contact/" ctaLocation="home_hero" ctaLabelKey="request_consultation">
-                <span>Request Consultation</span>
-              </TrackedDemoLink>
-            </Button>
+          <TrackedCtaObserver ctaLocation="hero" ctaType="homepage_hero_cta">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
+              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6 font-semibold shadow-sm">
+                <TrackedWhatsAppLink
+                  href={generalWhatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ctaLocation="home_hero"
+                  contextRef="/"
+                  experimentId="EXP-22A"
+                  variantId="whatsapp_primary_hero"
+                >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Enquire on WhatsApp</span>
+                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                </TrackedWhatsAppLink>
+              </Button>
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6">
+                <Link href="/products/">
+                  <span>Explore SaaS Products</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-auto min-h-[48px] py-2.5 px-6 border-slate-300">
+                <TrackedDemoLink href="/company/contact/" ctaLocation="home_hero" ctaLabelKey="request_consultation">
+                  <span>Request Consultation</span>
+                </TrackedDemoLink>
+              </Button>
+            </div>
+          </TrackedCtaObserver>
+
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs">
+            <Link href="/products/crm/" className="rounded-full border border-blue-200 bg-blue-50/70 px-3 py-1 font-medium text-blue-800 hover:bg-blue-100 transition-colors">
+              Hanva CRM
+            </Link>
+            <Link href="/products/salon-software/" className="rounded-full border border-rose-200 bg-rose-50/70 px-3 py-1 font-medium text-rose-800 hover:bg-rose-100 transition-colors">
+              Hanva Salon Software
+            </Link>
+            <Link href="/products/restaurant-pos/" className="rounded-full border border-amber-200 bg-amber-50/70 px-3 py-1 font-medium text-amber-900 hover:bg-amber-100 transition-colors">
+              Hanva Restaurant POS
+            </Link>
+            <Link href="/digital-marketing/" className="rounded-full border border-slate-200 bg-white px-3 py-1 font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+              SEO &amp; Ads Services
+            </Link>
+            <Link href="/software-development/" className="rounded-full border border-slate-200 bg-white px-3 py-1 font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+              Custom Software Dev
+            </Link>
           </div>
 
-          <div className="flex items-center justify-center">
-            <TrackedWhatsAppLink
-              href={generalWhatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              ctaLocation="home_hero"
-              contextRef="/"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline py-1"
-            >
-              <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span>Chat with Hanva on WhatsApp (+91 8423711043)</span>
-              <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-            </TrackedWhatsAppLink>
-          </div>
+          <p className="text-[11px] sm:text-xs text-slate-600">
+            Hanva Technologies Pvt. Ltd. (Bengaluru HQ) • Official WhatsApp:{" "}
+            <span className="font-semibold text-slate-800">{CONTACT_CONFIG.phoneDisplay}</span> • Contact us for pricing
+          </p>
         </Container>
       </section>
 
@@ -457,6 +482,25 @@ export default function HomePage() {
                 Digital Marketing Overview &rarr;
               </Link>
             </div>
+            <div className="pt-1 flex flex-wrap items-center gap-4 text-xs">
+              <TrackedWhatsAppLink
+                href={buildServiceWhatsAppUrl("Hello Hanva Team, I would like to enquire about Digital Marketing services (SEO, Google Ads & Social Media).")}
+                target="_blank"
+                rel="noopener noreferrer"
+                ctaLocation="product_section"
+                productName="digital_marketing"
+                ctaType="service_whatsapp"
+                contextRef="/digital-marketing/"
+                className="inline-flex items-center gap-1.5 font-semibold text-emerald-700 hover:underline"
+              >
+                <MessageSquare className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                <span>Enquire on WhatsApp</span>
+                <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
+              </TrackedWhatsAppLink>
+              <Link href="/company/contact/?product=digital-marketing" className="text-slate-600 hover:text-slate-900 hover:underline">
+                Contact us for pricing &rarr;
+              </Link>
+            </div>
           </div>
 
           {/* 8. Software Development */}
@@ -484,6 +528,25 @@ export default function HomePage() {
               </Link>
               <Link href="/software-development/ecommerce-development/" className="rounded-lg border border-slate-200 p-3 hover:border-blue-300 font-semibold text-slate-800">
                 E-commerce Development &rarr;
+              </Link>
+            </div>
+            <div className="pt-1 flex flex-wrap items-center gap-4 text-xs">
+              <TrackedWhatsAppLink
+                href={buildServiceWhatsAppUrl("Hello Hanva Team, I would like to enquire about Custom Software Development services.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                ctaLocation="product_section"
+                productName="software_development"
+                ctaType="service_whatsapp"
+                contextRef="/software-development/"
+                className="inline-flex items-center gap-1.5 font-semibold text-emerald-700 hover:underline"
+              >
+                <MessageSquare className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                <span>Discuss Project on WhatsApp</span>
+                <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
+              </TrackedWhatsAppLink>
+              <Link href="/company/contact/?product=software-development" className="text-slate-600 hover:text-slate-900 hover:underline">
+                Contact us for pricing &rarr;
               </Link>
             </div>
           </div>

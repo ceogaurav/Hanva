@@ -3,17 +3,15 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, MessageSquare, Calendar, Sparkles } from "lucide-react";
-import { CONTACT_CONFIG } from "@/lib/config";
-import { trackAnalyticsEvent, trackWhatsAppClick } from "@/lib/analytics";
+import { Phone, MessageSquare, Calendar, Layers } from "lucide-react";
+import { CONTACT_CONFIG, resolveRouteContext } from "@/lib/config";
+import { inferSubjectFromContext, trackAnalyticsEvent, trackCtaClick, trackWhatsAppClick } from "@/lib/analytics";
 
 export function MobileActionBar() {
   const pathname = usePathname();
   const isContactPage = pathname?.startsWith("/company/contact");
-
-  const whatsappUrl = `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
-    `Hello Hanva Team, I am browsing ${pathname || "/"} and would like to enquire about your solutions.`
-  )}`;
+  const routeCtx = resolveRouteContext(pathname);
+  const subjectName = inferSubjectFromContext(pathname || "/");
 
   return (
     <nav
@@ -23,13 +21,19 @@ export function MobileActionBar() {
       <div className="grid grid-cols-3 gap-1.5 sm:gap-2 max-w-md mx-auto w-full">
         <a
           href={`tel:${CONTACT_CONFIG.phoneTel}`}
-          onClick={() =>
+          onClick={() => {
             trackAnalyticsEvent("phone_click", {
               cta_location: "floating_button",
               cta_surface: "mobile_action_bar",
+              product_name: subjectName,
               target_channel: "sales_desk",
-            })
-          }
+            });
+            trackCtaClick({
+              ctaLocation: "floating_button",
+              productName: subjectName,
+              ctaType: "phone_call",
+            });
+          }}
           className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-slate-900 text-white text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-1"
           aria-label="Call Hanva Sales Desk"
         >
@@ -38,17 +42,23 @@ export function MobileActionBar() {
         </a>
 
         <a
-          href={whatsappUrl}
+          href={routeCtx.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() =>
+          onClick={() => {
             trackWhatsAppClick({
               ctaLocation: "floating_button",
+              productName: subjectName,
               contextRef: pathname || "/",
-            })
-          }
+            });
+            trackCtaClick({
+              ctaLocation: "floating_button",
+              productName: subjectName,
+              ctaType: routeCtx.isSaasProduct ? "product_demo_whatsapp" : "mobile_bar_whatsapp",
+            });
+          }}
           className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-[#25D366] text-slate-950 text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-[#20BD5A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-1"
-          aria-label="Open WhatsApp Chat (press Send manually)"
+          aria-label={`Open WhatsApp Chat for ${routeCtx.subjectLabel} (press Send manually)`}
         >
           <MessageSquare className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
           <span className="truncate">WhatsApp</span>
@@ -56,34 +66,39 @@ export function MobileActionBar() {
 
         {isContactPage ? (
           <Link
-            href="/pricing/calculator/"
+            href="/products/"
             onClick={() =>
-              trackAnalyticsEvent("demo_cta_click", {
-                cta_location: "floating_button",
-                cta_surface: "mobile_action_bar",
-                cta_label_key: "pulse_calculator",
-                target_path: "/pricing/calculator/",
+              trackCtaClick({
+                ctaLocation: "floating_button",
+                productName: subjectName,
+                ctaType: "saas_portfolio_browse",
               })
             }
             className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-blue-600 text-white text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-1"
-            aria-label="Estimate Voice Costs in Calculator"
+            aria-label="Browse SaaS Products"
           >
-            <Sparkles className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
-            <span className="truncate">Calculator</span>
+            <Layers className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
+            <span className="truncate">Products</span>
           </Link>
         ) : (
           <Link
-            href="/company/contact/"
-            onClick={() =>
+            href={routeCtx.contactHref}
+            onClick={() => {
               trackAnalyticsEvent("demo_cta_click", {
                 cta_location: "floating_button",
                 cta_surface: "mobile_action_bar",
                 cta_label_key: "book_demo",
+                product_name: subjectName,
                 target_path: "/company/contact/",
-              })
-            }
+              });
+              trackCtaClick({
+                ctaLocation: "floating_button",
+                productName: subjectName,
+                ctaType: "request_demo_form",
+              });
+            }}
             className="flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-lg bg-blue-600 text-white text-[10px] sm:text-[11px] font-semibold min-h-[44px] touch-target active:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-1"
-            aria-label="Request Demo Enquiry"
+            aria-label={`Request Demo for ${routeCtx.subjectLabel}`}
           >
             <Calendar className="h-4 w-4 mb-0.5 shrink-0" aria-hidden="true" />
             <span className="truncate">Request Demo</span>

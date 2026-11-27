@@ -71,6 +71,10 @@ export type AnalyticsEventName =
   | "scroll_depth"
   | "contact_page_view"
   | "product_view"
+  | "pricing_view"
+  | "product_comparison_view"
+  | "cta_view"
+  | "cta_click"
   | "whatsapp_click"
   | "form_start"
   | "form_submit"
@@ -141,6 +145,7 @@ const DISALLOWED_PII_KEYS = new Set([
 
 let inMemoryConsentFallback: AnalyticsConsentState = "unset";
 let lastTrackedPageViewPath: string | null = null;
+const firedCtaViewKeys = new Set<string>();
 const consentListeners = new Set<() => void>();
 
 export function getConfiguredAnalyticsIds(): {
@@ -325,20 +330,41 @@ export function normalizeCtaLocation(raw?: string): CtaLocation {
 export function inferSubjectFromContext(pathOrRef?: string): TrackedSubjectName {
   const ref = (pathOrRef || "").toLowerCase();
   if (ref.includes("salon")) return "hanva_salon_software";
-  if (ref.includes("restaurant") || ref === "pos" || ref.includes("/pos") || ref.includes("_pos")) {
+  if (
+    ref.includes("restaurant") ||
+    ref.includes("cloud-kitchen") ||
+    ref === "pos" ||
+    ref.includes("/pos") ||
+    ref.includes("_pos")
+  ) {
     return "hanva_restaurant_pos";
   }
-  if (ref.includes("telecalling-crm")) return "cloud_telephony";
-  if (ref.includes("sales crm") || ref.includes("hanva crm") || ref.includes("/crm") || ref === "crm" || ref.includes("crm_")) {
+  if (
+    ref.includes("sales crm") ||
+    ref.includes("hanva crm") ||
+    ref.includes("ivr-crm") ||
+    ref.includes("lead-management") ||
+    ref.includes("crm-with-ivr") ||
+    ref.includes("/crm") ||
+    ref === "crm" ||
+    ref.includes("crm_")
+  ) {
     return "hanva_crm";
   }
-  if (ref.includes("digital-marketing") || ref.includes("seo") || ref.includes("marketing")) {
+  if (ref.includes("telecalling-crm")) return "cloud_telephony";
+  if (
+    ref.includes("digital-marketing") ||
+    ref.includes("seo") ||
+    ref.includes("google-ads") ||
+    ref.includes("marketing")
+  ) {
     return "digital_marketing";
   }
   if (
     ref.includes("software-development") ||
     ref.includes("saas-vs-custom") ||
-    ref.includes("custom-crm")
+    ref.includes("custom-crm") ||
+    ref.includes("cost-factors")
   ) {
     return "software_development";
   }
@@ -351,6 +377,7 @@ export function inferSubjectFromContext(pathOrRef?: string): TrackedSubjectName 
     ref.includes("toll-free") ||
     ref.includes("call-center") ||
     ref.includes("whatsapp-crm") ||
+    ref.includes("dlt") ||
     ref.includes("obd")
   ) {
     return "cloud_telephony";
@@ -456,6 +483,7 @@ export function trackAnalyticsEvent(
 
 export function resetPageViewDeduplication(): void {
   lastTrackedPageViewPath = null;
+  firedCtaViewKeys.clear();
 }
 
 export function trackRouteViewEvents(pathnameInput: string, force = false): void {
@@ -473,6 +501,7 @@ export function trackRouteViewEvents(pathnameInput: string, force = false): void
     return;
   }
   lastTrackedPageViewPath = pagePath;
+  firedCtaViewKeys.clear();
 
   syncUtmAttribution(pagePath, true);
   trackAnalyticsEvent("page_view", {
@@ -494,11 +523,68 @@ export function trackRouteViewEvents(pathnameInput: string, force = false): void
       item_count: 3,
       items_csv: "hanva_crm,hanva_salon_software,hanva_restaurant_pos",
     });
+    trackAnalyticsEvent("product_comparison_view", {
+      comparison_scope: "saas_portfolio_matrix",
+      item_count: 3,
+    });
+  } else if (cleanNoTrailing.startsWith("/compare/")) {
+    trackAnalyticsEvent("product_comparison_view", {
+      comparison_scope: cleanNoTrailing.replace("/compare/", ""),
+    });
+  } else if (cleanNoTrailing === "/pricing" || cleanNoTrailing === "/pricing/calculator") {
+    trackAnalyticsEvent("pricing_view", {
+      pricing_surface: cleanNoTrailing === "/pricing/calculator" ? "pulse_calculator" : "commercial_pricing",
+    });
   } else if (cleanNoTrailing === "/company/contact") {
     trackAnalyticsEvent("contact_page_view", {
       page_category: "contact",
     });
   }
+}
+
+export function trackCtaView(options: {
+  ctaLocation: string;
+  productName?: TrackedSubjectName;
+  ctaType?: string;
+  experimentId?: string;
+  variantId?: string;
+}): AnalyticsEventRecord | null {
+  if (typeof window === "undefined") return null;
+  if (!hasAnalyticsConsent()) return null;
+
+  const pagePath = normalizePathname(window.location.pathname || "/");
+  const normalizedLocation = normalizeCtaLocation(options.ctaLocation);
+  const dedupKey = `${pagePath}::${options.ctaLocation}::${options.ctaType || "section"}`;
+  if (firedCtaViewKeys.has(dedupKey)) return null;
+  firedCtaViewKeys.add(dedupKey);
+
+  return trackAnalyticsEvent("cta_view", {
+    product_name: options.productName || inferSubjectFromContext(pagePath),
+    cta_location: normalizedLocation,
+    cta_surface: options.ctaLocation,
+    cta_type: options.ctaType || "conversion_section",
+    experiment_id: options.experimentId,
+    variant_id: options.variantId,
+  });
+}
+
+export function trackCtaClick(options: {
+  ctaLocation: string;
+  productName?: TrackedSubjectName;
+  ctaType?: string;
+  experimentId?: string;
+  variantId?: string;
+}): AnalyticsEventRecord | null {
+  const currentPath = typeof window !== "undefined" ? normalizePathname(window.location.pathname) : "/";
+  const normalizedLocation = normalizeCtaLocation(options.ctaLocation);
+  return trackAnalyticsEvent("cta_click", {
+    product_name: options.productName || inferSubjectFromContext(currentPath),
+    cta_location: normalizedLocation,
+    cta_surface: options.ctaLocation,
+    cta_type: options.ctaType || "primary_cta",
+    experiment_id: options.experimentId,
+    variant_id: options.variantId,
+  });
 }
 
 export function trackWhatsAppClick(options: {

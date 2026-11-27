@@ -19,7 +19,10 @@ export const metadata = {
     description:
       "A transparent breakdown of telecom billing in India: why 60-second rounding inflates phone bills by 25%-30%, channel rental math, DID setup charges, and hidden telco tariffs.",
     url: "https://www.hanva.in/resources/cloud-telephony-pricing-guide/",
+    siteName: "Hanva Technologies",
+    locale: "en_IN",
     type: "article",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Cloud Telephony Pricing Guide" }],
   },
   twitter: {
     card: "summary_large_image",

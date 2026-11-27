@@ -38,13 +38,17 @@ interface FormErrors {
 }
 
 const PRODUCT_OPTION_MAP: Record<string, string> = {
+  crm: "Hanva CRM",
+  "salon-software": "Hanva Salon Software",
+  "restaurant-pos": "Hanva Restaurant POS",
+  "digital-marketing": "Digital Marketing Services (SEO, Google Ads & Social)",
+  "software-development": "Custom Software, CRM/ERP & AI Development",
   "cloud-telephony": "Smart IVR & Cloud Telephony",
   "ivr-system": "Smart IVR & Cloud Telephony",
   "smart-ivr": "Smart IVR & Cloud Telephony",
   "auto-dialer": "Auto & Predictive Dialers",
   "predictive-dialer": "Auto & Predictive Dialers",
   "call-center-software": "Auto & Predictive Dialers",
-  crm: "Telecalling & Sales CRM",
   "telecalling-crm": "Telecalling & Sales CRM",
   "whatsapp-crm": "WhatsApp Business CRM",
   "virtual-numbers": "Virtual Numbers & 1800 Toll-Free",
@@ -53,10 +57,10 @@ const PRODUCT_OPTION_MAP: Record<string, string> = {
 };
 
 function mapTeamSizeFromSeats(seats: number): string {
-  if (seats <= 4) return "1-5 agents";
-  if (seats <= 15) return "5-15 agents";
-  if (seats <= 50) return "15-50 agents";
-  return "50+ agents";
+  if (seats <= 5) return "Single Outlet / 1-5 Staff";
+  if (seats <= 15) return "6-15 Staff / Agents";
+  if (seats <= 50) return "16-50 Staff / Agents";
+  return "50+ Multi-Team Enterprise";
 }
 
 function deriveSearchParamContext(searchParams: ReturnType<typeof useSearchParams>) {
@@ -147,8 +151,8 @@ function ContactPageContent() {
     companyName: "",
     workEmail: "",
     phone: "",
-    teamSize: initialContext.updates.teamSize || "5-15 agents",
-    product: initialContext.updates.product || "Smart IVR & Cloud Telephony",
+    teamSize: initialContext.updates.teamSize || "Single Outlet / 1-5 Staff",
+    product: initialContext.updates.product || "Hanva CRM",
     notes: initialContext.updates.notes || "",
     honeypot: "",
   }));
@@ -177,12 +181,10 @@ function ContactPageContent() {
       newErrors.fullName = "Full name must be at least 2 characters.";
     }
 
-    const emailTrimmed = formData.workEmail.trim();
+    const emailTrimmed = (formData.workEmail || "").trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailTrimmed) {
-      newErrors.workEmail = "Please enter your work email.";
-    } else if (!emailRegex.test(emailTrimmed)) {
-      newErrors.workEmail = "Please enter a valid business email address.";
+    if (emailTrimmed && !emailRegex.test(emailTrimmed)) {
+      newErrors.workEmail = "Please enter a valid email address (or leave blank for WhatsApp-only).";
     }
 
     const phoneDigits = formData.phone.replace(/\D/g, "");
@@ -198,13 +200,15 @@ function ContactPageContent() {
   const buildPlainPreviewText = () => {
     const lines = [
       "Hello Hanva Team,",
-      "I would like to enquire about your business communication solutions.",
+      formData.product
+        ? `I would like to enquire about ${formData.product}.`
+        : "I would like to enquire about your software products and IT solutions.",
       `Name: ${formData.fullName.trim()}`,
       formData.companyName?.trim() ? `Company: ${formData.companyName.trim()}` : null,
-      `Work Email: ${formData.workEmail.trim()}`,
+      formData.workEmail?.trim() ? `Email: ${formData.workEmail.trim()}` : null,
       `Mobile: ${formData.phone.trim()}`,
-      `Team Size: ${formData.teamSize}`,
-      `Interested Product: ${formData.product}`,
+      formData.teamSize ? `Scale / Team: ${formData.teamSize}` : null,
+      `Interested Product / Service: ${formData.product}`,
       formData.notes?.trim() ? `Requirements:\n${formData.notes.trim()}` : null,
     ].filter(Boolean);
     return lines.join("\n");
@@ -288,9 +292,9 @@ function ContactPageContent() {
     }
   };
 
-  const emailSubject = `Enquiry: ${formData.product || "Cloud Telephony & CRM"}`;
+  const emailSubject = `Enquiry: ${formData.product || "Hanva Software & IT Solutions"}`;
   const directMailtoHref = `mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent(
-    "Enquiry: Cloud Telephony & Telecalling CRM"
+    emailSubject
   )}`;
   const handoffMailtoHref = `mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent(
     emailSubject
@@ -308,13 +312,13 @@ function ContactPageContent() {
           <div className="lg:col-span-5 space-y-6 min-w-0 w-full">
             <div>
               <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
-                Sales & Support Desk
+                Sales &amp; Engineering Desk
               </span>
               <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1 break-words">
-                Let&apos;s Build Your Voice Architecture
+                Request a Demo, Consultation &amp; Custom Pricing
               </h1>
               <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed break-words">
-                Connect directly with our Bengaluru telephony engineers for statutory DoT KYC guidance, Vi/Tata DID provisioning, and CRM scoping.
+                Speak directly with our Bengaluru team for demos and custom pricing across <strong>Hanva CRM</strong>, <strong>Salon Software</strong>, <strong>Restaurant POS</strong>, Digital Marketing, Software Development, and Cloud Telephony.
               </p>
             </div>
 
@@ -674,12 +678,11 @@ function ContactPageContent() {
                       <Input
                         id="workEmail"
                         name="workEmail"
-                        label="Work Email *"
+                        label="Business Email (Optional for WhatsApp)"
                         type="email"
-                        placeholder="e.g. rajesh@company.com"
+                        placeholder="e.g. you@business.com"
                         autoComplete="email"
-                        required
-                        value={formData.workEmail}
+                        value={formData.workEmail || ""}
                         onFocus={() => markFormStarted("workEmail")}
                         onChange={(e) => {
                           markFormStarted("workEmail");
@@ -713,7 +716,7 @@ function ContactPageContent() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
                         <label htmlFor="team-size" className="block text-xs font-medium text-slate-700">
-                          Team Size
+                          Business / Team Size (Optional)
                         </label>
                         <select
                           id="team-size"
@@ -725,16 +728,16 @@ function ContactPageContent() {
                             setFormData({ ...formData, teamSize: e.target.value });
                           }}
                         >
-                          <option value="1-5 agents">1 - 5 calling agents</option>
-                          <option value="5-15 agents">5 - 15 calling agents</option>
-                          <option value="15-50 agents">15 - 50 calling agents</option>
-                          <option value="50+ agents">50+ enterprise contact center</option>
+                          <option value="Single Outlet / 1-5 Staff">Single Outlet / 1 - 5 Staff</option>
+                          <option value="6-15 Staff / Agents">6 - 15 Staff / Agents</option>
+                          <option value="16-50 Staff / Agents">16 - 50 Staff / Agents</option>
+                          <option value="50+ Multi-Team Enterprise">50+ Multi-Team Enterprise</option>
                         </select>
                       </div>
 
                       <div className="space-y-1.5">
                         <label htmlFor="product-interest" className="block text-xs font-medium text-slate-700">
-                          Primary Product Interest
+                          Product or Service Interest
                         </label>
                         <select
                           id="product-interest"
@@ -746,26 +749,37 @@ function ContactPageContent() {
                             setFormData({ ...formData, product: e.target.value });
                           }}
                         >
-                          <option value="Smart IVR & Cloud Telephony">Smart IVR &amp; Cloud Telephony</option>
-                          <option value="Auto & Predictive Dialers">Auto &amp; Predictive Dialers</option>
-                          <option value="Telecalling & Sales CRM">Telecalling &amp; Sales CRM</option>
-                          <option value="WhatsApp Business CRM">WhatsApp Business CRM</option>
-                          <option value="Virtual Numbers & 1800 Toll-Free">Virtual Numbers &amp; 1800 Toll-Free</option>
-                          <option value="Enterprise Telecom & CRM Suite">Enterprise Telecom &amp; CRM Suite</option>
+                          <optgroup label="Flagship SaaS Software">
+                            <option value="Hanva CRM">Hanva CRM (Sales, IVR &amp; WhatsApp)</option>
+                            <option value="Hanva Salon Software">Hanva Salon Software</option>
+                            <option value="Hanva Restaurant POS">Hanva Restaurant POS</option>
+                          </optgroup>
+                          <optgroup label="Services &amp; Custom Engineering">
+                            <option value="Digital Marketing Services (SEO, Google Ads & Social)">Digital Marketing (SEO, Ads &amp; Social)</option>
+                            <option value="Custom Software, CRM/ERP & AI Development">Custom Software, CRM/ERP &amp; AI</option>
+                          </optgroup>
+                          <optgroup label="Telecom &amp; Cloud Telephony">
+                            <option value="Smart IVR & Cloud Telephony">Smart IVR &amp; Cloud Telephony</option>
+                            <option value="Auto & Predictive Dialers">Auto &amp; Predictive Dialers</option>
+                            <option value="Telecalling & Sales CRM">Telecalling CRM</option>
+                            <option value="WhatsApp Business CRM">WhatsApp Business CRM</option>
+                            <option value="Virtual Numbers & 1800 Toll-Free">Virtual Numbers &amp; 1800 Toll-Free</option>
+                            <option value="Enterprise Telecom & CRM Suite">Enterprise Telecom &amp; CRM Suite</option>
+                          </optgroup>
                         </select>
                       </div>
                     </div>
 
                     <div className="space-y-1.5">
                       <label htmlFor="contact-notes" className="block text-xs font-medium text-slate-700">
-                        Specific Requirements (Optional)
+                        Requirements / Questions (Optional)
                       </label>
                       <textarea
                         id="contact-notes"
                         rows={3}
                         maxLength={1000}
                         className="flex w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 placeholder:text-slate-400"
-                        placeholder="Tell us about your current calling volume, pulse requirements, or team setup..."
+                        placeholder="Share your business type (salon, cafe, sales desk, custom project), outlet/seat count, or demo questions..."
                         value={formData.notes}
                         onFocus={() => markFormStarted("notes")}
                         onChange={(e) => {

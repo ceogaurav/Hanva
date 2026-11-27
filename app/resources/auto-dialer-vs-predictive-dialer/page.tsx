@@ -18,7 +18,10 @@ export const metadata = {
     description:
       "Compare Preview, Progressive, and Predictive dialers. Learn how call pacing algorithms affect agent idle time, dropped call rates, and Truecaller spam risk in India.",
     url: "https://www.hanva.in/resources/auto-dialer-vs-predictive-dialer/",
+    siteName: "Hanva Technologies",
+    locale: "en_IN",
     type: "article",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Auto Dialer vs Predictive Dialer Guide" }],
   },
   twitter: {
     card: "summary_large_image",

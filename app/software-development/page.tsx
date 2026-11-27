@@ -12,7 +12,7 @@ import { ArrowRight, Code2, MessageSquare, ExternalLink } from "lucide-react";
 export const metadata = {
   title: "Software Development — Web, Mobile, CRM & AI",
   description:
-    "Custom software development by Hanva Technologies: website and web application development, mobile apps, custom CRM/ERP systems, e-commerce platforms, API integrations, and tailored AI solutions.",
+    "Custom web applications, Android mobile apps, bespoke CRM/ERP platforms, e-commerce storefronts, API integrations, and AI automation by Hanva Technologies.",
   alternates: {
     canonical: "https://www.hanva.in/software-development/",
   },
@@ -170,7 +170,7 @@ export default function SoftwareDevelopmentHubPage() {
               </TrackedWhatsAppLink>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/company/contact/">
+              <Link href="/company/contact/?product=software-development">
                 <span>Request Technical Scoping</span>
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Link>
@@ -203,6 +203,40 @@ export default function SoftwareDevelopmentHubPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-10 bg-slate-50 border-y border-slate-100">
+        <Container className="space-y-6">
+          <div className="max-w-2xl space-y-1.5">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Custom Software Architecture &amp; Scoping Guides</h2>
+            <p className="text-xs sm:text-sm text-slate-600">
+              Evaluate ready-made SaaS against bespoke CRM/ERP development, understand engineering cost drivers, and plan clean rollouts.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <Link href="/resources/saas-vs-custom-crm-erp-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>SaaS vs Custom CRM &amp; ERP</span>
+                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">Decision guide comparing off-the-shelf SaaS speed vs bespoke systems across TCO &amp; control.</p>
+            </Link>
+            <Link href="/resources/custom-crm-development-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>Custom CRM Development Guide</span>
+                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">Domain entity modeling, RBAC hierarchies, ERP/telephony APIs &amp; legacy data migration.</p>
+            </Link>
+            <Link href="/resources/software-development-cost-factors/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>Software Development Cost Factors</span>
+                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">The six architectural drivers that determine bespoke development effort &amp; AMC budgets.</p>
+            </Link>
           </div>
         </Container>
       </section>

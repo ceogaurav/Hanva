@@ -18,7 +18,10 @@ export const metadata = {
     description:
       "A deep dive into multi-level interactive voice response: DTMF tone detection, speech synthesis, skill-based queue distribution, and webhook CRM synchronization.",
     url: "https://www.hanva.in/resources/how-ivr-systems-work/",
+    siteName: "Hanva Technologies",
+    locale: "en_IN",
     type: "article",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "How IVR Systems Work Guide" }],
   },
   twitter: {
     card: "summary_large_image",

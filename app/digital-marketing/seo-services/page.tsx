@@ -83,6 +83,18 @@ export default function SeoServicesPage() {
         { title: "Web Application Development", description: "Ensure your website stack supports fast, SEO-friendly rendering.", href: "/software-development/web-application-development/" },
         { title: "Hanva CRM", description: "Track and follow up on inbound SEO enquiries from one CRM.", href: "/products/crm/" },
       ]}
+      guides={[
+        {
+          title: "Guide: Local SEO for Indian Businesses",
+          description: "GBP storefront vs Service-Area rules, NAP hygiene & regional pages without doorway penalties.",
+          href: "/resources/local-seo-guide-for-businesses/",
+        },
+        {
+          title: "Guide: SEO vs Google Ads for SMBs",
+          description: "Decide when to prioritize organic search assets vs immediate Search ads.",
+          href: "/resources/seo-vs-google-ads-for-smbs/",
+        },
+      ]}
       faqs={[
         {
           question: "Do you guarantee first-page Google rankings?",

@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
 import {
   CheckCircle2,
@@ -21,7 +21,7 @@ import {
 export const metadata = {
   title: "Hanva Salon Software — Billing, Booking & Staff",
   description:
-    "Salon billing and management software to simplify appointments, GST invoicing, online booking mini-website, staff commissions, payroll, inventory auto-consumption, and loyalty.",
+    "Salon billing and management software for Indian salons & spas: GST invoicing, online booking mini-site, staff commissions, auto-consumption, and loyalty.",
   alternates: {
     canonical: "https://www.hanva.in/products/salon-software/",
   },
@@ -179,29 +179,33 @@ export default function HanvaSalonSoftwarePage() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Button asChild size="lg" className="bg-rose-600 hover:bg-rose-700 text-white h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
-              <TrackedWhatsAppLink
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                ctaLocation="hero"
-                productName="hanva_salon_software"
-                ctaType="product_demo_whatsapp"
-                contextRef="/products/salon-software/"
-              >
-                <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>Request Demo on WhatsApp</span>
-                <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              </TrackedWhatsAppLink>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
-              <TrackedDemoLink href="/company/contact/?product=salon-software" ctaLocation="salon_hero" productSlug="salon-software">
-                <span>Contact Us for Pricing</span>
-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
-              </TrackedDemoLink>
-            </Button>
-          </div>
+          <TrackedCtaObserver ctaLocation="hero" productName="hanva_salon_software" ctaType="salon_hero_cta">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <Button asChild size="lg" className="bg-rose-600 hover:bg-rose-700 text-white h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+                <TrackedWhatsAppLink
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ctaLocation="hero"
+                  productName="hanva_salon_software"
+                  ctaType="product_demo_whatsapp"
+                  contextRef="/products/salon-software/"
+                  experimentId="EXP-22C"
+                  variantId="request_demo_whatsapp"
+                >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Request Demo on WhatsApp</span>
+                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                </TrackedWhatsAppLink>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+                <TrackedDemoLink href="/company/contact/?product=salon-software" ctaLocation="salon_hero" productSlug="salon-software">
+                  <span>Contact Us for Pricing</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                </TrackedDemoLink>
+              </Button>
+            </div>
+          </TrackedCtaObserver>
 
           <p className="text-xs text-slate-600">
             Clicking WhatsApp opens a chat with <span className="font-semibold">+91 8423711043</span> to initiate a guided demo enquiry (not an automated booking confirmation). Contact us for pricing.
@@ -374,6 +378,56 @@ export default function HanvaSalonSoftwarePage() {
               <div className="text-sm font-bold text-slate-900">Nail, Lash &amp; Grooming Lounges</div>
               <p className="text-slate-600">Online booking mini-site, loyalty wallets, and gift cards.</p>
             </div>
+          </div>
+          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="text-sm font-bold text-slate-900">Salon Software Evaluation &amp; Operational Guides</div>
+              <p className="text-xs text-slate-600">
+                Explore India SAC/HSN GST billing mechanics, online booking workflows, commission checklists, and local salon visibility guides.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 shrink-0 text-xs font-semibold">
+              <Link href="/resources/salon-management-software-guide/" className="inline-flex items-center text-rose-700 hover:underline">
+                <span>Salon Software Buyer Guide</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link href="/resources/salon-billing-software-guide/" className="inline-flex items-center text-rose-700 hover:underline">
+                <span>Salon GST Billing Guide</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link href="/resources/salon-appointment-management-guide/" className="inline-flex items-center text-rose-700 hover:underline">
+                <span>Appointments &amp; Online Booking Guide</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link href="/digital-marketing/" className="inline-flex items-center text-blue-700 hover:underline">
+                <span>Salon Digital Marketing</span>
+                <ArrowRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Included vs Scope Clarifications */}
+      <section>
+        <Container className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800">Included for Single-Outlet Salons</div>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+              <li>Inclusive &amp; exclusive GST checkout, split POS payments, cash Z-reports &amp; digital bills</li>
+              <li>Appointment calendar, chair/room resources, waitlists &amp; public booking mini-website</li>
+              <li>PIN Staff Portal, tiered commissions, payroll &amp; service auto-consumption stock</li>
+              <li>Offline browser queue for uninterrupted counter checkout &amp; 15 built-in reports</li>
+            </ul>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-700">Important Scope Boundaries</div>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+              <li>Engineered for single-outlet salons — no multi-branch outlet switching or chain rollups</li>
+              <li>Does not ship Razorpay online checkout or standalone SMS gateway integrations</li>
+              <li>Automated WhatsApp flows depend on verified provider credentials and client opt-in</li>
+              <li>Contact us for pricing tailored to your outlet and setup needs</li>
+            </ul>
           </div>
         </Container>
       </section>

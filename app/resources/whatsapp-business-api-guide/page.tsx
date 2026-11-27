@@ -18,7 +18,10 @@ export const metadata = {
     description:
       "The definitive guide to official Meta WABA gateways: green badge verification, 24-hour service messaging windows, pre-approved utility templates, and multi-agent shared inboxes.",
     url: "https://www.hanva.in/resources/whatsapp-business-api-guide/",
+    siteName: "Hanva Technologies",
+    locale: "en_IN",
     type: "article",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "WhatsApp Business API Guide" }],
   },
   twitter: {
     card: "summary_large_image",

@@ -26,7 +26,7 @@ import {
 export const metadata = {
   title: "SaaS Products & Cloud Telephony Suite",
   description:
-    "Explore Hanva's SaaS products (Hanva CRM, Hanva Salon Software, Hanva Restaurant POS) and enterprise telecom suite including Cloud Telephony, Smart IVR, Auto Dialers, and WhatsApp CRM.",
+    "Explore Hanva CRM, Hanva Salon Software, Hanva Restaurant POS, plus enterprise Cloud Telephony, Smart IVR, Auto Dialers, and WhatsApp Business CRM solutions.",
   alternates: {
     canonical: "https://www.hanva.in/products/",
   },

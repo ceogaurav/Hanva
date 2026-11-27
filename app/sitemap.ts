@@ -2,12 +2,13 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.hanva.in";
+  const RELEASE_DATE_PHASE21 = new Date("2026-11-26T00:00:00.000Z");
   const RELEASE_DATE_PHASE14 = new Date("2026-11-26T00:00:00.000Z");
   const RELEASE_DATE_PHASE12 = new Date("2026-11-26T00:00:00.000Z");
   const RELEASE_DATE_PHASE10 = new Date("2026-11-25T00:00:00.000Z");
   const RELEASE_DATE_CORE = new Date("2026-11-24T00:00:00.000Z");
 
-  // All 52 canonical routes for Hanva Technologies (Phase 10)
+  // All 79 canonical routes for Hanva Technologies (Phase 21)
   const routes = [
     // 1. Core Homepage & Commercial Gateways (4)
     "/",
@@ -83,12 +84,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/compare/knowlarity-alternative/",
     "/compare/telecmi-alternative/",
 
-    // 9. Knowledge Hub & Topical Resource Guides (12)
+    // 9. Knowledge Hub & Topical Resource Guides (22)
     "/resources/",
     "/resources/salon-management-software-guide/",
+    "/resources/salon-billing-software-guide/",
+    "/resources/salon-appointment-management-guide/",
     "/resources/restaurant-pos-kot-inventory-guide/",
+    "/resources/restaurant-billing-software-guide/",
+    "/resources/cloud-kitchen-management-guide/",
     "/resources/crm-with-ivr-vs-telecalling-crm/",
+    "/resources/ivr-crm-for-businesses/",
+    "/resources/lead-management-process-guide/",
     "/resources/saas-vs-custom-crm-erp-guide/",
+    "/resources/custom-crm-development-guide/",
+    "/resources/software-development-cost-factors/",
+    "/resources/local-seo-guide-for-businesses/",
+    "/resources/seo-vs-google-ads-for-smbs/",
     "/resources/what-is-cloud-telephony/",
     "/resources/how-ivr-systems-work/",
     "/resources/auto-dialer-vs-predictive-dialer/",
@@ -141,6 +152,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     let lastModified = RELEASE_DATE_PHASE12;
     if (
+      route === "/resources/ivr-crm-for-businesses/" ||
+      route === "/resources/lead-management-process-guide/" ||
+      route === "/resources/salon-billing-software-guide/" ||
+      route === "/resources/salon-appointment-management-guide/" ||
+      route === "/resources/restaurant-billing-software-guide/" ||
+      route === "/resources/cloud-kitchen-management-guide/" ||
+      route === "/resources/local-seo-guide-for-businesses/" ||
+      route === "/resources/seo-vs-google-ads-for-smbs/" ||
+      route === "/resources/custom-crm-development-guide/" ||
+      route === "/resources/software-development-cost-factors/"
+    ) {
+      lastModified = RELEASE_DATE_PHASE21;
+    } else if (
       route === "/products/salon-software/" ||
       route === "/products/restaurant-pos/" ||
       route.startsWith("/digital-marketing/") ||

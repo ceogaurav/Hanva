@@ -83,6 +83,18 @@ export default function PerformanceMarketingPage() {
         { title: "Hanva CRM", description: "Manage and call incoming campaign leads inside Hanva CRM.", href: "/products/crm/" },
         { title: "Cloud Telephony & IVR", description: "Track and route inbound campaign phone calls.", href: "/products/cloud-telephony/" },
       ]}
+      guides={[
+        {
+          title: "Guide: SEO vs Google Ads for Indian SMBs",
+          description: "Compare ad group targeting, negative keyword hygiene & organic compounding timelines.",
+          href: "/resources/seo-vs-google-ads-for-smbs/",
+        },
+        {
+          title: "Guide: Local SEO & GBP Hygiene",
+          description: "Complement paid campaigns with clean Google Business Profile & regional page health.",
+          href: "/resources/local-seo-guide-for-businesses/",
+        },
+      ]}
       faqs={[
         {
           question: "Do you guarantee a fixed number of leads or cost per lead?",

@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
-import { TrackedDemoLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
-import { CONTACT_CONFIG } from "@/lib/config";
+import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink } from "@/components/analytics/tracked-links";
+import { CONTACT_CONFIG, resolveRouteContext } from "@/lib/config";
+import { inferSubjectFromContext } from "@/lib/analytics";
 import {
   CheckCircle2,
   ArrowRight,
@@ -89,6 +90,8 @@ export function ArticleLayout({
     `${CONTACT_CONFIG.whatsappBaseUrl}?text=${encodeURIComponent(
       `Hello Hanva Team, I read your guide "${title}" and would like to learn more. Reference: ${whatsappRef}`
     )}`;
+  const routeCtx = resolveRouteContext(whatsappRef);
+  const subjectName = inferSubjectFromContext(whatsappRef);
 
   const faqSchema =
     faqs && faqs.length > 0
@@ -112,6 +115,16 @@ export function ArticleLayout({
         ...schemaData,
       }
     : null;
+
+  const summarySecondaryLink = pillarHref.includes("salon-software")
+    ? { href: "/products/salon-software/", label: "Explore Hanva Salon Software" }
+    : pillarHref.includes("restaurant-pos")
+      ? { href: "/products/restaurant-pos/", label: "Explore Hanva Restaurant POS" }
+      : pillarHref.includes("digital-marketing")
+        ? { href: "/digital-marketing/", label: "Explore Digital Marketing Services" }
+        : pillarHref.includes("software-development")
+          ? { href: "/software-development/", label: "Explore Custom Software Services" }
+          : { href: "/pricing/calculator/", label: "Simulate OBD Voice Pulse Costs" };
 
   return (
     <article className="pt-10 pb-28 lg:py-14 bg-white min-h-screen overflow-x-clip">
@@ -204,11 +217,11 @@ export function ArticleLayout({
             </TrackedDemoLink>
             <span className="text-slate-400" aria-hidden="true">|</span>
             <Link
-              href="/pricing/calculator/"
+              href={summarySecondaryLink.href}
               className="inline-flex items-center font-semibold text-emerald-700 hover:text-emerald-900 hover:underline"
             >
               <Sparkles className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
-              <span>Simulate OBD Voice Pulse Costs</span>
+              <span>{summarySecondaryLink.label}</span>
             </Link>
           </div>
         </div>
@@ -305,52 +318,56 @@ export function ArticleLayout({
         )}
 
         {/* 9. Contextual Conversion Banner */}
-        <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-6 sm:p-8 text-white space-y-6 max-w-4xl">
-          <div className="space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-              {ctaBannerTitle}
-            </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
-              {ctaBannerDescription}
-            </p>
-          </div>
-          <div className="space-y-2">
-            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3">
-              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-5 text-xs sm:text-sm text-center">
-                <TrackedWhatsAppLink
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                ctaLocation="article_bottom_banner"
-                contextRef={whatsappRef}
-              >
-                  <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
-                  <span>{ctaButtonLabel}</span>
-                  <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
-                </TrackedWhatsAppLink>
-              </Button>
-              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
-                <TrackedDemoLink
-                href="/company/contact/"
-                ctaLocation="article_bottom_banner"
-                ctaLabelKey="request_architecture_demo"
-              >
-                  <span>Contact Form</span>
-                  <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
-                </TrackedDemoLink>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto bg-transparent border-slate-600 text-white hover:bg-slate-800 hover:text-white whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
-                <Link href="/pricing/calculator/">
-                  <Sparkles className="mr-2 h-4 w-4 text-emerald-400 shrink-0 inline" aria-hidden="true" />
-                  <span>Pulse Savings Calculator</span>
-                </Link>
-              </Button>
+        <TrackedCtaObserver ctaLocation="article_banner" productName={subjectName} ctaType="article_bottom_cta">
+          <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-6 sm:p-8 text-white space-y-6 max-w-4xl">
+            <div className="space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                {ctaBannerTitle}
+              </h2>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                {ctaBannerDescription}
+              </p>
             </div>
-            <p className="text-[11px] text-slate-300">
-              Clicking WhatsApp opens a prepared enquiry message to {CONTACT_CONFIG.phoneDisplay} — initiating a demo enquiry does not automatically confirm an appointment.
-            </p>
+            <div className="space-y-2">
+              <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3">
+                <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-5 text-xs sm:text-sm text-center">
+                  <TrackedWhatsAppLink
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ctaLocation="article_bottom_banner"
+                    productName={subjectName}
+                    contextRef={whatsappRef}
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                    <span>{ctaButtonLabel}</span>
+                    <ExternalLink className="ml-1.5 h-3.5 w-3.5 shrink-0 inline" aria-hidden="true" />
+                  </TrackedWhatsAppLink>
+                </Button>
+                <Button asChild variant="primary" size="lg" className="w-full sm:w-auto whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
+                  <TrackedDemoLink
+                    href={routeCtx.contactHref}
+                    ctaLocation="article_bottom_banner"
+                    ctaLabelKey="request_architecture_demo"
+                    productSlug={routeCtx.productSlug || undefined}
+                  >
+                    <span>Contact Form</span>
+                    <ArrowRight className="ml-2 h-4 w-4 shrink-0 inline" aria-hidden="true" />
+                  </TrackedDemoLink>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto bg-transparent border-slate-600 text-white hover:bg-slate-800 hover:text-white whitespace-normal h-auto min-h-[44px] py-2.5 px-4 text-xs sm:text-sm text-center">
+                  <Link href={summarySecondaryLink.href}>
+                    <Sparkles className="mr-2 h-4 w-4 text-emerald-400 shrink-0 inline" aria-hidden="true" />
+                    <span>{summarySecondaryLink.label}</span>
+                  </Link>
+                </Button>
+              </div>
+              <p className="text-[11px] text-slate-300">
+                Clicking WhatsApp opens a prepared enquiry message to {CONTACT_CONFIG.phoneDisplay} — initiating a demo enquiry does not automatically confirm an appointment.
+              </p>
+            </div>
           </div>
-        </div>
+        </TrackedCtaObserver>
       </Container>
     </article>
   );

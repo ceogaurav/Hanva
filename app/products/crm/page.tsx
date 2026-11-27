@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { FAQAccordion, type FAQItem } from "@/components/shared/faq-accordion";
 import { SchemaOrg, buildBreadcrumbSchema } from "@/components/shared/schema-org";
 import { ProductVisualPlaceholder, ProductStoryBand } from "@/components/shared/product-visual-placeholder";
-import { TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
+import { TrackedCtaObserver, TrackedDemoLink, TrackedWhatsAppLink, TrackedPhoneLink } from "@/components/analytics/tracked-links";
 import { CONTACT_CONFIG, buildSaasDemoWhatsAppUrl } from "@/lib/config";
 import {
   CheckCircle2,
@@ -178,29 +178,33 @@ export default function HanvaCrmPage() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Button asChild variant="primary" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
-              <TrackedWhatsAppLink
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                ctaLocation="hero"
-                productName="hanva_crm"
-                ctaType="product_demo_whatsapp"
-                contextRef="/products/crm/"
-              >
-                <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>Request Demo on WhatsApp</span>
-                <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              </TrackedWhatsAppLink>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
-              <TrackedDemoLink href="/company/contact/?product=crm" ctaLocation="crm_hero" productSlug="crm">
-                <span>Contact Us for Pricing</span>
-                <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
-              </TrackedDemoLink>
-            </Button>
-          </div>
+          <TrackedCtaObserver ctaLocation="hero" productName="hanva_crm" ctaType="crm_hero_cta">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <Button asChild variant="primary" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+                <TrackedWhatsAppLink
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ctaLocation="hero"
+                  productName="hanva_crm"
+                  ctaType="product_demo_whatsapp"
+                  contextRef="/products/crm/"
+                  experimentId="EXP-22C"
+                  variantId="request_demo_whatsapp"
+                >
+                  <MessageSquare className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Request Demo on WhatsApp</span>
+                  <ExternalLink className="ml-2 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                </TrackedWhatsAppLink>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="h-auto min-h-[48px] py-2.5 px-5 whitespace-normal text-center">
+                <TrackedDemoLink href="/company/contact/?product=crm" ctaLocation="crm_hero" productSlug="crm">
+                  <span>Contact Us for Pricing</span>
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                </TrackedDemoLink>
+              </Button>
+            </div>
+          </TrackedCtaObserver>
 
           <p className="text-xs text-slate-600">
             Clicking WhatsApp opens a chat with <span className="font-semibold">+91 8423711043</span> to initiate a guided demo enquiry (not an automated booking confirmation). Contact us for pricing.
@@ -383,6 +387,60 @@ export default function HanvaCrmPage() {
               </div>
               <p className="text-xs text-slate-600">Need bespoke ERP/CRM workflows? Explore our custom engineering service.</p>
             </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <Link href="/resources/crm-with-ivr-vs-telecalling-crm/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>Buyer Guide: CRM with IVR vs Telecalling CRM</span>
+                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">Compare multi-channel IVR/WhatsApp CRM vs outbound voice-first telecalling workflows.</p>
+            </Link>
+            <Link href="/resources/ivr-crm-for-businesses/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>Operational Guide: IVR CRM Routing &amp; Call Audits</span>
+                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">How teams combine DID routing, 5,000-row IVR blasts, C2C calling &amp; audio audits.</p>
+            </Link>
+            <Link href="/resources/lead-management-process-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>Playbook: Lead Management, Scoring &amp; KYC Vaults</span>
+                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">Structured SOP from webhook/CSV intake and role assignment through KYC collection.</p>
+            </Link>
+            <Link href="/resources/saas-vs-custom-crm-erp-guide/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>Decision Guide: Ready-Made SaaS vs Custom CRM/ERP</span>
+                <ArrowUpRight className="h-4 w-4 text-blue-600" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">Evaluate when ready-to-deploy Hanva CRM outperforms custom bespoke software builds.</p>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* Included vs Explicit Scope Clarifications */}
+      <section>
+        <Container className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800">What Is Included (Verified)</div>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+              <li>Role-based portals for Admin, Team Leader, Telecaller, and KYC Team</li>
+              <li>CSV bulk lead import, webhook intake, lead scoring, and follow-up queues</li>
+              <li>Carrier C2C calling &amp; 5,000-row IVR campaigns (CloudConnect, Ozonetel, Fonada)</li>
+              <li>HTML5 browser recording playback on call reports, Fonada WABA &amp; attendance</li>
+            </ul>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-700">Important Scope Boundaries</div>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+              <li>Automated bulk email or SMS blast dispatches are not active outbound modules</li>
+              <li>Live supervisor wallboard is not an active operational display</li>
+              <li>Companion Android dialing tracks call duration/status (trunk audio applies to cloud C2C/IVR)</li>
+              <li>No built-in online subscription billing; pricing is scoped transparently per team</li>
+            </ul>
           </div>
         </Container>
       </section>

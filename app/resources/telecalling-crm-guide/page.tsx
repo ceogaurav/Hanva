@@ -18,7 +18,10 @@ export const metadata = {
     description:
       "How integrated dialer CRMs eliminate spreadsheet lead leakage, automate lead assignment, enforce disposition tagging, and give sales directors real-time visibility.",
     url: "https://www.hanva.in/resources/telecalling-crm-guide/",
+    siteName: "Hanva Technologies",
+    locale: "en_IN",
     type: "article",
+    images: [{ url: "https://www.hanva.in/og-image.png", width: 1200, height: 630, alt: "Telecalling CRM Guide" }],
   },
   twitter: {
     card: "summary_large_image",

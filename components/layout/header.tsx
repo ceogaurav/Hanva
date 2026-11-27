@@ -37,11 +37,13 @@ import {
   ShoppingBag,
 } from "lucide-react";
 
-import { CONTACT_CONFIG } from "@/lib/config";
-import { trackAnalyticsEvent, trackWhatsAppClick } from "@/lib/analytics";
+import { CONTACT_CONFIG, resolveRouteContext } from "@/lib/config";
+import { inferSubjectFromContext, trackAnalyticsEvent, trackCtaClick, trackWhatsAppClick } from "@/lib/analytics";
 
 export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
   const pathname = usePathname();
+  const routeCtx = resolveRouteContext(pathname);
+  const subjectName = inferSubjectFromContext(pathname || "/");
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
   const navRef = React.useRef<HTMLElement>(null);
   const hoverOpenedAtRef = React.useRef<number>(0);
@@ -612,16 +614,22 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
           <div className="flex items-center space-x-3">
             <Button asChild variant="primary" size="default" className="hidden lg:inline-flex">
               <Link
-              href="/company/contact/"
-              onClick={() =>
-                trackAnalyticsEvent("demo_cta_click", {
-                  cta_location: "header",
-                  cta_surface: "header_main",
-                  cta_label_key: "request_demo_enquiry",
-                  target_path: "/company/contact/",
-                })
-              }
-            >
+                href={routeCtx.contactHref}
+                onClick={() => {
+                  trackAnalyticsEvent("demo_cta_click", {
+                    cta_location: "header",
+                    cta_surface: "header_main",
+                    cta_label_key: "request_demo_enquiry",
+                    product_name: subjectName,
+                    target_path: "/company/contact/",
+                  });
+                  trackCtaClick({
+                    ctaLocation: "header",
+                    productName: subjectName,
+                    ctaType: "request_demo_button",
+                  });
+                }}
+              >
                 Request Demo
               </Link>
             </Button>

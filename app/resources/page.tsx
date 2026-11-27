@@ -104,6 +104,26 @@ const articles = [
     keyTopics: ["GST Salon Billing", "Online Booking", "Staff Commissions", "Auto-Consumption Stock"],
   },
   {
+    slug: "/resources/salon-billing-software-guide/",
+    pillar: "Salon Software",
+    title: "Salon Billing Software in India: GST Invoicing, Split POS & Z-Reports",
+    description:
+      "Front-desk billing guide covering SAC 9997 services vs retail HSN goods, inclusive/exclusive GST checkout, split POS tenders, Z-reports & offline queues.",
+    readTime: "10 min read",
+    date: "November 2026",
+    keyTopics: ["SAC 9997 vs HSN", "Split POS Tenders", "Digital Bills", "Cash Z-Reports"],
+  },
+  {
+    slug: "/resources/salon-appointment-management-guide/",
+    pillar: "Salon Software",
+    title: "Salon Appointment & Online Booking Management: Eliminating Chair Clashes",
+    description:
+      "Manage stylist and treatment-room calendars, waitlists, public online booking mini-websites, customer visit history & PIN staff portal schedules.",
+    readTime: "9 min read",
+    date: "November 2026",
+    keyTopics: ["Stylist & Room Slots", "Online Booking Link", "Waitlists", "Staff Portal"],
+  },
+  {
     slug: "/resources/restaurant-pos-kot-inventory-guide/",
     pillar: "Restaurant POS",
     title: "Restaurant POS Software in India: Billing, KOT, Inventory and Buying Guide",
@@ -112,6 +132,26 @@ const articles = [
     readTime: "12 min read",
     date: "November 2026",
     keyTopics: ["POS vs KOT vs KDS", "CGST & SGST", "Recipe BOM Stock", "Cafes & Cloud Kitchens"],
+  },
+  {
+    slug: "/resources/restaurant-billing-software-guide/",
+    pillar: "Restaurant POS",
+    title: "Restaurant Billing Software in India: GST Splits, UPI QR & Offline POS",
+    description:
+      "India restaurant GST rules (5% vs 18% context), dynamic NPCI UPI QR, multi-tender split payments, Z-reports, IndexedDB offline queuing & print bridges.",
+    readTime: "11 min read",
+    date: "November 2026",
+    keyTopics: ["CGST & SGST Splits", "Dynamic NPCI UPI QR", "Offline IndexedDB", "Multi-Tender Pay"],
+  },
+  {
+    slug: "/resources/cloud-kitchen-management-guide/",
+    pillar: "Restaurant POS",
+    title: "Cloud Kitchen Management Guide: KDS Routing, Recipe BOM & Partner APIs",
+    description:
+      "Run delivery kitchens efficiently with station KDS boards, duplicate-KOT protection, FIFO/WAC recipe BOM depletion, pincode zones & REST API webhooks.",
+    readTime: "10 min read",
+    date: "November 2026",
+    keyTopics: ["Station KDS", "FIFO / WAC Recipes", "Delivery Zones", "Partner REST API"],
   },
   {
     slug: "/resources/crm-with-ivr-vs-telecalling-crm/",
@@ -124,6 +164,46 @@ const articles = [
     keyTopics: ["CRM Pipelines", "Built-in IVR", "C2C & Auto-Dialing", "Real Estate & EdTech"],
   },
   {
+    slug: "/resources/ivr-crm-for-businesses/",
+    pillar: "CRM & IVR",
+    title: "IVR CRM for Businesses: Routing, Outbound Campaigns & Call Audits",
+    description:
+      "Operational manual for uniting virtual DID routing, chunked 5,000-row IVR blasts, carrier C2C webhooks, HTML5 browser recordings & WABA templates.",
+    readTime: "11 min read",
+    date: "November 2026",
+    keyTopics: ["DID Registry", "IVR Blasts", "C2C Webhooks", "Browser Audio Audits"],
+  },
+  {
+    slug: "/resources/lead-management-process-guide/",
+    pillar: "CRM & IVR",
+    title: "Lead Management Process Guide: From Webhook Capture to KYC Verification",
+    description:
+      "Structured B2B and inside-sales workflow covering webhook/CSV intake, role routing, lead scoring, follow-up cadences, KYC portals & DPDP consent.",
+    readTime: "10 min read",
+    date: "November 2026",
+    keyTopics: ["Webhook Intake", "Role Assignment", "KYC Portals", "DPDP 2023 Consent"],
+  },
+  {
+    slug: "/resources/local-seo-guide-for-businesses/",
+    pillar: "Digital Marketing",
+    title: "Local SEO Guide for Indian Businesses: GBP Hygiene & Regional Pages",
+    description:
+      "Compliant Local SEO architecture aligned with Google Business Profile storefront vs Service-Area rules and Google Search Essentials spam policies.",
+    readTime: "10 min read",
+    date: "November 2026",
+    keyTopics: ["GBP Compliance", "Service-Area Rules", "No Doorway Pages", "Local Schema"],
+  },
+  {
+    slug: "/resources/seo-vs-google-ads-for-smbs/",
+    pillar: "Digital Marketing",
+    title: "SEO vs Google Ads for Indian SMBs: When to Deploy Organic vs Paid Search",
+    description:
+      "Compare compounding organic SEO against structured Google Search Ads across speed, ad-group/negative keyword hygiene & conversion tracking.",
+    readTime: "10 min read",
+    date: "November 2026",
+    keyTopics: ["Organic SEO", "Google Search Ads", "Negative Keywords", "Conversion Tracking"],
+  },
+  {
     slug: "/resources/saas-vs-custom-crm-erp-guide/",
     pillar: "Software Strategy",
     title: "SaaS vs Custom CRM and ERP: Which Is Right for Your Business?",
@@ -132,6 +212,26 @@ const articles = [
     readTime: "11 min read",
     date: "November 2026",
     keyTopics: ["Buy vs Build", "TCO & Maintenance", "Custom Workflows", "Data Ownership"],
+  },
+  {
+    slug: "/resources/custom-crm-development-guide/",
+    pillar: "Software Strategy",
+    title: "Custom CRM & ERP Development Guide: Scoping, Modeling & Rollout",
+    description:
+      "Engineering blueprint covering domain entity modeling, multi-department approval matrices, RBAC boundaries, API bridges & legacy data migration.",
+    readTime: "11 min read",
+    date: "November 2026",
+    keyTopics: ["Domain Modeling", "RBAC Permissions", "ERP Integrations", "Staged Migration"],
+  },
+  {
+    slug: "/resources/software-development-cost-factors/",
+    pillar: "Software Strategy",
+    title: "Software Development Cost Factors in India: What Drives Custom Estimates",
+    description:
+      "Transparent breakdown of the six architectural drivers behind bespoke CRM, portal, mobile & integration investment—with clear pre-quote checklists.",
+    readTime: "10 min read",
+    date: "November 2026",
+    keyTopics: ["Workflow Complexity", "RBAC & DPDP", "Third-Party APIs", "Ongoing AMC"],
   },
   {
     slug: "/resources/what-is-cloud-telephony/",
@@ -239,8 +339,8 @@ export default function ResourcesHubPage() {
             Business Communication, Cloud Telephony &amp; CRM Architecture Guides
           </h1>
           <p className="text-base sm:text-xl text-slate-600 leading-relaxed">
-            Practical, peer-reviewed engineering guides, dialer comparisons, regulatory manuals, and pricing frameworks 
-            designed to help Indian business owners, sales leaders, and telecalling operations build scalable customer interaction engines.
+            Practical, peer-reviewed architecture guides, GST billing playbooks, CRM/IVR comparisons, digital marketing guides, and custom software blueprints 
+            designed for Indian business owners, salon &amp; restaurant operators, sales leaders, and engineering teams.
           </p>
 
           <div className="space-y-2 pt-2">

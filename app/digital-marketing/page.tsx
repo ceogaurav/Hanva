@@ -12,7 +12,7 @@ import { ArrowRight, CheckCircle2, MessageSquare, TrendingUp, ExternalLink } fro
 export const metadata = {
   title: "Digital Marketing Services — SEO & Google Ads",
   description:
-    "Hanva Technologies provides Search Engine Optimization (SEO), Google Ads, Social Media Marketing, and integrated digital marketing campaigns for Indian and international businesses.",
+    "Search Engine Optimization (SEO), Google Ads performance marketing, and social media campaigns engineered for qualified enquiries across India and globally.",
   alternates: {
     canonical: "https://www.hanva.in/digital-marketing/",
   },
@@ -131,7 +131,7 @@ export default function DigitalMarketingHubPage() {
               </TrackedWhatsAppLink>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/company/contact/">
+              <Link href="/company/contact/?product=digital-marketing">
                 <span>Request Campaign Consultation</span>
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Link>
@@ -206,6 +206,33 @@ export default function DigitalMarketingHubPage() {
                 </Button>
               </CardContent>
             </Card>
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-10 bg-slate-50 border-y border-slate-100">
+        <Container className="space-y-6">
+          <div className="max-w-2xl space-y-1.5">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Digital Marketing &amp; Search Strategy Guides</h2>
+            <p className="text-xs sm:text-sm text-slate-600">
+              Practical resources on compliant Indian local SEO, Google Business Profile hygiene, and aligning organic search with Google Ads.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <Link href="/resources/local-seo-guide-for-businesses/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>Local SEO Guide for Indian Businesses</span>
+                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">Google Business Profile address vs SAB compliance, NAP hygiene, and city landing pages without doorway abuse.</p>
+            </Link>
+            <Link href="/resources/seo-vs-google-ads-for-smbs/" className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-300 space-y-1.5 block transition-colors">
+              <div className="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span>SEO vs Google Ads for SMBs: Decision Guide</span>
+                <ArrowRight className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+              </div>
+              <p className="text-xs text-slate-600">When to prioritize organic SEO compounding vs immediate Search ads with negative keyword hygiene.</p>
+            </Link>
           </div>
         </Container>
       </section>
